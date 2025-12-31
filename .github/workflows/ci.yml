@@ -31,8 +31,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Lint (workspace)
-        run: pnpm -r run lint --if-present
+      - name: Lint
+        run: pnpm lint
 
-      - name: Build (workspace)
-        run: pnpm -r run build --if-present
+      - name: Build
+        run: pnpm build
