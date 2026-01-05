@@ -1,8 +1,11 @@
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
-import type { UserConfig } from 'vite';
 
-export function baseViteConfig(overrides: UserConfig = {}): UserConfig {
+/**
+ * @param {import('vite').UserConfig} overrides
+ * @returns {import('vite').UserConfig}
+ */
+export function baseViteConfig(overrides = {}) {
   return {
     plugins: [
       react({
