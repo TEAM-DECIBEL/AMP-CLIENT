@@ -7,8 +7,13 @@
     ".": "./index.ts"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "catalog:",
     "vite-plugin-svgr": "^4.5.0",
     "babel-plugin-react-compiler": "^1.0.0"
+  },
+  "peerDependencies": {
+    "vite": "^7",
+    "@vitejs/plugin-react": "^5",
+    "vite-plugin-svgr": "^4"
   }
 }
