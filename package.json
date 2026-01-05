@@ -12,12 +12,12 @@
     "format:check": "prettier --check ."
   },
   "devDependencies": {
+    "@amp/prettier-config": "workspace:*",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "babel-plugin-react-compiler": "^1.0.0",
-    "prettier": "^3.7.4",
     "turbo": "^2.7.2",
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
