@@ -25,3 +25,8 @@ dist-ssr
 
 # Turborepo
 .turbo
+
+# TypeScript cache
+*.tsbuildinfo
+.cache
+.tmp
