@@ -1,5 +1,5 @@
 {
-  "extends": "@amp/tsconfig/base",
+  "extends": "@amp/tsconfig/react",
   "compilerOptions": {
     "types": ["vite/client"]
   },
