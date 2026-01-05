@@ -7,6 +7,7 @@ import svgr from 'vite-plugin-svgr';
  */
 export function baseViteConfig(overrides = {}) {
   return {
+    ...overrides,
     plugins: [
       react({
         babel: {
@@ -14,7 +15,7 @@ export function baseViteConfig(overrides = {}) {
         },
       }),
       svgr(),
+      ...(overrides.plugins ?? []),
     ],
-    ...overrides,
   };
 }
