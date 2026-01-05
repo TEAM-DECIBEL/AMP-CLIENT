@@ -6,6 +6,11 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig(
   {
@@ -16,6 +21,7 @@ export default defineConfig(
       'coverage',
       'node_modules',
       '.pnpm-store',
+      '.turbo',
     ],
   },
 
@@ -40,9 +46,15 @@ export default defineConfig(
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json', './apps/*/tsconfig.json'],
+      },
       ecmaVersion: 2020,
       globals: globals.browser,
     },
   },
+
   prettierConfig,
 );
