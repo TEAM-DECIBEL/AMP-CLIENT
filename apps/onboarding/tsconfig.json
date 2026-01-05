@@ -1,7 +1,7 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "extends": "@amp/tsconfig/base",
+  "compilerOptions": {
+    "types": ["vite/client"]
+  },
+  "include": ["src"]
 }

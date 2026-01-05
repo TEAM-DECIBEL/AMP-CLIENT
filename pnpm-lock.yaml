@@ -11,6 +11,9 @@ importers:
       '@amp/prettier-config':
         specifier: workspace:*
         version: link:packages/configs/prettier
+      '@amp/tsconfig':
+        specifier: workspace:*
+        version: link:packages/configs/typescript
       '@types/node':
         specifier: ^24.10.1
         version: 24.10.4
@@ -185,6 +188,8 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
+
+  packages/configs/typescript: {}
 
 packages:
 
