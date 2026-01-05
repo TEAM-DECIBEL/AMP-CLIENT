@@ -1,9 +1,12 @@
 {
   "extends": "./base.json",
   "compilerOptions": {
+    "lib": ["ES2022", "DOM"],
     "jsx": "react-jsx",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "types": ["react", "react-dom"]
+    "declaration": true,
+    "declarationMap": true,
+    "isolatedModules": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   }
 }
