@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./base": "./tsconfig.base.json"
+    "./base": "./base.json",
+    "./react": "./react.json",
+    "./react-library": "./react-library.json"
   }
 }
