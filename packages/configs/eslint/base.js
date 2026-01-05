@@ -3,11 +3,6 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import tseslint from 'typescript-eslint';
 import turboPlugin from 'eslint-plugin-turbo';
 import globals from 'globals';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export const config = [
@@ -37,13 +32,7 @@ export const config = [
   },
 
   {
-    files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        tsconfigRootDir: __dirname,
-        project: ['./tsconfig.json', './apps/*/tsconfig.json'],
-      },
       ecmaVersion: 2020,
       globals: globals.browser,
     },
