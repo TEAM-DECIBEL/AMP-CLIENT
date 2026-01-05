@@ -14,6 +14,9 @@ importers:
       '@amp/tsconfig':
         specifier: workspace:*
         version: link:packages/configs/typescript
+      '@amp/vite-config':
+        specifier: workspace:*
+        version: link:packages/configs/vite
       '@types/node':
         specifier: ^24.10.1
         version: 24.10.4
@@ -23,12 +26,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.7)
-      '@vitejs/plugin-react':
-        specifier: ^5.1.1
-        version: 5.1.2(vite@7.3.0(@types/node@24.10.4))
-      babel-plugin-react-compiler:
-        specifier: ^1.0.0
-        version: 1.0.0
       turbo:
         specifier: ^2.7.2
         version: 2.7.2
@@ -38,9 +35,6 @@ importers:
       vite:
         specifier: ^7.2.4
         version: 7.3.0(@types/node@24.10.4)
-      vite-plugin-svgr:
-        specifier: ^4.5.0
-        version: 4.5.0(rollup@4.55.1)(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4))
 
   apps/audience:
     dependencies:
@@ -190,6 +184,18 @@ importers:
         version: 3.7.4
 
   packages/configs/typescript: {}
+
+  packages/configs/vite:
+    dependencies:
+      '@vitejs/plugin-react':
+        specifier: ^5.1.1
+        version: 5.1.2(vite@7.3.0(@types/node@24.10.4))
+      babel-plugin-react-compiler:
+        specifier: ^1.0.0
+        version: 1.0.0
+      vite-plugin-svgr:
+        specifier: ^4.5.0
+        version: 4.5.0(rollup@4.55.1)(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4))
 
 packages:
 
