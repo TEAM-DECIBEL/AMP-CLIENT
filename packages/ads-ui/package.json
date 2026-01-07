@@ -1,6 +1,10 @@
 {
   "name": "@amp/ads-ui",
   "private": true,
+  "exports": {
+    ".": "./src/components/index.ts",
+    "./styles": "./src/styles/index.ts"
+  },
   "scripts": {
     "build": "tsc -b",
     "lint": "eslint ."
