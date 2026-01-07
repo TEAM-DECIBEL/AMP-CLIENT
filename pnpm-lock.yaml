@@ -44,6 +44,9 @@ importers:
 
   apps/audience:
     dependencies:
+      '@amp/ads-ui':
+        specifier: workspace:*
+        version: link:../../packages/ads-ui
       react:
         specifier: 'catalog:'
         version: 19.2.3
@@ -84,6 +87,9 @@ importers:
 
   apps/host:
     dependencies:
+      '@amp/ads-ui':
+        specifier: workspace:*
+        version: link:../../packages/ads-ui
       react:
         specifier: 'catalog:'
         version: 19.2.3
@@ -124,6 +130,9 @@ importers:
 
   apps/onboarding:
     dependencies:
+      '@amp/ads-ui':
+        specifier: workspace:*
+        version: link:../../packages/ads-ui
       react:
         specifier: 'catalog:'
         version: 19.2.3
