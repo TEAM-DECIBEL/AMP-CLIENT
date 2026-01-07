@@ -1,0 +1,15 @@
+{
+  "name": "@amp/apis",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@amp/tsconfig": "workspace:*",
+    "@amp/eslint-config": "workspace:*",
+    "typescript": "catalog:",
+    "eslint": "catalog:"
+  }
+}

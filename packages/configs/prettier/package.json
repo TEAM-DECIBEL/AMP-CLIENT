@@ -1,0 +1,12 @@
+{
+  "name": "@amp/prettier-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4"
+  }
+}

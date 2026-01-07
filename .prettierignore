@@ -11,6 +11,8 @@ coverage
 # caches
 .cache
 .vite
+.turbo
+
 
 # version control
 .git
