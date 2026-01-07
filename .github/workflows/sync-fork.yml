@@ -1,0 +1,37 @@
+name: Sync to personal fork (for Vercel deploy)
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: sync-fork-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repo (org)
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add fork remote
+        run: |
+          git remote add forked-repo https://x-access-token:${{ secrets.FORKED_REPO_TOKEN }}@github.com/${{ secrets.FORKED_REPO_OWNER }}/${{ secrets.FORKED_REPO_NAME }}.git
+
+      - name: Push to fork (mirror main)
+        run: |
+          git push forked-repo HEAD:main --force-with-lease
+
+      - name: Clean up
+        if: always()
+        run: |
+          git remote remove forked-repo

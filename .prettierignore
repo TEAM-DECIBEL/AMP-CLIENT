@@ -1,0 +1,23 @@
+# dependencies
+node_modules
+.pnpm-store
+
+# build outputs
+dist
+build
+out
+coverage
+
+# caches
+.cache
+.vite
+.turbo
+
+
+# version control
+.git
+.svn
+.hg
+
+# package managers
+pnpm-lock.yaml

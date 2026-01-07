@@ -1,0 +1,11 @@
+{
+  "name": "@amp/tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./base": "./base.json",
+    "./react": "./react.json",
+    "./react-library": "./react-library.json"
+  }
+}

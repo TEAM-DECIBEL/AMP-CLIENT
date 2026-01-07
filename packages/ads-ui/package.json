@@ -1,0 +1,25 @@
+{
+  "name": "@amp/ads-ui",
+  "private": true,
+  "exports": {
+    ".": "./src/components/index.ts",
+    "./styles": "./src/styles/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@amp/prettier-config": "workspace:*",
+    "@amp/tsconfig": "workspace:*",
+    "@amp/eslint-config": "workspace:*",
+    "typescript": "catalog:",
+    "eslint": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
+  }
+}

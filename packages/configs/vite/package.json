@@ -1,0 +1,19 @@
+{
+  "name": "@amp/vite-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "catalog:",
+    "vite-plugin-svgr": "^4.5.0",
+    "babel-plugin-react-compiler": "^1.0.0"
+  },
+  "peerDependencies": {
+    "vite": "^7",
+    "@vitejs/plugin-react": "^5",
+    "vite-plugin-svgr": "^4"
+  }
+}

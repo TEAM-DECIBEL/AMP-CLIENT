@@ -1,0 +1,29 @@
+{
+  "name": "@amp/onboarding",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "@amp/ads-ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@amp/prettier-config": "workspace:*",
+    "@amp/tsconfig": "workspace:*",
+    "@amp/vite-config": "workspace:*",
+    "@amp/eslint-config": "workspace:*",
+    "vite": "catalog:",
+    "typescript": "catalog:",
+    "eslint": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:"
+  }
+}
