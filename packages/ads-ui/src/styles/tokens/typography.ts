@@ -1,24 +1,24 @@
 export const typography = {
   fontSize: {
-    22: "22px",
-    20: "20px",
-    18: "18px",
-    16: "16px",
-    14: "14px",
-    13: "13px",
-    12: "12px",
-    10: "10px",
+    size22: "2.2rem",
+    size20: "2rem",
+    size18: "1.8rem",
+    size16: "1.6rem",
+    size14: "1.4rem",
+    size13: "1.3rem",
+    size12: "1.2rem",
+    size10: "1rem",
   },
   fontWeight: {
-    regular: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
+    regular: "400",
+    medium: "500",
+    semibold: "600",
+    bold: "700",
   },
   lineHeight: {
-    "150": "150%",
+    lh150: "150%",
   },
   letterSpacing: {
-    "0": "0px",
+    ls0: "0px",
   },
 } as const;
