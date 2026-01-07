@@ -5,13 +5,13 @@ export const font = {
   heading_b_22: {
     fontSize: typography.fontSize.size22,
     fontWeight: typography.fontWeight.bold,
-    lineHeight: typography.lineHeight.lh150,
+    lineHeight: typography.lineHeight.lh130,
     letterSpacing: typography.letterSpacing.ls0,
   },
   heading_sb_22: {
     fontSize: typography.fontSize.size22,
     fontWeight: typography.fontWeight.semibold,
-    lineHeight: typography.lineHeight.lh150,
+    lineHeight: typography.lineHeight.lh130,
     letterSpacing: typography.letterSpacing.ls0,
   },
   heading_sb_20: {

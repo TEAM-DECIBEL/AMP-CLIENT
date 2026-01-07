@@ -16,6 +16,7 @@ export const typography = {
     bold: "700",
   },
   lineHeight: {
+    lh130: "130%",
     lh150: "150%",
   },
   letterSpacing: {
