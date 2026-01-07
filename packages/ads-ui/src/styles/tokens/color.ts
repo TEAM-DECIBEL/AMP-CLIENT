@@ -23,4 +23,4 @@ export const color = {
     amp_999_50: "rgba(0, 0, 0, 0.5)",
     amp_999_20: "rgba(0, 0, 0, 0.2)",
   },
-};
+} as const;
