@@ -6,4 +6,3 @@ export const ROUTE_PATH = {
   MY_EVENTS: "my-events",
   SAVED_NOTICES: "saved-notices",
 } as const;
-0;

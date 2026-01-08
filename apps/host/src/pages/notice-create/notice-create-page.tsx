@@ -1,3 +1,3 @@
 export const NoticeCreatePage = () => {
-  return <div> 호스트 주최 공지 페이지</div>;
+  return <div> 호스트 주최 공지 생성 페이지</div>;
 };
