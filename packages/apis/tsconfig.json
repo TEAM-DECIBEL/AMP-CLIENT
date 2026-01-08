@@ -1,4 +1,7 @@
 {
   "extends": "@amp/tsconfig/base",
+  "compilerOptions": {
+    "types": ["vite/client"]
+  },
   "include": ["src"]
 }
