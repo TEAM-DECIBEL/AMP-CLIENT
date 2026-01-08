@@ -1,6 +1,6 @@
-import react from '@vitejs/plugin-react';
-import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
-import svgr from 'vite-plugin-svgr';
+import react from "@vitejs/plugin-react";
+import svgr from "vite-plugin-svgr";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 /**
  * @param {import('vite').UserConfig} overrides
@@ -23,10 +23,11 @@ export function baseViteConfig(overrides = {}) {
       vanillaExtractPlugin(),
       react({
         babel: {
-          plugins: ['babel-plugin-react-compiler'],
+          plugins: ["babel-plugin-react-compiler"],
         },
       }),
       svgr(),
+      tsconfigPaths(),
       ...(overrides.plugins ?? []),
     ],
   };

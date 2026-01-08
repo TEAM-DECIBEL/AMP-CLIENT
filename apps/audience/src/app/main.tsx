@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 
 import "@amp/ads-ui/styles";
 
-import App from "./App";
+import App from "@app/App";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

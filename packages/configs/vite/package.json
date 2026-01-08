@@ -9,8 +9,9 @@
   "dependencies": {
     "@vanilla-extract/vite-plugin": "catalog:",
     "@vitejs/plugin-react": "catalog:",
+    "babel-plugin-react-compiler": "^1.0.0",
     "vite-plugin-svgr": "^4.5.0",
-    "babel-plugin-react-compiler": "^1.0.0"
+    "vite-tsconfig-paths": "^6.0.3"
   },
   "peerDependencies": {
     "vite": "^7",
