@@ -77,6 +77,9 @@ importers:
       globals:
         specifier: ^16.5.0
         version: 16.5.0
+      babel-plugin-react-compiler:
+        specifier: ^1.0.0
+        version: 1.0.0
       turbo:
         specifier: ^2.7.2
         version: 2.7.2

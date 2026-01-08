@@ -30,3 +30,6 @@ dist-ssr
 *.tsbuildinfo
 .cache
 .tmp
+
+apps/**/src/**/*.js
+packages/**/src/**/*.js
