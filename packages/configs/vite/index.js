@@ -21,12 +21,12 @@ export function baseViteConfig(overrides = {}) {
       exclude: [...new Set(excludeDeps)],
     },
     plugins: [
-      vanillaExtractPlugin(),
       react({
         babel: {
           plugins: ["babel-plugin-react-compiler"],
         },
       }),
+      vanillaExtractPlugin(),
       svgr(),
       tsconfigPaths(),
       ...(overrides.plugins ?? []),
