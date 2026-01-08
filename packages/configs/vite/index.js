@@ -3,6 +3,8 @@ import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import path from "node:path";
 
+
+
 /**
  * @param {import('vite').UserConfig} overrides
  * @returns {import('vite').UserConfig}
