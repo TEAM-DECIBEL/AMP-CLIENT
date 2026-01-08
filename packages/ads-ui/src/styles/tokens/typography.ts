@@ -19,7 +19,4 @@ export const typography = {
     lh130: "130%",
     lh150: "150%",
   },
-  letterSpacing: {
-    ls0: "0px",
-  },
 } as const;

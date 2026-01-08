@@ -6,19 +6,16 @@ export const font = {
     fontSize: typography.fontSize.size22,
     fontWeight: typography.fontWeight.bold,
     lineHeight: typography.lineHeight.lh130,
-    letterSpacing: typography.letterSpacing.ls0,
   },
   heading_sb_22: {
     fontSize: typography.fontSize.size22,
     fontWeight: typography.fontWeight.semibold,
     lineHeight: typography.lineHeight.lh130,
-    letterSpacing: typography.letterSpacing.ls0,
   },
   heading_sb_20: {
     fontSize: typography.fontSize.size20,
     fontWeight: typography.fontWeight.semibold,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
 
   // title
@@ -26,19 +23,16 @@ export const font = {
     fontSize: typography.fontSize.size18,
     fontWeight: typography.fontWeight.semibold,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
   title_sb_16: {
     fontSize: typography.fontSize.size16,
     fontWeight: typography.fontWeight.semibold,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
   title_sb_14: {
     fontSize: typography.fontSize.size14,
     fontWeight: typography.fontWeight.semibold,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
 
   // body
@@ -46,31 +40,26 @@ export const font = {
     fontSize: typography.fontSize.size16,
     fontWeight: typography.fontWeight.medium,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
   body_m_14: {
     fontSize: typography.fontSize.size14,
     fontWeight: typography.fontWeight.medium,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
   body_sb_13: {
     fontSize: typography.fontSize.size13,
     fontWeight: typography.fontWeight.medium,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
   body_m_13: {
     fontSize: typography.fontSize.size13,
     fontWeight: typography.fontWeight.medium,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
   body_r_13: {
     fontSize: typography.fontSize.size13,
     fontWeight: typography.fontWeight.regular,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
 
   // caption
@@ -78,18 +67,15 @@ export const font = {
     fontSize: typography.fontSize.size12,
     fontWeight: typography.fontWeight.medium,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
   caption_r_12: {
     fontSize: typography.fontSize.size12,
     fontWeight: typography.fontWeight.regular,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
   caption_r_10: {
     fontSize: typography.fontSize.size10,
     fontWeight: typography.fontWeight.regular,
     lineHeight: typography.lineHeight.lh150,
-    letterSpacing: typography.letterSpacing.ls0,
   },
 } as const;
