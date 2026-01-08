@@ -14,6 +14,7 @@ export function baseViteConfig(overrides = {}) {
     ...overrides,
 
     resolve: {
+      ...overrides.resolve,
       alias: {
         "@app": path.join(rootDir, "src/app"),
         "@pages": path.join(rootDir, "src/pages"),
