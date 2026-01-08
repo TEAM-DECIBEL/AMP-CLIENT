@@ -48,7 +48,7 @@ export const font = {
   },
   body_sb_13: {
     fontSize: typography.fontSize.size13,
-    fontWeight: typography.fontWeight.medium,
+    fontWeight: typography.fontWeight.semibold,
     lineHeight: typography.lineHeight.lh150,
   },
   body_m_13: {
