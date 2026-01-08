@@ -1,7 +1,9 @@
 export const ROUTE_PATH = {
-  EVENT_CREATE: "events/new",
   NOTICE_LIST: "events/:eventId/notices",
-  NOTICE_CREATE: "events/:eventId/notices/new",
   NOTICE_DETAILS: "events/:eventId/notices/:noticeId",
+  NOTIFICATION: "notifications",
   MYPAGE: "mypage",
+  MY_EVENTS: "my-events",
+  SAVED_NOTICES: "saved-notices",
 } as const;
+0;
