@@ -1,4 +1,4 @@
-import { createTheme } from "@vanilla-extract/css";
+import { createGlobalTheme } from "@vanilla-extract/css";
 import { color } from "./tokens/color";
 import { font } from "./tokens/font";
 import { typography } from "./tokens/typography";
@@ -9,6 +9,6 @@ const tokens = {
   ...typography,
 };
 
-const [ampThemeClass, ampThemeVars] = createTheme(tokens);
+const ampThemeVars = createGlobalTheme(":root", tokens);
 
-export { ampThemeClass, ampThemeVars, tokens };
+export { ampThemeVars, tokens };

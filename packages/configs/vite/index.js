@@ -9,6 +9,7 @@ import svgr from 'vite-plugin-svgr';
 export function baseViteConfig(overrides = {}) {
   const excludeDeps = [
     '@amp/ads-ui',
+    '@amp/ads-ui/styles',
     ...((overrides.optimizeDeps && overrides.optimizeDeps.exclude) || []),
   ];
 
