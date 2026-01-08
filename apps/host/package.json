@@ -10,7 +10,8 @@
   "dependencies": {
     "react": "catalog:",
     "react-dom": "catalog:",
-    "@amp/ads-ui": "workspace:*"
+    "@amp/ads-ui": "workspace:*",
+    "@amp/apis": "workspace:*"
   },
   "devDependencies": {
     "@amp/prettier-config": "workspace:*",

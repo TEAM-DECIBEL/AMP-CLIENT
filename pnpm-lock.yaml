@@ -50,6 +50,9 @@ importers:
       '@amp/ads-ui':
         specifier: workspace:*
         version: link:../../packages/ads-ui
+      '@amp/apis':
+        specifier: workspace:*
+        version: link:../../packages/apis
       react:
         specifier: 'catalog:'
         version: 19.2.3
@@ -93,6 +96,9 @@ importers:
       '@amp/ads-ui':
         specifier: workspace:*
         version: link:../../packages/ads-ui
+      '@amp/apis':
+        specifier: workspace:*
+        version: link:../../packages/apis
       react:
         specifier: 'catalog:'
         version: 19.2.3
@@ -136,6 +142,9 @@ importers:
       '@amp/ads-ui':
         specifier: workspace:*
         version: link:../../packages/ads-ui
+      '@amp/apis':
+        specifier: workspace:*
+        version: link:../../packages/apis
       react:
         specifier: 'catalog:'
         version: 19.2.3
