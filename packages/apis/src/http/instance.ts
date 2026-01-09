@@ -6,9 +6,6 @@ const baseURL = ENV.API_BASE_URL;
 
 export const instance = axios.create({
   baseURL,
-  headers: {
-    "Content-Type": "application/json",
-  },
   withCredentials: true,
 });
 
