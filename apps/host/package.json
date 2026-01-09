@@ -10,20 +10,23 @@
   "dependencies": {
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
+    "@amp/ads-ui": "workspace:*",
+    "@amp/apis": "workspace:*",
+    "@tanstack/react-query": "^5.90.16",
     "react": "catalog:",
-    "react-dom": "catalog:",
-    "@amp/ads-ui": "workspace:*"
+    "react-dom": "catalog:"
   },
   "devDependencies": {
+    "@amp/eslint-config": "workspace:*",
     "@amp/prettier-config": "workspace:*",
     "@amp/tsconfig": "workspace:*",
     "@amp/vite-config": "workspace:*",
-    "@amp/eslint-config": "workspace:*",
-    "vite": "catalog:",
-    "typescript": "catalog:",
-    "eslint": "catalog:",
+    "@tanstack/react-query-devtools": "^5.91.2",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react": "catalog:"
+    "@vitejs/plugin-react": "catalog:",
+    "eslint": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
   }
 }

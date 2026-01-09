@@ -5,11 +5,14 @@
   "exports": {
     ".": "./src/index.ts"
   },
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^1.13.2"
+  },
   "devDependencies": {
-    "@amp/tsconfig": "workspace:*",
     "@amp/eslint-config": "workspace:*",
+    "@amp/tsconfig": "workspace:*",
+    "eslint": "catalog:",
     "typescript": "catalog:",
-    "eslint": "catalog:"
+    "vite": "catalog:"
   }
 }
