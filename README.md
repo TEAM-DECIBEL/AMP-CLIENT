@@ -262,20 +262,20 @@ const checkIsUser = ({ userName, userBirth }: UserDataTypes) => { ... }
 <details>
 <summary> CSS 속성 기술 순서 </summary>
 
-6. display `-객체의 노출여부/표현방식--`
-7. list-style
-8. position `-위치/좌표--`
-9. float
-10. clear
-11. width / height `-크기/여백--`
-12. padding / margin
-13. border / background `-윤곽/배경--`
-14. color / font `-글자/정렬--`
-15. text-decoration
-16. text-align / vertical-align
-17. white-space
-18. other text
-19. content `-내용--`
+1) display `-객체의 노출여부/표현방식--`
+2) list-style
+3) position `-위치/좌표--`
+4) float
+5) clear
+6) width / height `-크기/여백--`
+7) padding / margin
+8) border / background `-윤곽/배경--`
+9) color / font `-글자/정렬--`
+10) text-decoration
+11) text-align / vertical-align
+12) white-space
+13) other text
+14) content `-내용--`
 
 </details>
 
@@ -304,7 +304,6 @@ const checkIsUser = ({ userName, userBirth }: UserDataTypes) => { ... }
 
 <details>
 <summary> 🔍 코드리뷰 규칙 </summary>
-
 
 #### 1️⃣ 둥글게 말하기
 
