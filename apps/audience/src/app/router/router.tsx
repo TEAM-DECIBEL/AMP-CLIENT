@@ -10,49 +10,49 @@ export const router = createBrowserRouter([
       {
         index: true,
         lazy: async () => {
-          const mod = await import("@pages/home");
+          const mod = await import("@pages/home/home");
           return { Component: mod.HomePage };
         },
       },
       {
         path: ROUTE_PATH.NOTICE_LIST,
         lazy: async () => {
-          const mod = await import("@pages/notice-list");
+          const mod = await import("@pages/notice-list/notice-list");
           return { Component: mod.NoticeListPage };
         },
       },
       {
         path: ROUTE_PATH.NOTICE_DETAILS,
         lazy: async () => {
-          const mod = await import("@pages/notice-details");
+          const mod = await import("@pages/notice-details/notice-details");
           return { Component: mod.NoticeDetailsPage };
         },
       },
       {
         path: ROUTE_PATH.NOTIFICATION,
         lazy: async () => {
-          const mod = await import("@pages/notification");
+          const mod = await import("@pages/notification/notification");
           return { Component: mod.NotificationPage };
         },
       },
       {
         path: ROUTE_PATH.MYPAGE,
         lazy: async () => {
-          const mod = await import("@pages/mypage");
+          const mod = await import("@pages/mypage/mypage");
           return { Component: mod.MyPage };
         },
       },
       {
         path: ROUTE_PATH.MY_EVENTS,
         lazy: async () => {
-          const mod = await import("@pages/my-events");
+          const mod = await import("@pages/my-events/my-events");
           return { Component: mod.MyEventsPage };
         },
       },
       {
         path: ROUTE_PATH.SAVED_NOTICES,
         lazy: async () => {
-          const mod = await import("@pages/saved-notices");
+          const mod = await import("@pages/saved-notices/saved-notices");
           return { Component: mod.SavedNoticesPage };
         },
       },
