@@ -1,6 +1,6 @@
 import { lazy } from "react";
 
-export const homePage = lazy(() => import("@pages/home/home"));
+export const HomePage = lazy(() => import("@pages/home/home"));
 
 export const MyEventsPage = lazy(() => import("@pages/my-events/my-events"));
 
