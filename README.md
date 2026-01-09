@@ -7,19 +7,26 @@
 <table>
   <tr>
     <td align="center" style="padding:10px">
-      <img src="https://avatars.githubusercontent.com/u/108279922?v=4$0" width="180"/><br/>
+      <img width="180" height="180" alt="image" src="https://github.com/user-attachments/assets/e69fdfee-da5d-4971-bc21-4194fb6830bb" />
+
+<br/>
       <strong>소현</strong>
     </td>
     <td align="center" style="padding:10px">
-      <img src="https://avatars.githubusercontent.com/u/101373627?v=4$0" width="180"/><br/>
+     <img width="180" height="180" alt="image" src="https://github.com/user-attachments/assets/01316a18-9846-4665-bc5f-2ce21757e562" />
+
+<br/>
       <strong>지수</strong>
     </td>
     <td align="center" style="padding:10px">
-      <img src="https://avatars.githubusercontent.com/u/216976328?v=4$0" width="180"/><br/>
+ <img width="180" height="180" alt="image" src="https://github.com/user-attachments/assets/208c72e2-6549-4e46-90f3-ed6a0f515816" />
+<br/>
       <strong>진석</strong>
     </td>
     <td align="center" style="padding:10px">
-      <img src="https://avatars.githubusercontent.com/u/122524310?v=4$0" width="180"/><br/>
+<img width="180" height="180" alt="image" src="https://github.com/user-attachments/assets/5aa13e25-0e8b-4225-938c-c53c0b3d4253" />
+
+<br/>
       <strong>나은</strong>
     </td>
   </tr>
