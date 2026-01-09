@@ -1,10 +1,12 @@
 import { ROUTE_PATH } from "@shared/constants/path";
-import EventCreatePage from "@pages/event-create/event-create";
-import HomePage from "@pages/home/home";
-import MyPage from "@pages/mypage/mypage";
-import NoticeCreatePage from "@pages/notice-create/notice-create";
-import NoticeDetailsPage from "@pages/notice-details/notice-details";
-import NoticeListPage from "@pages/notice-list/notice-list";
+import {
+  EventCreatePage,
+  HomePage,
+  MyPage,
+  NoticeCreatePage,
+  NoticeDetailsPage,
+  NoticeListPage,
+} from "./lazy";
 
 export const globalRoutes = [
   {

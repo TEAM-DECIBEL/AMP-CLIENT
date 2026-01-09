@@ -1,6 +1,5 @@
 import { ROUTE_PATH } from "@shared/constants/path";
-import LoginPage from "@pages/login/login";
-import OnboardingPage from "@pages/onboarding/onboarding";
+import { LoginPage, OnboardingPage } from "./lazy";
 
 export const globalRoutes = [
   {

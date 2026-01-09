@@ -1,11 +1,13 @@
 import { ROUTE_PATH } from "@shared/constants/path";
-import HomePage from "@pages/home/home";
-import MyEventsPage from "@pages/my-events/my-events";
-import MyPage from "@pages/mypage/mypage";
-import NoticeDetailsPage from "@pages/notice-details/notice-details";
-import NoticeListPage from "@pages/notice-list/notice-list";
-import NotificationPage from "@pages/notification/notification";
-import SavedNoticesPage from "@pages/saved-notices/saved-notices";
+import {
+  HomePage,
+  MyEventsPage,
+  MyPage,
+  NoticeDetailsPage,
+  NoticeListPage,
+  NotificationPage,
+  SavedNoticesPage,
+} from "./lazy";
 
 export const globalRoutes = [
   {
@@ -33,7 +35,7 @@ export const globalRoutes = [
     element: <NotificationPage />,
   },
   {
-    pathL: ROUTE_PATH.SAVED_NOTICES,
+    path: ROUTE_PATH.SAVED_NOTICES,
     element: <SavedNoticesPage />,
   },
 ];
