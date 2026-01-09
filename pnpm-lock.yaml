@@ -6,6 +6,9 @@ settings:
 
 catalogs:
   default:
+    '@types/node':
+      specifier: ^24.10.1
+      version: 24.10.4
     '@types/react':
       specifier: ^19.2.5
       version: 19.2.7
@@ -51,28 +54,28 @@ importers:
         specifier: ^9.39.1
         version: 9.39.2
       '@types/node':
-        specifier: ^24.10.1
+        specifier: 'catalog:'
         version: 24.10.4
       '@types/react':
-        specifier: ^19.2.5
+        specifier: 'catalog:'
         version: 19.2.7
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: 'catalog:'
         version: 19.2.3(@types/react@19.2.7)
       '@vanilla-extract/css':
         specifier: 'catalog:'
         version: 1.18.0
       '@vanilla-extract/vite-plugin':
-        specifier: ^5.1.4
+        specifier: 'catalog:'
         version: 5.1.4(@types/node@24.10.4)(vite@7.3.0(@types/node@24.10.4))
       '@vitejs/plugin-react':
-        specifier: ^5.1.1
+        specifier: 'catalog:'
         version: 5.1.2(vite@7.3.0(@types/node@24.10.4))
       babel-plugin-react-compiler:
         specifier: ^1.0.0
         version: 1.0.0
       eslint:
-        specifier: ^9.39.1
+        specifier: 'catalog:'
         version: 9.39.2
       eslint-plugin-react-hooks:
         specifier: ^7.0.1
@@ -87,13 +90,13 @@ importers:
         specifier: ^2.7.2
         version: 2.7.2
       typescript:
-        specifier: ~5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
       typescript-eslint:
         specifier: ^8.46.4
         version: 8.51.0(eslint@9.39.2)(typescript@5.9.3)
       vite:
-        specifier: ^7.2.4
+        specifier: 'catalog:'
         version: 7.3.0(@types/node@24.10.4)
       vite-tsconfig-paths:
         specifier: ^6.0.3
@@ -333,7 +336,7 @@ importers:
         version: 5.9.3
       vite:
         specifier: 'catalog:'
-        version: 7.3.0
+        version: 7.3.0(@types/node@24.10.4)
 
   packages/configs/eslint:
     dependencies:
@@ -1793,6 +1796,9 @@ packages:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
 
+  media-query-parser@2.0.2:
+    resolution: {integrity: sha512-1N4qp+jE0pL5Xv4uEcwVUhIkwdUO3S/9gML90nqKA7v7FcOS5vUtatfzok9S9U1EJU8dHWlcv95WLnKmmxZI9w==}
+
   mime-db@1.52.0:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
     engines: {node: '>= 0.6'}
@@ -1800,9 +1806,6 @@ packages:
   mime-types@2.1.35:
     resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
     engines: {node: '>= 0.6'}
-
-  media-query-parser@2.0.2:
-    resolution: {integrity: sha512-1N4qp+jE0pL5Xv4uEcwVUhIkwdUO3S/9gML90nqKA7v7FcOS5vUtatfzok9S9U1EJU8dHWlcv95WLnKmmxZI9w==}
 
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -3827,15 +3830,15 @@ snapshots:
 
   math-intrinsics@1.1.0: {}
 
+  media-query-parser@2.0.2:
+    dependencies:
+      '@babel/runtime': 7.28.4
+
   mime-db@1.52.0: {}
 
   mime-types@2.1.35:
     dependencies:
       mime-db: 1.52.0
-
-  media-query-parser@2.0.2:
-    dependencies:
-      '@babel/runtime': 7.28.4
 
   minimatch@3.1.2:
     dependencies:
