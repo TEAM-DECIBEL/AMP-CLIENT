@@ -11,7 +11,7 @@ const Tooltip = () => {
           공연 추가 후 공지를 작성할 수 있어요
         </p>
       </div>
-      <PointIcon className={styles.arrowIcon} />
+      <PointIcon className={styles.arrowIcon} aria-hidden="true" focusable="false" />
     </div>
   );
 };
