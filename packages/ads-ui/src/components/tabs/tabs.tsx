@@ -1,4 +1,4 @@
-import { createContext, type ReactNode,useContext, useState } from "react";
+import { createContext, type ReactNode, useContext, useState } from "react";
 
 import * as s from "./tabs.css";
 
@@ -25,7 +25,12 @@ interface TabsProps {
   variant?: "viewer" | "notice";
 }
 
-const Tabs = ({ children, defaultValue, onValueChange, variant = "viewer" }: TabsProps) => {
+const Tabs = ({
+  children,
+  defaultValue,
+  onValueChange,
+  variant = "viewer",
+}: TabsProps) => {
   const [value, setValue] = useState(defaultValue ?? "");
 
   const handleValueChange = (nextValue: string) => {
@@ -35,7 +40,7 @@ const Tabs = ({ children, defaultValue, onValueChange, variant = "viewer" }: Tab
 
   return (
     <TabsContext.Provider value={{ value, setValue: handleValueChange, variant }}>
-      <div className={s.root} data-variant={variant}>
+      <div className={s.root}>
         {children}
       </div>
     </TabsContext.Provider>
@@ -47,7 +52,8 @@ interface TabsListProps {
 }
 
 const TabsList = ({ children }: TabsListProps) => {
-  return <div className={s.list}>{children}</div>;
+  const { variant } = useTabsContext();
+  return <div className={s.list({ variant })}>{children}</div>;
 };
 
 interface TabsTriggerProps {
@@ -67,10 +73,8 @@ const TabsTrigger = ({ value, children }: TabsTriggerProps) => {
   return (
     <button
       type="button"
-      className={s.trigger}
+      className={s.trigger({ variant })}
       aria-selected={isSelected}
-      data-variant={variant}
-      data-state={isSelected ? "active" : "inactive"}
       onClick={handleClick}
     >
       {children}
