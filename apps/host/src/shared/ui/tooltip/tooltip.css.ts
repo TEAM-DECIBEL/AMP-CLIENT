@@ -5,7 +5,7 @@ export const container = style({
   position: "relative",
   display: "inline-flex",
   alignItems: "center",
-  padding: "11.488px 15.318px",
+  padding: "1.1488rem 1.5318rem",
   borderRadius: "16px",
   backgroundColor: ampThemeVars.color.gray_900,
 });
@@ -36,5 +36,5 @@ export const description = style({
 
 export const arrowIcon = style({
   display: "block",
-  transform: "translateY(-2.3px)",
+  transform: "translateY(-0.23rem)",
 });
