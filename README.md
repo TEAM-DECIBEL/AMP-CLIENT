@@ -72,7 +72,6 @@
    * 해당 이슈 번호를 기준으로 develop 브랜치에서 기능 별 이슈 브랜치로 분기합니다. (<code style="color: #e5534b">**feat/기능명/#issue-number**</code>)
 
 2. **작업 및 PR 생성**
-
    - 기능 구현이 완료되면 PR을 생성합니다.
    - 팀원 중 2명 이상의 Approve이 있을 때, develop 브랜치로 병합합니다.
 
@@ -119,7 +118,6 @@
 <summary> ⚛️ 컴포넌트 </summary>
 
 - **리액트 컴포넌트만 PascalCase 사용**
-
   - 의미 없는 div 태그 사용 지양
   - 최상단 fragment 사용
   - children이 불필요할 땐 selfClosing사용하기 <code style="color: #e5534b">**<컴포넌트 이름/>**</code>
@@ -143,7 +141,6 @@
 <summary> 📁 폴더명 </summary>
 
 - **케밥 케이스(kebab-case) 사용**
-
   - 폴더명과 파일명 모두 케밥 케이스를 적용합니다.
   - ❌️️ `UserProfile/`, `loginForm.tsx`
   - ✅ `user-profile/`, `login-form.tsx`
@@ -159,15 +156,12 @@
 <summary> 🧩 타입 </summary>
 
 - **PascalCase 사용**
-
   - 타입과 인터페이스 이름은 `PascalCase`로 작성합니다.
 
 - **interface 사용 지향**
-
   - 객체 구조 정의 시 `type` 대신 `interface`를 사용합니다.
 
 - **Props 네이밍 규칙**
-
   - 컴포넌트의 Props 타입은 **[컴포넌트명] + `Props`** 접미사를 붙입니다.
   - `interface AmpProps { ... }`
 
@@ -181,13 +175,11 @@
 <summary> 💡 변수 </summary>
 
 - **변수 및 상수 선언**
-
   - `const` → `let` 순서로 선언 (**var 금지**)
   - 상수는 `UPPER_SNAKE_CASE` 사용 (ex. `API_KEY`)
   - 줄임말 지양, 의미 있는 변수명 사용 (ex. `userData`)
 
 - **데이터 구조 및 타입**
-
   - 복수 데이터는 끝에 `s` 사용 (ex. `userLists`)
   - Boolean은 `is` 접두사 사용 (ex. `isActive`)
   - 문자열 조합은 템플릿 리터럴(`` ` ``) 사용
@@ -201,12 +193,10 @@
 
 - **화살표 함수(`const`)** 사용을 원칙으로 합니다.
 - **네이밍:** [동사 + 명사] 형식을 사용합니다.
-
   - `get`: 값 반환 | `create`: 신규 생성 | `check`: 로직 확인
   - `convert`: 형태 변환 | `add`/`minus`: 수치 연산 | `filter`: 배열 필터링
 
 - **이벤트 핸들러:** 오직 이벤트 관련 함수에만 `handle`을 붙입니다.
-
   - 동작을 상세히 기록 (ex. `handleResetClick`, `handleSubmitClick`)
 
 - **유틸 함수:** 반환값 중심으로 네이밍합니다.

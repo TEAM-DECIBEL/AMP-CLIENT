@@ -25,11 +25,13 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "prettier": "^3.7.4",
     "turbo": "^2.7.2",
     "typescript": "catalog:",
     "typescript-eslint": "^8.46.4",
     "vite": "catalog:",
     "vite-tsconfig-paths": "^6.0.3"
   },
+  "prettier": "@amp/prettier-config",
   "packageManager": "pnpm@10.19.0+sha512.c9fc7236e92adf5c8af42fd5bf1612df99c2ceb62f27047032f4720b33f8eacdde311865e91c411f2774f618d82f320808ecb51718bfa82c060c4ba7c76a32b8"
 }

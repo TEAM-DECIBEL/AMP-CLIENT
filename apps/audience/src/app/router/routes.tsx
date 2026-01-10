@@ -1,4 +1,5 @@
-import { ROUTE_PATH } from "@shared/constants/path";
+import { ROUTE_PATH } from '@shared/constants/path';
+
 import {
   HomePage,
   MyEventsPage,
@@ -7,7 +8,7 @@ import {
   NoticeListPage,
   NotificationPage,
   SavedNoticesPage,
-} from "./lazy";
+} from './lazy';
 
 export const globalRoutes = [
   {

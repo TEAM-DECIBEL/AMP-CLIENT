@@ -89,6 +89,9 @@ importers:
       globals:
         specifier: ^16.5.0
         version: 16.5.0
+      prettier:
+        specifier: ^3.7.4
+        version: 3.7.4
       turbo:
         specifier: ^2.7.2
         version: 2.7.3
@@ -298,7 +301,7 @@ importers:
         version: 0.5.7(@vanilla-extract/css@1.18.0)
       '@vanilla-extract/vite-plugin':
         specifier: 'catalog:'
-        version: 5.1.4(@types/node@24.10.6)(vite@7.3.0(@types/node@24.10.6))
+        version: 5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))
       react:
         specifier: 'catalog:'
         version: 19.2.3
@@ -387,11 +390,7 @@ importers:
         specifier: ^8.46.4
         version: 8.52.0(eslint@9.39.2)(typescript@5.9.3)
 
-  packages/configs/prettier:
-    devDependencies:
-      prettier:
-        specifier: ^3.7.4
-        version: 3.7.4
+  packages/configs/prettier: {}
 
   packages/configs/typescript: {}
 
