@@ -15,7 +15,7 @@ export function baseViteConfig(overrides = {}) {
     ...((overrides.optimizeDeps && overrides.optimizeDeps.exclude) || []),
   ];
 
-  const rootDir = process.env.INIT_CWD || process.cwd();
+  const rootDir = overrides.root || process.cwd();
 
   return {
     ...overrides,
