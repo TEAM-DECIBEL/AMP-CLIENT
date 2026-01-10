@@ -1,26 +1,23 @@
 import { ampThemeVars } from "@amp/ads-ui/styles";
 import { style } from "@vanilla-extract/css";
 
-export const container = style({
+export const content = style({
   position: "relative",
   display: "inline-flex",
+  flexDirection: "column",
   alignItems: "center",
+  textAlign: "center",
+  gap: "0.4rem",
   padding: "1.1488rem 1.5318rem",
   borderRadius: "16px",
   backgroundColor: ampThemeVars.color.gray_900,
   zIndex: ampThemeVars.zIndex.tooltip,
 });
 
-export const stack = style({
+export const container = style({
   display: "inline-flex",
   flexDirection: "column",
   alignItems: "center",
-});
-
-export const content = style({
-  display: "flex",
-  flexDirection: "column",
-  textAlign: "center",
 });
 
 export const title = style({
