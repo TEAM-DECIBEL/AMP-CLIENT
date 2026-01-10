@@ -41,7 +41,15 @@ export const config = [
         "error",
         {
           groups: [
+            ["^node:"],
             ["^react$", "^@?\\w"],
+            ["^@amp/", "^@ads/"],
+            ["^@app/"],
+            ["^@pages/"],
+            ["^@widgets/"],
+            ["^@features/"],
+            ["^@entities/"],
+            ["^@shared/"],
             ["^\\u0000"],
             ["^\\."],
             ["^.+\\.css$"],
