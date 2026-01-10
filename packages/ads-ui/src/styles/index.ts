@@ -1,5 +1,5 @@
-import "./global.css";
-import "./reset.css";
-import "./theme.css";
+import './global.css';
+import './reset.css';
+import './theme.css';
 
-export { ampThemeVars, tokens } from "./theme.css";
+export { ampThemeVars, tokens } from './theme.css';
