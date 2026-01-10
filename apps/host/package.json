@@ -8,6 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vanilla-extract/css": "catalog:",
+    "@vanilla-extract/recipes": "catalog:",
     "@amp/ads-ui": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:",

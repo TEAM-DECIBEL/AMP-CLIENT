@@ -7,14 +7,16 @@
     ".": "./index.js"
   },
   "dependencies": {
+    "@vanilla-extract/vite-plugin": "catalog:",
     "@vitejs/plugin-react": "catalog:",
     "babel-plugin-react-compiler": "^1.0.0",
     "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^6.0.3"
   },
   "peerDependencies": {
-    "@vitejs/plugin-react": "^5",
     "vite": "^7",
+    "@vanilla-extract/vite-plugin": "^5",
+    "@vitejs/plugin-react": "^5",
     "vite-plugin-svgr": "^4"
   }
 }
