@@ -1,3 +1,5 @@
+import { chip } from './chip.css';
+
 interface ChipBaseProps {
   children: React.ReactNode;
   className?: string;
@@ -21,6 +23,19 @@ interface ChipMyPageProps extends ChipBaseProps {
 
 type ChipProps = ChipStatusProps | ChipDayProps | ChipMyPageProps;
 
-const Chip = (props: ChipProps) => {};
+const Chip = (props: ChipProps) => {
+  const { className, children, variant } = props;
+
+  const chipClassName =
+    variant === 'chip_mypage'
+      ? chip({ variant })
+      : chip({ variant, status: props.status });
+
+  return (
+    <span className={[chipClassName, className].filter(Boolean).join(' ')}>
+      {children}
+    </span>
+  );
+};
 
 export default Chip;
