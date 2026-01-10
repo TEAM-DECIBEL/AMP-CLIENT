@@ -1,24 +1,24 @@
-import { style } from "@vanilla-extract/css";
+import { style } from '@vanilla-extract/css';
 
-import { ampThemeVars } from "@amp/ads-ui/styles";
+import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const content = style({
-  position: "relative",
-  display: "inline-flex",
-  flexDirection: "column",
-  alignItems: "center",
-  textAlign: "center",
-  gap: "0.4rem",
-  padding: "1.1488rem 1.5318rem",
-  borderRadius: "16px",
+  position: 'relative',
+  display: 'inline-flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  textAlign: 'center',
+  gap: '0.4rem',
+  padding: '1.1488rem 1.5318rem',
+  borderRadius: '16px',
   backgroundColor: ampThemeVars.color.gray_900,
   zIndex: ampThemeVars.zIndex.tooltip,
 });
 
 export const container = style({
-  display: "inline-flex",
-  flexDirection: "column",
-  alignItems: "center",
+  display: 'inline-flex',
+  flexDirection: 'column',
+  alignItems: 'center',
 });
 
 export const title = style({
@@ -34,6 +34,5 @@ export const description = style({
 });
 
 export const arrowIcon = style({
-  display: "block",
-  transform: "translateY(-0.23rem)",
+  display: 'block',
 });
