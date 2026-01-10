@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vanilla-extract/css": "catalog:",
+    "@vanilla-extract/recipes": "catalog:",
     "@amp/ads-ui": "workspace:*",
     "@amp/apis": "workspace:*",
     "@tanstack/react-query": "^5.90.16",

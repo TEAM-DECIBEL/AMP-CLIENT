@@ -3,13 +3,17 @@
   "private": true,
   "exports": {
     ".": "./src/components/index.ts",
-    "./styles": "./src/styles/index.ts"
+    "./styles": "./src/styles/index.ts",
+    "./styles/theme.css": "./src/styles/theme.css.ts"
   },
   "scripts": {
     "build": "tsc -b",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@vanilla-extract/css": "catalog:",
+    "@vanilla-extract/recipes": "catalog:",
+    "@vanilla-extract/vite-plugin": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   },

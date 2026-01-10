@@ -1,4 +1,5 @@
 import react from "@vitejs/plugin-react";
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import path from "node:path";
@@ -8,11 +9,20 @@ import path from "node:path";
  * @returns {import('vite').UserConfig}
  */
 export function baseViteConfig(overrides = {}) {
+  const excludeDeps = [
+    '@amp/ads-ui',
+    '@amp/ads-ui/styles',
+    ...((overrides.optimizeDeps && overrides.optimizeDeps.exclude) || []),
+  ];
+
   const rootDir = process.env.INIT_CWD || process.cwd();
 
   return {
     ...overrides,
-
+    optimizeDeps: {
+      ...(overrides.optimizeDeps || {}),
+      exclude: [...new Set(excludeDeps)],
+    },
     resolve: {
       ...overrides.resolve,
       alias: {
@@ -24,11 +34,11 @@ export function baseViteConfig(overrides = {}) {
         "@shared": path.join(rootDir, "src/shared"),
       },
     },
-
     plugins: [
       react({
         babel: { plugins: ["babel-plugin-react-compiler"] },
       }),
+      vanillaExtractPlugin(),
       svgr(),
       tsconfigPaths(),
       ...(overrides.plugins ?? []),
