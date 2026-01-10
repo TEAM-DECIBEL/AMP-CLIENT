@@ -9,4 +9,6 @@ export const list = style({
 });
 
 export const trigger = style({
+  border: "none",
+  cursor: "pointer",
 });
