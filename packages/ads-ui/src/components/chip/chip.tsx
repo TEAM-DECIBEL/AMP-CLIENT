@@ -1,7 +1,9 @@
+import type { ReactNode } from 'react';
+
 import { chip } from './chip.css';
 
 interface ChipBaseProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
