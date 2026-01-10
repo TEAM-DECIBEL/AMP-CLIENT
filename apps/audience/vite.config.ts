@@ -4,6 +4,7 @@ import { baseViteConfig } from '@amp/vite-config';
 
 export default defineConfig(
   baseViteConfig({
+    root: __dirname,
     server: {
       port: 5173,
     },
