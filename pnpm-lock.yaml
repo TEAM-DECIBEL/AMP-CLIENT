@@ -89,6 +89,9 @@ importers:
       globals:
         specifier: ^16.5.0
         version: 16.5.0
+      prettier:
+        specifier: ^3.7.4
+        version: 3.7.4
       turbo:
         specifier: ^2.7.2
         version: 2.7.3
