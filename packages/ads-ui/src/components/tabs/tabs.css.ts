@@ -7,3 +7,6 @@ export const root = style({
 export const list = style({
   display: "flex",
 });
+
+export const trigger = style({
+});
