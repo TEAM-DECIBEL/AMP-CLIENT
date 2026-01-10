@@ -10,6 +10,12 @@ export const container = style({
   backgroundColor: ampThemeVars.color.gray_900,
 });
 
+export const stack = style({
+  display: "inline-flex",
+  flexDirection: "column",
+  alignItems: "center",
+});
+
 export const content = style({
   display: "flex",
   flexDirection: "column",
@@ -26,4 +32,9 @@ export const description = style({
   margin: 0,
   ...ampThemeVars.font.caption_r_12,
   color: ampThemeVars.color.gray_300,
+});
+
+export const arrowIcon = style({
+  display: "block",
+  transform: "translateY(-2.3px)",
 });
