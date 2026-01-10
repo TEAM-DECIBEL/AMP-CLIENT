@@ -1,5 +1,6 @@
-import { ampThemeVars } from "@amp/ads-ui/styles";
 import { style } from "@vanilla-extract/css";
+
+import { ampThemeVars } from "@amp/ads-ui/styles";
 
 export const content = style({
   position: "relative",

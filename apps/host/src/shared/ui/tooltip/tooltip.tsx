@@ -1,5 +1,6 @@
-import * as styles from "./tooltip.css";
 import { PointIcon } from "@shared/assets/icons";
+
+import * as styles from "./tooltip.css";
 
 const Tooltip = () => {
   return (
