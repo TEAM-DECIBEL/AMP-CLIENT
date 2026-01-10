@@ -55,12 +55,4 @@ export const chip = recipe({
       },
     },
   },
-
-  compoundVariants: [
-    { variants: { variant: 'chip_status', status: 'current' }, style: {} },
-    { variants: { variant: 'chip_status', status: 'upcoming' }, style: {} },
-    { variants: { variant: 'chip_status', status: 'dday' }, style: {} },
-    { variants: { variant: 'chip_day', status: 'color' }, style: {} },
-    { variants: { variant: 'chip_day', status: 'gray' }, style: {} },
-  ],
 });
