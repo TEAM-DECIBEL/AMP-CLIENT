@@ -1,11 +1,11 @@
 import js from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import tseslint from 'typescript-eslint';
 import turboPlugin from 'eslint-plugin-turbo';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
-export const config = [
+export const baseConfig = [
   {
     ignores: [
       'dist',
@@ -47,4 +47,4 @@ export const config = [
   },
 ];
 
-export default config;
+export default baseConfig;

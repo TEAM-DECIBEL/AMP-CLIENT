@@ -11,6 +11,6 @@ const tokens = {
   ...typography,
 };
 
-const ampThemeVars = createGlobalTheme(":root", tokens);
+const ampThemeVars = createGlobalTheme(':root', tokens);
 
 export { ampThemeVars, tokens };

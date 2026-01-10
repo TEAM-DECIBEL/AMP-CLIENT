@@ -11,10 +11,11 @@
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
     "@amp/ads-ui": "workspace:*",
-    "@amp/apis": "workspace:*",
-    "@tanstack/react-query": "^5.90.16",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "react-router": "catalog:",
+    "@amp/apis": "workspace:*",
+    "@tanstack/react-query": "^5.90.16"
   },
   "devDependencies": {
     "@amp/eslint-config": "workspace:*",

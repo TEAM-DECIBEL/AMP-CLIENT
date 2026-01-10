@@ -5,8 +5,5 @@
   "type": "module",
   "exports": {
     ".": "./index.js"
-  },
-  "devDependencies": {
-    "prettier": "^3.7.4"
   }
 }

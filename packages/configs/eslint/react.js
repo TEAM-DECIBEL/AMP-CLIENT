@@ -4,8 +4,11 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 
+import baseConfig from './base.js';
+
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export const config = [
+  ...baseConfig,
   pluginReact.configs.flat.recommended,
 
   {
@@ -38,7 +41,15 @@ export const config = [
         'error',
         {
           groups: [
+            ['^node:'],
             ['^react$', '^@?\\w'],
+            ['^@amp/', '^@ads/'],
+            ['^@app/'],
+            ['^@pages/'],
+            ['^@widgets/'],
+            ['^@features/'],
+            ['^@entities/'],
+            ['^@shared/'],
             ['^\\u0000'],
             ['^\\.'],
             ['^.+\\.css$'],

@@ -1,6 +1,6 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
-import { ENV } from "../constants/env";
+import { ENV } from '../constants/env';
 
 const baseURL = ENV.API_BASE_URL;
 
@@ -17,5 +17,5 @@ instance.interceptors.response.use(
     // 추후 에러 핸들링 로직 추가
 
     return Promise.reject(error);
-  }
+  },
 );
