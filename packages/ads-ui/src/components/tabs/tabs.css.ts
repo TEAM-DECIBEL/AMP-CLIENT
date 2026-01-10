@@ -16,11 +16,11 @@ export const list = recipe({
   variants: {
     variant: {
       viewer: {
-        padding: '10px 20px',
+        padding: '1rem 2rem',
       },
       notice: {
         gap: '6px',
-        padding: '16px 0 0 20px',
+        padding: '1.6rem 0 0 2rem',
       },
     },
   },
@@ -71,7 +71,7 @@ export const trigger = recipe({
             transform: 'translateX(-50%)',
             width: '8rem',
             bottom: 0,
-            height: '2px',
+            height: '0.2rem',
             backgroundColor: ampThemeVars.color.gray_900,
           },
         },
