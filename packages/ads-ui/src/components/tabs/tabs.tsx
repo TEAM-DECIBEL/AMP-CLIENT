@@ -34,6 +34,9 @@ const Tabs = ({
   const [value, setValue] = useState(defaultValue ?? "");
 
   const handleValueChange = (nextValue: string) => {
+    if (nextValue === value) {
+      return;
+    }
     setValue(nextValue);
     onValueChange?.(nextValue);
   };
