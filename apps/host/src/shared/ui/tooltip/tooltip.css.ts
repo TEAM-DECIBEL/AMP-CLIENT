@@ -8,6 +8,7 @@ export const container = style({
   padding: "1.1488rem 1.5318rem",
   borderRadius: "16px",
   backgroundColor: ampThemeVars.color.gray_900,
+  zIndex: ampThemeVars.zIndex.tooltip,
 });
 
 export const stack = style({
