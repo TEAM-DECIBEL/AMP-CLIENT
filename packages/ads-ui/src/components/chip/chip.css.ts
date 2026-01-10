@@ -49,6 +49,7 @@ export const chip = recipe({
         color: ampThemeVars.color.gray_000,
       },
       gray: {
+        border: `1px solid ${ampThemeVars.color.gray_200}`,
         backgroundColor: ampThemeVars.color.gray_000,
         color: ampThemeVars.color.gray_500,
       },

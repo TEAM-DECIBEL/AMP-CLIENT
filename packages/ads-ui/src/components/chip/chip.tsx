@@ -18,7 +18,6 @@ interface ChipDayProps extends ChipBaseProps {
 interface ChipMyPageProps extends ChipBaseProps {
   variant: 'chip_mypage';
   status?: never;
-  children: '주최' | '관객';
 }
 
 type ChipProps = ChipStatusProps | ChipDayProps | ChipMyPageProps;
