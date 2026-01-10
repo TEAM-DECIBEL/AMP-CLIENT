@@ -4,7 +4,7 @@ import { PointIcon } from "@shared/assets/icons";
 const Tooltip = () => {
   return (
     <div className={styles.stack}>
-      <div className={styles.container} role="tooltip" aria-live="polite">
+      <div className={styles.container} role="tooltip">
         <div className={styles.content}>
           <p className={styles.title}>공연을 추가해보세요!</p>
           <p className={styles.description}>
