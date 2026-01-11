@@ -1,5 +1,6 @@
-import * as styles from './cta-button.css';
 import { GoogleIcon, PenIcon } from '../../../icons';
+
+import * as styles from './cta-button.css';
 
 type Tone = 'primary' | 'gray' | 'social' | 'icon';
 
