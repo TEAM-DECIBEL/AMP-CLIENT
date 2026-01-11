@@ -7,7 +7,7 @@ const base = style({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: '2rem',
+  borderRadius: '20px',
 });
 
 export const chip = recipe({
