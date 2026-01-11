@@ -9,7 +9,7 @@ interface CtaButtonProps {
   tone: Tone;
   selected?: boolean;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 const CtaButton = ({
