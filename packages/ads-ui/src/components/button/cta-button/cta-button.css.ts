@@ -68,7 +68,7 @@ export const ctaButton = recipe({
       },
       add: {
         gap: '1rem',
-        border: `1px solid ${ampThemeVars.color.gray_500}`,
+        border: `1px solid ${ampThemeVars.color.gray_200}`,
         borderRadius: '99px',
         color: ampThemeVars.color.gray_500,
         ...ampThemeVars.font.body_sb_13,
