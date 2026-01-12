@@ -5,19 +5,12 @@ interface AlertCardProps {
   description: string;
   time: string;
   isRead: boolean;
-  className?: string;
 }
 
-const AlertCard = ({
-  title,
-  description,
-  time,
-  isRead,
-  className,
-}: AlertCardProps) => {
+const AlertCard = ({ title, description, time, isRead }: AlertCardProps) => {
   return (
     <article
-      className={[styles.alertCard, isRead && styles.read, className]
+      className={[styles.alertCard, isRead && styles.read]
         .filter(Boolean)
         .join(' ')}
     >
