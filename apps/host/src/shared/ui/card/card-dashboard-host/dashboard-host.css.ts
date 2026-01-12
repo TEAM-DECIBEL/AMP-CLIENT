@@ -31,7 +31,6 @@ export const count = style({
 });
 
 export const divider = style({
-  display: 'flex',
   margin: '0 0.8rem',
   width: '1px',
   height: '3.3rem',
