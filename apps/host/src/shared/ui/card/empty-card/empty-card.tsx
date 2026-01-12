@@ -1,18 +1,13 @@
 import type { ReactNode } from 'react';
 
-import { emptyCard } from './empty-card.css';
+import * as styles from './empty-card.css';
 
 interface EmptyCardProps {
   children: ReactNode;
-  className?: string;
 }
 
-const EmptyCard = ({ className, children }: EmptyCardProps) => {
-  return (
-    <div className={[emptyCard, className].filter(Boolean).join(' ')}>
-      {children}
-    </div>
-  );
+const EmptyCard = ({ children }: EmptyCardProps) => {
+  return <div className={styles.emptyCard}>{children}</div>;
 };
 
 export default EmptyCard;
