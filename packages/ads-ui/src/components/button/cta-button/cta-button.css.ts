@@ -66,6 +66,21 @@ export const ctaButton = recipe({
           },
         },
       },
+      add: {
+        gap: '1rem',
+        border: `1px solid ${ampThemeVars.color.gray_500}`,
+        borderRadius: '99px',
+        color: ampThemeVars.color.gray_500,
+        ...ampThemeVars.font.body_sb_13,
+        selectors: {
+          '&:disabled': {
+            border: 'none',
+            backgroundColor: ampThemeVars.color.gray_500,
+            color: ampThemeVars.color.gray_000,
+            cursor: 'not-allowed',
+          },
+        },
+      },
     },
   },
 });

@@ -1,8 +1,8 @@
-import { GoogleIcon, PenIcon } from '../../../icons';
+import { GoogleIcon, PenIcon, PlusIcon } from '../../../icons';
 
 import * as styles from './cta-button.css';
 
-type Type = 'primary' | 'gray' | 'social' | 'icon';
+type Type = 'primary' | 'gray' | 'social' | 'icon' | 'add';
 
 interface CtaButtonProps {
   children: React.ReactNode;
@@ -20,9 +20,20 @@ const CtaButton = ({
   onClick,
 }: CtaButtonProps) => {
   const isSelected = type === 'icon' && selected === true;
+  const getIcon = (type: string) => {
+    if (type === 'social') {
+      return <GoogleIcon />;
+    }
+    if (type === 'icon') {
+      return <PenIcon />;
+    }
+    if (type === 'add') {
+      return <PlusIcon />;
+    }
+    return null;
+  };
 
-  const icon =
-    type === 'social' ? <GoogleIcon /> : type === 'icon' ? <PenIcon /> : null;
+  const icon = getIcon(type);
 
   return (
     <button
@@ -32,7 +43,7 @@ const CtaButton = ({
       data-selected={isSelected ? 'true' : 'false'}
       className={styles.ctaButton({ type })}
     >
-      {icon && <span>{icon}</span>}
+      {icon}
       {children}
     </button>
   );
