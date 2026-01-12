@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router';
 
-import { BackIcon, ExLogoIcon, MyPageIcon, StatusNoneIcon } from '../../icons';
+import {
+  BackIcon,
+  ExLogoIcon,
+  MyPageIcon,
+  StatusNewIcon,
+  StatusNoneIcon,
+} from '../../icons';
 
 import * as styles from './header.css';
 
@@ -8,9 +14,10 @@ interface HeaderProps {
   variant: 'host' | 'audience';
   kind: 'main' | 'sub';
   title?: string;
+  hasNewAlert?: boolean;
 }
 
-const Header = ({ variant, kind, title }: HeaderProps) => {
+const Header = ({ variant, kind, title, hasNewAlert = false }: HeaderProps) => {
   const isMain = kind === 'main';
   const isSub = kind === 'sub';
   const showAlert = isMain && variant === 'audience';
@@ -30,7 +37,7 @@ const Header = ({ variant, kind, title }: HeaderProps) => {
                 className={styles.iconButton}
                 aria-label='알림'
               >
-                <StatusNoneIcon />
+                {hasNewAlert ? <StatusNewIcon /> : <StatusNoneIcon />}
               </button>
             )}
             <button
