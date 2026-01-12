@@ -1,34 +1,32 @@
 import { AlertIcon, BackIcon, ExLogoIcon, MyPageIcon } from '../../icons';
 
+import * as styles from './header.css';
+
 interface HeaderProps {
   variant: 'host' | 'audience';
   kind: 'main' | 'sub';
   title?: string;
 }
 
-const Header = ({
-  variant,
-  kind,
-  title,
-}: HeaderProps) => {
+const Header = ({ variant, kind, title }: HeaderProps) => {
   const isMain = kind === 'main';
   const isSub = kind === 'sub';
   const showAlert = isMain && variant === 'audience';
   const showMyPage = isMain;
 
   return (
-    <header>
+    <header className={styles.header}>
       {isMain && (
-        <div>
+        <div className={styles.main}>
           <ExLogoIcon />
-          <div>
+          <div className={styles.mainIcons}>
             {showAlert && (
-              <button type="button">
+              <button type='button' className={styles.iconButton}>
                 <AlertIcon />
               </button>
             )}
             {showMyPage && (
-              <button type="button">
+              <button type='button' className={styles.iconButton}>
                 <MyPageIcon />
               </button>
             )}
@@ -36,11 +34,11 @@ const Header = ({
         </div>
       )}
       {isSub && (
-        <div>
-          <button type="button">
+        <div className={styles.subRow}>
+          <button type='button' className={styles.backButton}>
             <BackIcon />
           </button>
-          {title && <h1>{title}</h1>}
+          {title && <h1 className={styles.title}>{title}</h1>}
         </div>
       )}
     </header>
