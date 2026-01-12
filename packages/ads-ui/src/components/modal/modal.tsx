@@ -5,13 +5,24 @@ import { RectButton } from '../index';
 import * as styles from './modal.css';
 
 interface ModalProps {
+  open?: boolean;
   title: string;
   description?: ReactNode;
   confirmText: string;
   cancelText: string;
 }
 
-const Modal = ({ title, description, confirmText, cancelText }: ModalProps) => {
+const Modal = ({
+  open = true,
+  title,
+  description,
+  confirmText,
+  cancelText,
+}: ModalProps) => {
+  if (!open) {
+    return null;
+  }
+
   return (
     <div className={styles.overlay}>
       <div className={styles.modal} role='dialog' aria-modal='true'>
