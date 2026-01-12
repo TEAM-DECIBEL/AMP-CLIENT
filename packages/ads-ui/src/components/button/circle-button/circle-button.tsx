@@ -12,9 +12,13 @@ interface CircleButtonProps {
 const CircleButton = ({ type, onClick }: CircleButtonProps) => {
   const icon =
     type === 'share' ? (
-      <ShareIcon className={styles.icon} />
+      <div className={styles.iconContainer({ type: 'share' })}>
+        <ShareIcon className={styles.icon} />
+      </div>
     ) : (
-      <PenIcon className={styles.icon} />
+      <div className={styles.iconContainer({ type: 'write' })}>
+        <PenIcon className={styles.icon} />
+      </div>
     );
 
   return (
