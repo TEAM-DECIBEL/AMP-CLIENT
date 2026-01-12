@@ -7,7 +7,7 @@ export const base = style({
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '0.8rem 1.6rem',
+  padding: '1.3rem 12.4rem',
   borderRadius: '20px',
   color: ampThemeVars.color.gray_000,
   ...ampThemeVars.font.title_sb_16,
@@ -18,7 +18,7 @@ export const ctaButton = recipe({
   base,
 
   variants: {
-    tone: {
+    type: {
       primary: {
         backgroundColor: ampThemeVars.color.primary,
         selectors: {
@@ -39,13 +39,17 @@ export const ctaButton = recipe({
       },
       social: {
         gap: '1.6rem',
+        padding: '1.4rem 5.9rem',
         border: `1px solid ${ampThemeVars.color.gray_200}`,
+        borderRadius: '100px',
         backgroundColor: ampThemeVars.color.gray_000,
         color: ampThemeVars.color.gray_900,
       },
       icon: {
         gap: '1rem',
+        padding: '1.3rem',
         border: `1px solid ${ampThemeVars.color.gray_200}`,
+        borderRadius: '40px',
         backgroundColor: ampThemeVars.color.gray_000,
         color: ampThemeVars.color.gray_900,
         selectors: {

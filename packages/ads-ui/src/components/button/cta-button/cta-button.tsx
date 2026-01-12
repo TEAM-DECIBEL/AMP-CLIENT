@@ -2,11 +2,11 @@ import { GoogleIcon, PenIcon } from '../../../icons';
 
 import * as styles from './cta-button.css';
 
-type Tone = 'primary' | 'gray' | 'social' | 'icon';
+type Type = 'primary' | 'gray' | 'social' | 'icon';
 
 interface CtaButtonProps {
   children: React.ReactNode;
-  tone: Tone;
+  type: Type;
   selected?: boolean;
   disabled?: boolean;
   onClick: () => void;
@@ -14,15 +14,15 @@ interface CtaButtonProps {
 
 const CtaButton = ({
   children,
-  tone,
+  type,
   selected,
   disabled,
   onClick,
 }: CtaButtonProps) => {
-  const isSelected = tone === 'icon' && selected === true;
+  const isSelected = type === 'icon' && selected === true;
 
   const icon =
-    tone === 'social' ? <GoogleIcon /> : tone === 'icon' ? <PenIcon /> : null;
+    type === 'social' ? <GoogleIcon /> : type === 'icon' ? <PenIcon /> : null;
 
   return (
     <button
@@ -30,7 +30,7 @@ const CtaButton = ({
       disabled={disabled}
       onClick={onClick}
       data-selected={isSelected ? 'true' : 'false'}
-      className={styles.ctaButton({ tone })}
+      className={styles.ctaButton({ type })}
     >
       {icon && <span>{icon}</span>}
       {children}
