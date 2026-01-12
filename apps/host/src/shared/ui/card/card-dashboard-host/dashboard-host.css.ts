@@ -21,7 +21,6 @@ export const content = style({
 });
 
 export const textStyle = style({
-  margin: 0,
   color: ampThemeVars.color.gray_500,
   ...ampThemeVars.font.title_sb_14,
 });
