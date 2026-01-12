@@ -25,12 +25,20 @@ const Header = ({ variant, kind, title }: HeaderProps) => {
           <ExLogoIcon />
           <div className={styles.mainIcons}>
             {showAlert && (
-              <button type='button' className={styles.iconButton}>
+              <button
+                type='button'
+                className={styles.iconButton}
+                aria-label='알림'
+              >
                 <AlertIcon />
               </button>
             )}
             {isMain && (
-              <button type='button' className={styles.iconButton}>
+              <button
+                type='button'
+                className={styles.iconButton}
+                aria-label='마이페이지'
+              >
                 <MyPageIcon />
               </button>
             )}
@@ -43,6 +51,7 @@ const Header = ({ variant, kind, title }: HeaderProps) => {
             type='button'
             className={styles.backButton}
             onClick={handleBackClick}
+            aria-label='뒤로가기'
           >
             <BackIcon />
           </button>
