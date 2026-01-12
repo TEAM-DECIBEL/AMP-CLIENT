@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 
-import { AlertIcon, BackIcon, ExLogoIcon, MyPageIcon } from '../../icons';
+import { BackIcon, ExLogoIcon, MyPageIcon, StatusNoneIcon } from '../../icons';
 
 import * as styles from './header.css';
 
@@ -30,7 +30,7 @@ const Header = ({ variant, kind, title }: HeaderProps) => {
                 className={styles.iconButton}
                 aria-label='알림'
               >
-                <AlertIcon />
+                <StatusNoneIcon />
               </button>
             )}
             <button
