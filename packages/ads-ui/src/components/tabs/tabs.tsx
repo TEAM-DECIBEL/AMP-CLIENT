@@ -76,7 +76,7 @@ const TabsTrigger = ({ value, children }: TabsTriggerProps) => {
   return (
     <button
       type='button'
-      className={styles.trigger({ variant })}
+      className={styles.trigger({ variant, selected: isSelected })}
       role='tab'
       aria-selected={isSelected}
       onClick={() => setValue(value)}

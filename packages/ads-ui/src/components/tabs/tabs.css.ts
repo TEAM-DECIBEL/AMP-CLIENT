@@ -46,9 +46,6 @@ export const trigger = recipe({
             margin: '0 1rem',
             color: ampThemeVars.color.gray_900,
           },
-          '&[aria-selected="true"]': {
-            color: ampThemeVars.color.gray_900,
-          },
         },
       },
       notice: {
@@ -59,12 +56,27 @@ export const trigger = recipe({
         position: 'relative',
         width: '8rem',
         justifyContent: 'center',
+      },
+    },
+    selected: {
+      true: {},
+      false: {},
+    },
+  },
+  compoundVariants: [
+    {
+      variants: { variant: 'viewer', selected: true },
+      style: {
+        color: ampThemeVars.color.gray_900,
+      },
+    },
+    {
+      variants: { variant: 'notice', selected: true },
+      style: {
+        ...ampThemeVars.font.title_sb_16,
+        color: ampThemeVars.color.gray_900,
         selectors: {
-          '&[aria-selected="true"]': {
-            ...ampThemeVars.font.title_sb_16,
-            color: ampThemeVars.color.gray_900,
-          },
-          '&[aria-selected="true"]::after': {
+          '::after': {
             content: '""',
             position: 'absolute',
             left: '50%',
@@ -77,5 +89,5 @@ export const trigger = recipe({
         },
       },
     },
-  },
+  ],
 });
