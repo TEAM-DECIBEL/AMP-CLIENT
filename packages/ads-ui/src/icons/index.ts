@@ -1,6 +1,6 @@
 export { default as AmpFlagIcon } from './svgs/icn_ampflag.svg?react';
+export { default as ArrowIcon } from './svgs/icn_arrow.svg?react';
 export { default as BackIcon } from './svgs/icn_back.svg?react';
-export { default as BtnIcon } from './svgs/icn_btn.svg?react';
 export { default as CalendarIcon } from './svgs/icn_calendar.svg?react';
 export { default as CameraIcon } from './svgs/icn_camera.svg?react';
 export { default as ChatIcon } from './svgs/icn_chat.svg?react';
