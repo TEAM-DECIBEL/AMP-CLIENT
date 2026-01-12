@@ -10,6 +10,8 @@ interface ModalProps {
   description?: ReactNode;
   confirmText: string;
   cancelText: string;
+  onConfirm?: () => void;
+  onCancel?: () => void;
 }
 
 const Modal = ({
@@ -18,21 +20,32 @@ const Modal = ({
   description,
   confirmText,
   cancelText,
+  onConfirm,
+  onCancel,
 }: ModalProps) => {
   if (!open) {
     return null;
   }
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal} role='dialog' aria-modal='true'>
+    <div className={styles.overlay} onClick={onCancel}>
+      <div
+        className={styles.modal}
+        role='dialog'
+        aria-modal='true'
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className={styles.content}>
           <h2 className={styles.title}>{title}</h2>
           {description && <p className={styles.description}>{description}</p>}
         </div>
         <div className={styles.actions}>
-          <RectButton variant='secondary'>{cancelText}</RectButton>
-          <RectButton variant='primary'>{confirmText}</RectButton>
+          <RectButton variant='secondary' onClick={onCancel}>
+            {cancelText}
+          </RectButton>
+          <RectButton variant='primary' onClick={onConfirm}>
+            {confirmText}
+          </RectButton>
         </div>
       </div>
     </div>
