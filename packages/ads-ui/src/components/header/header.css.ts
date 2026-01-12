@@ -8,7 +8,7 @@ export const header = style({
   flexDirection: 'column',
 });
 
-export const main = style({
+export const mainRow = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',

@@ -21,7 +21,7 @@ const Header = ({ variant, kind, title }: HeaderProps) => {
   return (
     <header className={styles.header}>
       {isMain && (
-        <div className={styles.main}>
+        <div className={styles.mainRow}>
           <ExLogoIcon />
           <div className={styles.mainIcons}>
             {showAlert && (
