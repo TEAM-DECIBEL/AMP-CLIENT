@@ -2,16 +2,16 @@ import { PenIcon, ShareIcon } from '../../../icons';
 
 import * as styles from './circle-button.css';
 
-type status = 'share' | 'write';
+type CircleButtonType = 'share' | 'write';
 
 interface CircleButtonProps {
-  status: status;
+  type: CircleButtonType;
   onClick: () => void;
 }
 
-const CircleButton = ({ status, onClick }: CircleButtonProps) => {
+const CircleButton = ({ type, onClick }: CircleButtonProps) => {
   const icon =
-    status === 'share' ? (
+    type === 'share' ? (
       <ShareIcon className={styles.icon} />
     ) : (
       <PenIcon className={styles.icon} />
@@ -21,7 +21,7 @@ const CircleButton = ({ status, onClick }: CircleButtonProps) => {
     <button
       type='button'
       onClick={onClick}
-      className={styles.circleButton({ status })}
+      className={styles.circleButton({ type })}
     >
       {icon}
     </button>

@@ -15,7 +15,7 @@ export const base = style({
 export const circleButton = recipe({
   base,
   variants: {
-    status: {
+    type: {
       share: {
         backgroundColor: ampThemeVars.color.gray_000,
         border: `1px solid ${ampThemeVars.color.gray_300}`,
