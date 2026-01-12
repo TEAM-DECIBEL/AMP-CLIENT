@@ -28,7 +28,22 @@ export const circleButton = recipe({
   },
 });
 
-export const icon = style({
-  display: 'block',
-  flexShrink: 0,
+export const icon = recipe({
+  base: {
+    display: 'block',
+    flexShrink: 0,
+  },
+
+  variants: {
+    type: {
+      share: {
+        width: '2.7rem',
+        height: '2.7rem',
+      },
+      pen: {
+        width: '2.2rem',
+        height: '2.2rem',
+      },
+    },
+  },
 });
