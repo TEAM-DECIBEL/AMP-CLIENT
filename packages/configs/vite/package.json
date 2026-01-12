@@ -14,7 +14,7 @@
     "vite-tsconfig-paths": "^6.0.3"
   },
   "peerDependencies": {
-    "vite": "^7",
+    "vite": "catalog:",
     "@vanilla-extract/vite-plugin": "^5",
     "@vitejs/plugin-react": "^5",
     "vite-plugin-svgr": "^4"
