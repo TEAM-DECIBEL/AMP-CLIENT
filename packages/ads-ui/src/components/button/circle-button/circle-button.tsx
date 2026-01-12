@@ -22,6 +22,7 @@ const CircleButton = ({ type, onClick }: CircleButtonProps) => {
       type='button'
       onClick={onClick}
       className={styles.circleButton({ type })}
+      aria-label={type === 'share' ? '공유하기' : '글쓰기'}
     >
       {icon}
     </button>
