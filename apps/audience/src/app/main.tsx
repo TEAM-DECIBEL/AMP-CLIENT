@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
 import { OverlayProvider } from 'overlay-kit';
+import { createRoot } from 'react-dom/client';
 
 import App from '@app/App';
 
