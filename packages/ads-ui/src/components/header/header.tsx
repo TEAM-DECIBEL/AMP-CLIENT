@@ -33,15 +33,13 @@ const Header = ({ variant, kind, title }: HeaderProps) => {
                 <AlertIcon />
               </button>
             )}
-            {isMain && (
-              <button
-                type='button'
-                className={styles.iconButton}
-                aria-label='마이페이지'
-              >
-                <MyPageIcon />
-              </button>
-            )}
+            <button
+              type='button'
+              className={styles.iconButton}
+              aria-label='마이페이지'
+            >
+              <MyPageIcon />
+            </button>
           </div>
         </div>
       )}
