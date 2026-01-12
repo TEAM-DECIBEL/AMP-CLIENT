@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router';
+
 import { AlertIcon, BackIcon, ExLogoIcon, MyPageIcon } from '../../icons';
 
 import * as styles from './header.css';
@@ -12,7 +14,9 @@ const Header = ({ variant, kind, title }: HeaderProps) => {
   const isMain = kind === 'main';
   const isSub = kind === 'sub';
   const showAlert = isMain && variant === 'audience';
-  const showMyPage = isMain;
+
+  const navigate = useNavigate();
+  const handleBackClick = () => navigate(-1);
 
   return (
     <header className={styles.header}>
@@ -25,7 +29,7 @@ const Header = ({ variant, kind, title }: HeaderProps) => {
                 <AlertIcon />
               </button>
             )}
-            {showMyPage && (
+            {isMain && (
               <button type='button' className={styles.iconButton}>
                 <MyPageIcon />
               </button>
@@ -35,7 +39,11 @@ const Header = ({ variant, kind, title }: HeaderProps) => {
       )}
       {isSub && (
         <div className={styles.subRow}>
-          <button type='button' className={styles.backButton}>
+          <button
+            type='button'
+            className={styles.backButton}
+            onClick={handleBackClick}
+          >
             <BackIcon />
           </button>
           {title && <h1 className={styles.title}>{title}</h1>}
