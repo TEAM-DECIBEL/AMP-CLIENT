@@ -20,12 +20,12 @@ export const content = style({
   alignItems: 'center',
 });
 
-export const textStyle = style({
+export const text = style({
   color: ampThemeVars.color.gray_500,
   ...ampThemeVars.font.title_sb_14,
 });
 
-export const numberStyle = style({
+export const count = style({
   color: ampThemeVars.color.gray_900,
   ...ampThemeVars.font.heading_sb_20,
 });
