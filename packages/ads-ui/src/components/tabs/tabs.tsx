@@ -1,6 +1,6 @@
 import { createContext, type ReactNode, useContext, useState } from 'react';
 
-import * as s from './tabs.css';
+import * as styles from './tabs.css';
 
 interface TabsContextValue {
   value: string;
@@ -45,7 +45,7 @@ const Tabs = ({
     <TabsContext.Provider
       value={{ value, setValue: handleValueChange, variant }}
     >
-      <div className={s.root}>{children}</div>
+      <div className={styles.root}>{children}</div>
     </TabsContext.Provider>
   );
 };
@@ -57,7 +57,7 @@ interface TabsListProps {
 const TabsList = ({ children }: TabsListProps) => {
   const { variant } = useTabsContext();
   return (
-    <div className={s.list({ variant })} role='tablist'>
+    <div className={styles.list({ variant })} role='tablist'>
       {children}
     </div>
   );
@@ -76,7 +76,7 @@ const TabsTrigger = ({ value, children }: TabsTriggerProps) => {
   return (
     <button
       type='button'
-      className={s.trigger({ variant })}
+      className={styles.trigger({ variant })}
       role='tab'
       aria-selected={isSelected}
       onClick={() => setValue(value)}
