@@ -14,10 +14,10 @@ const AlertCard = ({ title, description, time, isRead }: AlertCardProps) => {
         .filter(Boolean)
         .join(' ')}
     >
-      <header className={styles.titleSection}>
+      <div className={styles.titleSection}>
         <p className={styles.title}>{title}</p>
         <span className={styles.time}>{time}</span>
-      </header>
+      </div>
 
       <p className={styles.description}>{description}</p>
     </article>
