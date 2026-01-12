@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { ampThemeVars } from '../../styles/theme.css';
+import { ampThemeVars } from '../../styles';
 
 export const header = style({
   width: '100%',
