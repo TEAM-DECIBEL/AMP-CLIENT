@@ -7,7 +7,7 @@ export const emptyCard = style({
   justifyContent: 'center',
   alignItems: 'center',
   padding: '1.2rem',
-  borderRadius: '1.6rem',
+  borderRadius: '16px',
   border: `1px solid ${ampThemeVars.color.gray_100}`,
   backgroundColor: ampThemeVars.color.gray_000,
   color: ampThemeVars.color.gray_500,
