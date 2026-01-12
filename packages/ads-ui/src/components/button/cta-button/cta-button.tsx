@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import { GoogleIcon, PenIcon, PlusIcon } from '../../../icons';
 
 import * as styles from './cta-button.css';
@@ -5,7 +7,7 @@ import * as styles from './cta-button.css';
 type Type = 'primary' | 'gray' | 'social' | 'icon' | 'add';
 
 interface CtaButtonProps {
-  children: React.ReactNode;
+  children: ReactNode;
   type: Type;
   selected?: boolean;
   disabled?: boolean;
