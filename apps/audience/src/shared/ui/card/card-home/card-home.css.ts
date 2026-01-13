@@ -3,8 +3,6 @@ import { style } from '@vanilla-extract/css';
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const background = style({
-  width: '30.9rem',
-  height: '10.7rem',
   padding: '1.2rem 1.5rem',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
@@ -35,6 +33,7 @@ export const description = style({
   display: 'flex',
   flexDirection: 'column',
   color: ampThemeVars.color.gray_500,
+  ...ampThemeVars.font.caption_m_12,
 });
 
 export const location = style({
