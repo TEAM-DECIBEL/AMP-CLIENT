@@ -24,7 +24,6 @@ const CardHome = ({
     <article
       className={styles.background}
       style={{ backgroundImage: `url(${fixedBgImage})` }}
-      role='img'
       aria-label='CardHome Cover Image'
     >
       <div className={styles.contentContainer}>
