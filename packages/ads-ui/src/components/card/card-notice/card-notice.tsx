@@ -21,17 +21,15 @@ const CardNotice = ({
     <article className={styles.notice}>
       <img src={imageUrl} alt={title} className={styles.image} />
 
-      <div>
-        <div className={styles.header}>
-          <p className={styles.title}>{title}</p>
+      <div className={styles.textContainer}>
+        <p className={styles.title}>{title}</p>
 
-          <div className={styles.status}>
-            {isPinned ? (
-              <PinIcon />
-            ) : createdAt ? (
-              <span className={styles.date}>{createdAt}</span>
-            ) : null}
-          </div>
+        <div className={styles.status}>
+          {isPinned ? (
+            <PinIcon className={styles.icon} />
+          ) : createdAt ? (
+            <span className={styles.date}>{createdAt}</span>
+          ) : null}
         </div>
 
         <div className={styles.content}>{content}</div>
