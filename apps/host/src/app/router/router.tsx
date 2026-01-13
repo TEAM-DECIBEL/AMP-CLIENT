@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router';
 
-import { Layout } from './layout';
+import { Layout } from './basic-layout';
 import { globalRoutes } from './routes';
 
 export const router = createBrowserRouter([
