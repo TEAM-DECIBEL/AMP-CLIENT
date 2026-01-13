@@ -8,17 +8,17 @@ interface ChipBaseProps {
 }
 
 interface ChipStatusProps extends ChipBaseProps {
-  variant: 'chip_status';
+  variant: 'status';
   status: 'current' | 'upcoming' | 'dday';
 }
 
 interface ChipDayProps extends ChipBaseProps {
-  variant: 'chip_day';
+  variant: 'day';
   status: 'color' | 'gray';
 }
 
 interface ChipMyPageProps extends ChipBaseProps {
-  variant: 'chip_mypage';
+  variant: 'mypage';
   status?: never;
 }
 
@@ -28,7 +28,7 @@ const Chip = (props: ChipProps) => {
   const { className, children, variant } = props;
 
   const chipClassName =
-    variant === 'chip_mypage'
+    variant === 'mypage'
       ? chip({ variant })
       : chip({ variant, status: props.status });
 
