@@ -4,7 +4,6 @@ import { ampThemeVars } from '../../../styles';
 
 export const notice = style({
   display: 'flex',
-  alignItems: 'center',
   gap: '2rem',
   position: 'relative',
   padding: '0.5rem 0',
