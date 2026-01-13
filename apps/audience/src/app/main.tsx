@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
-import { OverlayProvider } from 'overlay-kit';
 import { createRoot } from 'react-dom/client';
+
+import { OverlayProvider } from '@amp/ads-ui';
 
 import App from '@app/App';
 
