@@ -9,6 +9,7 @@ export const overlay = style({
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: ampThemeVars.color.gray_999_20,
+  zIndex: ampThemeVars.zIndex.overlay,
 });
 
 export const modal = style({
@@ -17,6 +18,7 @@ export const modal = style({
   borderRadius: '20px',
   padding: '2.4rem 2rem 2rem 2rem',
   backgroundColor: ampThemeVars.color.gray_000,
+  zIndex: ampThemeVars.zIndex.modal,
 });
 
 export const content = style({
