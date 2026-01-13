@@ -1,9 +1,8 @@
 import { style } from '@vanilla-extract/css';
+import { createVar } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { ampThemeVars } from '../../styles';
-
-import { createVar } from '@vanilla-extract/css';
 
 export const iconColorVar = createVar();
 
