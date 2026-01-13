@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 
 import * as styles from './modal.css';
 
@@ -16,10 +17,15 @@ const ModalRoot = ({ open = false, onClose, children }: ModalRootProps) => {
     return null;
   }
 
-  return (
+  if (typeof document === 'undefined') {
+    return null;
+  }
+
+  return createPortal(
     <div className={styles.overlay} onClick={onClose}>
       {children}
-    </div>
+    </div>,
+    document.body,
   );
 };
 
