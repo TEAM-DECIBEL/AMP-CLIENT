@@ -1,55 +1,72 @@
 import type { ReactNode } from 'react';
 
-import { RectButton } from '../index';
-
 import * as styles from './modal.css';
 
-interface ModalProps {
-  open?: boolean;
-  title: string;
-  description?: ReactNode;
-  confirmText: string;
-  cancelText: string;
-  onConfirm?: () => void;
-  onCancel?: () => void;
+interface ModalBaseProps {
+  children: ReactNode;
 }
 
-const Modal = ({
-  open = true,
-  title,
-  description,
-  confirmText,
-  cancelText,
-  onConfirm,
-  onCancel,
-}: ModalProps) => {
+interface ModalRootProps extends ModalBaseProps {
+  open?: boolean;
+  onClose?: () => void;
+}
+
+const ModalRoot = ({ open = false, onClose, children }: ModalRootProps) => {
   if (!open) {
     return null;
   }
 
   return (
-    <div className={styles.overlay} onClick={onCancel}>
-      <div
-        className={styles.modal}
-        role='dialog'
-        aria-modal='true'
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className={styles.content}>
-          <h2 className={styles.title}>{title}</h2>
-          {description && <p className={styles.description}>{description}</p>}
-        </div>
-        <div className={styles.actions}>
-          <RectButton variant='secondary' onClick={onCancel}>
-            {cancelText}
-          </RectButton>
-          <RectButton variant='primary' onClick={onConfirm}>
-            {confirmText}
-          </RectButton>
-        </div>
-      </div>
+    <div className={styles.overlay} onClick={onClose}>
+      {children}
     </div>
   );
 };
+
+interface ModalPanelProps extends ModalBaseProps {
+  role?: 'dialog' | 'alertdialog';
+  'aria-modal'?: boolean;
+}
+
+const ModalPanel = ({
+  role = 'dialog',
+  'aria-modal': ariaModal = true,
+  children,
+}: ModalPanelProps) => {
+  return (
+    <div
+      className={styles.modal}
+      role={role}
+      aria-modal={ariaModal}
+      onClick={(event) => event.stopPropagation()}
+    >
+      {children}
+    </div>
+  );
+};
+
+const ModalContent = ({ children }: ModalBaseProps) => {
+  return <div className={styles.content}>{children}</div>;
+};
+
+const ModalActions = ({ children }: ModalBaseProps) => {
+  return <div className={styles.actions}>{children}</div>;
+};
+
+const ModalTitle = ({ children }: ModalBaseProps) => {
+  return <h2 className={styles.title}>{children}</h2>;
+};
+
+const ModalDescription = ({ children }: ModalBaseProps) => {
+  return <p className={styles.description}>{children}</p>;
+};
+
+const Modal = Object.assign(ModalRoot, {
+  Panel: ModalPanel,
+  Content: ModalContent,
+  Title: ModalTitle,
+  Description: ModalDescription,
+  Actions: ModalActions,
+});
 
 export default Modal;
