@@ -1,0 +1,38 @@
+import { style } from '@vanilla-extract/css';
+
+import { ampThemeVars } from '../../../styles';
+
+export const menuContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '1.9rem 2rem',
+  border: `1px solid ${ampThemeVars.color.gray_200}`,
+  borderRadius: '16px',
+  color: ampThemeVars.color.gray_900,
+  ...ampThemeVars.font.body_m_13,
+});
+
+export const menuItem = style({
+  display: 'flex',
+  position: 'relative',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  cursor: 'pointer',
+
+  selectors: {
+    '& + &': {
+      borderTop: `0.1rem solid ${ampThemeVars.color.gray_200}`,
+      paddingTop: '1.2rem',
+      marginTop: '1.2rem',
+    },
+    '&:disabled': {
+      cursor: 'not-allowed',
+    },
+  },
+});
+
+export const icon = style({
+  flexShrink: 0,
+  width: '2.2rem',
+  height: '2.2rem',
+});
