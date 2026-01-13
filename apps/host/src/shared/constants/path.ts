@@ -4,4 +4,5 @@ export const ROUTE_PATH = {
   NOTICE_CREATE: 'events/:eventId/notices/new',
   NOTICE_DETAILS: 'events/:eventId/notices/:noticeId',
   MYPAGE: 'mypage',
+  MY_HISTORY: 'mypage/history',
 } as const;
