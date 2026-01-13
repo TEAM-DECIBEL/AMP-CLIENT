@@ -12,6 +12,7 @@ const FlagButton = ({ selected, onChange }: FlagButtonProps) => {
     <button
       type='button'
       className={styles.flagButton}
+      aria-label='관람 예정 공연 선택'
       aria-pressed={selected}
       onClick={() => onChange(!selected)}
     >
