@@ -8,7 +8,7 @@ export const flagButton = style({
   justifyContent: 'center',
   width: '4rem',
   height: '4rem',
-  borderRadius: '50px',
+  borderRadius: '50%',
   backgroundColor: ampThemeVars.color.gray_000,
   border: `1px solid ${ampThemeVars.color.gray_200}`,
   color: ampThemeVars.color.gray_300,
