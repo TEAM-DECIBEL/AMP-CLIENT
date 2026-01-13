@@ -25,14 +25,18 @@ export const CardFestival = ({
     <article className={styles.card}>
       <img src={mainImageUrl} alt={title} className={styles.image} />
       <div className={styles.contentContainer}>
-        <p className={styles.title}>{title}</p>
-        <p className={styles.duration}>
-          {startDate} - {endDate}
-        </p>
-        <div className={styles.chip}>{chip}</div>
+        <div>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.duration}>
+            {startDate} - {endDate}
+          </p>
+        </div>
+        <div>{chip}</div>
       </div>
       {buttonSlot && <div className={styles.buttonSlot}>{buttonSlot}</div>}
       {iconSlot && <div className={styles.iconSlot}>{iconSlot}</div>}
     </article>
   );
 };
+
+export default CardFestival;
