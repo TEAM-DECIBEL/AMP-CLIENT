@@ -16,6 +16,7 @@
     "@vanilla-extract/recipes": "catalog:",
     "@vanilla-extract/vite-plugin": "catalog:",
     "clsx": "^2.1.1",
+    "overlay-kit": "^1.8.6",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "catalog:"
