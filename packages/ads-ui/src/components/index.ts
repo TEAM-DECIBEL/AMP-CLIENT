@@ -1,6 +1,4 @@
 export { default as BottomSheet } from './bottom-sheet/bottom-sheet';
-export { default as ActionSheet } from './bottom-sheet/variants/action-sheet/action-sheet';
-export { default as OptionSheet } from './bottom-sheet/variants/option-sheet/option-sheet';
 export { default as CircleButton } from './button/circle-button/circle-button';
 export { default as CtaButton } from './button/cta-button/cta-button';
 export { default as FlagButton } from './button/flag-button/flag-button';
