@@ -5,7 +5,7 @@ interface DashboardHostProps {
   upcomingCount: number;
 }
 
-const DashboardHost = ({ ongoingCount, upcomingCount }: DashboardHostProps) => {
+const Dashboard = ({ ongoingCount, upcomingCount }: DashboardHostProps) => {
   return (
     <section className={styles.dashboard}>
       <div className={styles.content}>
@@ -21,4 +21,4 @@ const DashboardHost = ({ ongoingCount, upcomingCount }: DashboardHostProps) => {
   );
 };
 
-export default DashboardHost;
+export default Dashboard;
