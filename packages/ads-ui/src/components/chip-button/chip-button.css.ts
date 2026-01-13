@@ -33,7 +33,7 @@ export const chipButton = recipe({
       variants: { selected: true, selectType: 'neutral' },
       style: {
         backgroundColor: ampThemeVars.color.gray_900,
-        border: 'none',
+        border: 'transparent',
         color: ampThemeVars.color.gray_000,
       },
     },
@@ -41,7 +41,7 @@ export const chipButton = recipe({
       variants: { selected: true, selectType: 'primary' },
       style: {
         backgroundColor: ampThemeVars.color.primary,
-        border: 'none',
+        border: 'transparent',
         color: ampThemeVars.color.gray_000,
       },
     },
