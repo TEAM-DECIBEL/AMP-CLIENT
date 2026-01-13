@@ -2,48 +2,54 @@ import { ReactNode } from 'react';
 
 import * as styles from './card-festival.css';
 
-interface CardFestivalProps {
-  mainImageUrl: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-  chipMap: Record<string, ReactNode>;
-  activeKeys: (string | boolean | undefined | null)[];
-  iconSlot?: ReactNode;
-  buttonSlot?: ReactNode;
-}
+const Image = ({ src, alt }: { src: string; alt: string }) => (
+  <img src={src} alt={alt} className={styles.image} />
+);
 
-export const CardFestival = ({
-  mainImageUrl,
+const Text = ({
   title,
   startDate,
   endDate,
-  chipMap,
-  activeKeys,
-  iconSlot,
-  buttonSlot,
-}: CardFestivalProps) => {
-  const activeChipKeys = activeKeys.filter((key): key is string => !!key);
-  return (
-    <article className={styles.card}>
-      <img src={mainImageUrl} alt={title} className={styles.image} />
-      <div className={styles.contentContainer}>
-        <div>
-          <p className={styles.title}>{title}</p>
-          <p className={styles.duration}>
-            {startDate} - {endDate}
-          </p>
-        </div>
-        <div className={styles.chip}>
-          {activeChipKeys.map((key) =>
-            chipMap[key] ? <div key={key}>{chipMap[key]}</div> : null,
-          )}
-        </div>
-      </div>
-      {buttonSlot && <div className={styles.buttonSlot}>{buttonSlot}</div>}
-      {iconSlot && <div className={styles.iconSlot}>{iconSlot}</div>}
-    </article>
-  );
-};
+}: {
+  title: string;
+  startDate: string;
+  endDate: string;
+}) => (
+  <div>
+    <p className={styles.title}>{title}</p>
+    <p className={styles.duration}>
+      {startDate} - {endDate}
+    </p>
+  </div>
+);
+
+const Chip = ({ children }: { children: ReactNode }) => (
+  <div className={styles.chip}>{children}</div>
+);
+
+const Button = ({ children }: { children: ReactNode }) => (
+  <div className={styles.buttonSlot}>{children}</div>
+);
+
+const Icon = ({ children }: { children: ReactNode }) => (
+  <div className={styles.iconSlot}>{children}</div>
+);
+
+const Root = ({ children }: { children: ReactNode }) => (
+  <article className={styles.card}>{children}</article>
+);
+
+const ContentContainer = ({ children }: { children: ReactNode }) => (
+  <div className={styles.contentContainer}>{children}</div>
+);
+
+export const CardFestival = Object.assign(Root, {
+  Image,
+  Text,
+  Chip,
+  Button,
+  Icon,
+  ContentContainer,
+});
 
 export default CardFestival;
