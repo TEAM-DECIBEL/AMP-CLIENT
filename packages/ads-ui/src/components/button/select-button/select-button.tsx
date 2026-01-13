@@ -1,4 +1,4 @@
-import { SELECT_PRESET, type SelectPreset } from './select-button.preset';
+import { SELECT_PRESET, type SelectPreset } from './select-button-preset';
 
 import * as styles from './select-button.css';
 
