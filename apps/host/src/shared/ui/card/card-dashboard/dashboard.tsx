@@ -2,12 +2,12 @@ import React from 'react';
 
 import * as styles from './dashboard.css';
 
-interface DashboardHostProps {
+interface DashboardProps {
   ongoingCount: number;
   upcomingCount: number;
 }
 
-const Dashboard = ({ ongoingCount, upcomingCount }: DashboardHostProps) => {
+const Dashboard = ({ ongoingCount, upcomingCount }: DashboardProps) => {
   const items = [
     { label: '진행 중인 공연', count: ongoingCount },
     { label: '진행 예정 공연', count: upcomingCount },
