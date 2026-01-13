@@ -8,6 +8,14 @@ globalStyle('html, body', {
   fontFamily: `'Pretendard Variable', sans-serif`,
 });
 
+globalStyle('#root', {
+  width: '100%',
+  minWidth: '375px',
+  maxWidth: '430px',
+  minHeight: '100dvh',
+  margin: '0 auto',
+});
+
 globalStyle('::-webkit-scrollbar', {
   display: 'none',
 });

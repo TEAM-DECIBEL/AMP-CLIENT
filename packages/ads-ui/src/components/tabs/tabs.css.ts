@@ -76,7 +76,7 @@ export const trigger = recipe({
         ...ampThemeVars.font.title_sb_16,
         color: ampThemeVars.color.gray_900,
         selectors: {
-          '::after': {
+          '&::after': {
             content: '""',
             position: 'absolute',
             left: '50%',

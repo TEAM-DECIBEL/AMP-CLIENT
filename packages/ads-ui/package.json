@@ -15,7 +15,8 @@
     "@vanilla-extract/recipes": "catalog:",
     "@vanilla-extract/vite-plugin": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "react-router": "catalog:"
   },
   "devDependencies": {
     "@amp/prettier-config": "workspace:*",

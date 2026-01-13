@@ -312,6 +312,9 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 19.2.3(react@19.2.3)
+      react-router:
+        specifier: 'catalog:'
+        version: 7.12.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     devDependencies:
       '@amp/eslint-config':
         specifier: workspace:*
