@@ -16,7 +16,7 @@ export const modal = style({
   width: '100%',
   maxWidth: '30.5rem',
   borderRadius: '20px',
-  padding: '2.4rem 2rem 2rem 2rem',
+  padding: '2.4rem 2rem 2rem',
   backgroundColor: ampThemeVars.color.gray_000,
   zIndex: ampThemeVars.zIndex.modal,
 });
