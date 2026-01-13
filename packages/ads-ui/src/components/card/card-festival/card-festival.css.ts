@@ -48,3 +48,8 @@ export const iconSlot = style({
   width: '2.2rem',
   height: '2.2rem',
 });
+
+export const chip = style({
+  display: 'flex',
+  gap: '0.5rem',
+});

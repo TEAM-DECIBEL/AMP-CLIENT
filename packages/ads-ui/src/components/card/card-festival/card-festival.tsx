@@ -5,9 +5,10 @@ import * as styles from './card-festival.css';
 interface CardFestivalProps {
   mainImageUrl: string;
   title: string;
-  chip: ReactNode;
   startDate: string;
   endDate: string;
+  chipMap: Record<string, ReactNode>;
+  activeKeys: (string | boolean | undefined | null)[];
   iconSlot?: ReactNode;
   buttonSlot?: ReactNode;
 }
@@ -15,12 +16,14 @@ interface CardFestivalProps {
 export const CardFestival = ({
   mainImageUrl,
   title,
-  chip,
   startDate,
   endDate,
+  chipMap,
+  activeKeys,
   iconSlot,
   buttonSlot,
 }: CardFestivalProps) => {
+  const activeChipKeys = activeKeys.filter((key): key is string => !!key);
   return (
     <article className={styles.card}>
       <img src={mainImageUrl} alt={title} className={styles.image} />
@@ -31,7 +34,11 @@ export const CardFestival = ({
             {startDate} - {endDate}
           </p>
         </div>
-        <div>{chip}</div>
+        <div className={styles.chip}>
+          {activeChipKeys.map((key) =>
+            chipMap[key] ? <div key={key}>{chipMap[key]}</div> : null,
+          )}
+        </div>
       </div>
       {buttonSlot && <div className={styles.buttonSlot}>{buttonSlot}</div>}
       {iconSlot && <div className={styles.iconSlot}>{iconSlot}</div>}
