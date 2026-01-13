@@ -5,13 +5,15 @@ import { ampThemeVars } from '../../styles';
 
 export const base = style({
   display: 'inline-flex',
-  textAlign: 'center',
+  justifyContent: 'center',
+  alignItems: 'center',
   backgroundColor: ampThemeVars.color.gray_000,
   border: `1px solid ${ampThemeVars.color.gray_200}`,
   borderRadius: '20px',
   padding: '0.8rem 1.6rem',
   ...ampThemeVars.font.body_m_13,
   color: ampThemeVars.color.gray_900,
+  cursor: 'pointer',
 });
 
 export const categoryButton = recipe({
