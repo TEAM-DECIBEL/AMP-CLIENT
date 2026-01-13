@@ -1,3 +1,4 @@
+import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
 
 import { chip } from './chip.css';
@@ -32,11 +33,7 @@ const Chip = (props: ChipProps) => {
       ? chip({ variant })
       : chip({ variant, status: props.status });
 
-  return (
-    <span className={[chipClassName, className].filter(Boolean).join(' ')}>
-      {children}
-    </span>
-  );
+  return <span className={clsx(chipClassName, className)}>{children}</span>;
 };
 
 export default Chip;
