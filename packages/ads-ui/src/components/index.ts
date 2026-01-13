@@ -1,3 +1,4 @@
+export { default as AddImageButton } from './button/add-image-button/add-image-button';
 export { default as CircleButton } from './button/circle-button/circle-button';
 export { default as CtaButton } from './button/cta-button/cta-button';
 export { default as FlagButton } from './button/flag-button/flag-button';
