@@ -5,7 +5,6 @@ import { ampThemeVars } from '../../../styles';
 export const card = style({
   display: 'flex',
   position: 'relative',
-  alignItems: 'center',
   gap: '1.6rem',
   backgroundColor: ampThemeVars.color.gray_000,
   borderRadius: '16px',
@@ -27,8 +26,13 @@ export const contentContainer = style({
 });
 
 export const title = style({
+  width: '18.1rem',
   color: ampThemeVars.color.gray_900,
   ...ampThemeVars.font.title_sb_18,
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
+  WebkitLineClamp: 1,
+  overflow: 'hidden',
 });
 
 export const duration = style({
@@ -39,6 +43,8 @@ export const duration = style({
 export const buttonSlot = style({
   position: 'absolute',
   right: '1.2rem',
+  top: '50%',
+  transform: 'translateY(-50%)',
 });
 
 export const iconSlot = style({
