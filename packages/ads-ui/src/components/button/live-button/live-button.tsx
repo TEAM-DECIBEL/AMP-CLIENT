@@ -13,9 +13,8 @@ type LiveButtonProps = {
 const LiveButton = ({
   title,
   subText,
-  showIcon,
+  showIcon = false,
   imageUrl,
-
   onClick,
 }: LiveButtonProps) => {
   return (
@@ -25,16 +24,16 @@ const LiveButton = ({
       onClick={onClick}
     >
       <img src={imageUrl} alt={`${title} 썸네일`} className={styles.img} />
+
       <div className={styles.contentContainer}>
         <div className={styles.textContainer}>
           <p className={styles.title}>{title}</p>
-          {subText && <p className={styles.subText}>{subText}</p>}
+          <p className={styles.subText}>{subText}</p>
         </div>
-        {showIcon && (
-          <div className={styles.iconContainer}>
-            <ArrowIcon className={styles.icon} />
-          </div>
-        )}
+
+        <div className={styles.iconContainer} aria-hidden>
+          {showIcon ? <ArrowIcon /> : null}
+        </div>
       </div>
     </button>
   );
