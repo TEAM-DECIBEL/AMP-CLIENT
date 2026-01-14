@@ -4,8 +4,9 @@ import { ampThemeVars } from '../../../styles';
 
 export const menuContainer = style({
   display: 'flex',
+  width: '33.5rem',
   flexDirection: 'column',
-  padding: '1.9rem 2rem',
+  padding: '2rem 1.8rem',
   border: `1px solid ${ampThemeVars.color.gray_200}`,
   borderRadius: '16px',
   color: ampThemeVars.color.gray_900,
@@ -14,14 +15,13 @@ export const menuContainer = style({
 
 export const menuItem = style({
   display: 'flex',
-  position: 'relative',
   justifyContent: 'space-between',
   alignItems: 'center',
   cursor: 'pointer',
 
   selectors: {
     '& + &': {
-      borderTop: `0.1rem solid ${ampThemeVars.color.gray_200}`,
+      borderTop: `1px solid ${ampThemeVars.color.gray_200}`,
       paddingTop: '1.2rem',
       marginTop: '1.2rem',
     },
