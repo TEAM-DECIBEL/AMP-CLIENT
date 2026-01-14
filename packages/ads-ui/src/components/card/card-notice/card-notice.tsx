@@ -19,7 +19,11 @@ const CardNotice = ({
 }: CardNoticeProps) => {
   return (
     <article className={styles.notice}>
-      <img src={imageUrl} alt={title} className={styles.image} />
+      <img
+        src={imageUrl}
+        alt={`${title} 공지 이미지`}
+        className={styles.image}
+      />
 
       <div className={styles.textContainer}>
         <p className={styles.title}>{title}</p>
