@@ -8,4 +8,5 @@ export { default as Header } from './header/header';
 export { default as Modal } from './modal/modal';
 export { default as RectButton } from './modal/rect-button/rect-button';
 export { default as Tabs } from './tabs/tabs';
+export { default as Toast } from './toast/toast';
 export { OverlayProvider } from 'overlay-kit';
