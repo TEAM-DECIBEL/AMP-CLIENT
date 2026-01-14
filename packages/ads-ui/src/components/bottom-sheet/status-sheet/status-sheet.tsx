@@ -6,8 +6,7 @@ import BottomSheet from '../bottom-sheet';
 
 import * as styles from './status-sheet.css';
 
-const STATUS_OPTIONS = ['여유', '보통', '혼잡'] as const;
-export type StatusSheetValue = (typeof STATUS_OPTIONS)[number];
+export type StatusSheetValue = '여유' | '보통' | '혼잡';
 const STATUS_DESCRIPTION = '현재 상황에 가장 가까운 상태를 선택해 주세요.';
 const EMPTY_TITLE = '아직 현장 상황 입력 시간이 아니에요!';
 const EMPTY_DESCRIPTION = '공연 시작 시간 8시간 전부터 입력이 가능해요.';
@@ -33,12 +32,8 @@ type StatusSheetProps = StatusSheetSelectableProps | StatusSheetReadonlyProps;
 
 const StatusSelectableContent = ({
   title,
-  selected,
-  onSelect,
 }: {
   title: ReactNode;
-  selected?: StatusSheetValue;
-  onSelect?: (value: StatusSheetValue) => void;
 }) => {
   return (
     <>
@@ -47,20 +42,20 @@ const StatusSelectableContent = ({
         <BottomSheet.Description>{STATUS_DESCRIPTION}</BottomSheet.Description>
       </BottomSheet.Header>
       <div className={styles.options}>
-        {STATUS_OPTIONS.map((label) => (
-          <button
-            key={label}
-            type='button'
-            onClick={() => onSelect?.(label)}
-            className={styles.option}
-            data-selected={selected === label ? 'true' : 'false'}
-          >
-            <div className={styles.optionMedia}>
-              {/* <img src={src} alt='' className={styles.optionImage} /> */}
-            </div>
-            <span>{label}</span>
-          </button>
-        ))}
+        {/* SelectButton 추가되면 수정 예정*/}
+        {/* {[
+          { value: '여유', preset: { kind: 'crowding', variant: 'relaxed' } },
+          { value: '보통', preset: { kind: 'crowding', variant: 'normal' } },
+          { value: '혼잡', preset: { kind: 'crowding', variant: 'crowded' } },
+        ].map(({ value, preset }) => (
+          <SelectButton
+            key={value}
+            preset={preset}
+            imageUrl=''
+            selected={selected === value}
+            onChange={() => onSelect?.(value)}
+          />
+        ))} */}
       </div>
     </>
   );
@@ -95,11 +90,7 @@ const StatusSheet = (props: StatusSheetProps) => {
       <BottomSheet.Panel>
         <BottomSheet.Handle />
         {props.selectable === true ? (
-          <StatusSelectableContent
-            title={props.title}
-            selected={props.selected}
-            onSelect={props.onSelect}
-          />
+          <StatusSelectableContent title={props.title} />
         ) : (
           <StatusEmptyContent />
         )}
