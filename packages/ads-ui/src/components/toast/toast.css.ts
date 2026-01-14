@@ -1,6 +1,7 @@
 import { keyframes, style } from '@vanilla-extract/css';
 
 import { ampThemeVars } from '../../styles';
+import { zIndex } from '../../styles/tokens/z-index';
 
 const slideUp = keyframes({
   from: {
@@ -31,9 +32,9 @@ export const container = style({
 
   display: 'flex',
   flexDirection: 'column-reverse',
-  gap: '8px',
+  gap: '0.8rem',
 
-  zIndex: 1000,
+  zIndex: zIndex.toast,
   pointerEvents: 'none',
 });
 

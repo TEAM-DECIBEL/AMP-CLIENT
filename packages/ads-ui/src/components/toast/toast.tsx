@@ -45,7 +45,7 @@ const Toast = ({ id, title, description }: ToastProps) => {
         <WifiIcon />
       </span>
       <div>
-        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.title}>{title}</p>
         {description && <p className={styles.description}>{description}</p>}
       </div>
     </div>
