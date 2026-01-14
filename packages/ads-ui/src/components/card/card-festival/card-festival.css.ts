@@ -17,6 +17,7 @@ export const image = style({
   height: '8.4rem',
   borderRadius: '8px',
   flexShrink: 0,
+  objectFit: 'cover',
 });
 
 export const contentContainer = style({
