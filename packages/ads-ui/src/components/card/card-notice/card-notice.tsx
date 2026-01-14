@@ -25,11 +25,11 @@ const CardNotice = ({
         <p className={styles.title}>{title}</p>
 
         <div className={styles.status}>
-          {isPinned ? (
-            <PinIcon className={styles.icon} />
-          ) : createdAt ? (
+          {isPinned && <PinIcon className={styles.icon} />}
+
+          {!isPinned && createdAt && (
             <span className={styles.date}>{createdAt}</span>
-          ) : null}
+          )}
         </div>
 
         <div className={styles.content}>{content}</div>
