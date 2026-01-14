@@ -305,10 +305,13 @@ importers:
         version: 0.5.7(@vanilla-extract/css@1.18.0)
       '@vanilla-extract/vite-plugin':
         specifier: 'catalog:'
-        version: 5.1.4(@types/node@24.10.6)(vite@7.3.0(@types/node@24.10.6))
+        version: 5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      overlay-kit:
+        specifier: ^1.8.6
+        version: 1.8.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: 'catalog:'
         version: 19.2.3
@@ -1898,6 +1901,12 @@ packages:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
 
+  overlay-kit@1.8.6:
+    resolution: {integrity: sha512-0JeZ+QcoMCEgW4OndzCJger/eHZHGan7M9iQ6sHxrMPVwLyqSN8665CdciNrNjzorV3xGtqVeZUs2o4rt4ddYw==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18 || ^19
+      react-dom: ^16.8 || ^17 || ^18 || ^19
+
   own-keys@1.0.1:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
     engines: {node: '>= 0.4'}
@@ -3049,6 +3058,26 @@ snapshots:
       - tsx
       - yaml
 
+  '@vanilla-extract/vite-plugin@5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))':
+    dependencies:
+      '@vanilla-extract/compiler': 0.3.4(@types/node@24.10.6)
+      '@vanilla-extract/integration': 8.0.7
+      vite: 7.3.1(@types/node@24.10.6)
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - jiti
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - tsx
+      - yaml
+
   '@vitejs/plugin-react@5.1.2(vite@7.3.0(@types/node@24.10.6))':
     dependencies:
       '@babel/core': 7.28.5
@@ -4000,6 +4029,11 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
       word-wrap: 1.2.5
+
+  overlay-kit@1.8.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   own-keys@1.0.1:
     dependencies:
