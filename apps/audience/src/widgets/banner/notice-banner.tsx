@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import * as styles from './notice-banner.css';
 
-interface NoticeBanenrProps {
+interface NoticeBannerProps {
   chip: ReactNode;
   title: string;
   location: string;
@@ -18,7 +18,7 @@ const NoticeBanner = ({
   startDate,
   endDate,
   button,
-}: NoticeBanenrProps) => {
+}: NoticeBannerProps) => {
   return (
     <section className={styles.banner}>
       <div className={styles.content}>
