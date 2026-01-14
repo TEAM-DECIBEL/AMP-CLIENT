@@ -12,6 +12,8 @@ export const bannerStyle = style({
 export const imgStyle = style({
   width: '5.3rem',
   height: '5.8rem',
+  flexShrink: 0,
+  objectFit: 'contain',
 });
 
 export const textStyle = style({
