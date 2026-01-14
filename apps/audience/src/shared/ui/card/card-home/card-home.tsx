@@ -1,5 +1,4 @@
-import { WifiIcon } from '@amp/ads-ui/icons';
-import { LocateIcon } from '@amp/ads-ui/icons';
+import { LocateIcon, WifiIcon } from '@amp/ads-ui/icons';
 
 import * as styles from './card-home.css';
 
@@ -16,7 +15,7 @@ const CardHome = ({ title, location, date, dday }: CardHomeProps) => {
       <div className={styles.contentContainer}>
         <div className={styles.titleSection}>
           <WifiIcon className={styles.wifiIcon} />
-          <p>{title}</p>
+          <h3 className={styles.title}>{title}</h3>
         </div>
         <div className={styles.descriptionSection}>
           <div className={styles.description}>

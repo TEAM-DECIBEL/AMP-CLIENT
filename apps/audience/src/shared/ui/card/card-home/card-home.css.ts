@@ -27,6 +27,14 @@ export const titleSection = style({
   ...ampThemeVars.font.title_sb_18,
 });
 
+export const title = style({
+  margin: 0,
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
+  WebkitLineClamp: 1,
+  overflow: 'hidden',
+});
+
 export const descriptionSection = style({
   display: 'flex',
   justifyContent: 'space-between',
@@ -65,9 +73,11 @@ export const ddayText = style({
 export const wifiIcon = style({
   width: '2.2rem',
   height: '2.2rem',
+  flexShrink: 0,
 });
 
 export const locateIcon = style({
   width: '1.4rem',
   height: '1.4rem',
+  flexShrink: 0,
 });
