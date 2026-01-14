@@ -4,7 +4,9 @@ import { CheckIcon } from '../../../icons';
 
 import * as styles from './check-button.css';
 
-const CheckButton = ({ ...props }: InputHTMLAttributes<HTMLInputElement>) => {
+type CheckButtonProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>;
+
+const CheckButton = (props: CheckButtonProps) => {
   return (
     <label className={styles.root}>
       <input type='checkbox' className={styles.input} {...props} />
