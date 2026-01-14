@@ -1,12 +1,14 @@
 import { ReactNode } from 'react';
 
+import * as styles from './notice-banner.css';
+
 interface NoticeBanenrProps {
-  mainImageUrl: string;
   chip: ReactNode;
   title: string;
   location: string;
   startDate: string;
   endDate: string;
+  button?: ReactNode;
 }
 
 const NoticeBanner = ({
@@ -15,11 +17,25 @@ const NoticeBanner = ({
   location,
   startDate,
   endDate,
+  button,
 }: NoticeBanenrProps) => {
   return (
-    <section>
-      <div></div>
-      <div></div>
+    <section className={styles.banner}>
+      <div className={styles.content}>
+        <div>{chip}</div>
+        <div className={styles.text}>
+          <p className={styles.title}>{title}</p>
+          <div className={styles.description}>
+            <p>{location}</p>
+            <p className={styles.date}>
+              {startDate} - {endDate}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className={styles.button}>{button && button}</div>
     </section>
   );
 };
+
+export default NoticeBanner;
