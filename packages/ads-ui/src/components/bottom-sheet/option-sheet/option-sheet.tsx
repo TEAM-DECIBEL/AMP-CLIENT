@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import type { ReactNode } from 'react';
 
 import BottomSheet from '../bottom-sheet';
@@ -25,20 +24,11 @@ const OptionSheetRoot = ({ open, onClose, children }: OptionSheetProps) => {
 interface OptionSheetItemProps {
   children: ReactNode;
   onClick?: () => void;
-  isFirst?: boolean;
 }
 
-const OptionSheetItem = ({
-  children,
-  onClick,
-  isFirst = false,
-}: OptionSheetItemProps) => {
+const OptionSheetItem = ({ children, onClick }: OptionSheetItemProps) => {
   return (
-    <button
-      type='button'
-      onClick={onClick}
-      className={clsx(styles.item, isFirst && styles.firstItem)}
-    >
+    <button type='button' onClick={onClick} className={styles.item}>
       {children}
     </button>
   );

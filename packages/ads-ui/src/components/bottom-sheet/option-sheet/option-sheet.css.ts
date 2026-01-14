@@ -16,8 +16,9 @@ export const item = style({
   textAlign: 'center',
   color: ampThemeVars.color.gray_900,
   ...ampThemeVars.font.title_sb_14,
-});
-
-export const firstItem = style({
-  borderTop: 'none',
+  selectors: {
+    '&:first-child': {
+      borderTop: 'none',
+    },
+  },
 });
