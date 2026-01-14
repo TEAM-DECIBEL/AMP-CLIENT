@@ -48,11 +48,22 @@ interface StatusOptionProps {
   label: ReactNode;
   media?: ReactNode;
   onClick?: () => void;
+  selected?: boolean;
 }
 
-const StatusOption = ({ label, media, onClick }: StatusOptionProps) => {
+const StatusOption = ({
+  label,
+  media,
+  onClick,
+  selected = false,
+}: StatusOptionProps) => {
   return (
-    <button type='button' onClick={onClick} className={styles.option}>
+    <button
+      type='button'
+      onClick={onClick}
+      className={styles.option}
+      data-selected={selected ? 'true' : 'false'}
+    >
       <div className={styles.optionMedia}>
         {media}
         {/* <img src={src} alt='' className={styles.optionImage} /> */}

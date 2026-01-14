@@ -26,6 +26,11 @@ export const option = style({
   border: `1px solid ${ampThemeVars.color.gray_200}`,
   color: ampThemeVars.color.gray_900,
   ...ampThemeVars.font.body_m_14,
+  selectors: {
+    '&[data-selected="true"]': {
+      borderColor: ampThemeVars.color.primary,
+    },
+  },
 });
 
 export const optionMedia = style({
