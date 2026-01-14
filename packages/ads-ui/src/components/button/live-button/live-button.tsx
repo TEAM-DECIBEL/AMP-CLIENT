@@ -24,7 +24,7 @@ const LiveButton = ({
       className={styles.liveButtonContainer}
       onClick={onClick}
     >
-      <img src={imageUrl} className={styles.img} />
+      <img src={imageUrl} alt={`${title} 썸네일`} className={styles.img} />
       <div className={styles.contentContainer}>
         <div className={styles.textContainer}>
           <p className={styles.title}>{title}</p>
