@@ -44,7 +44,9 @@ const CardHome = ({
           <div className={styles.dday}>
             <p className={styles.ddayText}>D</p>
             <span>-</span>
-            <p className={styles.ddayText}>{dday === 0 ? 'Day' : dday}</p>
+            <p className={styles.ddayText}>
+              {dday === 0 ? 'Day' : Math.abs(dday)}
+            </p>
           </div>
         </div>
       </div>
