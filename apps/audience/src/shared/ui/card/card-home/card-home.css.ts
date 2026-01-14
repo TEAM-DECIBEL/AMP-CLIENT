@@ -23,12 +23,12 @@ export const titleSection = style({
   alignItems: 'center',
   gap: '0.4rem',
   paddingRight: '0.5rem',
-  color: ampThemeVars.color.gray_900,
-  ...ampThemeVars.font.title_sb_18,
 });
 
 export const title = style({
   margin: 0,
+  color: ampThemeVars.color.gray_900,
+  ...ampThemeVars.font.title_sb_18,
   display: '-webkit-box',
   WebkitBoxOrient: 'vertical',
   WebkitLineClamp: 1,

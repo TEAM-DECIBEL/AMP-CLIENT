@@ -7,6 +7,9 @@ export const banner = style({
   flexDirection: 'column',
   gap: '2rem',
   padding: '5.2rem 3.2rem 2rem 3.2rem',
+
+  // 임시 이미지 대신 backgroundColor 설정 - 디자인 작업 후 이미지로 변경
+  backgroundColor: '#A6E6CA',
 });
 
 export const text = style({
