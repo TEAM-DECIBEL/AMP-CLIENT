@@ -15,15 +15,15 @@ export const chip = recipe({
 
   variants: {
     variant: {
-      chip_status: {
+      status: {
         padding: '0.4rem 1.2rem',
         ...ampThemeVars.font.caption_m_12,
       },
-      chip_day: {
+      day: {
         padding: '0.2rem 1rem',
         ...ampThemeVars.font.caption_m_12,
       },
-      chip_mypage: {
+      mypage: {
         padding: '0.3rem 2.5rem',
         backgroundColor: ampThemeVars.color.primary,
         color: ampThemeVars.color.gray_000,
@@ -49,10 +49,20 @@ export const chip = recipe({
         color: ampThemeVars.color.gray_000,
       },
       gray: {
-        border: `1px solid ${ampThemeVars.color.gray_200}`,
         backgroundColor: ampThemeVars.color.gray_000,
         color: ampThemeVars.color.gray_500,
       },
     },
   },
+  compoundVariants: [
+    {
+      variants: {
+        variant: 'status',
+        status: 'dday',
+      },
+      style: {
+        padding: '0.3rem 1.2rem',
+      },
+    },
+  ],
 });
