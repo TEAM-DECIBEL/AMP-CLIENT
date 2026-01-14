@@ -8,7 +8,7 @@ import {
   EMPTY_TITLE,
   STATUS_DESCRIPTION,
   type StatusSheetValue,
-} from './status-sheet';
+} from './status-sheet.constants';
 
 import * as styles from './status-sheet.css';
 
