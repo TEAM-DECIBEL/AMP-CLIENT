@@ -28,7 +28,7 @@ const NoticeBanner = ({
           <div className={styles.description}>
             <p>{location}</p>
             <p className={styles.date}>
-              {startDate} - {endDate}
+              {startDate === endDate ? startDate : `${startDate} - ${endDate}`}
             </p>
           </div>
         </div>

@@ -8,7 +8,7 @@ export const banner = style({
   gap: '0.4rem',
   padding: '2.8rem 2rem 7.2rem 2rem',
 
-  // 임시 이미지 대신 backgroundColor 설정
+  // 임시 이미지 대신 backgroundColor 설정 - 디자인 작업 후 이미지로 변경
   backgroundColor: '#A6E6CA',
 });
 
@@ -27,7 +27,7 @@ export const text = style({
 
 export const title = style({
   color: ampThemeVars.color.gray_000,
-  ...ampThemeVars.font.heading_b_22,
+  ...ampThemeVars.font.heading_sb_22,
 });
 
 export const description = style({
