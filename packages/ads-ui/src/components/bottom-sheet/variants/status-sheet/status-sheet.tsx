@@ -1,97 +1,89 @@
 import type { ReactNode } from 'react';
 
+import { NoticeIcon } from '../../../../icons';
+import CtaButton from '../../../button/cta-button/cta-button';
 import BottomSheet from '../../bottom-sheet';
 
 import * as styles from './status-sheet.css';
+
+export type StatusSheetValue = '여유' | '보통' | '혼잡';
 
 interface StatusSheetProps {
   open: boolean;
   onClose?: () => void;
   title: ReactNode;
-  description: ReactNode;
-  children?: ReactNode;
-  actions: ReactNode;
-  empty?: ReactNode;
+  selectable: boolean;
+  selected?: StatusSheetValue;
+  onSelect?: (value: StatusSheetValue) => void;
+  onConfirm?: () => void;
 }
 
 const StatusSheet = ({
   open,
   onClose,
   title,
-  description,
-  children,
-  actions,
-  empty,
+  selectable,
+  selected,
+  onSelect,
+  onConfirm,
 }: StatusSheetProps) => {
+  const handleConfirm = () => {
+    onConfirm?.();
+    onClose?.();
+  };
+
   return (
     <BottomSheet open={open} onClose={onClose}>
       <BottomSheet.Panel>
         <BottomSheet.Handle />
-        {empty ? (
-          <div className={styles.emptyWrap}>{empty}</div>
-        ) : (
+        {selectable ? (
           <>
             <BottomSheet.Header>
-              <BottomSheet.Title>{title}</BottomSheet.Title>
-              <BottomSheet.Description>{description}</BottomSheet.Description>
+              <BottomSheet.Title>{title} 현장 상황</BottomSheet.Title>
+              <BottomSheet.Description>
+                현재 상황에 가장 가까운 상태를 선택해 주세요.
+              </BottomSheet.Description>
             </BottomSheet.Header>
-            <div className={styles.options}>{children}</div>
+            <div className={styles.options}>
+              {(['여유', '보통', '혼잡'] as const).map((label) => (
+                <button
+                  key={label}
+                  type='button'
+                  onClick={() => onSelect?.(label)}
+                  className={styles.option}
+                  data-selected={selected === label ? 'true' : 'false'}
+                >
+                  <div className={styles.optionMedia}>
+                    {/* <img src={src} alt='' className={styles.optionImage} /> */}
+                  </div>
+                  <span>{label}</span>
+                </button>
+              ))}
+            </div>
           </>
+        ) : (
+          <div className={styles.emptyWrap}>
+            <div className={styles.empty}>
+              <div className={styles.emptyIcon}>
+                <NoticeIcon width='4.8rem' height='4.8rem' />
+              </div>
+              <h3 className={styles.emptyTitle}>
+                아직 현장 상황 입력 시간이 아니에요!
+              </h3>
+              <p className={styles.emptyDescription}>
+                공연 시작 시간 8시간 전부터 입력이 가능해요.
+              </p>
+            </div>
+          </div>
         )}
-        <div className={styles.actions}>{actions}</div>
+        <div className={styles.actions}>
+          <CtaButton type='gray' onClick={handleConfirm}>
+            확인
+          </CtaButton>
+        </div>
       </BottomSheet.Panel>
     </BottomSheet>
   );
 };
 
-interface StatusOptionProps {
-  label: ReactNode;
-  media?: ReactNode;
-  onClick?: () => void;
-  selected?: boolean;
-}
-
-const StatusOption = ({
-  label,
-  media,
-  onClick,
-  selected = false,
-}: StatusOptionProps) => {
-  return (
-    <button
-      type='button'
-      onClick={onClick}
-      className={styles.option}
-      data-selected={selected ? 'true' : 'false'}
-    >
-      <div className={styles.optionMedia}>
-        {media}
-        {/* <img src={src} alt='' className={styles.optionImage} /> */}
-      </div>
-      <span>{label}</span>
-    </button>
-  );
-};
-
-interface StatusEmptyProps {
-  icon: ReactNode;
-  title: ReactNode;
-  description: ReactNode;
-}
-
-const StatusEmpty = ({ icon, title, description }: StatusEmptyProps) => {
-  return (
-    <div className={styles.empty}>
-      <div className={styles.emptyIcon}>{icon}</div>
-      <h3 className={styles.emptyTitle}>{title}</h3>
-      <p className={styles.emptyDescription}>{description}</p>
-    </div>
-  );
-};
-
-const StatusSheetCompound = Object.assign(StatusSheet, {
-  Option: StatusOption,
-  Empty: StatusEmpty,
-});
-
-export default StatusSheetCompound;
+export default StatusSheet;
