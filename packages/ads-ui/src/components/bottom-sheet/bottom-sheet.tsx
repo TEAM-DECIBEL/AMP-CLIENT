@@ -15,7 +15,7 @@ interface BottomSheetRootProps extends BottomSheetBaseProps {
 
 const BottomSheetRoot = ({ open, onClose, children }: BottomSheetRootProps) => {
   useEffect(() => {
-    if (!open) {
+    if (!open || typeof document === 'undefined') {
       return;
     }
 
@@ -25,8 +25,12 @@ const BottomSheetRoot = ({ open, onClose, children }: BottomSheetRootProps) => {
       }
     };
 
+    document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [open, onClose]);
 
   if (!open) {
