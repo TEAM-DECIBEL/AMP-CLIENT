@@ -14,13 +14,6 @@ export const content = style({
   gap: '20px',
 });
 
-export const chipArea = style({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '1.4rem',
-});
-
 export const ctaArea = style({
   position: 'fixed',
   bottom: 0,

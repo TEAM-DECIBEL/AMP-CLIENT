@@ -1,23 +1,30 @@
 import { CtaButton } from '@amp/ads-ui';
 
-import EmptyCard from '@shared/ui/card/empty-card/empty-card';
-import HomeChip from '@shared/ui/chip/home-chip/home-chip';
+import FestivalStatusWidget, {
+  type Festival,
+} from '@widgets/home/components/festival-status/festival-status';
 
 import * as styles from './home.css';
 
 const HomePage = () => {
+  const summary = {
+    ongoingCount: 0,
+    upcomingCount: 0,
+    totalCount: 0,
+  };
+  const ongoingFestivals: Festival[] = [];
+  const upcomingFestivals: Festival[] = [];
+
   return (
     <section className={styles.page}>
       {/* 홈 배너 추가 */}
       <div className={styles.content}>
-        <div className={styles.chipArea}>
-          <HomeChip title='진행 중인 공연' count='0' />
-          <EmptyCard>진행 중인 공연이 없어요!</EmptyCard>
-        </div>
-        <div className={styles.chipArea}>
-          <HomeChip title='진행 예정 공연' count='2' />
-          <EmptyCard>진행 예정인 공연이 없어요!</EmptyCard>
-        </div>
+        <FestivalStatusWidget
+          ongoingCount={summary.ongoingCount}
+          upcomingCount={summary.upcomingCount}
+          ongoingFestivals={ongoingFestivals}
+          upcomingFestivals={upcomingFestivals}
+        />
       </div>
       <div className={styles.ctaArea}>
         <CtaButton type='primary' onClick={() => {}}>
