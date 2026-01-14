@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 
-import BottomSheet from '../../bottom-sheet';
+import BottomSheet from '../bottom-sheet';
 
 import * as styles from './option-sheet.css';
 

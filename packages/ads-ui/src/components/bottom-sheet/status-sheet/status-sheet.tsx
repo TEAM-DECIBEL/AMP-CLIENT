@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 
-import { NoticeIcon } from '../../../../icons';
-import CtaButton from '../../../button/cta-button/cta-button';
-import BottomSheet from '../../bottom-sheet';
+import { NoticeIcon } from '../../../icons';
+import CtaButton from '../../button/cta-button/cta-button';
+import BottomSheet from '../bottom-sheet';
 
 import * as styles from './status-sheet.css';
 

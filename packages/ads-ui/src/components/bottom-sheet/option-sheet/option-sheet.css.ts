@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { ampThemeVars } from '../../../../styles';
+import { ampThemeVars } from '../../../styles';
 
 export const list = style({
   display: 'flex',
