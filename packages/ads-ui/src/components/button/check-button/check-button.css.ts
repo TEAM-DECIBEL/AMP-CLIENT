@@ -29,7 +29,7 @@ export const input = style({
   },
 });
 
-export const icon = style({
+export const iconContainer = style({
   gridArea: '1 / 1',
   display: 'grid',
   placeItems: 'center',

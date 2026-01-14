@@ -8,9 +8,9 @@ const CheckButton = ({ ...props }: InputHTMLAttributes<HTMLInputElement>) => {
   return (
     <label className={styles.root}>
       <input type='checkbox' className={styles.input} {...props} />
-      <span className={styles.icon} aria-hidden='true'>
+      <div className={styles.iconContainer} aria-hidden='true'>
         <CheckIcon />
-      </span>
+      </div>
     </label>
   );
 };
