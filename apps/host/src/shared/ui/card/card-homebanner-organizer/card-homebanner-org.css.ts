@@ -19,3 +19,7 @@ export const textStyle = style({
   color: ampThemeVars.color.gray_900,
   ...ampThemeVars.font.title_sb_18,
 });
+
+export const nickname = style({
+  color: ampThemeVars.color.primary,
+});
