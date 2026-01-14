@@ -6,12 +6,24 @@ const Image = ({ src, alt }: { src: string; alt: string }) => (
   <img src={src} alt={alt} className={styles.image} />
 );
 
-const Text = ({ title, date }: { title: string; date: string }) => (
-  <div>
-    <p className={styles.title}>{title}</p>
-    <p className={styles.duration}>{date}</p>
-  </div>
-);
+interface BodyProps {
+  title: string;
+  date: string;
+  children?: ReactNode;
+}
+
+const Body = ({ title, date, children }: BodyProps) => {
+  return (
+    <div className={styles.contentContainer}>
+      <div>
+        <p className={styles.title}>{title}</p>
+        <p className={styles.duration}>{date}</p>
+      </div>
+
+      <div>{children}</div>
+    </div>
+  );
+};
 
 const Chip = ({ children }: { children: ReactNode }) => (
   <div className={styles.chip}>{children}</div>
@@ -29,17 +41,12 @@ const Root = ({ children }: { children: ReactNode }) => (
   <article className={styles.card}>{children}</article>
 );
 
-const ContentContainer = ({ children }: { children: ReactNode }) => (
-  <div className={styles.contentContainer}>{children}</div>
-);
-
 export const CardFestival = Object.assign(Root, {
   Image,
-  Text,
+  Body,
   Chip,
   Button,
   Icon,
-  ContentContainer,
 });
 
 export default CardFestival;
