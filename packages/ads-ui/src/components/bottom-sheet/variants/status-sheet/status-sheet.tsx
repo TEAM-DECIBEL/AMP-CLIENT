@@ -28,6 +28,9 @@ const StatusSheet = ({
   onConfirm,
 }: StatusSheetProps) => {
   const handleConfirm = () => {
+    if (selectable && !selected) {
+      return;
+    }
     onConfirm?.();
     onClose?.();
   };
