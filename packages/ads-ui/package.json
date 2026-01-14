@@ -3,6 +3,7 @@
   "private": true,
   "exports": {
     ".": "./src/components/index.ts",
+    "./icons": "./src/icons/index.ts",
     "./styles": "./src/styles/index.ts",
     "./styles/theme.css": "./src/styles/theme.css.ts"
   },
@@ -14,16 +15,19 @@
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
     "@vanilla-extract/vite-plugin": "catalog:",
+    "clsx": "^2.1.1",
+    "overlay-kit": "^1.8.6",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "react-router": "catalog:"
   },
   "devDependencies": {
+    "@amp/eslint-config": "workspace:*",
     "@amp/prettier-config": "workspace:*",
     "@amp/tsconfig": "workspace:*",
-    "@amp/eslint-config": "workspace:*",
-    "typescript": "catalog:",
-    "eslint": "catalog:",
     "@types/react": "catalog:",
-    "@types/react-dom": "catalog:"
+    "@types/react-dom": "catalog:",
+    "eslint": "catalog:",
+    "typescript": "catalog:"
   }
 }

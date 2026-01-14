@@ -60,3 +60,7 @@ globalStyle(':focus-visible', {
   outline: '2px solid currentColor',
   outlineOffset: '2px',
 });
+
+globalStyle('p', {
+  margin: 0,
+});

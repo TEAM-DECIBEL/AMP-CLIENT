@@ -1,5 +1,5 @@
 export { default as AmpFlagIcon } from './svgs/icn_ampflag.svg?react';
-export { default as AmpFlagGrandientIcon } from './svgs/icn_ampflag_gradient.svg?react';
+export { default as AmpFlagGradientIcon } from './svgs/icn_ampflag_gradient.svg?react';
 export { default as ArrowIcon } from './svgs/icn_arrow.svg?react';
 export { default as BackIcon } from './svgs/icn_back.svg?react';
 export { default as CalendarIcon } from './svgs/icn_calendar.svg?react';
@@ -7,6 +7,7 @@ export { default as CameraIcon } from './svgs/icn_camera.svg?react';
 export { default as ChatIcon } from './svgs/icn_chat.svg?react';
 export { default as ConfirmIcon } from './svgs/icn_confirm.svg?react';
 export { default as DeleteIcon } from './svgs/icn_delete.svg?react';
+export { default as ExLogoIcon } from './svgs/icn_exlogo.svg?react';
 export { default as FlagIcon } from './svgs/icn_flag.svg?react';
 export { default as GoogleIcon } from './svgs/icn_google.svg?react';
 export { default as LocateIcon } from './svgs/icn_locate.svg?react';
