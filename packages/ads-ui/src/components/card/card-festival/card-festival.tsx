@@ -6,20 +6,10 @@ const Image = ({ src, alt }: { src: string; alt: string }) => (
   <img src={src} alt={alt} className={styles.image} />
 );
 
-const Text = ({
-  title,
-  startDate,
-  endDate,
-}: {
-  title: string;
-  startDate: string;
-  endDate: string;
-}) => (
+const Text = ({ title, date }: { title: string; date: string }) => (
   <div>
     <p className={styles.title}>{title}</p>
-    <p className={styles.duration}>
-      {startDate === endDate ? startDate : `${startDate} - ${endDate}`}
-    </p>
+    <p className={styles.duration}>{date}</p>
   </div>
 );
 
