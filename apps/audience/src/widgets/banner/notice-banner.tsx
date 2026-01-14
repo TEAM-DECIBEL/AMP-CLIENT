@@ -28,7 +28,7 @@ const NoticeBanner = ({
           </Chip>
         </div>
         <div className={styles.text}>
-          <p className={styles.title}>{title}</p>
+          <h3 className={styles.title}>{title}</h3>
           <div className={styles.description}>
             <p>{location}</p>
             <p className={styles.date}>{date}</p>

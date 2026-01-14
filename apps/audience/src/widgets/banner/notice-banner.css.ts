@@ -26,6 +26,7 @@ export const text = style({
 });
 
 export const title = style({
+  margin: 0,
   color: ampThemeVars.color.gray_000,
   ...ampThemeVars.font.heading_sb_22,
 });
