@@ -31,7 +31,6 @@ export const addImageButton = recipe({
 });
 
 export const icon = style({
-  flexShrink: 0,
   width: '2.5rem',
   height: '2.5rem',
 });
