@@ -20,7 +20,7 @@ const Body = ({ title, date, children }: BodyProps) => {
         <p className={styles.duration}>{date}</p>
       </div>
 
-      <div>{children}</div>
+      {children}
     </div>
   );
 };
