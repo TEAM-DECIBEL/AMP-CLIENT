@@ -35,7 +35,7 @@ const CardHome = ({
           <div className={styles.description}>
             <div className={styles.location}>
               <LocateIcon className={styles.locateIcon} />
-              <p>{location} 일대</p>
+              <p>{location}</p>
             </div>
             <p>
               {startDate} - {endDate}
