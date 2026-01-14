@@ -12,15 +12,24 @@ const STATUS_DESCRIPTION = '현재 상황에 가장 가까운 상태를 선택�
 const EMPTY_TITLE = '아직 현장 상황 입력 시간이 아니에요!';
 const EMPTY_DESCRIPTION = '공연 시작 시간 8시간 전부터 입력이 가능해요.';
 
-interface StatusSheetProps {
+interface StatusSheetBaseProps {
   open: boolean;
   onClose?: () => void;
-  title: ReactNode;
-  selectable: boolean;
-  selected?: StatusSheetValue;
-  onSelect?: (value: StatusSheetValue) => void;
   onConfirm?: () => void;
 }
+
+interface StatusSheetSelectableProps extends StatusSheetBaseProps {
+  selectable: true;
+  title: ReactNode;
+  selected?: StatusSheetValue;
+  onSelect: (value: StatusSheetValue) => void;
+}
+
+interface StatusSheetReadonlyProps extends StatusSheetBaseProps {
+  selectable?: false;
+}
+
+type StatusSheetProps = StatusSheetSelectableProps | StatusSheetReadonlyProps;
 
 const StatusSelectableContent = ({
   title,
@@ -71,17 +80,10 @@ const StatusEmptyContent = () => {
   );
 };
 
-const StatusSheet = ({
-  open,
-  onClose,
-  title,
-  selectable,
-  selected,
-  onSelect,
-  onConfirm,
-}: StatusSheetProps) => {
+const StatusSheet = (props: StatusSheetProps) => {
+  const { open, onClose, onConfirm } = props;
   const handleConfirm = () => {
-    if (selectable && !selected) {
+    if (props.selectable === true && !props.selected) {
       return;
     }
     onConfirm?.();
@@ -92,11 +94,11 @@ const StatusSheet = ({
     <BottomSheet open={open} onClose={onClose}>
       <BottomSheet.Panel>
         <BottomSheet.Handle />
-        {selectable ? (
+        {props.selectable === true ? (
           <StatusSelectableContent
-            title={title}
-            selected={selected}
-            onSelect={onSelect}
+            title={props.title}
+            selected={props.selected}
+            onSelect={props.onSelect}
           />
         ) : (
           <StatusEmptyContent />
