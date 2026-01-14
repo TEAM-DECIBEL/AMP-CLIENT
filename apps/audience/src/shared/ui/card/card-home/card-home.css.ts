@@ -66,7 +66,7 @@ export const ddayText = style({
   justifyContent: 'center',
   alignItems: 'center',
   padding: '0.35rem 1rem',
-  backgroundColor: ampThemeVars.color.primary_light2,
+  backgroundColor: ampThemeVars.color.primary_light,
   borderRadius: '6px',
 });
 
