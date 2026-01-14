@@ -1,26 +1,32 @@
 import { ReactNode } from 'react';
 
+import { Chip } from '@amp/ads-ui';
+
 import * as styles from './notice-banner.css';
 
 interface NoticeBannerProps {
-  chip: ReactNode;
   title: string;
   location: string;
   date: string;
+  dday: string;
   button?: ReactNode;
 }
 
 const NoticeBanner = ({
-  chip,
   title,
   location,
   date,
+  dday,
   button,
 }: NoticeBannerProps) => {
   return (
     <section className={styles.banner}>
       <div className={styles.content}>
-        <div>{chip}</div>
+        <div>
+          <Chip variant='day' status='color'>
+            {dday}
+          </Chip>
+        </div>
         <div className={styles.text}>
           <p className={styles.title}>{title}</p>
           <div className={styles.description}>
