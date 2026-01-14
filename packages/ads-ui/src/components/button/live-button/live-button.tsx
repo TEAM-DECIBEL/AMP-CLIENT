@@ -27,8 +27,8 @@ const LiveButton = ({
 
       <div className={styles.contentContainer}>
         <div className={styles.textContainer}>
-          <p className={styles.title}>{title}</p>
-          <p className={styles.subText}>{subText}</p>
+          <span className={styles.title}>{title}</span>
+          <span className={styles.subText}>{subText}</span>
         </div>
 
         <div className={styles.iconContainer} aria-hidden>
