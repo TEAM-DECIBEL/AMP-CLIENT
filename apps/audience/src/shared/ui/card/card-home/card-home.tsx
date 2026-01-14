@@ -38,7 +38,7 @@ const CardHome = ({
               <p>{location}</p>
             </div>
             <p>
-              {startDate} - {endDate}
+              {startDate === endDate ? startDate : `${startDate} - ${endDate}`}
             </p>
           </div>
           <div className={styles.dday}>
