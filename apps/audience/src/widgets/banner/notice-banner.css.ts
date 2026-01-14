@@ -6,6 +6,7 @@ export const banner = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.4rem',
+  height: '24.2rem',
   padding: '2.8rem 2rem 7.2rem 2rem',
 
   // 임시 이미지 대신 backgroundColor 설정 - 디자인 작업 후 이미지로 변경
