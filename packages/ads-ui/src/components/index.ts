@@ -1,5 +1,5 @@
 export { default as BottomSheet } from './bottom-sheet/bottom-sheet';
-export { default as ActionSheet } from './bottom-sheet/option-sheet/option-sheet';
+export { default as OptionSheet } from './bottom-sheet/option-sheet/option-sheet';
 export { default as StatusSheet } from './bottom-sheet/status-sheet/status-sheet';
 export { default as CircleButton } from './button/circle-button/circle-button';
 export { default as CtaButton } from './button/cta-button/cta-button';

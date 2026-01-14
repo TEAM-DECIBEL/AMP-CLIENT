@@ -36,7 +36,7 @@ export const handleWrap = style({
 export const handle = style({
   width: '42px',
   height: '3px',
-  borderRadius: '999px',
+  borderRadius: '20px',
   background: ampThemeVars.color.gray_200,
 });
 
