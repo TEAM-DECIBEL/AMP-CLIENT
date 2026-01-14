@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { RightIcon } from '../../../icons';
 
-import * as styles from './mypage-menu.css';
+import * as styles from './navigation-list.css';
 
 interface MyPageMenuProps {
   children: ReactNode;
