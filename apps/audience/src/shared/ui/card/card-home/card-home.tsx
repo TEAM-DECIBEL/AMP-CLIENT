@@ -8,18 +8,11 @@ import * as styles from './card-home.css';
 interface CardHomeProps {
   title: string;
   location: string;
-  startDate: string;
-  endDate: string;
+  date: string;
   dday: number;
 }
 
-const CardHome = ({
-  title,
-  location,
-  startDate,
-  endDate,
-  dday,
-}: CardHomeProps) => {
+const CardHome = ({ title, location, date, dday }: CardHomeProps) => {
   return (
     <article
       className={styles.background}
@@ -37,9 +30,7 @@ const CardHome = ({
               <LocateIcon className={styles.locateIcon} />
               <p>{location}</p>
             </div>
-            <p>
-              {startDate === endDate ? startDate : `${startDate} - ${endDate}`}
-            </p>
+            <p>{date}</p>
           </div>
           <div className={styles.dday}>
             <p className={styles.ddayText}>D</p>
