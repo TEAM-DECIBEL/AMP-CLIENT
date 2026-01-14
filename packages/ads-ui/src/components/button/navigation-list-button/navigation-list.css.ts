@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { ampThemeVars } from '../../../styles';
 
-export const menuContainer = style({
+export const listContainer = style({
   display: 'flex',
   width: '33.5rem',
   flexDirection: 'column',
@@ -13,7 +13,7 @@ export const menuContainer = style({
   ...ampThemeVars.font.body_m_13,
 });
 
-export const menuItem = style({
+export const listItem = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -24,9 +24,6 @@ export const menuItem = style({
       borderTop: `1px solid ${ampThemeVars.color.gray_200}`,
       paddingTop: '1.2rem',
       marginTop: '1.2rem',
-    },
-    '&:disabled': {
-      cursor: 'not-allowed',
     },
   },
 });

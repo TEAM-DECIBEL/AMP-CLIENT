@@ -4,23 +4,20 @@ import { RightIcon } from '../../../icons';
 
 import * as styles from './navigation-list.css';
 
-interface MyPageMenuProps {
+interface NavigationListItemsProps {
   children: ReactNode;
   onClick: () => void;
-  disabled?: boolean;
 }
-const MyPageMenuItem = ({ children, onClick, disabled }: MyPageMenuProps) => {
+const NavigationListItem = ({
+  children,
+  onClick,
+}: NavigationListItemsProps) => {
   return (
-    <button
-      type='button'
-      className={styles.menuItem}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button type='button' className={styles.listItem} onClick={onClick}>
       {children}
       <RightIcon className={styles.icon} />
     </button>
   );
 };
 
-export default MyPageMenuItem;
+export default NavigationListItem;

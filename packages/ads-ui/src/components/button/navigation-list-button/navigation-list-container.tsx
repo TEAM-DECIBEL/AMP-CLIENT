@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import * as styles from './navigation-list.css';
 
-const MyPageMenuContainer = ({ children }: { children: ReactNode }) => {
-  return <div className={styles.menuContainer}>{children}</div>;
+const NavigationListContainer = ({ children }: { children: ReactNode }) => {
+  return <div className={styles.listContainer}>{children}</div>;
 };
 
-export default MyPageMenuContainer;
+export default NavigationListContainer;
