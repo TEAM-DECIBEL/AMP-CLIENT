@@ -6,7 +6,11 @@ import BottomSheet from '../../bottom-sheet';
 
 import * as styles from './status-sheet.css';
 
-export type StatusSheetValue = '여유' | '보통' | '혼잡';
+const STATUS_OPTIONS = ['여유', '보통', '혼잡'] as const;
+export type StatusSheetValue = (typeof STATUS_OPTIONS)[number];
+const STATUS_DESCRIPTION = '현재 상황에 가장 가까운 상태를 선택해 주세요.';
+const EMPTY_TITLE = '아직 현장 상황 입력 시간이 아니에요!';
+const EMPTY_DESCRIPTION = '공연 시작 시간 8시간 전부터 입력이 가능해요.';
 
 interface StatusSheetProps {
   open: boolean;
@@ -44,11 +48,11 @@ const StatusSheet = ({
             <BottomSheet.Header>
               <BottomSheet.Title>{title} 현장 상황</BottomSheet.Title>
               <BottomSheet.Description>
-                현재 상황에 가장 가까운 상태를 선택해 주세요.
+                {STATUS_DESCRIPTION}
               </BottomSheet.Description>
             </BottomSheet.Header>
             <div className={styles.options}>
-              {(['여유', '보통', '혼잡'] as const).map((label) => (
+              {STATUS_OPTIONS.map((label) => (
                 <button
                   key={label}
                   type='button'
@@ -70,12 +74,8 @@ const StatusSheet = ({
               <div className={styles.emptyIcon}>
                 <NoticeIcon width='4.8rem' height='4.8rem' />
               </div>
-              <h3 className={styles.emptyTitle}>
-                아직 현장 상황 입력 시간이 아니에요!
-              </h3>
-              <p className={styles.emptyDescription}>
-                공연 시작 시간 8시간 전부터 입력이 가능해요.
-              </p>
+              <h3 className={styles.emptyTitle}>{EMPTY_TITLE}</h3>
+              <p className={styles.emptyDescription}>{EMPTY_DESCRIPTION}</p>
             </div>
           </div>
         )}
