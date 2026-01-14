@@ -2,8 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
-export default style({
-  display: 'flex',
+export const textarea = style({
   border: `1px solid ${ampThemeVars.color.gray_200}`,
   background: ampThemeVars.color.gray_000,
   outline: 'none',
@@ -18,6 +17,9 @@ export default style({
   selectors: {
     '&:focus': {
       borderColor: ampThemeVars.color.gray_900,
+    },
+    '&::placeholder': {
+      color: ampThemeVars.color.gray_400,
     },
   },
 });
