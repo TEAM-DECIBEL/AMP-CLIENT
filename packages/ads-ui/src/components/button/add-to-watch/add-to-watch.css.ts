@@ -5,8 +5,6 @@ import { ampThemeVars } from '../../../styles';
 export const addToWatch = style({
   display: 'inline-flex',
   alignItems: 'center',
-  justifyContent: 'center',
-  textAlign: 'center',
   padding: '0.6rem 1.2rem',
   gap: '0.8rem',
   borderRadius: '8px',
