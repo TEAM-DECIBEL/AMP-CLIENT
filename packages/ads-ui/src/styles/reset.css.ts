@@ -8,6 +8,7 @@ globalStyle('body', {
   lineHeight: '1.5',
   WebkitFontSmoothing: 'antialiased',
   textRendering: 'optimizeLegibility',
+  margin: 0,
 });
 
 globalStyle(
