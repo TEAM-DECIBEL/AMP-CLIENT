@@ -53,6 +53,7 @@ export const empty = style({
 });
 
 export const emptyIcon = style({
+  display: 'block',
   marginBottom: '1.6rem',
 });
 

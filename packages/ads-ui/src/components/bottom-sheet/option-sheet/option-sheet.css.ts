@@ -15,6 +15,7 @@ export const item = style({
   background: 'transparent',
   textAlign: 'center',
   color: ampThemeVars.color.gray_900,
+  cursor: 'pointer',
   ...ampThemeVars.font.title_sb_14,
   selectors: {
     '&:first-child': {

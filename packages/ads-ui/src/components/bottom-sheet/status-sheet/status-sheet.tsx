@@ -62,9 +62,7 @@ const StatusEmptyContent = () => {
   return (
     <div className={styles.emptyWrap}>
       <div className={styles.empty}>
-        <div className={styles.emptyIcon}>
-          <NoticeIcon width='4.8rem' height='4.8rem' />
-        </div>
+        <NoticeIcon className={styles.emptyIcon} width='4.8rem' height='4.8rem' />
         <h3 className={styles.emptyTitle}>{EMPTY_TITLE}</h3>
         <p className={styles.emptyDescription}>{EMPTY_DESCRIPTION}</p>
       </div>
