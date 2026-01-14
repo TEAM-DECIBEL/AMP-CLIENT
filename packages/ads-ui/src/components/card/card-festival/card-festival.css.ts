@@ -9,7 +9,7 @@ export const card = style({
   backgroundColor: ampThemeVars.color.gray_000,
   borderRadius: '16px',
   border: `1px solid ${ampThemeVars.color.gray_200}`,
-  padding: '0.9rem 1.2rem',
+  padding: '0.9rem 1rem',
 });
 
 export const image = style({
@@ -42,15 +42,15 @@ export const duration = style({
 
 export const buttonSlot = style({
   position: 'absolute',
-  right: '1.2rem',
+  right: '1rem',
   top: '50%',
   transform: 'translateY(-50%)',
 });
 
 export const iconSlot = style({
   position: 'absolute',
-  top: '1rem',
-  right: '1.2rem',
+  top: '1.25rem',
+  right: '1rem',
   width: '2.2rem',
   height: '2.2rem',
 });
