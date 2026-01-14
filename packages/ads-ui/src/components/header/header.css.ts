@@ -4,14 +4,13 @@ import { ampThemeVars } from '../../styles';
 
 export const header = style({
   width: '100%',
-  maxWidth: '430px',
   height: 'var(--header-height)',
   display: 'flex',
   flexDirection: 'column',
-  position: 'fixed',
+  position: 'sticky',
   top: 0,
-  left: '50%',
-  transform: 'translateX(-50%)',
+  left: 0,
+  right: 0,
   zIndex: ampThemeVars.zIndex.header,
   backgroundColor: ampThemeVars.color.gray_000,
 });

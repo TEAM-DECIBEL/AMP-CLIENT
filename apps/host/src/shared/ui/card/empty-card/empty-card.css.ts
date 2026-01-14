@@ -6,6 +6,7 @@ export const emptyCard = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  width: '100%',
   padding: '1.1rem',
   borderRadius: '16px',
   border: `1px solid ${ampThemeVars.color.gray_100}`,
