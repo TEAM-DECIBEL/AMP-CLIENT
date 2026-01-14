@@ -1,8 +1,6 @@
 import { WifiIcon } from '@amp/ads-ui/icons';
 import { LocateIcon } from '@amp/ads-ui/icons';
 
-import fixedBgImage from '@shared/assets/home/card_home.webp';
-
 import * as styles from './card-home.css';
 
 interface CardHomeProps {
@@ -14,11 +12,7 @@ interface CardHomeProps {
 
 const CardHome = ({ title, location, date, dday }: CardHomeProps) => {
   return (
-    <article
-      className={styles.background}
-      style={{ backgroundImage: `url(${fixedBgImage})` }}
-      aria-label='CardHome Cover Image'
-    >
+    <article className={styles.background}>
       <div className={styles.contentContainer}>
         <div className={styles.titleSection}>
           <WifiIcon className={styles.wifiIcon} />
