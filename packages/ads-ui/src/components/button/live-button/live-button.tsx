@@ -28,7 +28,7 @@ const LiveButton = ({
       <div className={styles.contentContainer}>
         <div className={styles.textContainer}>
           <p className={styles.title}>{title}</p>
-          <p className={styles.subText}>{subText}</p>
+          {subText && <p className={styles.subText}>{subText}</p>}
         </div>
         {showIcon && (
           <div className={styles.iconContainer}>
