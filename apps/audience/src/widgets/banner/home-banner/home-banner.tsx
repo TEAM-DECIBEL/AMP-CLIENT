@@ -1,26 +1,27 @@
-import type { ReactNode } from 'react';
-
 import CardHome from '@shared/ui/card/card-home/card-home';
 
 import * as styles from './home-banner.css';
 
-interface HomeBannerProps {
+interface HomeBannerBaseProps {
   nickname: string;
-  status: 'card' | 'none';
+}
+
+interface HomeBannerCardProps extends HomeBannerBaseProps {
+  status: 'card';
   title: string;
   location: string;
   date: string;
   dday: number;
 }
 
-const HomeBanner = ({
-  nickname,
-  status,
-  title,
-  location,
-  date,
-  dday,
-}: HomeBannerProps) => {
+interface HomeBannerNoneProps extends HomeBannerBaseProps {
+  status: 'none';
+}
+
+type HomeBannerProps = HomeBannerCardProps | HomeBannerNoneProps;
+
+const HomeBanner = (props: HomeBannerProps) => {
+  const { nickname, status } = props;
   return (
     <article className={styles.banner}>
       <p className={styles.text}>
@@ -35,7 +36,14 @@ const HomeBanner = ({
           </>
         )}
       </p>
-      <CardHome title={title} location={location} date={date} dday={dday} />
+      {status === 'card' && (
+        <CardHome
+          title={props.title}
+          location={props.location}
+          date={props.date}
+          dday={props.dday}
+        />
+      )}
     </article>
   );
 };
