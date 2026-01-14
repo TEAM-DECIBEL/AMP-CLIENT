@@ -12,7 +12,7 @@ export const mainRow = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '0.6rem 1.6rem',
+  padding: '0.8rem 2rem',
 });
 
 export const mainIcons = style({
