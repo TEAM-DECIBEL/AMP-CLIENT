@@ -9,4 +9,6 @@ export { default as Modal } from './modal/modal';
 export { default as RectButton } from './modal/rect-button/rect-button';
 export { default as Tabs } from './tabs/tabs';
 export { default as Toast } from './toast/toast';
+export { toast } from './toast/toast.action';
+export { default as ToastContainer } from './toast/toast-container';
 export { OverlayProvider } from 'overlay-kit';
