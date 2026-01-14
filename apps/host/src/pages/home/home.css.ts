@@ -7,13 +7,19 @@ export const page = style({
 
 export const content = style({
   padding: '2rem',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  textAlign: 'center',
 });
 
 export const ctaArea = style({
   position: 'fixed',
   bottom: 0,
-  left: 0,
-  right: 0,
+  left: '50%',
+  transform: 'translateX(-50%)',
+  width: '100%',
+  maxWidth: '430px',
   padding: '2rem',
   display: 'flex',
   justifyContent: 'center',

@@ -8,7 +8,7 @@ const HomePage = () => {
       <div className={styles.content}></div>
       <div className={styles.ctaArea}>
         <CtaButton type='primary' onClick={() => {}}>
-          공연 추가하기
+          공연 등록하기
         </CtaButton>
       </div>
     </section>
