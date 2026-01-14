@@ -45,3 +45,7 @@ export const button = style({
   display: 'flex',
   justifyContent: 'flex-end',
 });
+
+export const chip = style({
+  width: '5.4rem',
+});

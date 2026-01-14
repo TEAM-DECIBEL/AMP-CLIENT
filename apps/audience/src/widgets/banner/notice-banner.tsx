@@ -22,11 +22,10 @@ const NoticeBanner = ({
   return (
     <section className={styles.banner}>
       <div className={styles.content}>
-        <div>
-          <Chip variant='day' status='color'>
-            {dday}
-          </Chip>
-        </div>
+        <Chip variant='day' status='color' className={styles.chip}>
+          {dday}
+        </Chip>
+
         <div className={styles.text}>
           <h3 className={styles.title}>{title}</h3>
           <div className={styles.description}>
