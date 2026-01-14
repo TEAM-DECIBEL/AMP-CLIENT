@@ -7,7 +7,11 @@ interface CardHomebannerOrgProps {
 const CardHomebannerOrg = ({ nickname }: CardHomebannerOrgProps) => {
   return (
     <article className={styles.bannerStyle}>
-      <img src='' alt='homebanner_img' className={styles.imgStyle}></img>
+      <img
+        src=''
+        alt='homebanner_branding_img'
+        className={styles.imgStyle}
+      ></img>
       <p className={styles.textStyle}>
         <span className={styles.nickname}>{nickname}님</span> 공연을 추가하고{' '}
         <br /> 공지를 관리해보세요!
