@@ -6,8 +6,7 @@ interface NoticeBannerProps {
   chip: ReactNode;
   title: string;
   location: string;
-  startDate: string;
-  endDate: string;
+  date: string;
   button?: ReactNode;
 }
 
@@ -15,8 +14,7 @@ const NoticeBanner = ({
   chip,
   title,
   location,
-  startDate,
-  endDate,
+  date,
   button,
 }: NoticeBannerProps) => {
   return (
@@ -27,9 +25,7 @@ const NoticeBanner = ({
           <p className={styles.title}>{title}</p>
           <div className={styles.description}>
             <p>{location}</p>
-            <p className={styles.date}>
-              {startDate === endDate ? startDate : `${startDate} - ${endDate}`}
-            </p>
+            <p className={styles.date}>{date}</p>
           </div>
         </div>
       </div>
