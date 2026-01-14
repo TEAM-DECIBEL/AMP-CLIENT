@@ -18,7 +18,7 @@ const Text = ({
   <div>
     <p className={styles.title}>{title}</p>
     <p className={styles.duration}>
-      {startDate} - {endDate}
+      {startDate === endDate ? startDate : `${startDate} - ${endDate}`}
     </p>
   </div>
 );
