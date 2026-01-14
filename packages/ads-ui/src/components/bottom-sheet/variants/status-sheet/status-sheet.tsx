@@ -22,6 +22,55 @@ interface StatusSheetProps {
   onConfirm?: () => void;
 }
 
+const StatusSelectableContent = ({
+  title,
+  selected,
+  onSelect,
+}: {
+  title: ReactNode;
+  selected?: StatusSheetValue;
+  onSelect?: (value: StatusSheetValue) => void;
+}) => {
+  return (
+    <>
+      <BottomSheet.Header>
+        <BottomSheet.Title>{title} 현장 상황</BottomSheet.Title>
+        <BottomSheet.Description>{STATUS_DESCRIPTION}</BottomSheet.Description>
+      </BottomSheet.Header>
+      <div className={styles.options}>
+        {STATUS_OPTIONS.map((label) => (
+          <button
+            key={label}
+            type='button'
+            onClick={() => onSelect?.(label)}
+            className={styles.option}
+            data-selected={selected === label ? 'true' : 'false'}
+          >
+            <div className={styles.optionMedia}>
+              {/* <img src={src} alt='' className={styles.optionImage} /> */}
+            </div>
+            <span>{label}</span>
+          </button>
+        ))}
+      </div>
+    </>
+  );
+};
+
+const StatusEmptyContent = () => {
+  return (
+    <div className={styles.emptyWrap}>
+      <div className={styles.empty}>
+        <div className={styles.emptyIcon}>
+          <NoticeIcon width='4.8rem' height='4.8rem' />
+        </div>
+        <h3 className={styles.emptyTitle}>{EMPTY_TITLE}</h3>
+        <p className={styles.emptyDescription}>{EMPTY_DESCRIPTION}</p>
+      </div>
+    </div>
+  );
+};
+
 const StatusSheet = ({
   open,
   onClose,
@@ -44,40 +93,13 @@ const StatusSheet = ({
       <BottomSheet.Panel>
         <BottomSheet.Handle />
         {selectable ? (
-          <>
-            <BottomSheet.Header>
-              <BottomSheet.Title>{title} 현장 상황</BottomSheet.Title>
-              <BottomSheet.Description>
-                {STATUS_DESCRIPTION}
-              </BottomSheet.Description>
-            </BottomSheet.Header>
-            <div className={styles.options}>
-              {STATUS_OPTIONS.map((label) => (
-                <button
-                  key={label}
-                  type='button'
-                  onClick={() => onSelect?.(label)}
-                  className={styles.option}
-                  data-selected={selected === label ? 'true' : 'false'}
-                >
-                  <div className={styles.optionMedia}>
-                    {/* <img src={src} alt='' className={styles.optionImage} /> */}
-                  </div>
-                  <span>{label}</span>
-                </button>
-              ))}
-            </div>
-          </>
+          <StatusSelectableContent
+            title={title}
+            selected={selected}
+            onSelect={onSelect}
+          />
         ) : (
-          <div className={styles.emptyWrap}>
-            <div className={styles.empty}>
-              <div className={styles.emptyIcon}>
-                <NoticeIcon width='4.8rem' height='4.8rem' />
-              </div>
-              <h3 className={styles.emptyTitle}>{EMPTY_TITLE}</h3>
-              <p className={styles.emptyDescription}>{EMPTY_DESCRIPTION}</p>
-            </div>
-          </div>
+          <StatusEmptyContent />
         )}
         <div className={styles.actions}>
           <CtaButton type='gray' onClick={handleConfirm}>
