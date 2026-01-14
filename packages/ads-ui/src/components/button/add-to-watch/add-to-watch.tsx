@@ -15,7 +15,7 @@ const AddToWatchButton = ({ selected, onChange }: AddToWatchButtonProps) => {
       aria-pressed={selected}
       onClick={() => onChange(!selected)}
     >
-      <AmpFlagIcon />
+      <AmpFlagIcon className={styles.icon} />
       관람 예정
     </button>
   );
