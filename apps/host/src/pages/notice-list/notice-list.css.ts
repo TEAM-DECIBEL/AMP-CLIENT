@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 import { ampThemeVars } from '@amp/ads-ui/styles';
+import { zIndex } from '@amp/ads-ui/styles/tokens/z-index.ts';
 
 export const header = style({
   position: 'sticky',
@@ -8,7 +9,7 @@ export const header = style({
   marginTop: '-5rem',
   borderRadius: '16px 16px 0 0',
   backgroundColor: ampThemeVars.color.gray_000,
-  zIndex: 10,
+  zIndex: zIndex.overlay,
 });
 
 export const tabBar = style({
