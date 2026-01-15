@@ -34,8 +34,4 @@ export const globalRoutes = [
     path: ROUTE_PATH.MYPAGE,
     element: <MyPage />,
   },
-  {
-    path: ROUTE_PATH.MY_HISTORY,
-    element: <MyPage />,
-  },
 ];

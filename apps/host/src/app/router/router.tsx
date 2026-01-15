@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router';
 
-import { BasicLayout } from './basic-layout';
+import { Layout } from './layout';
 import { globalRoutes } from './routes';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <BasicLayout />,
+    element: <Layout />,
     children: [...globalRoutes],
   },
 ]);
