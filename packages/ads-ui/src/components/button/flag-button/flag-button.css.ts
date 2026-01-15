@@ -15,8 +15,8 @@ export const flagButton = style({
 
   selectors: {
     '&[aria-pressed="true"]': {
-      backgroundColor: ampThemeVars.color.primary_light2,
-      border: `1px solid ${ampThemeVars.color.primary_light3}`,
+      backgroundColor: ampThemeVars.color.primary_light,
+      border: `1px solid ${ampThemeVars.color.primary_light2}`,
     },
   },
 });

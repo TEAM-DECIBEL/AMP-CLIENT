@@ -17,7 +17,7 @@ export const rectButton = recipe({
     ...ampThemeVars.font.title_sb_14,
     selectors: {
       '&:focus-visible': {
-        outline: `2px solid ${ampThemeVars.color.primary_light3}`,
+        outline: `2px solid ${ampThemeVars.color.primary_light2}`,
         outlineOffset: '2px',
       },
     },
