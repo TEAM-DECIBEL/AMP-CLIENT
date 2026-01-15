@@ -18,3 +18,7 @@ export const NoticeDetailsPage = lazy(
 export const NoticeListPage = lazy(
   () => import('@pages/notice-list/notice-list'),
 );
+
+export const OnboardingPage = lazy(
+  () => import('@pages/onboarding/onboarding'),
+);

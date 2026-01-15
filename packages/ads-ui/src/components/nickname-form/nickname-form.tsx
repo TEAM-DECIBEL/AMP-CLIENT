@@ -19,7 +19,7 @@ const NicknameForm = ({ userType, value, onChange }: NicknameFormProps) => {
         {nameLabel}을 알려주세요.
       </p>
       <div className={styles.nicknameForm}>
-        <label className={styles.label}>{nameLabel} </label>
+        <label className={styles.label}>{nameLabel}</label>
         <Textfield
           variant='default'
           placeholder={`${nameLabel}을 입력해주세요.`}

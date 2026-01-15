@@ -7,6 +7,7 @@ import {
   NoticeCreatePage,
   NoticeDetailsPage,
   NoticeListPage,
+  OnboardingPage,
 } from './lazy';
 
 export const globalRoutes = [
@@ -33,5 +34,9 @@ export const globalRoutes = [
   {
     path: ROUTE_PATH.MYPAGE,
     element: <MyPage />,
+  },
+  {
+    path: ROUTE_PATH.ONBOARDING,
+    element: <OnboardingPage />,
   },
 ];

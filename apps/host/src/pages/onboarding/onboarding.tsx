@@ -1,0 +1,33 @@
+import { useMemo, useState } from 'react';
+
+import { CtaButton, NicknameForm } from '@amp/ads-ui';
+
+import * as styles from './onboardiing.css';
+
+const Onboarding = () => {
+  const [name, setName] = useState('');
+
+  const disabled = useMemo(() => name.trim().length === 0, [name]);
+  const selected = !disabled;
+
+  const onClick = () => {
+    // TODO: 페이지 이동
+  };
+  return (
+    <div className={styles.container}>
+      <NicknameForm userType='host' value={name} onChange={setName} />
+      <div className={styles.buttonContainer}>
+        <CtaButton
+          type='gray'
+          selected={selected}
+          disabled={disabled}
+          onClick={onClick}
+        >
+          다음으로
+        </CtaButton>
+      </div>
+    </div>
+  );
+};
+
+export default Onboarding;
