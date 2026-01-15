@@ -1,6 +1,6 @@
 import { CtaButton } from '@amp/ads-ui';
 
-import FestivalStatus from '@widgets/home/festival-status/festival-status';
+import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
 
 import { homeData } from '@shared/mocks/home-data';
 import CardHomebannerOrg from '@shared/ui/card/card-homebanner-organizer/card-homebanner-org';
@@ -20,7 +20,7 @@ const HomePage = () => {
     <section className={styles.page}>
       <CardHomebannerOrg nickname={nickname} />
       <div className={styles.content}>
-        <FestivalStatus
+        <FestivalOverview
           ongoingCount={summary.ongoingCount}
           upcomingCount={summary.upcomingCount}
           ongoingFestivals={ongoingFestivals}

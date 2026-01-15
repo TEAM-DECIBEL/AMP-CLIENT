@@ -2,31 +2,28 @@ import type { Festival } from '@shared/types/home-response';
 import EmptyCard from '@shared/ui/card/empty-card/empty-card';
 import HomeChip from '@shared/ui/chip/home-chip/home-chip';
 
-import FestivalStatusCard from './festival-status-card';
+import FestivalCard from '../festival-card/festival-card';
 
-import * as styles from './festival-status.css';
+import * as styles from './festival-section.css';
 
-interface FestivalStatusListProps {
+interface FestivalListProps {
   festivals: Festival[];
   onMoreClick: () => void;
 }
 
-const FestivalStatusList = ({
-  festivals,
-  onMoreClick,
-}: FestivalStatusListProps) => {
+const FestivalList = ({ festivals, onMoreClick }: FestivalListProps) => {
   return (
     <div className={styles.list}>
       {festivals.map((festival) => (
         <div key={festival.festivalId} className={styles.item}>
-          <FestivalStatusCard festival={festival} onMoreClick={onMoreClick} />
+          <FestivalCard festival={festival} onMoreClick={onMoreClick} />
         </div>
       ))}
     </div>
   );
 };
 
-interface FestivalStatusSectionProps {
+interface FestivalSectionProps {
   title: string;
   count: number;
   festivals: Festival[];
@@ -34,18 +31,18 @@ interface FestivalStatusSectionProps {
   onMoreClick: () => void;
 }
 
-const FestivalStatusSection = ({
+const FestivalSection = ({
   title,
   count,
   festivals,
   emptyText,
   onMoreClick,
-}: FestivalStatusSectionProps) => {
+}: FestivalSectionProps) => {
   const content =
     festivals.length === 0 ? (
       <EmptyCard>{emptyText}</EmptyCard>
     ) : (
-      <FestivalStatusList festivals={festivals} onMoreClick={onMoreClick} />
+      <FestivalList festivals={festivals} onMoreClick={onMoreClick} />
     );
 
   return (
@@ -56,4 +53,4 @@ const FestivalStatusSection = ({
   );
 };
 
-export default FestivalStatusSection;
+export default FestivalSection;

@@ -1,11 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-export const container = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '20px',
-});
-
 export const section = style({
   display: 'flex',
   flexDirection: 'column',
@@ -23,9 +17,4 @@ export const list = style({
 
 export const item = style({
   width: '100%',
-});
-
-export const moreButton = style({
-  display: 'flex',
-  alignItems: 'center',
 });

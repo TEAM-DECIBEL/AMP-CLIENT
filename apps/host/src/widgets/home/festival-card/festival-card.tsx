@@ -3,7 +3,7 @@ import { MoreIcon } from '@amp/ads-ui/icons';
 
 import type { Festival } from '@shared/types/home-response';
 
-import * as styles from './festival-status.css';
+import * as styles from './festival-card.css';
 
 const getStatusKey = (status: Festival['status']) => {
   return status === '진행 중' ? 'ongoing' : 'upcoming';
@@ -47,15 +47,15 @@ const CHIP_ASSETS = {
   ),
 } as const;
 
-interface FestivalStatusCardProps {
+interface FestivalCardProps {
   festival: Festival;
   onMoreClick: () => void;
 }
 
-const FestivalStatusCard = ({
+const FestivalCard = ({
   festival,
   onMoreClick,
-}: FestivalStatusCardProps) => {
+}: FestivalCardProps) => {
   return (
     <CardFestival>
       <CardFestival.Image src={festival.mainImageUrl} alt={festival.title} />
@@ -79,4 +79,4 @@ const FestivalStatusCard = ({
   );
 };
 
-export default FestivalStatusCard;
+export default FestivalCard;

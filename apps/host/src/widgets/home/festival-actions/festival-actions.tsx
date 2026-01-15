@@ -1,26 +1,13 @@
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 
 import { Modal, OptionSheet, RectButton } from '@amp/ads-ui';
 
-import type { Festival } from '@shared/types/home-response';
-
-import FestivalStatusSection from './festival-status-section';
-
-import * as styles from './festival-status.css';
-
-interface FestivalStatusProps {
-  ongoingCount: number;
-  upcomingCount: number;
-  ongoingFestivals: Festival[];
-  upcomingFestivals: Festival[];
+interface FestivalActionsProps {
+  children: (onOpenOptionSheet: () => void) => ReactNode;
 }
 
-const FestivalStatus = ({
-  ongoingCount,
-  upcomingCount,
-  ongoingFestivals,
-  upcomingFestivals,
-}: FestivalStatusProps) => {
+const FestivalActions = ({ children }: FestivalActionsProps) => {
   const [isOptionSheetOpen, setIsOptionSheetOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -45,30 +32,9 @@ const FestivalStatus = ({
     setIsDeleteModalOpen(false);
   };
 
-  const sections = [
-    {
-      title: '진행 중인 공연',
-      count: ongoingCount,
-      festivals: ongoingFestivals,
-      emptyText: '진행 중인 공연이 없어요!',
-    },
-    {
-      title: '진행 예정 공연',
-      count: upcomingCount,
-      festivals: upcomingFestivals,
-      emptyText: '진행 예정인 공연이 없어요!',
-    },
-  ] as const;
-
   return (
-    <div className={styles.container}>
-      {sections.map((section) => (
-        <FestivalStatusSection
-          key={section.title}
-          {...section}
-          onMoreClick={handleOpenOptionSheet}
-        />
-      ))}
+    <>
+      {children(handleOpenOptionSheet)}
       <OptionSheet open={isOptionSheetOpen} onClose={handleCloseOptionSheet}>
         <OptionSheet.Item onClick={handleCloseOptionSheet}>
           수정하기
@@ -80,7 +46,10 @@ const FestivalStatus = ({
       <Modal open={isDeleteModalOpen} onClose={handleCloseDeleteModal}>
         <Modal.Panel role='alertdialog'>
           <Modal.Content>
-            <Modal.Title>공연을 삭제하시겠어요?</Modal.Title>
+            <Modal.Title>공연을 삭제할까요?</Modal.Title>
+            <Modal.Description>
+              삭제한 공연은 복구할 수 없어요.
+            </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
             <RectButton variant='secondary' onClick={handleCloseDeleteModal}>
@@ -92,8 +61,8 @@ const FestivalStatus = ({
           </Modal.Actions>
         </Modal.Panel>
       </Modal>
-    </div>
+    </>
   );
 };
 
-export default FestivalStatus;
+export default FestivalActions;
