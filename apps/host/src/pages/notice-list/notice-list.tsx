@@ -45,14 +45,14 @@ const NoticeListPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.pageContainer}>
       <NoticeBanner
         dday={FESTIVAL_MOCK.dday}
         title={FESTIVAL_MOCK.title}
         location={FESTIVAL_MOCK.location}
         date={FESTIVAL_MOCK.date}
       />
-      <main>
+      <main className={styles.mainContainer}>
         <div className={styles.header}>
           <div className={styles.tabBar}>
             <Tabs defaultValue='notice' variant='notice'>
@@ -77,7 +77,12 @@ const NoticeListPage = () => {
         </div>
         <div className={styles.cardList}>
           {sortedList.length === 0 ? (
-            <div>등록된 공지사항이 없습니다.</div>
+            <div className={styles.emptyContainer}>
+              <div className={styles.emptyText}>
+                <img src='' alt='작성된 공지 없음' />
+                <p>작성된 공지가 없어요.</p>
+              </div>
+            </div>
           ) : (
             sortedList.map((notice) => (
               <div key={notice.announcementId} className={styles.card}>

@@ -3,6 +3,18 @@ import { style } from '@vanilla-extract/css';
 import { ampThemeVars } from '@amp/ads-ui/styles';
 import { zIndex } from '@amp/ads-ui/styles/tokens/z-index.ts';
 
+export const pageContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  minHeight: '100vh',
+});
+
+export const mainContainer = style({
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+});
+
 export const header = style({
   position: 'sticky',
   top: 0,
@@ -36,6 +48,9 @@ export const chipSection = style({
 });
 
 export const cardList = style({
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
   padding: '0 2rem',
 });
 
@@ -49,4 +64,21 @@ export const card = style({
       borderBottom: 'none',
     },
   },
+});
+
+export const emptyContainer = style({
+  flex: 1,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+export const emptyText = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.6rem',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: ampThemeVars.color.gray_500,
+  ...ampThemeVars.font.title_sb_16,
 });
