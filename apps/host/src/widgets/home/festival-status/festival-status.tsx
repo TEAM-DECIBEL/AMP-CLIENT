@@ -1,4 +1,5 @@
-import { CardFestival } from '@amp/ads-ui';
+import { CardFestival, Chip } from '@amp/ads-ui';
+import { MoreIcon } from '@amp/ads-ui/icons';
 
 import type { Festival } from '@shared/types/home-response';
 import EmptyCard from '@shared/ui/card/empty-card/empty-card';
@@ -19,6 +20,48 @@ const FestivalStatus = ({
   ongoingFestivals,
   upcomingFestivals,
 }: FestivalStatusProps) => {
+  const CHIP_ASSETS = {
+    upcoming: (
+      <Chip variant='status' status='upcoming'>
+        진행 예정
+      </Chip>
+    ),
+    ongoing: (
+      <Chip variant='status' status='current'>
+        진행 중
+      </Chip>
+    ),
+    done: (
+      <Chip variant='status' status='upcoming'>
+        종료됨
+      </Chip>
+    ),
+  } as const;
+
+  const getStatusKey = (status: Festival['status']) => {
+    return status === '진행 중' ? 'ongoing' : 'upcoming';
+  };
+
+  const renderDDayChip = (dDay: number) => {
+    if (dDay === 0) {
+      return (
+        <Chip variant='status' status='dday'>
+          D-day
+        </Chip>
+      );
+    }
+
+    if (dDay < 0) {
+      return (
+        <Chip variant='status' status='dday'>
+          {`D-${Math.abs(dDay)}`}
+        </Chip>
+      );
+    }
+
+    return null;
+  };
+
   const sections = [
     {
       title: '진행 중인 공연',
@@ -55,9 +98,19 @@ const FestivalStatus = ({
                       date={festival.period}
                     >
                       <CardFestival.Chip>
-                        <span>{festival.status}</span>
+                        {renderDDayChip(festival.dDay)}
+                        {CHIP_ASSETS[getStatusKey(festival.status)]}
                       </CardFestival.Chip>
                     </CardFestival.Body>
+                    <CardFestival.Icon>
+                      <button
+                        type='button'
+                        className={styles.moreButton}
+                        aria-label='더보기'
+                      >
+                        <MoreIcon aria-hidden />
+                      </button>
+                    </CardFestival.Icon>
                   </CardFestival>
                 </div>
               ))}

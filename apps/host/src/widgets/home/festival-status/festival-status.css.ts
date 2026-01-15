@@ -24,3 +24,8 @@ export const list = style({
 export const item = style({
   width: '100%',
 });
+
+export const moreButton = style({
+  display: 'flex',
+  alignItems: 'center',
+});
