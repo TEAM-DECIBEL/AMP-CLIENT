@@ -37,7 +37,6 @@ export const chipSection = style({
   overflowX: 'auto',
   whiteSpace: 'nowrap',
   WebkitOverflowScrolling: 'touch',
-
   selectors: {
     '&::-webkit-scrollbar': {
       display: 'none',
@@ -92,6 +91,8 @@ export const buttonContainer = style({
   justifyContent: 'flex-end',
   paddingRight: '2.3rem',
   pointerEvents: 'none',
+  left: '50%',
+  transform: 'translateX(-50%)',
 });
 
 export const button = style({
