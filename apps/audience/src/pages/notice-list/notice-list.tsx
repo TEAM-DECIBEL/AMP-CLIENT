@@ -1,12 +1,17 @@
 import { useMemo, useState } from 'react';
+import { overlay } from 'overlay-kit';
 
-import { NoticeBanner } from '@amp/ads-ui';
-import { Tabs } from '@amp/ads-ui';
-import { CategoryButton } from '@amp/ads-ui';
-import { CardNotice } from '@amp/ads-ui';
-import { CircleButton } from '@amp/ads-ui';
-import { AddToWatchButton } from '@amp/ads-ui';
-import { CtaButton } from '@amp/ads-ui';
+import {
+  AddToWatchButton,
+  CardNotice,
+  CategoryButton,
+  CircleButton,
+  CtaButton,
+  Modal,
+  NoticeBanner,
+  RectButton,
+  Tabs,
+} from '@amp/ads-ui';
 
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
 
@@ -57,6 +62,51 @@ const NoticeListPage = () => {
     // TODO: 서버에 '관심 공연 등록/해제' API 요청 보내기
   };
 
+  const handleAlertClick = () => {
+    overlay.open(({ isOpen, close, unmount }) => (
+      <Modal
+        open={isOpen}
+        onClose={() => {
+          close();
+          unmount();
+        }}
+      >
+        <Modal.Panel>
+          <Modal.Content>
+            {/* 현재 선택된 카테고리 이름을 모달에 반영 */}
+            <Modal.Title>공지 알림을 받으시겠어요?</Modal.Title>
+            <Modal.Description>
+              {selectedCategory} 공지가 새로 올라오면 알려드려요.
+            </Modal.Description>
+          </Modal.Content>
+
+          <Modal.Actions>
+            <RectButton
+              variant='secondary'
+              onClick={() => {
+                close();
+                unmount();
+              }}
+            >
+              취소
+            </RectButton>
+            <RectButton
+              variant='primary'
+              onClick={() => {
+                // TODO: 알림 신청 API 호출
+                console.log(`${selectedCategory} 알림 신청 완료`);
+                close();
+                unmount();
+              }}
+            >
+              알림 받기
+            </RectButton>
+          </Modal.Actions>
+        </Modal.Panel>
+      </Modal>
+    ));
+  };
+
   return (
     <div className={styles.pageContainer}>
       <NoticeBanner
@@ -93,8 +143,8 @@ const NoticeListPage = () => {
             ))}
           </div>
           <div className={styles.ctaButton}>
-            <CtaButton type='alert' onClick={() => {}}>
-              퇴근길 공지 알림 받기
+            <CtaButton type='alert' onClick={handleAlertClick}>
+              {selectedCategory} 공지 알림 받기
             </CtaButton>
           </div>
         </div>
