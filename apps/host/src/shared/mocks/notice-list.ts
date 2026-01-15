@@ -24,7 +24,7 @@ export const MOCK_DATA: NoticeMockProps[] = [
     content:
       '반드시 전용 앱을 실행하여 QR코드를 제시해주셔야 합니다. 캡처본은 입장이 제한될 수 있습니다.',
     imageUrl:
-      'https://marketplace.canva.com/EAF_4QFDSOo/1/0/1131w/canva-보라-하트일러스트-카툰-음악콘서트-포스터-8sYMo2WO3-c.jpg',
+      'https://cdn.newstnt.com/news/photo/202511/551464_577865_1821.jpg',
     isPinned: true,
     isSaved: true,
     createdAt: '10분 전',
@@ -36,7 +36,7 @@ export const MOCK_DATA: NoticeMockProps[] = [
     content:
       '메인 게이트 우측 이벤트 부스에서 팔찌 교환 시 선착순으로 공식 슬로건을 드립니다!',
     imageUrl:
-      'https://marketplace.canva.com/EAF_4QFDSOo/1/0/1131w/canva-보라-하트일러스트-카툰-음악콘서트-포스터-8sYMo2WO3-c.jpg',
+      'https://cdn.newstnt.com/news/photo/202511/551464_577865_1821.jpg',
     isPinned: true,
     isSaved: false,
     createdAt: '30분 전',
@@ -49,7 +49,7 @@ export const MOCK_DATA: NoticeMockProps[] = [
     content:
       '아티스트 A의 티셔츠 L 사이즈가 전량 품절되었습니다. 재입고 예정은 없으니 양해 부탁드립니다.',
     imageUrl:
-      'https://marketplace.canva.com/EAF_4QFDSOo/1/0/1131w/canva-보라-하트일러스트-카툰-음악콘서트-포스터-8sYMo2WO3-c.jpg',
+      'https://cdn.newstnt.com/news/photo/202511/551464_577865_1821.jpg',
     isPinned: false,
     isSaved: false,
     createdAt: '1시간 전',
@@ -61,7 +61,7 @@ export const MOCK_DATA: NoticeMockProps[] = [
     content:
       '관객 여러분의 성원에 힘입어 푸드존 운영을 기존 22시에서 23시까지 연장합니다.',
     imageUrl:
-      'https://marketplace.canva.com/EAF_4QFDSOo/1/0/1131w/canva-보라-하트일러스트-카툰-음악콘서트-포스터-8sYMo2WO3-c.jpg',
+      'https://cdn.newstnt.com/news/photo/202511/551464_577865_1821.jpg',
     isPinned: false,
     isSaved: true,
     createdAt: '2시간 전',
@@ -73,7 +73,7 @@ export const MOCK_DATA: NoticeMockProps[] = [
     content:
       '종합 안내소 옆 분실물 센터가 운영 중입니다. 습득하신 물건은 이쪽으로 접수 부탁드립니다.',
     imageUrl:
-      'https://marketplace.canva.com/EAF_4QFDSOo/1/0/1131w/canva-보라-하트일러스트-카툰-음악콘서트-포스터-8sYMo2WO3-c.jpg',
+      'https://cdn.newstnt.com/news/photo/202511/551464_577865_1821.jpg',
     isPinned: false,
     isSaved: false,
     createdAt: '3시간 전',
@@ -86,7 +86,7 @@ export const MOCK_DATA: NoticeMockProps[] = [
     content:
       '현재 메인 게이트 입장 대기 시간이 약 40분 소요됩니다. 서브 게이트를 이용하시면 더 빠르게 입장 가능합니다.',
     imageUrl:
-      'https://marketplace.canva.com/EAF_4QFDSOo/1/0/1131w/canva-보라-하트일러스트-카툰-음악콘서트-포스터-8sYMo2WO3-c.jpg',
+      'https://cdn.newstnt.com/news/photo/202511/551464_577865_1821.jpg',
     isPinned: false,
     isSaved: false,
     createdAt: '4시간 전',
@@ -99,7 +99,7 @@ export const MOCK_DATA: NoticeMockProps[] = [
     content:
       '사인회 당첨되신 분들은 15시까지 수변무대 옆 사인회 부스로 와주세요. 신분증 지참 필수!',
     imageUrl:
-      'https://marketplace.canva.com/EAF_4QFDSOo/1/0/1131w/canva-보라-하트일러스트-카툰-음악콘서트-포스터-8sYMo2WO3-c.jpg',
+      'https://cdn.newstnt.com/news/photo/202511/551464_577865_1821.jpg',
     isPinned: false,
     isSaved: true,
     createdAt: '5시간 전',
@@ -112,7 +112,7 @@ export const MOCK_DATA: NoticeMockProps[] = [
     content:
       'MD 부스에서 AAA 건전지를 판매하고 있습니다. (2개입 1,000원 / 카드 결제만 가능)',
     imageUrl:
-      'https://marketplace.canva.com/EAF_4QFDSOo/1/0/1131w/canva-보라-하트일러스트-카툰-음악콘서트-포스터-8sYMo2WO3-c.jpg',
+      'https://cdn.newstnt.com/news/photo/202511/551464_577865_1821.jpg',
     isPinned: true,
     isSaved: false,
     createdAt: '1일 전',
@@ -125,7 +125,7 @@ export const MOCK_DATA: NoticeMockProps[] = [
     content:
       '물품보관소 신규 접수가 곧 마감됩니다. 짐을 맡기실 분들은 서둘러 방문해주세요.',
     imageUrl:
-      'https://marketplace.canva.com/EAF_4QFDSOo/1/0/1131w/canva-보라-하트일러스트-카툰-음악콘서트-포스터-8sYMo2WO3-c.jpg',
+      'https://cdn.newstnt.com/news/photo/202511/551464_577865_1821.jpg',
     isPinned: false,
     isSaved: false,
     createdAt: '1일 전',
@@ -138,7 +138,7 @@ export const MOCK_DATA: NoticeMockProps[] = [
     content:
       '500ml 이하의 PET 생수만 반입 가능합니다. 주류 및 외부 음식물은 반입 불가하오니 협조 부탁드립니다.',
     imageUrl:
-      'https://marketplace.canva.com/EAF_4QFDSOo/1/0/1131w/canva-보라-하트일러스트-카툰-음악콘서트-포스터-8sYMo2WO3-c.jpg',
+      'https://cdn.newstnt.com/news/photo/202511/551464_577865_1821.jpg',
     isPinned: false,
     isSaved: false,
     createdAt: '2일 전',

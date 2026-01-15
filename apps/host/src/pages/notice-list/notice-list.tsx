@@ -46,34 +46,34 @@ const NoticeListPage = () => {
 
   return (
     <div>
-      <div className={styles.bannerContainer}>
-        <NoticeBanner
-          dday={FESTIVAL_MOCK.dday}
-          title={FESTIVAL_MOCK.title}
-          location={FESTIVAL_MOCK.location}
-          date={FESTIVAL_MOCK.date}
-        />
-        <div className={styles.tabBar}>
-          <Tabs defaultValue='notice' variant='notice'>
-            <Tabs.List>
-              <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
-              <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
-            </Tabs.List>
-          </Tabs>
-        </div>
-      </div>
+      <NoticeBanner
+        dday={FESTIVAL_MOCK.dday}
+        title={FESTIVAL_MOCK.title}
+        location={FESTIVAL_MOCK.location}
+        date={FESTIVAL_MOCK.date}
+      />
       <main>
-        <div className={styles.chipSection}>
-          {CATEGORIES.map((category) => (
-            <CategoryButton
-              key={category}
-              variant='primary'
-              selected={selectedCategory === category}
-              onChange={() => handleChipClick(category)}
-            >
-              {category}
-            </CategoryButton>
-          ))}
+        <div className={styles.header}>
+          <div className={styles.tabBar}>
+            <Tabs defaultValue='notice' variant='notice'>
+              <Tabs.List>
+                <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
+                <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
+              </Tabs.List>
+            </Tabs>
+          </div>
+          <div className={styles.chipSection}>
+            {CATEGORIES.map((category) => (
+              <CategoryButton
+                key={category}
+                variant='primary'
+                selected={selectedCategory === category}
+                onChange={() => handleChipClick(category)}
+              >
+                {category}
+              </CategoryButton>
+            ))}
+          </div>
         </div>
         <div className={styles.cardList}>
           {sortedList.length === 0 ? (

@@ -2,18 +2,18 @@ import { style } from '@vanilla-extract/css';
 
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
-export const bannerContainer = style({
-  position: 'relative',
+export const header = style({
+  position: 'sticky',
+  top: 0,
+  marginTop: '-5rem',
+  borderRadius: '16px 16px 0 0',
+  backgroundColor: ampThemeVars.color.gray_000,
+  zIndex: 10,
 });
 
 export const tabBar = style({
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  right: 0,
-  zIndex: 1,
-  backgroundColor: ampThemeVars.color.gray_000,
   borderRadius: '16px 16px 0 0',
+  borderBottom: `1px solid ${ampThemeVars.color.gray_200}`,
 });
 
 export const chipSection = style({
