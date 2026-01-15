@@ -59,6 +59,7 @@ const NoticeListPage = () => {
       <main className={styles.mainContainer}>
         <div className={styles.header}>
           <div className={styles.tabBar}>
+            {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
             <Tabs defaultValue='notice' variant='notice'>
               <Tabs.List>
                 <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
