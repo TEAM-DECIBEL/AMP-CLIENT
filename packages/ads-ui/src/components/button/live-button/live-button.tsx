@@ -27,12 +27,12 @@ const LiveButton = ({
 
       <div className={styles.contentContainer}>
         <div className={styles.textContainer}>
-          <span className={styles.title}>{title}</span>
-          <span className={styles.subText}>{subText}</span>
+          <p className={styles.title}>{title}</p>
+          {subText && <p className={styles.subText}>{subText}</p>}
         </div>
 
         <div className={styles.iconContainer} aria-hidden>
-          {showIcon ? <ArrowIcon /> : null}
+          {showIcon && <ArrowIcon />}
         </div>
       </div>
     </button>
