@@ -4,18 +4,16 @@ import * as styles from './nickname-form.css';
 
 interface NicknameFormProps {
   userType: 'host' | 'audience';
+  value: string;
+  onChange: (value: string) => void;
 }
 
-const NicknameForm = ({ userType }: NicknameFormProps) => {
-  const nameLabelMap: Record<string, string> = {
-    host: '주최사명',
-    audience: '닉네임',
-  };
-
-  const nameLabel = nameLabelMap[userType] ?? '닉네임';
+const NicknameForm = ({ userType, value, onChange }: NicknameFormProps) => {
+  const nameLabelMap = { host: '주최사명', audience: '닉네임' } as const;
+  const nameLabel = nameLabelMap[userType];
 
   return (
-    <div>
+    <div className={styles.form}>
       <p className={styles.title}>
         반가워요. <br />
         {nameLabel}을 알려주세요.
@@ -26,6 +24,8 @@ const NicknameForm = ({ userType }: NicknameFormProps) => {
           variant='default'
           placeholder={`${nameLabel}을 입력해주세요.`}
           maxLength={12}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
         />
         <p className={styles.supportingText}>최대 12자까지만 입력 가능해요.</p>
       </div>
