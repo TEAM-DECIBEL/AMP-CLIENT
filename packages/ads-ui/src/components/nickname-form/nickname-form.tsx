@@ -12,6 +12,8 @@ const NicknameForm = ({ userType, value, onChange }: NicknameFormProps) => {
   const nameLabelMap = { host: '주최사명', audience: '닉네임' } as const;
   const nameLabel = nameLabelMap[userType];
 
+  const inputId = 'name-input';
+
   return (
     <div className={styles.form}>
       <p className={styles.title}>
@@ -19,8 +21,11 @@ const NicknameForm = ({ userType, value, onChange }: NicknameFormProps) => {
         {nameLabel}을 알려주세요.
       </p>
       <div className={styles.nicknameForm}>
-        <label className={styles.label}>{nameLabel}</label>
+        <label className={styles.label} htmlFor={inputId}>
+          {nameLabel}
+        </label>
         <Textfield
+          id={inputId}
           variant='default'
           placeholder={`${nameLabel}을 입력해주세요.`}
           maxLength={12}
