@@ -82,3 +82,18 @@ export const emptyText = style({
   color: ampThemeVars.color.gray_500,
   ...ampThemeVars.font.title_sb_16,
 });
+
+export const buttonContainer = style({
+  position: 'fixed',
+  bottom: '3rem',
+  width: '100%',
+  maxWidth: '430px',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  paddingRight: '2.3rem',
+  pointerEvents: 'none',
+});
+
+export const button = style({
+  pointerEvents: 'auto',
+});
