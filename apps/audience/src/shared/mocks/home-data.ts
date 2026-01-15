@@ -9,4 +9,4 @@ export const homeData = {
     period: '2026-01-15 ~ 2026-01-16',
     dDay: -15,
   },
-} as const;
+};
