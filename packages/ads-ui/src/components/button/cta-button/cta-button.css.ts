@@ -24,7 +24,7 @@ export const ctaButton = recipe({
         backgroundColor: ampThemeVars.color.primary,
         selectors: {
           '&:disabled': {
-            backgroundColor: ampThemeVars.color.primary_light3,
+            backgroundColor: ampThemeVars.color.primary_light2,
             cursor: 'not-allowed',
           },
         },

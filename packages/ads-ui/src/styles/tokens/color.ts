@@ -2,9 +2,8 @@ export const color = {
   // primary
   primary: '#36D69D',
   primary_deep: '#16C284',
-  primary_light: '#D5FFED',
-  primary_light2: '#EDFBF5',
-  primary_light3: '#A6E6CA',
+  primary_light: '#EDFBF5',
+  primary_light2: '#A6E6CA',
 
   // sub
   sub_1: '#1D1D28',
