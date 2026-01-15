@@ -5,4 +5,5 @@ export const ROUTE_PATH = {
   MYPAGE: 'mypage',
   MY_EVENTS: 'my-events',
   SAVED_NOTICES: 'saved-notices',
+  ONBOARDING: 'onboarding',
 } as const;
