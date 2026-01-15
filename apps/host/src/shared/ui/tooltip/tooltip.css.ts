@@ -8,7 +8,6 @@ export const content = style({
   flexDirection: 'column',
   alignItems: 'center',
   textAlign: 'center',
-  gap: '0.4rem',
   padding: '1.2rem 1.6rem',
   borderRadius: '16px',
   backgroundColor: ampThemeVars.color.gray_900,
