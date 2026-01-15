@@ -46,7 +46,7 @@ const FestivalStatus = ({
     if (dDay === 0) {
       return (
         <Chip variant='status' status='dday'>
-          D-day
+          D-Day
         </Chip>
       );
     }
