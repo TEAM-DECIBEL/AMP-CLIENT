@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { overlay } from 'overlay-kit';
 
+import { toast } from '@amp/ads-ui';
 import {
   AddToWatchButton,
   CardNotice,
@@ -33,6 +34,9 @@ const NoticeListPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
     CATEGORIES[0],
   );
+
+  // TODO: 임시 state, 추후 api 호출 결과 기준으로 토스트 메시지 결정
+  const [isAlertOn, setIsAlertOn] = useState(false);
 
   // TODO: 서버에서 받아온 값으로 기본값 설정
   const [isWatched, setIsWatched] = useState<boolean>(false);
@@ -73,7 +77,6 @@ const NoticeListPage = () => {
       >
         <Modal.Panel>
           <Modal.Content>
-            {/* 현재 선택된 카테고리 이름을 모달에 반영 */}
             <Modal.Title>공지 알림을 받으시겠어요?</Modal.Title>
             <Modal.Description>
               {selectedCategory} 공지가 새로 올라오면 알려드려요.
@@ -92,9 +95,20 @@ const NoticeListPage = () => {
             </RectButton>
             <RectButton
               variant='primary'
+              // TODO: 알림 신청 API 호출, 그 결과 기준 토스트 메시지 출력
               onClick={() => {
-                // TODO: 알림 신청 API 호출
-                console.log(`${selectedCategory} 알림 신청 완료`);
+                const nextState = !isAlertOn;
+                setIsAlertOn(nextState);
+
+                if (nextState) {
+                  toast.show(
+                    `${selectedCategory} 공지 알림이 설정되었어요.`,
+                    `새 공지가 올라오면 알림을 보내드릴게요.`,
+                  );
+                } else {
+                  toast.show('이미 알림을 받고 있어요!');
+                }
+
                 close();
                 unmount();
               }}
