@@ -41,7 +41,7 @@ const NoticeListPage = () => {
   // TODO: 서버에서 받아온 값으로 기본값 설정
   const [isWatched, setIsWatched] = useState<boolean>(false);
 
-  // TODO: API 연동 (공지 목록 불러오기)
+  // TODO: API 연동 (공지 목록 불러와서 아래 MOCK_DATA 대체)
 
   const sortedList = useMemo(() => {
     const filtered =

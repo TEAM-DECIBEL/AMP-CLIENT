@@ -1,5 +1,5 @@
 export const ROUTE_PATH = {
-  NOTICE_LIST: 'notices',
+  NOTICE_LIST: 'events/:eventId/notices',
   NOTICE_DETAILS: 'events/:eventId/notices/:noticeId',
   NOTIFICATION: 'notifications',
   MYPAGE: 'mypage',
