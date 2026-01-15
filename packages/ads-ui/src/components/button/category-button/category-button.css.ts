@@ -10,7 +10,7 @@ export const base = style({
   backgroundColor: ampThemeVars.color.gray_000,
   border: `1px solid ${ampThemeVars.color.gray_200}`,
   borderRadius: '20px',
-  padding: '0.8rem 1.6rem',
+  padding: '0.7rem 1.5rem',
   ...ampThemeVars.font.body_m_13,
   color: ampThemeVars.color.gray_900,
   cursor: 'pointer',
@@ -36,7 +36,7 @@ export const categoryButton = recipe({
       style: {
         backgroundColor: ampThemeVars.color.gray_900,
         border: 'none',
-        padding: '0.9rem 1.7rem',
+        padding: '0.8rem 1.6rem',
         color: ampThemeVars.color.gray_000,
       },
     },
@@ -45,7 +45,7 @@ export const categoryButton = recipe({
       style: {
         backgroundColor: ampThemeVars.color.primary,
         border: 'none',
-        padding: '0.9rem 1.7rem',
+        padding: '0.8rem 1.6rem',
         color: ampThemeVars.color.gray_000,
       },
     },
