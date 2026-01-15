@@ -13,6 +13,7 @@ export const header = style({
 });
 
 export const tabBar = style({
+  height: '5rem',
   borderRadius: '16px 16px 0 0',
   borderBottom: `1px solid ${ampThemeVars.color.gray_200}`,
 });

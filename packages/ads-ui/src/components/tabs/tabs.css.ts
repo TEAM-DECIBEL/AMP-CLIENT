@@ -52,7 +52,7 @@ export const trigger = recipe({
         ...ampThemeVars.font.body_m_16,
         color: ampThemeVars.color.gray_300,
         textAlign: 'center',
-        paddingBottom: '0.8rem',
+        paddingBottom: '1rem',
         position: 'relative',
         width: '8rem',
         justifyContent: 'center',
