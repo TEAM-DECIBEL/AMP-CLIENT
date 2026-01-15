@@ -4,6 +4,7 @@ import FestivalStatus from '@widgets/home/festival-status/festival-status';
 
 import { homeData } from '@shared/mocks/home-data';
 import CardHomebannerOrg from '@shared/ui/card/card-homebanner-organizer/card-homebanner-org';
+import Tooltip from '@shared/ui/tooltip/tooltip';
 
 import * as styles from './home.css';
 
@@ -12,6 +13,8 @@ const HomePage = () => {
 
   // 예시 닉네임
   const nickname = 'SOPT';
+  const showTooltip =
+    summary.ongoingCount === 0 && summary.upcomingCount === 0;
 
   return (
     <section className={styles.page}>
@@ -25,6 +28,7 @@ const HomePage = () => {
         />
       </div>
       <div className={styles.ctaArea}>
+        {showTooltip && <Tooltip />}
         <CtaButton type='primary' onClick={() => {}}>
           공연 등록하기
         </CtaButton>

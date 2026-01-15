@@ -23,5 +23,7 @@ export const ctaArea = style({
   maxWidth: '430px',
   padding: '2rem',
   display: 'flex',
-  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '0.6rem',
 });
