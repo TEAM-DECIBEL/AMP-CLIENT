@@ -156,11 +156,13 @@ const NoticeListPage = () => {
               </CategoryButton>
             ))}
           </div>
-          <div className={styles.ctaButton}>
-            <CtaButton type='alert' onClick={handleAlertClick}>
-              {selectedCategory} 공지 알림 받기
-            </CtaButton>
-          </div>
+          {!(selectedCategory === '전체') && (
+            <div className={styles.ctaButton}>
+              <CtaButton type='alert' onClick={handleAlertClick}>
+                {selectedCategory} 공지 알림 받기
+              </CtaButton>
+            </div>
+          )}
         </div>
         <div className={styles.cardList}>
           {sortedList.length === 0 ? (
