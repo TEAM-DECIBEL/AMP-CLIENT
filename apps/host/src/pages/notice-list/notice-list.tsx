@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { NoticeBanner } from '@amp/ads-ui';
 import { Tabs } from '@amp/ads-ui';
@@ -25,21 +25,21 @@ const NoticeListPage = () => {
     CATEGORIES[0],
   );
 
-  const filteredNotices =
-    selectedCategory === '전체'
-      ? MOCK_DATA
-      : MOCK_DATA.filter((item) => item.categoryName === selectedCategory);
+  // TODO: API 연동 (공지 목록 불러오기)
 
-  const sortedList = [...filteredNotices].sort((a, b) => {
-    if (a.isPinned && !b.isPinned) {
-      return -1;
-    }
-    if (!a.isPinned && b.isPinned) {
-      return 1;
-    }
+  const sortedList = useMemo(() => {
+    const filtered =
+      selectedCategory === '전체'
+        ? MOCK_DATA
+        : MOCK_DATA.filter((item) => item.categoryName === selectedCategory);
 
-    return 0;
-  });
+    return filtered.sort((a, b) => {
+      if (a.isPinned !== b.isPinned) {
+        return a.isPinned ? -1 : 1;
+      }
+      return 0;
+    });
+  }, [selectedCategory]);
 
   const handleChipClick = (category: string) => {
     setSelectedCategory(category);
@@ -48,6 +48,7 @@ const NoticeListPage = () => {
   return (
     <div className={styles.pageContainer}>
       <NoticeBanner
+        // TODO: 관련 공연 정보 데이터 불러와서 Props 전달
         dday={FESTIVAL_MOCK.dday}
         title={FESTIVAL_MOCK.title}
         location={FESTIVAL_MOCK.location}
@@ -88,12 +89,12 @@ const NoticeListPage = () => {
             sortedList.map((notice) => (
               <div key={notice.announcementId} className={styles.card}>
                 <CardNotice
-                  key={notice.announcementId}
                   imageUrl={notice.imageUrl}
                   title={notice.title}
                   content={notice.content}
                   isPinned={notice.isPinned}
                   createdAt={notice.createdAt}
+                  // TODO: 뷰 이동 로직 추가
                   onClick={() => {}}
                 />
               </div>
@@ -103,6 +104,7 @@ const NoticeListPage = () => {
       </main>
       <div className={styles.buttonContainer}>
         <div className={styles.button}>
+          {/* TODO: 뷰 이동 로직 추가 */}
           <CircleButton type='write' onClick={() => {}} />
         </div>
       </div>
