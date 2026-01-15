@@ -4,7 +4,13 @@ import { ICON } from './cta-icon';
 
 import * as styles from './cta-button.css';
 
-export type CtaButtonType = 'primary' | 'gray' | 'social' | 'icon' | 'add';
+export type CtaButtonType =
+  | 'primary'
+  | 'gray'
+  | 'social'
+  | 'icon'
+  | 'add'
+  | 'alert';
 
 interface CtaButtonProps {
   children: ReactNode;

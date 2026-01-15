@@ -98,3 +98,7 @@ export const buttonContainer = style({
 export const button = style({
   pointerEvents: 'auto',
 });
+
+export const ctaButton = style({
+  marginBottom: '1.6rem',
+});

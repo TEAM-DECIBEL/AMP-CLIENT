@@ -6,6 +6,7 @@ import { CategoryButton } from '@amp/ads-ui';
 import { CardNotice } from '@amp/ads-ui';
 import { CircleButton } from '@amp/ads-ui';
 import { AddToWatchButton } from '@amp/ads-ui';
+import { CtaButton } from '@amp/ads-ui';
 
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
 
@@ -90,6 +91,11 @@ const NoticeListPage = () => {
                 {category}
               </CategoryButton>
             ))}
+          </div>
+          <div className={styles.ctaButton}>
+            <CtaButton type='alert' onClick={() => {}}>
+              퇴근길 공지 알림 받기
+            </CtaButton>
           </div>
         </div>
         <div className={styles.cardList}>
