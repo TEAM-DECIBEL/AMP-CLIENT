@@ -21,8 +21,13 @@ const subLayoutTitles = {
 
 export const globalRoutes = [
   {
-    index: true,
-    element: <HomePage />,
+    element: <SubLayout />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+    ],
   },
   {
     path: ROUTE_PATH.EVENT_CREATE,
