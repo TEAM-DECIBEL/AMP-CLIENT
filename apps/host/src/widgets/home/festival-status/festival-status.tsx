@@ -1,3 +1,5 @@
+import { CardFestival } from '@amp/ads-ui';
+
 import type { Festival } from '@shared/types/home-response';
 import EmptyCard from '@shared/ui/card/empty-card/empty-card';
 import HomeChip from '@shared/ui/chip/home-chip/home-chip';
@@ -40,7 +42,26 @@ const FestivalStatus = ({
           {festivals.length === 0 ? (
             <EmptyCard>{emptyText}</EmptyCard>
           ) : (
-            <>{/* CardFestival */}</>
+            <div className={styles.list}>
+              {festivals.map((festival) => (
+                <div key={festival.festivalId} className={styles.item}>
+                  <CardFestival>
+                    <CardFestival.Image
+                      src={festival.mainImageUrl}
+                      alt={festival.title}
+                    />
+                    <CardFestival.Body
+                      title={festival.title}
+                      date={festival.period}
+                    >
+                      <CardFestival.Chip>
+                        <span>{festival.status}</span>
+                      </CardFestival.Chip>
+                    </CardFestival.Body>
+                  </CardFestival>
+                </div>
+              ))}
+            </div>
           )}
         </div>
       ))}
