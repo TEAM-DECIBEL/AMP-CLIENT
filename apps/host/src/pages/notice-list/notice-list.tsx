@@ -1,5 +1,5 @@
 const NoticeListPage = () => {
-  return <div> 호스트 주최 공지 페이지</div>;
+  return <div>주최 공지 뷰</div>;
 };
 
 export default NoticeListPage;
