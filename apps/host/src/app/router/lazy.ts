@@ -20,3 +20,7 @@ export const NoticeListPage = lazy(
 );
 
 export const MyHistoryPage = lazy(() => import('@pages/my-history/my-history'));
+
+export const OnboardingPage = lazy(
+  () => import('@pages/onboarding/onboarding'),
+);

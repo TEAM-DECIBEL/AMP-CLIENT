@@ -8,6 +8,7 @@ import {
   NoticeCreatePage,
   NoticeDetailsPage,
   NoticeListPage,
+  OnboardingPage,
 } from './lazy';
 import { SubLayout, SubLayoutWithBack } from './sub-layout';
 
@@ -91,5 +92,9 @@ export const globalRoutes = [
         element: <NoticeListPage />,
       },
     ],
+  },
+  {
+    path: ROUTE_PATH.ONBOARDING,
+    element: <OnboardingPage />,
   },
 ];

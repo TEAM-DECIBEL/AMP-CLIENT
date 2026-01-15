@@ -7,6 +7,7 @@ import {
   NoticeDetailsPage,
   NoticeListPage,
   NotificationPage,
+  OnboardingPage,
   SavedNoticesPage,
 } from './lazy';
 import { SubLayout, SubLayoutWithBack } from './sub-layout';
@@ -92,5 +93,9 @@ export const globalRoutes = [
         element: <SavedNoticesPage />,
       },
     ],
+  },
+  {
+    path: ROUTE_PATH.ONBOARDING,
+    element: <OnboardingPage />,
   },
 ];
