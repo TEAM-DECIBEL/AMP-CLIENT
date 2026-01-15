@@ -5,6 +5,8 @@ import { Tabs } from '@amp/ads-ui';
 import { CategoryButton } from '@amp/ads-ui';
 import { CardNotice } from '@amp/ads-ui';
 
+import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
+
 import * as styles from './notice-list.css';
 
 const CATEGORIES = [
@@ -24,8 +26,8 @@ const NoticeListPage = () => {
 
   const filteredNotices =
     selectedCategory === '전체'
-      ? ANNOUNCEMENTS
-      : ANNOUNCEMENTS.filter((item) => item.categoryName === selectedCategory);
+      ? MOCK_DATA
+      : MOCK_DATA.filter((item) => item.categoryName === selectedCategory);
 
   const sortedList = [...filteredNotices].sort((a, b) => {
     if (a.isPinned && !b.isPinned) {
@@ -46,10 +48,10 @@ const NoticeListPage = () => {
     <div>
       <div className={styles.bannerContainer}>
         <NoticeBanner
-          dday={'D-5'}
-          title={'Grand Mint Festival'}
-          location={'여의도공원 일대'}
-          date={'2025.10.15 - 2025.10.18'}
+          dday={FESTIVAL_MOCK.dday}
+          title={FESTIVAL_MOCK.title}
+          location={FESTIVAL_MOCK.location}
+          date={FESTIVAL_MOCK.date}
         />
         <div className={styles.tabBar}>
           <Tabs defaultValue='notice' variant='notice'>
