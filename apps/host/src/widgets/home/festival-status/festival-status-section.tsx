@@ -8,14 +8,18 @@ import * as styles from './festival-status.css';
 
 interface FestivalStatusListProps {
   festivals: Festival[];
+  onMoreClick: () => void;
 }
 
-const FestivalStatusList = ({ festivals }: FestivalStatusListProps) => {
+const FestivalStatusList = ({
+  festivals,
+  onMoreClick,
+}: FestivalStatusListProps) => {
   return (
     <div className={styles.list}>
       {festivals.map((festival) => (
         <div key={festival.festivalId} className={styles.item}>
-          <FestivalStatusCard festival={festival} />
+          <FestivalStatusCard festival={festival} onMoreClick={onMoreClick} />
         </div>
       ))}
     </div>
@@ -27,6 +31,7 @@ interface FestivalStatusSectionProps {
   count: number;
   festivals: Festival[];
   emptyText: string;
+  onMoreClick: () => void;
 }
 
 const FestivalStatusSection = ({
@@ -34,12 +39,13 @@ const FestivalStatusSection = ({
   count,
   festivals,
   emptyText,
+  onMoreClick,
 }: FestivalStatusSectionProps) => {
   const content =
     festivals.length === 0 ? (
       <EmptyCard>{emptyText}</EmptyCard>
     ) : (
-      <FestivalStatusList festivals={festivals} />
+      <FestivalStatusList festivals={festivals} onMoreClick={onMoreClick} />
     );
 
   return (

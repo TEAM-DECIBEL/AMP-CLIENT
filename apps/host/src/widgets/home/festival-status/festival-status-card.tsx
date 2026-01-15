@@ -49,9 +49,13 @@ const CHIP_ASSETS = {
 
 interface FestivalStatusCardProps {
   festival: Festival;
+  onMoreClick: () => void;
 }
 
-const FestivalStatusCard = ({ festival }: FestivalStatusCardProps) => {
+const FestivalStatusCard = ({
+  festival,
+  onMoreClick,
+}: FestivalStatusCardProps) => {
   return (
     <CardFestival>
       <CardFestival.Image src={festival.mainImageUrl} alt={festival.title} />
@@ -62,7 +66,12 @@ const FestivalStatusCard = ({ festival }: FestivalStatusCardProps) => {
         </CardFestival.Chip>
       </CardFestival.Body>
       <CardFestival.Icon>
-        <button type='button' className={styles.moreButton} aria-label='더보기'>
+        <button
+          type='button'
+          className={styles.moreButton}
+          aria-label='더보기'
+          onClick={onMoreClick}
+        >
           <MoreIcon aria-hidden />
         </button>
       </CardFestival.Icon>
