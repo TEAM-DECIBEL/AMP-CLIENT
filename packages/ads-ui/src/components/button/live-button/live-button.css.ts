@@ -12,7 +12,7 @@ export const liveButtonContainer = style({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
-  minHeight: '11.8rem',
+  aspectRatio: '1.95 / 1',
   padding: '0.7rem',
   gap: '0.5rem',
   backgroundColor: ampThemeVars.color.gray_000,
@@ -61,8 +61,7 @@ export const iconContainer = style({
 
 export const img = style({
   width: '100%',
-  minHeight: '7.5rem',
+  aspectRatio: '1.95 / 1',
   borderRadius: '8px',
   objectFit: 'cover',
-  overflow: 'hidden',
 });
