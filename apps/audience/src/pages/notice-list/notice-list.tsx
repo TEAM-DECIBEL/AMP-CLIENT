@@ -49,7 +49,7 @@ const NoticeListPage = () => {
         ? MOCK_DATA
         : MOCK_DATA.filter((item) => item.categoryName === selectedCategory);
 
-    return filtered.sort((a, b) => {
+    return [...filtered].sort((a, b) => {
       if (a.isPinned !== b.isPinned) {
         return a.isPinned ? -1 : 1;
       }
