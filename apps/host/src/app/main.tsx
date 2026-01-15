@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { OverlayProvider } from '@amp/ads-ui';
+import { OverlayProvider, ToastContainer } from '@amp/ads-ui';
 
 import App from '@app/App';
 
@@ -11,6 +11,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <OverlayProvider>
       <App />
+      <ToastContainer />
     </OverlayProvider>
   </StrictMode>,
 );
