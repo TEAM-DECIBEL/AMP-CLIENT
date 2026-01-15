@@ -3,6 +3,7 @@ import { ROUTE_PATH } from '@shared/constants/path';
 import {
   EventCreatePage,
   HomePage,
+  MyHistoryPage,
   MyPage,
   NoticeCreatePage,
   NoticeDetailsPage,
@@ -33,5 +34,9 @@ export const globalRoutes = [
   {
     path: ROUTE_PATH.MYPAGE,
     element: <MyPage />,
+  },
+  {
+    path: ROUTE_PATH.MY_HISTORY,
+    element: <MyHistoryPage />,
   },
 ];
