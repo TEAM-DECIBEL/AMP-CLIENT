@@ -1,4 +1,6 @@
-export const homeMockData = {
+import type { HomeResponseData } from '@shared/types/home-response';
+
+export const homeData: HomeResponseData = {
   summary: {
     ongoingCount: 2,
     upcomingCount: 3,
