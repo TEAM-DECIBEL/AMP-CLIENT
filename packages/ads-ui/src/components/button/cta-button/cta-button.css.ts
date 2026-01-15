@@ -7,7 +7,8 @@ export const base = style({
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '1.3rem 12.4rem',
+  padding: '1.3rem 0',
+  width: '100%',
   borderRadius: '20px',
   color: ampThemeVars.color.gray_000,
   ...ampThemeVars.font.title_sb_16,
@@ -39,7 +40,7 @@ export const ctaButton = recipe({
       },
       social: {
         gap: '1.6rem',
-        padding: '1.4rem 5.9rem',
+        padding: '1.2rem 0',
         border: `1px solid ${ampThemeVars.color.gray_200}`,
         borderRadius: '100px',
         backgroundColor: ampThemeVars.color.gray_000,
@@ -47,14 +48,14 @@ export const ctaButton = recipe({
       },
       icon: {
         gap: '1rem',
-        padding: '1.3rem',
+        padding: '1.3rem 0',
         border: `1px solid ${ampThemeVars.color.gray_200}`,
         borderRadius: '40px',
         backgroundColor: ampThemeVars.color.gray_000,
         color: ampThemeVars.color.gray_900,
         selectors: {
-          '&[data-selected="true"]': {
-            border: 'none',
+          '&[aria-selected="true"]': {
+            border: '1px solid transparent',
             backgroundColor: ampThemeVars.color.gray_900,
             color: ampThemeVars.color.gray_000,
           },
@@ -68,6 +69,7 @@ export const ctaButton = recipe({
       },
       add: {
         gap: '1rem',
+        padding: '1rem 0',
         border: `1px solid ${ampThemeVars.color.gray_200}`,
         borderRadius: '99px',
         color: ampThemeVars.color.gray_500,
@@ -75,7 +77,7 @@ export const ctaButton = recipe({
         selectors: {
           '&:disabled': {
             border: 'none',
-            backgroundColor: ampThemeVars.color.gray_500,
+            backgroundColor: ampThemeVars.color.gray_800,
             color: ampThemeVars.color.gray_000,
             cursor: 'not-allowed',
           },

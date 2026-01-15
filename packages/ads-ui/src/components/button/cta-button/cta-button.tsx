@@ -29,7 +29,7 @@ const CtaButton = ({
       type='button'
       disabled={disabled}
       onClick={onClick}
-      data-selected={isSelected ? 'true' : 'false'}
+      aria-selected={type === 'icon' ? isSelected : undefined}
       className={styles.ctaButton({ type })}
     >
       {Icon ? <Icon /> : null}
