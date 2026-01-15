@@ -2,7 +2,7 @@ import { CtaButton } from '@amp/ads-ui';
 
 import FestivalStatus from '@widgets/home/festival-status/festival-status';
 
-import { homeData } from '@shared/mocks/home';
+import { homeData } from '@shared/mocks/home-data';
 
 import * as styles from './home.css';
 

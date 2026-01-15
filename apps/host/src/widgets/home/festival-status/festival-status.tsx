@@ -1,16 +1,8 @@
+import type { Festival } from '@shared/types/home-response';
 import EmptyCard from '@shared/ui/card/empty-card/empty-card';
 import HomeChip from '@shared/ui/chip/home-chip/home-chip';
 
 import * as styles from './festival-status.css';
-
-export interface Festival {
-  festivalId: number;
-  mainImageUrl: string;
-  title: string;
-  period: string;
-  status: string;
-  dDay: number;
-}
 
 interface FestivalStatusProps {
   ongoingCount: number;
