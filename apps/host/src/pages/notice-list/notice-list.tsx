@@ -20,8 +20,10 @@ const CATEGORIES = [
   '기타',
 ] as const;
 
+type CategoryType = (typeof CATEGORIES)[number];
+
 const NoticeListPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>(
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
     CATEGORIES[0],
   );
 
@@ -41,7 +43,7 @@ const NoticeListPage = () => {
     });
   }, [selectedCategory]);
 
-  const handleChipClick = (category: string) => {
+  const handleChipClick = (category: CategoryType) => {
     setSelectedCategory(category);
   };
 
