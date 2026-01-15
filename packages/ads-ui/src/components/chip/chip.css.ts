@@ -32,7 +32,7 @@ export const chip = recipe({
     },
     status: {
       current: {
-        backgroundColor: ampThemeVars.color.primary_light2,
+        backgroundColor: ampThemeVars.color.primary_light,
         color: ampThemeVars.color.primary_deep,
       },
       upcoming: {

@@ -8,6 +8,7 @@ globalStyle('body', {
   lineHeight: '1.5',
   WebkitFontSmoothing: 'antialiased',
   textRendering: 'optimizeLegibility',
+  margin: 0,
 });
 
 globalStyle(
@@ -62,5 +63,9 @@ globalStyle(':focus-visible', {
 });
 
 globalStyle('p', {
+  margin: 0,
+});
+
+globalStyle('h1, h2, h3, h4, h5, h6', {
   margin: 0,
 });

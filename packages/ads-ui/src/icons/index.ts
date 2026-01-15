@@ -5,6 +5,7 @@ export { default as BackIcon } from './svgs/icn_back.svg?react';
 export { default as CalendarIcon } from './svgs/icn_calendar.svg?react';
 export { default as CameraIcon } from './svgs/icn_camera.svg?react';
 export { default as ChatIcon } from './svgs/icn_chat.svg?react';
+export { default as CheckIcon } from './svgs/icn_check.svg?react';
 export { default as ConfirmIcon } from './svgs/icn_confirm.svg?react';
 export { default as DeleteIcon } from './svgs/icn_delete.svg?react';
 export { default as ExLogoIcon } from './svgs/icn_exlogo.svg?react';
