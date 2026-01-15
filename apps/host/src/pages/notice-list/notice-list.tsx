@@ -94,6 +94,7 @@ const NoticeListPage = () => {
                   content={notice.content}
                   isPinned={notice.isPinned}
                   createdAt={notice.createdAt}
+                  onClick={() => {}}
                 />
               </div>
             ))
