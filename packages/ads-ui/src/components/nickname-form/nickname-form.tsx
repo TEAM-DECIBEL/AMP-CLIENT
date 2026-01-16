@@ -8,11 +8,12 @@ interface NicknameFormProps {
   onChange: (value: string) => void;
 }
 
+const NICKNAME_MAX_LENGTH = 12;
+const inputId = 'name-input';
+
 const NicknameForm = ({ userType, value, onChange }: NicknameFormProps) => {
   const nameLabelMap = { host: '주최사명', audience: '닉네임' } as const;
   const nameLabel = nameLabelMap[userType];
-
-  const inputId = 'name-input';
 
   return (
     <div className={styles.form}>
@@ -28,11 +29,13 @@ const NicknameForm = ({ userType, value, onChange }: NicknameFormProps) => {
           id={inputId}
           variant='default'
           placeholder={`${nameLabel}을 입력해주세요.`}
-          maxLength={12}
+          maxLength={NICKNAME_MAX_LENGTH}
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
-        <p className={styles.supportingText}>최대 12자까지만 입력 가능해요.</p>
+        <p className={styles.supportingText}>
+          최대 {NICKNAME_MAX_LENGTH}자까지만 입력 가능해요.
+        </p>
       </div>
     </div>
   );
