@@ -32,18 +32,20 @@ const HomePage = () => {
   return (
     <div>
       {banner}
-      <Tabs
-        defaultValue='all'
-        variant='viewer'
-        onValueChange={(value) =>
-          setSelectedTab(value === 'upcoming' ? 'upcoming' : 'all')
-        }
-      >
-        <Tabs.List>
-          <Tabs.Trigger value='all'>전체 공연</Tabs.Trigger>
-          <Tabs.Trigger value='upcoming'>관람 예정 공연</Tabs.Trigger>
-        </Tabs.List>
-      </Tabs>
+      <div className={styles.tabsSticky}>
+        <Tabs
+          defaultValue='all'
+          variant='viewer'
+          onValueChange={(value) =>
+            setSelectedTab(value === 'upcoming' ? 'upcoming' : 'all')
+          }
+        >
+          <Tabs.List>
+            <Tabs.Trigger value='all'>전체 공연</Tabs.Trigger>
+            <Tabs.Trigger value='upcoming'>관람 예정 공연</Tabs.Trigger>
+          </Tabs.List>
+        </Tabs>
+      </div>
       <div className={styles.content}>
         <div className={styles.cardList}>
           {selectedTab === 'all'
