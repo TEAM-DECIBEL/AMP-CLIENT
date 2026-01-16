@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { TAB_ALL, type TabValue } from '@widgets/home/constants/home-tabs';
+
 import {
   allFestivalData,
   upcomingFestivalData,
@@ -9,10 +11,8 @@ import type {
   UpcomingFestivalItem,
 } from '@shared/types/home-response';
 
-type TabValue = 'all' | 'upcoming';
-
 const useHomeFestivals = () => {
-  const [selectedTab, setSelectedTab] = useState<TabValue>('all');
+  const [selectedTab, setSelectedTab] = useState<TabValue>(TAB_ALL);
   const [allFestivals, setAllFestivals] = useState<AllFestivalItem[]>(
     allFestivalData.data.festivals,
   );

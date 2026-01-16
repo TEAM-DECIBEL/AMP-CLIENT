@@ -2,13 +2,14 @@ import type {
   AllFestivalItem,
   UpcomingFestivalItem,
 } from '@shared/types/home-response';
+import type { TabValue } from '@widgets/home/constants/home-tabs';
 
 import HomeFestivalList from '../home-festival-list/home-festival-list';
 import HomeFestivalTabs from '../home-festival-tabs/home-festival-tabs';
 
 interface HomeFestivalSectionProps {
-  selectedTab: 'all' | 'upcoming';
-  onTabChange: (value: 'all' | 'upcoming') => void;
+  selectedTab: TabValue;
+  onTabChange: (value: TabValue) => void;
   allFestivals: AllFestivalItem[];
   upcomingFestivals: UpcomingFestivalItem[];
   onToggleAllFestival: (festivalId: number, nextSelected: boolean) => void;

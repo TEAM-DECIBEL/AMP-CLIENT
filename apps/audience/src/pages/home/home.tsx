@@ -1,5 +1,5 @@
 import HomeBanner from '@widgets/banner/home-banner/home-banner';
-import HomeFestivalSection from '@widgets/home/home-festival-section/home-festival-section';
+import HomeFestivalSection from '@widgets/home/components/home-festival-section/home-festival-section';
 
 import { homeData } from '@shared/mocks/home-data';
 

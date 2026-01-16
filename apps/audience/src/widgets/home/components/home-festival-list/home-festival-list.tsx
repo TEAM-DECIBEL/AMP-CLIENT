@@ -1,5 +1,7 @@
 import { Chip } from '@amp/ads-ui';
 
+import { TAB_ALL, TAB_UPCOMING, type TabValue } from '@widgets/home/constants/home-tabs';
+
 import type {
   AllFestivalItem,
   UpcomingFestivalItem,
@@ -14,7 +16,7 @@ import {
 } from '../home-festival-section/home-festival-section.css';
 
 interface HomeFestivalListProps {
-  selectedTab: 'all' | 'upcoming';
+  selectedTab: TabValue;
   allFestivals: AllFestivalItem[];
   upcomingFestivals: UpcomingFestivalItem[];
   onToggleAllFestival: (festivalId: number, nextSelected: boolean) => void;
@@ -29,11 +31,11 @@ const HomeFestivalList = ({
   onToggleUpcomingFestival,
 }: HomeFestivalListProps) => {
   const emptyConfig = {
-    all: {
+    [TAB_ALL]: {
       isEmpty: allFestivals.length === 0,
       text: '등록한 공연이 아직 없어요.',
     },
-    upcoming: {
+    [TAB_UPCOMING]: {
       isEmpty: upcomingFestivals.length === 0,
       text: '관람 예정인 공연이 없어요.',
     },
@@ -45,7 +47,7 @@ const HomeFestivalList = ({
         <HomeFestivalEmpty image={null} text={emptyConfig[selectedTab].text} />
       ) : (
         <div className={cardList}>
-          {selectedTab === 'all'
+          {selectedTab === TAB_ALL
             ? allFestivals.map((festival) => (
                 <HomeFestivalCard
                   key={festival.festivalId}

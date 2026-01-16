@@ -1,9 +1,11 @@
 import { Tabs } from '@amp/ads-ui';
 
+import { TAB_ALL, TAB_UPCOMING, type TabValue } from '@widgets/home/constants/home-tabs';
+
 import { tabsSticky } from '../home-festival-section/home-festival-section.css';
 interface HomeFestivalTabsProps {
-  selectedTab: 'all' | 'upcoming';
-  onTabChange: (value: 'all' | 'upcoming') => void;
+  selectedTab: TabValue;
+  onTabChange: (value: TabValue) => void;
 }
 
 const HomeFestivalTabs = ({
@@ -16,12 +18,12 @@ const HomeFestivalTabs = ({
         defaultValue={selectedTab}
         variant='viewer'
         onValueChange={(value) =>
-          onTabChange(value === 'upcoming' ? 'upcoming' : 'all')
+          onTabChange(value === TAB_UPCOMING ? TAB_UPCOMING : TAB_ALL)
         }
       >
         <Tabs.List>
-          <Tabs.Trigger value='all'>전체 공연</Tabs.Trigger>
-          <Tabs.Trigger value='upcoming'>관람 예정 공연</Tabs.Trigger>
+          <Tabs.Trigger value={TAB_ALL}>전체 공연</Tabs.Trigger>
+          <Tabs.Trigger value={TAB_UPCOMING}>관람 예정 공연</Tabs.Trigger>
         </Tabs.List>
       </Tabs>
     </div>
