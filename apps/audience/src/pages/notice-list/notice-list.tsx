@@ -134,8 +134,8 @@ const NoticeListPage = () => {
         }
       />
       <div className={styles.mainContent}>
-        <div className={styles.contentHeader}>
-          <div className={styles.tabBar}>
+        <header className={styles.contentHeader}>
+          <nav className={styles.tabBar}>
             {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
             <Tabs defaultValue='notice' variant='notice'>
               <Tabs.List>
@@ -143,8 +143,8 @@ const NoticeListPage = () => {
                 <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
               </Tabs.List>
             </Tabs>
-          </div>
-          <div className={styles.chipSection}>
+          </nav>
+          <section className={styles.chipSection}>
             {CATEGORIES.map((category) => (
               <CategoryButton
                 key={category}
@@ -155,7 +155,7 @@ const NoticeListPage = () => {
                 {category}
               </CategoryButton>
             ))}
-          </div>
+          </section>
           {!(selectedCategory === '전체') && (
             <div className={styles.ctaButton}>
               <CtaButton type='alert' onClick={handleAlertClick}>
@@ -163,7 +163,7 @@ const NoticeListPage = () => {
               </CtaButton>
             </div>
           )}
-        </div>
+        </header>
         <div className={styles.cardList}>
           {sortedList.length === 0 ? (
             <div className={styles.emptyContainer}>
