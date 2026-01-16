@@ -24,7 +24,7 @@ export const nicknameForm = style({
 });
 
 export const supportingText = style({
-  paddingLeft: ' 1rem',
+  paddingLeft: '1rem',
   ...ampThemeVars.font.body_m_13,
   color: ampThemeVars.color.gray_400,
   marginTop: '0.8rem',
