@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
 
-import * as styles from './home-chip.css';
+import * as styles from './status-chip.css';
 
-interface HomeChipProps {
+interface StatusChipProps {
   title: ReactNode;
   count: ReactNode;
 }
 
-const HomeChip = ({ title, count }: HomeChipProps) => {
+const StatusChip = ({ title, count }: StatusChipProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -18,4 +18,4 @@ const HomeChip = ({ title, count }: HomeChipProps) => {
   );
 };
 
-export default HomeChip;
+export default StatusChip;

@@ -1,6 +1,6 @@
 import type { Festival } from '@shared/types/home-response';
 import EmptyCard from '@shared/ui/card/empty-card/empty-card';
-import HomeChip from '@shared/ui/chip/home-chip/home-chip';
+import StatusChip from '@shared/ui/chip/status-chip/status-chip';
 
 import FestivalCard from '../festival-card/festival-card';
 
@@ -47,7 +47,7 @@ const FestivalSection = ({
 
   return (
     <div className={styles.section}>
-      <HomeChip title={title} count={count} />
+      <StatusChip title={title} count={count} />
       {content}
     </div>
   );
