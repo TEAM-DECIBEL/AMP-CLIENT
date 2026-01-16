@@ -1,6 +1,7 @@
+import FestivalActions from '@features/home/festival-actions/festival-actions';
+
 import type { Festival } from '@shared/types/home-response';
 
-import FestivalActions from '@features/home/festival-actions/festival-actions';
 import FestivalSection from '../festival-section/festival-section';
 
 import * as styles from './festival-overview.css';
