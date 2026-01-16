@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import { CtaButton, NicknameForm } from '@amp/ads-ui';
 
@@ -7,7 +7,7 @@ import * as styles from './onboarding.css';
 const Onboarding = () => {
   const [name, setName] = useState('');
 
-  const disabled = useMemo(() => name.trim().length === 0, [name]);
+  const disabled = name.trim().length === 0;
   const selected = !disabled;
 
   const onClick = () => {
