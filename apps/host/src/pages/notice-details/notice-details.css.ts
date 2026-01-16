@@ -2,6 +2,14 @@ import { style } from '@vanilla-extract/css';
 
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
+export const container = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  height: 'calc(100dvh - 4.8rem)',
+  overflow: 'hidden',
+});
+
 export const img = style({
   width: '100%',
   height: '36.6rem',
@@ -10,8 +18,11 @@ export const img = style({
 });
 
 export const noticeDetail = style({
+  flex: 1,
   display: 'flex',
   flexDirection: 'column',
+  overflowY: 'auto',
+  minHeight: 0,
 });
 
 export const header = style({
@@ -28,14 +39,8 @@ export const contents = style({
 });
 
 export const button = style({
-  position: 'fixed',
-  bottom: 0,
   display: 'flex',
   gap: '1rem',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  width: '100%',
-  maxWidth: '430px',
   padding: '1.7rem 2rem',
 });
 

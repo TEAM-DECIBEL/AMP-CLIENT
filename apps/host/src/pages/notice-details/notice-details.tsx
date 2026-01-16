@@ -48,13 +48,13 @@ const NoticeDetailsPage = () => {
   };
 
   return (
-    <main>
-      <img
-        src={MOCK_DATA.imageUrl}
-        alt={MOCK_DATA.title}
-        className={styles.img}
-      />
+    <main className={styles.container}>
       <div className={styles.noticeDetail}>
+        <img
+          src={MOCK_DATA.imageUrl}
+          alt={MOCK_DATA.title}
+          className={styles.img}
+        />
         <div className={styles.header}>
           <p className={styles.category}>
             주최 공지 {'>'} {MOCK_DATA.category}
