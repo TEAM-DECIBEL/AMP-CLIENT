@@ -91,26 +91,7 @@ export const upcomingFestivalData = {
   status: '200_001',
   message: '관람 공연 조회가 완료되었습니다.',
   data: {
-    festivals: [
-      {
-        festivalId: 15,
-        title: 'Grand Mint Festival',
-        mainImageUrl: 'https://example.com/image1.jpg',
-        period: '2026-01-15 ~ 2026-01-16',
-        status: '관람 예정',
-        wishList: true,
-        dDay: -1,
-      },
-      {
-        festivalId: 12,
-        title: 'Grand Mint Festival',
-        mainImageUrl: 'https://example.com/image2.jpg',
-        period: '2026-01-15 ~ 2026-01-16',
-        status: '관람 예정',
-        wishList: true,
-        dDay: 0,
-      },
-    ],
+    festivals: [],
     pagination: {
       currentPage: 0,
       totalPages: 1,

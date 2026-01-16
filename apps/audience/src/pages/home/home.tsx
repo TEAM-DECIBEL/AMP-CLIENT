@@ -8,15 +8,21 @@ import {
   allFestivalData,
   upcomingFestivalData,
 } from '@shared/mocks/home-festival-data';
+import type {
+  AllFestivalItem,
+  UpcomingFestivalItem,
+} from '@shared/types/home-response';
 
 const HomePage = () => {
   const nickname = '관객 이름';
   const upcomingFestival = homeData.data;
   const [selectedTab, setSelectedTab] = useState<'all' | 'upcoming'>('all');
-  const [allFestivals, setAllFestivals] = useState(
+  const [allFestivals, setAllFestivals] = useState<AllFestivalItem[]>(
     allFestivalData.data.festivals,
   );
-  const [upcomingFestivals, setUpcomingFestivals] = useState(
+  const [upcomingFestivals, setUpcomingFestivals] = useState<
+    UpcomingFestivalItem[]
+  >(
     upcomingFestivalData.data.festivals,
   );
 
