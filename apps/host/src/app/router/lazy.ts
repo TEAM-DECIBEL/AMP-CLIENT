@@ -19,6 +19,8 @@ export const NoticeListPage = lazy(
   () => import('@pages/notice-list/notice-list'),
 );
 
+export const MyHistoryPage = lazy(() => import('@pages/my-history/my-history'));
+
 export const OnboardingPage = lazy(
   () => import('@pages/onboarding/onboarding'),
 );

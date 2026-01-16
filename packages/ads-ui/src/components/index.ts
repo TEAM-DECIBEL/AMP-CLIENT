@@ -9,6 +9,7 @@ export { default as CircleButton } from './button/circle-button/circle-button';
 export { default as CrowdLevelButton } from './button/crowd-level-button/crowd-level-button';
 export { default as CtaButton } from './button/cta-button/cta-button';
 export { default as FlagButton } from './button/flag-button/flag-button';
+export { default as LiveButton } from './button/live-button/live-button';
 export { default as NavigationListContainer } from './button/navigation-list-button/navigation-list-container';
 export { default as NavigationListItem } from './button/navigation-list-button/navigation-list-item';
 export { default as CardFestival } from './card/card-festival/card-festival';

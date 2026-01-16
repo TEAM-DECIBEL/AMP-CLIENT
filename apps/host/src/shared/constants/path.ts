@@ -5,4 +5,5 @@ export const ROUTE_PATH = {
   NOTICE_DETAILS: 'events/:eventId/notices/:noticeId',
   MYPAGE: 'mypage',
   ONBOARDING: 'onboarding',
+  MY_HISTORY: 'mypage/history',
 } as const;
