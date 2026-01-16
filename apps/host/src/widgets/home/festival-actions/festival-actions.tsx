@@ -1,69 +1,40 @@
-import { useState } from 'react';
 import type { ReactNode } from 'react';
 
 import { Modal, OptionSheet, RectButton } from '@amp/ads-ui';
 
-interface FestivalActionsProps {
-  children: (onOpenOptionSheet: (festivalId: number) => void) => ReactNode;
-  onEdit?: (festivalId: number) => void;
-  onDelete?: (festivalId: number) => void;
+interface FestivalActionsViewProps {
+  children: ReactNode;
+  isOptionSheetOpen: boolean;
+  isDeleteModalOpen: boolean;
+  onCloseOptionSheet: () => void;
+  onOpenDeleteModal: () => void;
+  onCloseDeleteModal: () => void;
+  onEdit: () => void;
+  onConfirmDelete: () => void;
 }
 
-const FestivalActions = ({
+const FestivalActionsView = ({
   children,
+  isOptionSheetOpen,
+  isDeleteModalOpen,
+  onCloseOptionSheet,
+  onOpenDeleteModal,
+  onCloseDeleteModal,
   onEdit,
-  onDelete,
-}: FestivalActionsProps) => {
-  const [isOptionSheetOpen, setIsOptionSheetOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedFestivalId, setSelectedFestivalId] = useState<number | null>(
-    null,
-  );
-
-  const handleOpenOptionSheet = (festivalId: number) => {
-    setSelectedFestivalId(festivalId);
-    setIsOptionSheetOpen(true);
-  };
-
-  const handleCloseOptionSheet = () => {
-    setIsOptionSheetOpen(false);
-  };
-
-  const handleOpenDeleteModal = () => {
-    setIsOptionSheetOpen(false);
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleCloseDeleteModal = () => {
-    setIsDeleteModalOpen(false);
-  };
-
-  const handleEdit = () => {
-    if (selectedFestivalId !== null) {
-      onEdit?.(selectedFestivalId);
-    }
-    setIsOptionSheetOpen(false);
-  };
-
-  const handleConfirmDelete = () => {
-    if (selectedFestivalId !== null) {
-      onDelete?.(selectedFestivalId);
-    }
-    setIsDeleteModalOpen(false);
-  };
-
+  onConfirmDelete,
+}: FestivalActionsViewProps) => {
   return (
     <>
-      {children(handleOpenOptionSheet)}
-      <OptionSheet open={isOptionSheetOpen} onClose={handleCloseOptionSheet}>
-        <OptionSheet.Item onClick={handleEdit}>
+      {children}
+      <OptionSheet open={isOptionSheetOpen} onClose={onCloseOptionSheet}>
+        <OptionSheet.Item onClick={onEdit}>
           수정하기
         </OptionSheet.Item>
-        <OptionSheet.Item onClick={handleOpenDeleteModal}>
+        <OptionSheet.Item onClick={onOpenDeleteModal}>
           삭제하기
         </OptionSheet.Item>
       </OptionSheet>
-      <Modal open={isDeleteModalOpen} onClose={handleCloseDeleteModal}>
+      <Modal open={isDeleteModalOpen} onClose={onCloseDeleteModal}>
         <Modal.Panel role='alertdialog'>
           <Modal.Content>
             <Modal.Title>공연을 삭제할까요?</Modal.Title>
@@ -72,10 +43,10 @@ const FestivalActions = ({
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <RectButton variant='secondary' onClick={handleCloseDeleteModal}>
+            <RectButton variant='secondary' onClick={onCloseDeleteModal}>
               취소
             </RectButton>
-            <RectButton variant='primary' onClick={handleConfirmDelete}>
+            <RectButton variant='primary' onClick={onConfirmDelete}>
               삭제하기
             </RectButton>
           </Modal.Actions>
@@ -85,4 +56,4 @@ const FestivalActions = ({
   );
 };
 
-export default FestivalActions;
+export default FestivalActionsView;
