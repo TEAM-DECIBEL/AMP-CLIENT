@@ -20,7 +20,7 @@ export const ctaArea = style({
   left: '50%',
   transform: 'translateX(-50%)',
   width: '100%',
-  maxWidth: '430px',
+  maxWidth: '43rem',
   padding: '2rem',
   display: 'flex',
   flexDirection: 'column',
