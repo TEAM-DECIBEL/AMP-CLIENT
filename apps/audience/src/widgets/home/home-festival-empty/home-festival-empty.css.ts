@@ -7,7 +7,7 @@ export const empty = style({
   flexDirection: 'column',
   alignItems: 'center',
   gap: '1.6rem',
-  marginTop: '7rem',
+  marginTop: '5rem',
 });
 
 export const image = style({
