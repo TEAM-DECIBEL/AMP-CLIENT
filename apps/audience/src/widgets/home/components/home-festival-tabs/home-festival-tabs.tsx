@@ -2,7 +2,7 @@ import { Tabs } from '@amp/ads-ui';
 
 import { TAB_ALL, TAB_UPCOMING, type TabValue } from '@widgets/home/constants/home-tabs';
 
-import { tabsSticky } from '../home-festival-section/home-festival-section.css';
+import { tabsSticky } from './home-festival-tabs.css';
 interface HomeFestivalTabsProps {
   selectedTab: TabValue;
   onTabChange: (value: TabValue) => void;

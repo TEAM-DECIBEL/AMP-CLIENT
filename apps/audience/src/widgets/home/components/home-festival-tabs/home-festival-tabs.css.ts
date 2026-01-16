@@ -8,13 +8,3 @@ export const tabsSticky = style({
   zIndex: ampThemeVars.zIndex.sticky,
   backgroundColor: ampThemeVars.color.gray_000,
 });
-
-export const content = style({
-  padding: '2rem',
-});
-
-export const cardList = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1rem',
-});

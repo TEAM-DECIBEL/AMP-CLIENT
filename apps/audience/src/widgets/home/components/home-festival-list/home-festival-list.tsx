@@ -10,10 +10,7 @@ import type {
 import HomeFestivalCard from '../home-festival-card/home-festival-card';
 import HomeFestivalEmpty from '../home-festival-empty/home-festival-empty';
 
-import {
-  cardList,
-  content,
-} from '../home-festival-section/home-festival-section.css';
+import { cardList, content } from './home-festival-list.css';
 
 interface HomeFestivalListProps {
   selectedTab: TabValue;
