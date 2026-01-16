@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 
 import { CtaButton, NicknameForm } from '@amp/ads-ui';
 
-import * as styles from './onboardiing.css';
+import * as styles from './onboarding.css';
 
 const Onboarding = () => {
   const [name, setName] = useState('');
