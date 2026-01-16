@@ -28,19 +28,21 @@ const HomeFestivalList = ({
   onToggleAllFestival,
   onToggleUpcomingFestival,
 }: HomeFestivalListProps) => {
-  const isAllEmpty = selectedTab === 'all' && allFestivals.length === 0;
-  const isUpcomingEmpty =
-    selectedTab === 'upcoming' && upcomingFestivals.length === 0;
-
-  const emptyText =
-    selectedTab === 'all'
-      ? '등록한 공연이 아직 없어요.'
-      : '관람 예정인 공연이 없어요.';
+  const emptyConfig = {
+    all: {
+      isEmpty: allFestivals.length === 0,
+      text: '등록한 공연이 아직 없어요.',
+    },
+    upcoming: {
+      isEmpty: upcomingFestivals.length === 0,
+      text: '관람 예정인 공연이 없어요.',
+    },
+  } as const;
 
   return (
     <div className={content}>
-      {isAllEmpty || isUpcomingEmpty ? (
-        <HomeFestivalEmpty image={null} text={emptyText} />
+      {emptyConfig[selectedTab].isEmpty ? (
+        <HomeFestivalEmpty image={null} text={emptyConfig[selectedTab].text} />
       ) : (
         <div className={cardList}>
           {selectedTab === 'all'
