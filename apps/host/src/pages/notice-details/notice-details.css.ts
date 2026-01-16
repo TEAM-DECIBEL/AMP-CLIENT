@@ -21,8 +21,8 @@ export const noticeDetail = style({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  overflowY: 'auto',
   minHeight: 0,
+  overflowY: 'auto',
 });
 
 export const header = style({

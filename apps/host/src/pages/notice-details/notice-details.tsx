@@ -67,6 +67,7 @@ const NoticeDetailsPage = () => {
         </div>
       </div>
       <div className={styles.button}>
+        {/* TODO: 수정하기 뷰 라우팅 */}
         <CtaButton type='icon' onClick={() => {}}>
           수정하기
         </CtaButton>
