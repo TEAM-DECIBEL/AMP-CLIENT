@@ -67,5 +67,6 @@ export const text = style({
 });
 
 export const circleButton = style({
+  height: '5rem',
   flexShrink: 0,
 });
