@@ -27,7 +27,7 @@ const CtaButton = ({
       type='button'
       disabled={disabled}
       onClick={onClick}
-      aria-selected={selected}
+      aria-pressed={selected}
       className={clsx(styles.ctaButton({ type, color }), className)}
     >
       {children}
