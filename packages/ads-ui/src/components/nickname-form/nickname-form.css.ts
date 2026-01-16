@@ -13,7 +13,7 @@ export const title = style({
 
 export const label = style({
   ...ampThemeVars.font.title_sb_16,
-  padding: '0 0.5rem',
+  paddingLeft: '0.5rem',
   marginBottom: '1rem',
 });
 
@@ -24,7 +24,7 @@ export const nicknameForm = style({
 });
 
 export const supportingText = style({
-  padding: '0 1rem',
+  paddingLeft: ' 1rem',
   ...ampThemeVars.font.body_m_13,
   color: ampThemeVars.color.gray_400,
   marginTop: '0.8rem',
