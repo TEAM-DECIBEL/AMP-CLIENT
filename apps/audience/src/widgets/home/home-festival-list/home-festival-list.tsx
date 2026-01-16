@@ -1,10 +1,11 @@
-import { CardFestival, Chip, FlagButton } from '@amp/ads-ui';
+import { Chip } from '@amp/ads-ui';
 
 import type {
   AllFestivalItem,
   UpcomingFestivalItem,
 } from '@shared/types/home-response';
 
+import HomeFestivalCard from '../home-festival-card/home-festival-card';
 import HomeFestivalEmpty from '../home-festival-empty/home-festival-empty';
 
 import {
@@ -44,16 +45,17 @@ const HomeFestivalList = ({
         <div className={cardList}>
           {selectedTab === 'all'
             ? allFestivals.map((festival) => (
-                <CardFestival key={festival.festivalId}>
-                  <CardFestival.Image
-                    src={festival.mainImageUrl}
-                    alt={festival.title}
-                  />
-                  <CardFestival.Body
-                    title={festival.title}
-                    date={festival.period}
-                  >
-                    <CardFestival.Chip>
+                <HomeFestivalCard
+                  key={festival.festivalId}
+                  title={festival.title}
+                  period={festival.period}
+                  imageUrl={festival.mainImageUrl}
+                  wishList={festival.wishList}
+                  onToggle={(nextSelected) =>
+                    onToggleAllFestival(festival.festivalId, nextSelected)
+                  }
+                  chips={
+                    <>
                       <Chip variant='status' status='dday'>
                         {festival.dDay === 0
                           ? 'D-Day'
@@ -64,29 +66,22 @@ const HomeFestivalList = ({
                           관람 예정
                         </Chip>
                       )}
-                    </CardFestival.Chip>
-                  </CardFestival.Body>
-                  <CardFestival.Button>
-                    <FlagButton
-                      selected={festival.wishList}
-                      onChange={(nextSelected) =>
-                        onToggleAllFestival(festival.festivalId, nextSelected)
-                      }
-                    />
-                  </CardFestival.Button>
-                </CardFestival>
+                    </>
+                  }
+                />
               ))
             : upcomingFestivals.map((festival) => (
-                <CardFestival key={festival.festivalId}>
-                  <CardFestival.Image
-                    src={festival.mainImageUrl}
-                    alt={festival.title}
-                  />
-                  <CardFestival.Body
-                    title={festival.title}
-                    date={festival.period}
-                  >
-                    <CardFestival.Chip>
+                <HomeFestivalCard
+                  key={festival.festivalId}
+                  title={festival.title}
+                  period={festival.period}
+                  imageUrl={festival.mainImageUrl}
+                  wishList={festival.wishList}
+                  onToggle={(nextSelected) =>
+                    onToggleUpcomingFestival(festival.festivalId, nextSelected)
+                  }
+                  chips={
+                    <>
                       <Chip variant='status' status='dday'>
                         {festival.dDay === 0
                           ? 'D-Day'
@@ -95,20 +90,9 @@ const HomeFestivalList = ({
                       <Chip variant='status' status='current'>
                         {festival.status}
                       </Chip>
-                    </CardFestival.Chip>
-                  </CardFestival.Body>
-                  <CardFestival.Button>
-                    <FlagButton
-                      selected={festival.wishList}
-                      onChange={(nextSelected) =>
-                        onToggleUpcomingFestival(
-                          festival.festivalId,
-                          nextSelected,
-                        )
-                      }
-                    />
-                  </CardFestival.Button>
-                </CardFestival>
+                    </>
+                  }
+                />
               ))}
         </div>
       )}
