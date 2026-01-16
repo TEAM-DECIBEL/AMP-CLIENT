@@ -40,7 +40,7 @@ const HomeBanner = (props: HomeBannerProps) => {
     return (
       <article className={styles.banner}>
         <p className={styles.text}>
-          <span className={styles.nickname}>{nickname}</span>님, {message}
+          <span className={styles.nickname}>{nickname}님,</span> {message}
         </p>
         <CardHome title={title} location={location} date={date} dday={dday} />
       </article>
@@ -50,7 +50,7 @@ const HomeBanner = (props: HomeBannerProps) => {
   return (
     <article className={styles.banner}>
       <p className={styles.text}>
-        <span className={styles.nickname}>{nickname}</span>님, {message}
+        <span className={styles.nickname}>{nickname}님,</span> {message}
       </p>
     </article>
   );
