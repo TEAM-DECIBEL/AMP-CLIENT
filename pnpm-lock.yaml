@@ -120,6 +120,9 @@ importers:
       '@amp/apis':
         specifier: workspace:*
         version: link:../../packages/apis
+      '@amp/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@tanstack/react-query':
         specifier: ^5.90.16
         version: 5.90.16(react@19.2.3)
@@ -181,6 +184,9 @@ importers:
       '@amp/apis':
         specifier: workspace:*
         version: link:../../packages/apis
+      '@amp/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@tanstack/react-query':
         specifier: ^5.90.16
         version: 5.90.16(react@19.2.3)
@@ -372,6 +378,9 @@ importers:
 
   packages/shared:
     dependencies:
+      '@amp/ads-ui':
+        specifier: workspace:*
+        version: link:../ads-ui
       '@amp/tsconfig':
         specifier: workspace:*
         version: link:../configs/typescript
