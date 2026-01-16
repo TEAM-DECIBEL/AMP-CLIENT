@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import Textfield from '../textfield/textfield';
 
 import * as styles from './nickname-form.css';
@@ -9,11 +10,11 @@ interface NicknameFormProps {
 }
 
 const NICKNAME_MAX_LENGTH = 12;
-const inputId = 'name-input';
 
 const NicknameForm = ({ userType, value, onChange }: NicknameFormProps) => {
   const nameLabelMap = { host: '주최사명', audience: '닉네임' } as const;
   const nameLabel = nameLabelMap[userType];
+  const inputId = useId();
 
   return (
     <div className={styles.form}>
