@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react';
 
-import { NoticeBanner } from '@amp/ads-ui';
-import { Tabs } from '@amp/ads-ui';
-import { CategoryButton } from '@amp/ads-ui';
-import { CardNotice } from '@amp/ads-ui';
-import { CircleButton } from '@amp/ads-ui';
+import {
+  CardNotice,
+  CategoryButton,
+  CircleButton,
+  NoticeBanner,
+  Tabs,
+} from '@amp/ads-ui';
 
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
 

@@ -32,7 +32,7 @@ export const tabBar = style({
 
 export const chipSection = style({
   display: 'flex',
-  gap: '0.3rem',
+  gap: '0.4rem',
   padding: '1.6rem 2rem',
   overflowX: 'auto',
   whiteSpace: 'nowrap',
