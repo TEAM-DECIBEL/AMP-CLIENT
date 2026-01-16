@@ -8,7 +8,7 @@ import * as styles from './festival-section.css';
 
 interface FestivalListProps {
   festivals: Festival[];
-  onMoreClick: () => void;
+  onMoreClick: (festivalId: number) => void;
 }
 
 const FestivalList = ({ festivals, onMoreClick }: FestivalListProps) => {
@@ -28,7 +28,7 @@ interface FestivalSectionProps {
   count: number;
   festivals: Festival[];
   emptyText: string;
-  onMoreClick: () => void;
+  onMoreClick: (festivalId: number) => void;
 }
 
 const FestivalSection = ({

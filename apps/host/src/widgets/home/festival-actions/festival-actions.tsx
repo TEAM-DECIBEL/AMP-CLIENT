@@ -4,14 +4,24 @@ import type { ReactNode } from 'react';
 import { Modal, OptionSheet, RectButton } from '@amp/ads-ui';
 
 interface FestivalActionsProps {
-  children: (onOpenOptionSheet: () => void) => ReactNode;
+  children: (onOpenOptionSheet: (festivalId: number) => void) => ReactNode;
+  onEdit?: (festivalId: number) => void;
+  onDelete?: (festivalId: number) => void;
 }
 
-const FestivalActions = ({ children }: FestivalActionsProps) => {
+const FestivalActions = ({
+  children,
+  onEdit,
+  onDelete,
+}: FestivalActionsProps) => {
   const [isOptionSheetOpen, setIsOptionSheetOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedFestivalId, setSelectedFestivalId] = useState<number | null>(
+    null,
+  );
 
-  const handleOpenOptionSheet = () => {
+  const handleOpenOptionSheet = (festivalId: number) => {
+    setSelectedFestivalId(festivalId);
     setIsOptionSheetOpen(true);
   };
 
@@ -28,7 +38,17 @@ const FestivalActions = ({ children }: FestivalActionsProps) => {
     setIsDeleteModalOpen(false);
   };
 
+  const handleEdit = () => {
+    if (selectedFestivalId !== null) {
+      onEdit?.(selectedFestivalId);
+    }
+    setIsOptionSheetOpen(false);
+  };
+
   const handleConfirmDelete = () => {
+    if (selectedFestivalId !== null) {
+      onDelete?.(selectedFestivalId);
+    }
     setIsDeleteModalOpen(false);
   };
 
@@ -36,7 +56,7 @@ const FestivalActions = ({ children }: FestivalActionsProps) => {
     <>
       {children(handleOpenOptionSheet)}
       <OptionSheet open={isOptionSheetOpen} onClose={handleCloseOptionSheet}>
-        <OptionSheet.Item onClick={handleCloseOptionSheet}>
+        <OptionSheet.Item onClick={handleEdit}>
           수정하기
         </OptionSheet.Item>
         <OptionSheet.Item onClick={handleOpenDeleteModal}>

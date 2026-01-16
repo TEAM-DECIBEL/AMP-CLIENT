@@ -44,7 +44,7 @@ const CHIP_ASSETS = {
 
 interface FestivalCardProps {
   festival: Festival;
-  onMoreClick: () => void;
+  onMoreClick: (festivalId: number) => void;
 }
 
 const FestivalCard = ({
@@ -65,7 +65,7 @@ const FestivalCard = ({
           type='button'
           className={styles.moreButton}
           aria-label='더보기'
-          onClick={onMoreClick}
+          onClick={() => onMoreClick(festival.festivalId)}
         >
           <MoreIcon aria-hidden />
         </button>
