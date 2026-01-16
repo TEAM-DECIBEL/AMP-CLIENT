@@ -10,7 +10,7 @@ const Onboarding = () => {
   const disabled = name.trim().length === 0;
   const selected = !disabled;
 
-  const onClick = () => {
+  const handleNext = () => {
     // TODO: 페이지 이동
   };
   return (
@@ -21,7 +21,7 @@ const Onboarding = () => {
           type='gray'
           selected={selected}
           disabled={disabled}
-          onClick={onClick}
+          onClick={handleNext}
         >
           다음으로
         </CtaButton>
