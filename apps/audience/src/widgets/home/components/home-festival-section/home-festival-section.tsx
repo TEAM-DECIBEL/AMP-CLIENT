@@ -1,8 +1,9 @@
+import type { TabValue } from '@widgets/home/constants/home-tabs';
+
 import type {
   AllFestivalItem,
   UpcomingFestivalItem,
 } from '@shared/types/home-response';
-import type { TabValue } from '@widgets/home/constants/home-tabs';
 
 import HomeFestivalList from '../home-festival-list/home-festival-list';
 import HomeFestivalTabs from '../home-festival-tabs/home-festival-tabs';
