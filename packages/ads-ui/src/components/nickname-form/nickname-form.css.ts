@@ -29,7 +29,3 @@ export const supportingText = style({
   color: ampThemeVars.color.gray_400,
   marginTop: '0.8rem',
 });
-
-export const buttonContainer = style({
-  padding: '2rem',
-});
