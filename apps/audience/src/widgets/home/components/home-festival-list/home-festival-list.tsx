@@ -1,6 +1,10 @@
 import { Chip } from '@amp/ads-ui';
 
-import { TAB_ALL, TAB_UPCOMING, type TabValue } from '@widgets/home/constants/home-tabs';
+import {
+  TAB_ALL,
+  TAB_UPCOMING,
+  type TabValue,
+} from '@widgets/home/constants/home-tabs';
 
 import type {
   AllFestivalItem,
@@ -27,6 +31,13 @@ const HomeFestivalList = ({
   onToggleAllFestival,
   onToggleUpcomingFestival,
 }: HomeFestivalListProps) => {
+  const formatDday = (dDay: number) => {
+    if (dDay === 0) {
+      return 'D-Day';
+    }
+    return dDay > 0 ? `D-${dDay}` : `D+${Math.abs(dDay)}`;
+  };
+
   const emptyConfig = {
     [TAB_ALL]: {
       isEmpty: allFestivals.length === 0,
@@ -58,9 +69,7 @@ const HomeFestivalList = ({
                   chips={
                     <>
                       <Chip variant='status' status='dday'>
-                        {festival.dDay === 0
-                          ? 'D-Day'
-                          : `D-${Math.abs(festival.dDay)}`}
+                        {formatDday(festival.dDay)}
                       </Chip>
                       {festival.wishList && (
                         <Chip variant='status' status='current'>
@@ -84,9 +93,7 @@ const HomeFestivalList = ({
                   chips={
                     <>
                       <Chip variant='status' status='dday'>
-                        {festival.dDay === 0
-                          ? 'D-Day'
-                          : `D-${Math.abs(festival.dDay)}`}
+                        {formatDday(festival.dDay)}
                       </Chip>
                       <Chip variant='status' status='current'>
                         {festival.status}
