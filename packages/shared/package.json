@@ -12,12 +12,9 @@
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
     "@vanilla-extract/vite-plugin": "catalog:",
-    "clsx": "^2.1.1",
-    "overlay-kit": "^1.8.6",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-router": "catalog:",
-    "zustand": "^5.0.10"
+    "react-router": "catalog:"
   },
   "devDependencies": {
     "@amp/eslint-config": "workspace:*",
