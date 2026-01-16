@@ -13,12 +13,83 @@ import {
 import * as styles from './home.css';
 
 const HomePage = () => {
+  const nickname = '관객 이름';
   const upcomingFestival = homeData.data;
   const [selectedTab, setSelectedTab] = useState<'all' | 'upcoming'>('all');
+  const [allFestivals, setAllFestivals] = useState(
+    allFestivalData.data.festivals,
+  );
+  const [upcomingFestivals, setUpcomingFestivals] = useState(
+    upcomingFestivalData.data.festivals,
+  );
+
+  const handleToggleAllFestival = (
+    festivalId: number,
+    nextSelected: boolean,
+  ) => {
+    setUpcomingFestivals((prev) => {
+      const exists = prev.some((item) => item.festivalId === festivalId);
+
+      if (nextSelected && !exists) {
+        const target = allFestivals.find(
+          (item) => item.festivalId === festivalId,
+        );
+        if (!target) {
+          return prev;
+        }
+        return [
+          ...prev,
+          {
+            festivalId: target.festivalId,
+            title: target.title,
+            mainImageUrl: target.mainImageUrl,
+            period: target.period,
+            status: '관람 예정',
+            wishList: true,
+            dDay: target.dDay,
+          },
+        ];
+      }
+
+      if (!nextSelected && exists) {
+        return prev.filter((item) => item.festivalId !== festivalId);
+      }
+
+      return prev;
+    });
+
+    setAllFestivals((prev) =>
+      prev.map((item) =>
+        item.festivalId === festivalId
+          ? { ...item, wishList: nextSelected }
+          : item,
+      ),
+    );
+  };
+
+  const handleToggleUpcomingFestival = (
+    festivalId: number,
+    nextSelected: boolean,
+  ) => {
+    if (!nextSelected) {
+      setUpcomingFestivals((prev) =>
+        prev.filter((item) => item.festivalId !== festivalId),
+      );
+      return;
+    }
+
+    setUpcomingFestivals((prev) =>
+      prev.map((item) =>
+        item.festivalId === festivalId
+          ? { ...item, wishList: nextSelected }
+          : item,
+      ),
+    );
+  };
 
   const banner = upcomingFestival ? (
     <HomeBanner
-      nickname='관객 이름'
+      nickname={nickname}
       status='card'
       title={upcomingFestival.title}
       location={upcomingFestival.location}
@@ -26,7 +97,7 @@ const HomePage = () => {
       dday={upcomingFestival.dDay}
     />
   ) : (
-    <HomeBanner nickname='관객 이름' status='none' />
+    <HomeBanner nickname={nickname} status='none' />
   );
 
   return (
@@ -49,7 +120,7 @@ const HomePage = () => {
       <div className={styles.content}>
         <div className={styles.cardList}>
           {selectedTab === 'all'
-            ? allFestivalData.data.festivals.map((festival) => (
+            ? allFestivals.map((festival) => (
                 <CardFestival key={festival.festivalId}>
                   <CardFestival.Image
                     src={festival.mainImageUrl}
@@ -75,12 +146,17 @@ const HomePage = () => {
                   <CardFestival.Button>
                     <FlagButton
                       selected={festival.wishList}
-                      onChange={() => {}}
+                      onChange={(nextSelected) =>
+                        handleToggleAllFestival(
+                          festival.festivalId,
+                          nextSelected,
+                        )
+                      }
                     />
                   </CardFestival.Button>
                 </CardFestival>
               ))
-            : upcomingFestivalData.data.festivals.map((festival) => (
+            : upcomingFestivals.map((festival) => (
                 <CardFestival key={festival.festivalId}>
                   <CardFestival.Image
                     src={festival.mainImageUrl}
@@ -104,7 +180,12 @@ const HomePage = () => {
                   <CardFestival.Button>
                     <FlagButton
                       selected={festival.wishList}
-                      onChange={() => {}}
+                      onChange={(nextSelected) =>
+                        handleToggleUpcomingFestival(
+                          festival.festivalId,
+                          nextSelected,
+                        )
+                      }
                     />
                   </CardFestival.Button>
                 </CardFestival>

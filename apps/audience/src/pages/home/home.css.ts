@@ -6,7 +6,7 @@ export const tabsSticky = style({
   position: 'sticky',
   top: 0,
   zIndex: ampThemeVars.zIndex.sticky,
-  backgroundColor: '#fff',
+  backgroundColor: ampThemeVars.color.gray_000,
 });
 
 export const content = style({
