@@ -1,6 +1,6 @@
 import { useId } from 'react';
 
-import Textfield from '../textfield/textfield';
+import Textfield from '../../../../ads-ui/src/components/textfield/textfield';
 
 import * as styles from './nickname-form.css';
 
