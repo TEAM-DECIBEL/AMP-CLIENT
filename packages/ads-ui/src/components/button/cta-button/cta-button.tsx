@@ -16,7 +16,7 @@ interface CtaButtonProps {
 const CtaButton = ({
   children,
   type,
-  color,
+  color = 'primary',
   selected,
   disabled,
   className,
