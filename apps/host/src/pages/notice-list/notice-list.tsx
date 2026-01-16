@@ -95,6 +95,8 @@ const NoticeListPage = () => {
               <div key={notice.announcementId} className={styles.card}>
                 <CardNotice
                   imageUrl={notice.imageUrl}
+                  // TODO: 추후 기본 이미지 DEFAULT_IMG로 불러와서, 아래 로직 추가
+                  // imageUrl={notice.imageUrl || DEFAULT_IMG}
                   title={notice.title}
                   content={notice.content}
                   isPinned={notice.isPinned}
