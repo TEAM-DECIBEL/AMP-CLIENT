@@ -15,7 +15,7 @@ export const mainContainer = style({
   flexDirection: 'column',
 });
 
-export const header = style({
+export const contentHeader = style({
   position: 'sticky',
   top: 0,
   marginTop: '-5rem',
@@ -89,7 +89,7 @@ export const buttonContainer = style({
   maxWidth: '430px',
   display: 'flex',
   justifyContent: 'flex-end',
-  paddingRight: '2.3rem',
+  paddingRight: '2rem',
   pointerEvents: 'none',
   left: '50%',
   transform: 'translateX(-50%)',

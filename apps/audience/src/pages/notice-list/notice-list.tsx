@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 import { overlay } from 'overlay-kit';
 
-import { toast } from '@amp/ads-ui';
 import {
   AddToWatchButton,
   CardNotice,
@@ -12,6 +11,7 @@ import {
   NoticeBanner,
   RectButton,
   Tabs,
+  toast,
 } from '@amp/ads-ui';
 
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
@@ -134,7 +134,7 @@ const NoticeListPage = () => {
         }
       />
       <main className={styles.mainContainer}>
-        <div className={styles.header}>
+        <div className={styles.contentHeader}>
           <div className={styles.tabBar}>
             {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
             <Tabs defaultValue='notice' variant='notice'>

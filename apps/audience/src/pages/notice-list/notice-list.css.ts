@@ -15,7 +15,7 @@ export const mainContainer = style({
   flexDirection: 'column',
 });
 
-export const header = style({
+export const contentHeader = style({
   position: 'sticky',
   top: 0,
   marginTop: '-5rem',

@@ -59,7 +59,7 @@ const NoticeListPage = () => {
         date={FESTIVAL_MOCK.date}
       />
       <main className={styles.mainContainer}>
-        <div className={styles.header}>
+        <div className={styles.contentHeader}>
           <div className={styles.tabBar}>
             {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
             <Tabs defaultValue='notice' variant='notice'>
