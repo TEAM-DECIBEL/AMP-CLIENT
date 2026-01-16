@@ -78,6 +78,7 @@ const useHomeFestivals = () => {
         ? toggleWishList(prev, festivalId, nextSelected)
         : removeById(prev, festivalId),
     );
+    setAllFestivals((prev) => toggleWishList(prev, festivalId, nextSelected));
   };
 
   return {
