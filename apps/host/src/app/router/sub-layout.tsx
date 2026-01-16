@@ -4,14 +4,13 @@ import { Outlet } from 'react-router';
 import { Header } from '@amp/ads-ui';
 
 interface SubLayoutProps {
-  title?: string;
-  hasNewAlert?: boolean;
+  title: string;
 }
 
-export const SubLayout = ({ hasNewAlert }: SubLayoutProps) => {
+export const SubLayout = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Header variant='audience' kind='main' hasNewAlert={hasNewAlert} />
+      <Header variant='host' kind='main' />
       <Outlet />
     </Suspense>
   );
@@ -20,7 +19,7 @@ export const SubLayout = ({ hasNewAlert }: SubLayoutProps) => {
 export const SubLayoutWithBack = ({ title }: SubLayoutProps) => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Header variant='audience' kind='sub' title={title} />
+      <Header variant='host' kind='sub' title={title} />
       <Outlet />
     </Suspense>
   );
