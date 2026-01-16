@@ -23,6 +23,20 @@ const HomePage = () => {
     upcomingFestivalData.data.festivals,
   );
 
+  const removeFestivalById = <T extends { festivalId: number }>(
+    list: T[],
+    festivalId: number,
+  ) => list.filter((item) => item.festivalId !== festivalId);
+
+  const updateFestivalById = <T extends { festivalId: number }>(
+    list: T[],
+    festivalId: number,
+    updater: (item: T) => T,
+  ) =>
+    list.map((item) =>
+      item.festivalId === festivalId ? updater(item) : item,
+    );
+
   const handleToggleAllFestival = (
     festivalId: number,
     nextSelected: boolean,
@@ -52,18 +66,17 @@ const HomePage = () => {
       }
 
       if (!nextSelected && exists) {
-        return prev.filter((item) => item.festivalId !== festivalId);
+        return removeFestivalById(prev, festivalId);
       }
 
       return prev;
     });
 
     setAllFestivals((prev) =>
-      prev.map((item) =>
-        item.festivalId === festivalId
-          ? { ...item, wishList: nextSelected }
-          : item,
-      ),
+      updateFestivalById(prev, festivalId, (item) => ({
+        ...item,
+        wishList: nextSelected,
+      })),
     );
   };
 
@@ -72,18 +85,15 @@ const HomePage = () => {
     nextSelected: boolean,
   ) => {
     if (!nextSelected) {
-      setUpcomingFestivals((prev) =>
-        prev.filter((item) => item.festivalId !== festivalId),
-      );
+      setUpcomingFestivals((prev) => removeFestivalById(prev, festivalId));
       return;
     }
 
     setUpcomingFestivals((prev) =>
-      prev.map((item) =>
-        item.festivalId === festivalId
-          ? { ...item, wishList: nextSelected }
-          : item,
-      ),
+      updateFestivalById(prev, festivalId, (item) => ({
+        ...item,
+        wishList: nextSelected,
+      })),
     );
   };
 
