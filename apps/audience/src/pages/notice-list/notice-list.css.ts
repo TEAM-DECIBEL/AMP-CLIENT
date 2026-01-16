@@ -24,12 +24,6 @@ export const contentHeader = style({
   zIndex: zIndex.overlay,
 });
 
-export const tabBar = style({
-  height: '5rem',
-  borderRadius: '16px 16px 0 0',
-  borderBottom: `1px solid ${ampThemeVars.color.gray_200}`,
-});
-
 export const chipSection = style({
   display: 'flex',
   gap: '0.3rem',
