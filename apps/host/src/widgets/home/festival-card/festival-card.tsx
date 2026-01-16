@@ -40,11 +40,6 @@ const CHIP_ASSETS = {
       진행 중
     </Chip>
   ),
-  done: (
-    <Chip variant='status' status='upcoming'>
-      종료됨
-    </Chip>
-  ),
 } as const;
 
 interface FestivalCardProps {
