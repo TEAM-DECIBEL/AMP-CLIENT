@@ -6,10 +6,10 @@ import { zIndex } from '@amp/ads-ui/styles/tokens/z-index.ts';
 export const pageContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  minHeight: '100vh',
+  minHeight: '100dvh',
 });
 
-export const mainContainer = style({
+export const mainContent = style({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
@@ -86,7 +86,7 @@ export const buttonContainer = style({
   position: 'fixed',
   bottom: '3rem',
   width: '100%',
-  maxWidth: '430px',
+  maxWidth: '43rem',
   display: 'flex',
   justifyContent: 'flex-end',
   paddingRight: '2.3rem',

@@ -122,7 +122,7 @@ const NoticeListPage = () => {
   };
 
   return (
-    <div className={styles.pageContainer}>
+    <main className={styles.pageContainer}>
       <NoticeBanner
         // TODO: 관련 공연 정보 데이터 불러와서 Props 전달
         dday={FESTIVAL_MOCK.dday}
@@ -133,7 +133,7 @@ const NoticeListPage = () => {
           <AddToWatchButton selected={isWatched} onChange={handleWatchToggle} />
         }
       />
-      <main className={styles.mainContainer}>
+      <div className={styles.mainContent}>
         <div className={styles.contentHeader}>
           <div className={styles.tabBar}>
             {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
@@ -188,14 +188,14 @@ const NoticeListPage = () => {
             ))
           )}
         </div>
-      </main>
+      </div>
       <div className={styles.buttonContainer}>
         <div className={styles.button}>
           {/* TODO: 뷰 이동 로직 추가 */}
           <CircleButton type='write' onClick={() => {}} />
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
