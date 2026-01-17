@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 export const content = style({
-  padding: '2rem',
+  padding: '2rem',  
 });
 
 export const cardList = style({

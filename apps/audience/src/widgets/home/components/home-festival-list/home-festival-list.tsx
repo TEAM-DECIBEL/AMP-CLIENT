@@ -1,4 +1,4 @@
-import { Chip } from '@amp/ads-ui';
+import { Chip, EmptyView } from '@amp/ads-ui';
 
 import {
   TAB_ALL,
@@ -12,7 +12,6 @@ import type {
 } from '@shared/types/home-response';
 
 import HomeFestivalCard from '../home-festival-card/home-festival-card';
-import HomeFestivalEmpty from '../home-festival-empty/home-festival-empty';
 
 import { cardList, content } from './home-festival-list.css';
 
@@ -52,7 +51,7 @@ const HomeFestivalList = ({
   return (
     <div className={content}>
       {emptyConfig[selectedTab].isEmpty ? (
-        <HomeFestivalEmpty image={null} text={emptyConfig[selectedTab].text} />
+        <EmptyView image={null} text={emptyConfig[selectedTab].text} />
       ) : (
         <div className={cardList}>
           {selectedTab === TAB_ALL
