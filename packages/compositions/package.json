@@ -1,10 +1,8 @@
 {
-  "name": "@amp/shared",
+  "name": "@amp/compositions",
   "private": true,
   "exports": {
-    ".": "./src/compositions/index.ts",
-    "./hooks": "./src/hooks/index.ts",
-    "./utils": "./src/utils/index.ts"
+    ".": "./src/index.ts"
   },
   "scripts": {
     "build": "tsc -b",
@@ -13,10 +11,13 @@
   "dependencies": {
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
-    "@vanilla-extract/vite-plugin": "catalog:",
+    "clsx": "^2.1.1",
+    "overlay-kit": "^1.8.6",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-router": "catalog:"
+    "react-router": "catalog:",
+    "zustand": "^5.0.10",
+    "@amp/ads-ui": "workspace:*"
   },
   "devDependencies": {
     "@amp/eslint-config": "workspace:*",
@@ -25,6 +26,7 @@
     "@types/react-dom": "catalog:",
     "eslint": "catalog:",
     "typescript": "catalog:",
-    "@amp/tsconfig": "workspace:*"
+    "@amp/tsconfig": "workspace:*",
+    "@vanilla-extract/vite-plugin": "catalog:"
   }
 }

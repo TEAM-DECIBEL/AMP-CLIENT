@@ -35,7 +35,7 @@ const HomePage = () => {
       </div>
       <div className={styles.ctaArea}>
         {showTooltip && <Tooltip />}
-        <CtaButton type='common' color='primary' onClick={handleCreateClick}>
+        <CtaButton type='common' onClick={handleCreateClick}>
           공연 등록하기
         </CtaButton>
       </div>
