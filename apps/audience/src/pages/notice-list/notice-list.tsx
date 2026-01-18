@@ -17,7 +17,7 @@ import {
   CategorySection,
   CategoryType,
   NoticeCardList,
-} from '@amp/shared';
+} from '@amp/compositions';
 
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
