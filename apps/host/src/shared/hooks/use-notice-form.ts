@@ -1,4 +1,3 @@
-// features/notice/hooks/useNoticeForm.ts
 import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 
 import { toast } from '@amp/ads-ui';
