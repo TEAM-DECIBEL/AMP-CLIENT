@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import { Chip, MyPageMenuContainer, MyPageMenuItem } from '@amp/ads-ui';
 
 import * as styles from './mypage-layout.css';
@@ -11,6 +13,7 @@ interface MyPageLayoutProps {
     label: string;
     onClick: () => void;
   }[];
+  dashboard?: ReactNode;
 }
 
 const MyPageLayout = ({
@@ -18,6 +21,7 @@ const MyPageLayout = ({
   roleLabel,
   profileImageUrl,
   menuItems,
+  dashboard,
 }: MyPageLayoutProps) => {
   const handleLogout = () => {
     // 로그아웃 로직 추가
@@ -38,15 +42,22 @@ const MyPageLayout = ({
         <p className={styles.name}>{name}</p>
         <Chip variant='mypage'>{roleLabel}</Chip>
       </div>
+      {dashboard ? (
+        <div className={styles.dashboardSection}>
+          <div className={styles.contentWidth}>{dashboard}</div>
+        </div>
+      ) : null}
       {menuItems && menuItems.length > 0 ? (
         <div className={styles.menuSection}>
-          <MyPageMenuContainer>
-            {menuItems.map((menu) => (
-              <MyPageMenuItem key={menu.id} onClick={menu.onClick}>
-                {menu.label}
-              </MyPageMenuItem>
-            ))}
-          </MyPageMenuContainer>
+          <div className={styles.contentWidth}>
+            <MyPageMenuContainer>
+              {menuItems.map((menu) => (
+                <MyPageMenuItem key={menu.id} onClick={menu.onClick}>
+                  {menu.label}
+                </MyPageMenuItem>
+              ))}
+            </MyPageMenuContainer>
+          </div>
         </div>
       ) : null}
       <button

@@ -14,6 +14,7 @@ export const profileSection = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  marginBottom: '5rem',
 });
 
 export const profileImage = style({
@@ -40,7 +41,19 @@ export const menuSection = style({
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
-  margin: '5rem 0 7rem',
+  marginBottom: '7rem',
+});
+
+export const contentWidth = style({
+  width: '33.5rem',
+  maxWidth: '100%',
+});
+
+export const dashboardSection = style({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  marginBottom: '4rem',
 });
 
 export const logoutButton = style({
