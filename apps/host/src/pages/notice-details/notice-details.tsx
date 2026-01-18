@@ -1,7 +1,7 @@
 import { overlay } from 'overlay-kit';
 
 import { CtaButton, Modal, RectButton } from '@amp/ads-ui';
-import { DeleteIcon, PenIcon } from '@amp/ads-ui/icons';
+import { PenIcon, TrashIcon } from '@amp/ads-ui/icons';
 import { NoticeDetailLayout } from '@amp/shared';
 
 import { MOCK_DATA } from '@shared/mocks/notice-details';
@@ -71,7 +71,7 @@ const NoticeDetailsPage = () => {
           }}
           className={styles.ctaButton}
         >
-          <DeleteIcon />
+          <TrashIcon />
           삭제하기
         </CtaButton>
       </NoticeDetailLayout.Actions>
