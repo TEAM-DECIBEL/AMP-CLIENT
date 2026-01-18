@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+import ButtonGradientSection from '../button-gradient-section/button-gradient-section';
+
 import * as styles from './notice-detail-layout.css';
 
 interface NoticeData {
@@ -45,7 +47,11 @@ const Content = ({ data }: ContentProps) => {
 };
 
 const Actions = ({ children }: ActionsProps) => {
-  return <div className={styles.button}>{children}</div>;
+  return (
+    <ButtonGradientSection className={styles.button}>
+      {children}
+    </ButtonGradientSection>
+  );
 };
 
 const NoticeDetailLayout = Object.assign(NoticeDetailLayoutRoot, {
