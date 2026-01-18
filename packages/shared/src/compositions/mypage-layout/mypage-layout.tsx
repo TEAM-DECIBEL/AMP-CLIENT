@@ -6,7 +6,7 @@ interface MyPageLayoutProps {
   name: string;
   roleLabel: string;
   profileImageUrl?: string;
-  menuItems: {
+  menuItems?: {
     id: string;
     label: string;
     onClick: () => void;
@@ -49,6 +49,13 @@ const MyPageLayout = ({
           </MyPageMenuContainer>
         </div>
       ) : null}
+      <button
+        type='button'
+        className={styles.logoutButton}
+        onClick={handleLogout}
+      >
+        로그아웃
+      </button>
     </section>
   );
 };

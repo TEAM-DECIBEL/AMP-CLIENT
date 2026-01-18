@@ -42,3 +42,10 @@ export const menuSection = style({
   justifyContent: 'center',
   margin: '5rem 0 7rem',
 });
+
+export const logoutButton = style({
+  color: ampThemeVars.color.gray_700,
+  textAlign: 'center',
+  textDecoration: 'underline',
+  ...ampThemeVars.font.body_r_13,
+});
