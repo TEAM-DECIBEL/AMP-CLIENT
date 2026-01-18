@@ -35,3 +35,10 @@ export const name = style({
   ...ampThemeVars.font.title_sb_18,
   margin: '1.6rem 0 0.6rem',
 });
+
+export const menuSection = style({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  margin: '5rem 0 7rem',
+});
