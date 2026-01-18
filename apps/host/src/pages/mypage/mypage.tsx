@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
+import { toast } from '@amp/ads-ui';
 import { MyPageLayout } from '@amp/shared';
 
 import LogoutModal from '@widgets/mypage/logout-modal';
@@ -30,20 +31,22 @@ const MyPage = () => {
     upcomingCount: 0,
   };
 
+  const handleTokenCheck = () => {
+    toast.show('현재 준비중인 기능이에요!');
+  };
+  const handleMenuItemClick = (menu: (typeof menuItems)[number]) => {
+    if (menu.id === 'token-check') {
+      handleTokenCheck();
+      return;
+    }
+    handleMenuClick(menu.path);
+  };
   const handleMenuClick = (path: string) => {
     if (path) {
       navigate(path);
     }
   };
-  const handleLogoutOpen = () => {
-    setIsLogoutOpen(true);
-  };
-  const handleLogoutClose = () => {
-    setIsLogoutOpen(false);
-  };
-  const handleLogoutConfirm = () => {
-    setIsLogoutOpen(false);
-  };
+  const setLogoutOpen = (open: boolean) => setIsLogoutOpen(open);
 
   return (
     <>
@@ -59,14 +62,14 @@ const MyPage = () => {
         menuItems={menuItems.map((menu) => ({
           id: menu.id,
           label: menu.label,
-          onClick: () => handleMenuClick(menu.path),
+          onClick: () => handleMenuItemClick(menu),
         }))}
-        handleLogout={handleLogoutOpen}
+        handleLogout={() => setLogoutOpen(true)}
       />
       <LogoutModal
         open={isLogoutOpen}
-        onClose={handleLogoutClose}
-        onConfirm={handleLogoutConfirm}
+        onClose={() => setLogoutOpen(false)}
+        onConfirm={() => setLogoutOpen(false)}
       />
     </>
   );
