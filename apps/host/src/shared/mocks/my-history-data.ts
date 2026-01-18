@@ -1,4 +1,6 @@
-export const myHistoryFestivals = [
+import type { FestivalBase } from '@shared/types/festival';
+
+export const myHistoryFestivals: FestivalBase[] = [
   {
     festivalId: 22,
     mainImageUrl:
