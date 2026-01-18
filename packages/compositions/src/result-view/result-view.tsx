@@ -12,7 +12,7 @@ const ResultView = ({ title, description, image }: ResultViewProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <p className={styles.title}>{title}</p>
+        <h1 className={styles.title}>{title}</h1>
         {description && <p className={styles.description}>{description}</p>}
       </div>
       <div className={styles.image}>{image}</div>
