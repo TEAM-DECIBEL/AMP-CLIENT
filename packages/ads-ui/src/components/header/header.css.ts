@@ -4,15 +4,22 @@ import { ampThemeVars } from '../../styles';
 
 export const header = style({
   width: '100%',
+  height: 'var(--header-height)',
   display: 'flex',
   flexDirection: 'column',
+  position: 'sticky',
+  top: 0,
+  left: 0,
+  right: 0,
+  zIndex: ampThemeVars.zIndex.header,
+  backgroundColor: ampThemeVars.color.gray_000,
 });
 
 export const mainRow = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '0.6rem 1.6rem',
+  padding: '0.8rem 2rem',
 });
 
 export const mainIcons = style({

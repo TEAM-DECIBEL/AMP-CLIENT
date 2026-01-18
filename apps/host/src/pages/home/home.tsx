@@ -1,17 +1,45 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
-import { CtaButton, StatusSheet } from '@amp/ads-ui';
+import { CtaButton } from '@amp/ads-ui';
+
+import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
+
+import { ROUTE_PATH } from '@shared/constants/path';
+import { homeData } from '@shared/mocks/home-data';
+import CardHomebannerOrg from '@shared/ui/card/card-homebanner-organizer/card-homebanner-org';
+import Tooltip from '@shared/ui/tooltip/tooltip';
+
+import * as styles from './home.css';
 
 const HomePage = () => {
-  const [open, setOpen] = useState(false);
+  const { summary, ongoingFestivals, upcomingFestivals } = homeData;
+
+  // 예시 닉네임
+  const nickname = 'SOPT';
+  const showTooltip = summary.ongoingCount === 0 && summary.upcomingCount === 0;
+  const navigate = useNavigate();
+  const handleCreateClick = () => {
+    navigate(`/${ROUTE_PATH.EVENT_CREATE}`);
+  };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <CtaButton type='primary' onClick={() => setOpen(true)}>
-        상태 모달 테스트
-      </CtaButton>
-      <StatusSheet open={open} onClose={() => setOpen(false)} />
-    </div>
+    <section className={styles.page}>
+      <CardHomebannerOrg nickname={nickname} />
+      <div className={styles.content}>
+        <FestivalOverview
+          ongoingCount={summary.ongoingCount}
+          upcomingCount={summary.upcomingCount}
+          ongoingFestivals={ongoingFestivals}
+          upcomingFestivals={upcomingFestivals}
+        />
+      </div>
+      <div className={styles.ctaArea}>
+        {showTooltip && <Tooltip />}
+        <CtaButton type='primary' onClick={handleCreateClick}>
+          공연 등록하기
+        </CtaButton>
+      </div>
+    </section>
   );
 };
 

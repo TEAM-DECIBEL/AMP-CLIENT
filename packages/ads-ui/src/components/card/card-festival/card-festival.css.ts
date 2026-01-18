@@ -10,6 +10,7 @@ export const card = style({
   borderRadius: '16px',
   border: `1px solid ${ampThemeVars.color.gray_200}`,
   padding: '0.9rem 1rem',
+  textAlign: 'left',
 });
 
 export const image = style({
@@ -23,6 +24,7 @@ export const image = style({
 export const contentContainer = style({
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'flex-start',
   gap: '0.8rem',
 });
 

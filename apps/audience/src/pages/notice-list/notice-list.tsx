@@ -13,6 +13,7 @@ import {
   Tabs,
   toast,
 } from '@amp/ads-ui';
+import { AlertIcon } from '@amp/ads-ui/icons';
 
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
@@ -158,7 +159,8 @@ const NoticeListPage = () => {
           </section>
           {!(selectedCategory === '전체') && (
             <div className={styles.ctaButton}>
-              <CtaButton type='alert' onClick={handleAlertClick}>
+              <CtaButton type='icon' color='gray' onClick={handleAlertClick}>
+                <AlertIcon />
                 {selectedCategory} 공지 알림 받기
               </CtaButton>
             </div>

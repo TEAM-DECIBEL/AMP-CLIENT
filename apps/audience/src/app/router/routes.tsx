@@ -98,4 +98,8 @@ export const globalRoutes = [
     path: ROUTE_PATH.ONBOARDING,
     element: <OnboardingPage />,
   },
+  {
+    path: ROUTE_PATH.ONBOARDING,
+    element: <OnboardingPage />,
+  },
 ];

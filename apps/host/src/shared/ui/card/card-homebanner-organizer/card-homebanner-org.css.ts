@@ -7,6 +7,7 @@ export const bannerStyle = style({
   alignItems: 'center',
   gap: '1rem',
   padding: '2rem',
+  backgroundColor: ampThemeVars.color.gray_50,
 });
 
 export const imgStyle = style({

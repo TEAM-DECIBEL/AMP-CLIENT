@@ -11,6 +11,7 @@
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
     "@amp/ads-ui": "workspace:*",
+    "@amp/shared": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "catalog:",

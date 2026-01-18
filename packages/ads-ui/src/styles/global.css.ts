@@ -6,6 +6,8 @@ globalStyle('html, body', {
   padding: '0',
   fontSize: '62.5%',
   fontFamily: `'Pretendard Variable', sans-serif`,
+  scrollbarWidth: 'none',
+  msOverflowStyle: 'none',
 });
 
 globalStyle('#root', {
@@ -14,6 +16,9 @@ globalStyle('#root', {
   maxWidth: '430px',
   minHeight: '100dvh',
   margin: '0 auto',
+  vars: {
+    '--header-height': '4.8rem',
+  },
 });
 
 globalStyle('::-webkit-scrollbar', {

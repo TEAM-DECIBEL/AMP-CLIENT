@@ -62,7 +62,11 @@ const StatusEmptyContent = () => {
   return (
     <div className={styles.emptyWrap}>
       <div className={styles.empty}>
-        <NoticeIcon className={styles.emptyIcon} width='4.8rem' height='4.8rem' />
+        <NoticeIcon
+          className={styles.emptyIcon}
+          width='4.8rem'
+          height='4.8rem'
+        />
         <h3 className={styles.emptyTitle}>{EMPTY_TITLE}</h3>
         <p className={styles.emptyDescription}>{EMPTY_DESCRIPTION}</p>
       </div>
@@ -90,7 +94,7 @@ const StatusSheet = (props: StatusSheetProps) => {
           <StatusEmptyContent />
         )}
         <div className={styles.actions}>
-          <CtaButton type='gray' onClick={handleConfirm}>
+          <CtaButton type='common' color='gray' onClick={handleConfirm}>
             확인
           </CtaButton>
         </div>

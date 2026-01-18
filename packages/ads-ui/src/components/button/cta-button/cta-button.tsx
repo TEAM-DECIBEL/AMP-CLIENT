@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
-
-import { ICON } from './cta-icon';
+import clsx from 'clsx';
 
 import * as styles from './cta-button.css';
 
@@ -14,31 +13,31 @@ export type CtaButtonType =
 
 interface CtaButtonProps {
   children: ReactNode;
-  type: CtaButtonType;
+  type: 'common' | 'icon';
+  color?: 'primary' | 'gray' | 'white';
   selected?: boolean;
   disabled?: boolean;
   onClick: () => void;
+  className?: string;
 }
 
 const CtaButton = ({
   children,
   type,
+  color = 'primary',
   selected,
   disabled,
+  className,
   onClick,
 }: CtaButtonProps) => {
-  const isSelected = type === 'icon' && selected === true;
-  const Icon = ICON[type];
-
   return (
     <button
       type='button'
       disabled={disabled}
       onClick={onClick}
-      aria-selected={type === 'icon' ? isSelected : undefined}
-      className={styles.ctaButton({ type })}
+      aria-pressed={selected}
+      className={clsx(styles.ctaButton({ type, color }), className)}
     >
-      {Icon ? <Icon /> : null}
       {children}
     </button>
   );
