@@ -1,7 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-import { ampThemeVars } from '@amp/ads-ui/styles';
-
 export const page = style({
   minHeight: '100dvh',
   paddingBottom: '8rem',
