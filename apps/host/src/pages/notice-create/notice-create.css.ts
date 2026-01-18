@@ -93,5 +93,20 @@ export const textarea = style({
 });
 
 export const buttonContainer = style({
+  position: 'fixed',
+  bottom: 0,
+  width: '100%',
+  maxWidth: '430px',
   padding: '2rem',
+  backgroundColor: ampThemeVars.color.gray_000,
+  left: '50%',
+  transform: 'translateX(-50%)',
+});
+
+export const chipContainer = style({
+  display: 'flex',
+  flexWrap: 'wrap',
+  columnGap: '0.6rem',
+  rowGap: '1rem',
+  width: '100%',
 });
