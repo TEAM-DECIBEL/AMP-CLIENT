@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ChangeEvent } from 'react';
 
 import { toast } from '@amp/ads-ui';
@@ -48,6 +48,14 @@ const NoticeCreatePage = () => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      if (imageUrl) {
+        URL.revokeObjectURL(imageUrl);
+      }
+    };
+  }, [imageUrl]);
+
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
   };
@@ -73,15 +81,17 @@ const NoticeCreatePage = () => {
       return;
     }
 
-    const formData = {
-      isPinned,
-      image,
-      category: selectedCategory,
-      title,
-      content,
-    };
+    const formData = new FormData();
+    formData.append('isPinned', String(isPinned));
+    formData.append('category', selectedCategory);
+    formData.append('title', title);
+    formData.append('content', content);
 
-    // TODO: API 전송 로직
+    if (image) {
+      formData.append('image', image);
+    }
+
+    // API 호출 예시: postNotice(formData);
   };
 
   return (
