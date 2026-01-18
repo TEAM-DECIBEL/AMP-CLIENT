@@ -24,3 +24,5 @@ export const MyHistoryPage = lazy(() => import('@pages/my-history/my-history'));
 export const OnboardingPage = lazy(
   () => import('@pages/onboarding/onboarding'),
 );
+
+export const LoginPage = lazy(() => import('@pages/login/login'));

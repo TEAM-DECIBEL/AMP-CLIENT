@@ -25,3 +25,5 @@ export const SavedNoticesPage = lazy(
 export const OnboardingPage = lazy(
   () => import('@pages/onboarding/onboarding'),
 );
+
+export const LoginPage = lazy(() => import('@pages/login/login'));
