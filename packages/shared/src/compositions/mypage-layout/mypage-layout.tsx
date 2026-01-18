@@ -14,7 +14,7 @@ interface MyPageLayoutProps {
     onClick: () => void;
   }[];
   dashboard?: ReactNode;
-  onLogout: () => void;
+  handleLogout: () => void;
 }
 
 const MyPageLayout = ({
@@ -23,12 +23,8 @@ const MyPageLayout = ({
   profileImageUrl,
   menuItems,
   dashboard,
-  onLogout,
+  handleLogout,
 }: MyPageLayoutProps) => {
-  const handleLogout = () => {
-    onLogout?.();
-  };
-
   return (
     <section className={styles.container}>
       <div className={styles.profileSection}>
@@ -37,6 +33,8 @@ const MyPageLayout = ({
             className={styles.profileImage}
             src={profileImageUrl}
             alt={`${name} 프로필`}
+            loading='lazy'
+            decoding='async'
           />
         ) : (
           <div className={styles.profilePlaceholder} aria-hidden />
@@ -44,11 +42,11 @@ const MyPageLayout = ({
         <p className={styles.name}>{name}</p>
         <Chip variant='mypage'>{roleLabel}</Chip>
       </div>
-      {dashboard ? (
+      {dashboard && (
         <div className={styles.dashboardSection}>
           <div className={styles.contentWidth}>{dashboard}</div>
         </div>
-      ) : null}
+      )}
       <div className={styles.menuSection}>
         <div className={styles.contentWidth}>
           <MyPageMenuContainer>

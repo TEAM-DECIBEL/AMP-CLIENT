@@ -60,7 +60,7 @@ const MyPage = () => {
           label: menu.label,
           onClick: () => handleMenuClick(menu.path),
         }))}
-        onLogout={handleLogoutOpen}
+        handleLogout={handleLogoutOpen}
       />
       <Modal open={isLogoutOpen} onClose={handleLogoutClose}>
         <Modal.Panel role='alertdialog'>
