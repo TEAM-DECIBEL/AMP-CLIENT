@@ -2,7 +2,7 @@ import { overlay } from 'overlay-kit';
 
 import { CtaButton, Modal, RectButton } from '@amp/ads-ui';
 import { PenIcon, TrashIcon } from '@amp/ads-ui/icons';
-import { NoticeDetailLayout } from '@amp/shared';
+import { NoticeDetailLayout } from '@amp/compositions';
 
 import { MOCK_DATA } from '@shared/mocks/notice-details';
 

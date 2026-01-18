@@ -5,3 +5,4 @@ export {
 } from './category-section/category-section';
 export { default as NicknameForm } from './nickname-form/nickname-form';
 export { default as NoticeCardList } from './notice-card-list/notice-card-list';
+export { default as NoticeDetailLayout } from './notice-detail-layout/notice-detail-layout';

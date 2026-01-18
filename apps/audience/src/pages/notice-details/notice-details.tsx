@@ -1,6 +1,6 @@
 import { CircleButton, CtaButton } from '@amp/ads-ui';
 import { SaveIcon } from '@amp/ads-ui/icons';
-import { NoticeDetailLayout } from '@amp/shared';
+import { NoticeDetailLayout } from '@amp/compositions';
 
 import { MOCK_DATA } from '@shared/mocks/notice-detail';
 
