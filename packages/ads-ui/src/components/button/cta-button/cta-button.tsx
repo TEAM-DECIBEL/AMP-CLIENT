@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
 import clsx from 'clsx';
+import type { ReactNode } from 'react';
 
 import * as styles from './cta-button.css';
 
