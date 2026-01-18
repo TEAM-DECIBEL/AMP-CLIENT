@@ -1,12 +1,6 @@
 import { CardFestival, Chip } from '@amp/ads-ui';
 
-interface FestivalItem {
-  festivalId: number;
-  mainImageUrl: string;
-  title: string;
-  period: string;
-  status: string;
-}
+import type { FestivalBase } from '@shared/types/festival';
 
 const getStatusChip = (status: string) => {
   if (status === '진행 중') {
@@ -33,7 +27,7 @@ const getStatusChip = (status: string) => {
 };
 
 interface FestivalListProps {
-  festivals: FestivalItem[];
+  festivals: FestivalBase[];
 }
 
 const FestivalList = ({ festivals }: FestivalListProps) => {
