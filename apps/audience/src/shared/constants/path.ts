@@ -6,4 +6,6 @@ export const ROUTE_PATH = {
   MY_EVENTS: 'my-events',
   SAVED_NOTICES: 'saved-notices',
   ONBOARDING: 'onboarding',
+  LOGIN: 'login',
+  HOME: '/',
 } as const;

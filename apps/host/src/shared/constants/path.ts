@@ -6,4 +6,6 @@ export const ROUTE_PATH = {
   MYPAGE: 'mypage',
   ONBOARDING: 'onboarding',
   MY_HISTORY: 'mypage/history',
+  LOGIN: 'login',
+  HOME: '/',
 } as const;
