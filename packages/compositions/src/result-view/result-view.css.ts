@@ -15,11 +15,14 @@ export const content = style({
 export const title = style({
   ...ampThemeVars.font.heading_sb_20,
   color: ampThemeVars.color.gray_900,
+  whiteSpace: 'pre-line',
+  textAlign: 'center',
 });
 
 export const description = style({
-  ...ampThemeVars.font.heading_sb_20,
+  ...ampThemeVars.font.body_m_13,
   color: ampThemeVars.color.gray_500,
+  textAlign: 'center',
 });
 
 export const image = style({
