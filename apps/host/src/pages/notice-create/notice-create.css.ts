@@ -50,48 +50,6 @@ export const divider = style({
   backgroundColor: ampThemeVars.color.gray_200,
 });
 
-export const input = style({
-  padding: '1.6rem 2rem',
-  borderRadius: '16px',
-  border: `1px solid ${ampThemeVars.color.gray_200}`,
-  caretColor: ampThemeVars.color.primary,
-  ...ampThemeVars.font.body_m_14,
-
-  selectors: {
-    '&::placeholder': {
-      color: ampThemeVars.color.gray_400,
-    },
-    '&:focus': {
-      outline: 'none',
-      borderColor: ampThemeVars.color.gray_900,
-    },
-  },
-});
-
-export const textarea = style({
-  display: 'block',
-  boxSizing: 'border-box',
-  width: '100%',
-  height: '15rem',
-  padding: '1.6rem 2rem',
-  color: ampThemeVars.color.gray_900,
-  borderRadius: '16px',
-  border: `1px solid ${ampThemeVars.color.gray_200}`,
-  resize: 'none',
-  caretColor: ampThemeVars.color.primary,
-  ...ampThemeVars.font.body_m_14,
-
-  selectors: {
-    '&::placeholder': {
-      color: ampThemeVars.color.gray_400,
-    },
-    '&:focus': {
-      outline: 'none',
-      borderColor: ampThemeVars.color.gray_900,
-    },
-  },
-});
-
 export const buttonContainer = style({
   position: 'fixed',
   bottom: 0,

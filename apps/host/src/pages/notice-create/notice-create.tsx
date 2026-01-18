@@ -3,11 +3,13 @@ import {
   CategoryButton,
   CheckButton,
   CtaButton,
+  Textfield,
 } from '@amp/ads-ui';
 import { PinIcon } from '@amp/ads-ui/icons';
 
 import { useNoticeForm } from '@shared/hooks/use-notice-form';
 import InputLayout from '@shared/ui/input/input-layout';
+import Textarea from '@shared/ui/textarea/textarea';
 
 import * as styles from './notice-create.css';
 
@@ -63,18 +65,17 @@ const NoticeCreatePage = () => {
           </div>
         </InputLayout>
         <InputLayout id='notice-title' label='제목' isEssential={true}>
-          <input
+          <Textfield
+            variant='default'
             id='notice-title'
-            className={styles.input}
             placeholder='공지 제목을 입력해주세요.'
             value={title}
             onChange={handleTitleChange}
           />
         </InputLayout>
         <InputLayout id='notice-description' label='내용' isEssential={true}>
-          <textarea
+          <Textarea
             id='notice-description'
-            className={styles.textarea}
             placeholder='공지 내용을 입력해주세요.'
             value={content}
             onChange={handleContentChange}
