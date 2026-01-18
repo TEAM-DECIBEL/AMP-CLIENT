@@ -11,7 +11,7 @@ import * as styles from './login.css';
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleLogionClick = () => {
+  const handleLoginClick = () => {
     //TODO: API 연결
   };
 
@@ -25,7 +25,7 @@ const Login = () => {
         image={<img src='/image.png' alt='로그인 안내 이미지' />}
       />
       <div className={styles.ctaButtonContainer}>
-        <CtaButton type='icon' color='white' onClick={handleLogionClick}>
+        <CtaButton type='icon' color='white' onClick={handleLoginClick}>
           <GoogleIcon />
           <span>Google로 시작하기</span>
         </CtaButton>
