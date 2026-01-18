@@ -1,28 +1,16 @@
 import { useMemo, useState } from 'react';
 
+import { CircleButton, NoticeBanner, Tabs } from '@amp/ads-ui';
 import {
-  CardNotice,
-  CategoryButton,
-  CircleButton,
-  NoticeBanner,
-  Tabs,
-} from '@amp/ads-ui';
+  CATEGORIES,
+  CategorySection,
+  CategoryType,
+  NoticeCardList,
+} from '@amp/shared';
 
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
-
-const CATEGORIES = [
-  '전체',
-  '운영 시간',
-  '입장 안내',
-  'MD',
-  '이벤트',
-  '퇴근길',
-  '기타',
-] as const;
-
-type CategoryType = (typeof CATEGORIES)[number];
 
 const NoticeListPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
@@ -69,45 +57,12 @@ const NoticeListPage = () => {
               </Tabs.List>
             </Tabs>
           </nav>
-          <section className={styles.chipSection}>
-            {CATEGORIES.map((category) => (
-              <CategoryButton
-                key={category}
-                variant='primary'
-                selected={selectedCategory === category}
-                onChange={() => handleChipClick(category)}
-              >
-                {category}
-              </CategoryButton>
-            ))}
-          </section>
+          <CategorySection
+            selectedCategory={selectedCategory}
+            onSelect={handleChipClick}
+          />
         </header>
-        <div className={styles.cardList}>
-          {sortedList.length === 0 ? (
-            <div className={styles.emptyContainer}>
-              <div className={styles.emptyText}>
-                <img src='' alt='작성된 공지 없음' />
-                <p>작성된 공지가 없어요.</p>
-              </div>
-            </div>
-          ) : (
-            sortedList.map((notice) => (
-              <div key={notice.announcementId} className={styles.card}>
-                <CardNotice
-                  imageUrl={notice.imageUrl}
-                  // TODO: 추후 기본 이미지 DEFAULT_IMG로 불러와서, 아래 로직 추가
-                  // imageUrl={notice.imageUrl || DEFAULT_IMG}
-                  title={notice.title}
-                  content={notice.content}
-                  isPinned={notice.isPinned}
-                  createdAt={notice.createdAt}
-                  // TODO: 뷰 이동 로직 추가
-                  onClick={() => {}}
-                />
-              </div>
-            ))
-          )}
-        </div>
+        <NoticeCardList notices={sortedList} onItemClick={() => {}} />
       </div>
       <div className={styles.buttonContainer}>
         <div className={styles.button}>

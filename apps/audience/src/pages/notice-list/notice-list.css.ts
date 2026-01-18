@@ -6,7 +6,7 @@ import { zIndex } from '@amp/ads-ui/styles/tokens/z-index.ts';
 export const pageContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  minHeight: '100dvh',
+  height: '100dvh',
 });
 
 export const mainContent = style({
