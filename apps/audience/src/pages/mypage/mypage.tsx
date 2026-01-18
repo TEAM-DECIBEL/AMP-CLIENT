@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { MyPageLayout } from '@amp/shared';
-
-import LogoutModal from '@widgets/mypage/logout-modal';
+import { LogoutModal, MyPageLayout } from '@amp/shared';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
