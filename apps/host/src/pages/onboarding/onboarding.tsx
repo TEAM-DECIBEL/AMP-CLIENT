@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { CtaButton } from '@amp/ads-ui';
-import { NicknameForm } from '@amp/shared';
+import { NicknameForm } from '@amp/compositions';
 
 import * as styles from './onboarding.css';
 

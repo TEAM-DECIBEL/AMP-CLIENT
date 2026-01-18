@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
-import fixedBgImage from '@shared/assets/home/card_home.webp';
+const fixedBgImage = 'packages/ads-ui/src/assets/card_home.webp';
 
 export const background = style({
   padding: '1.2rem 1.5rem',
