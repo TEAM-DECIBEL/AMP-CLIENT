@@ -1,13 +1,15 @@
 import { overlay } from 'overlay-kit';
 
 import { CtaButton, Modal, RectButton } from '@amp/ads-ui';
+import { DeleteIcon, PenIcon } from '@amp/ads-ui/icons';
+import { NoticeDetailLayout } from '@amp/shared';
 
 import { MOCK_DATA } from '@shared/mocks/notice-details';
 
 import * as styles from './notice-details.css';
 
 const NoticeDetailsPage = () => {
-  const handleAlertClick = () => {
+  const handleDeleteClick = () => {
     overlay.open(({ isOpen, close, unmount }) => (
       <Modal
         open={isOpen}
@@ -48,39 +50,32 @@ const NoticeDetailsPage = () => {
   };
 
   return (
-    <main className={styles.container}>
-      <div className={styles.noticeDetail}>
-        <img
-          src={MOCK_DATA.imageUrl}
-          alt={MOCK_DATA.title}
-          className={styles.img}
-        />
-        <div className={styles.header}>
-          <p className={styles.category}>
-            주최 공지 {'>'} {MOCK_DATA.category}
-          </p>
-          <p className={styles.date}>{MOCK_DATA.createdAt}</p>
-        </div>
-        <div className={styles.contents}>
-          <p className={styles.title}>{MOCK_DATA.title}</p>
-          <p className={styles.text}>{MOCK_DATA.content}</p>
-        </div>
-      </div>
-      <div className={styles.button}>
+    <NoticeDetailLayout>
+      <NoticeDetailLayout.Content data={MOCK_DATA} />
+      <NoticeDetailLayout.Actions>
         {/* TODO: 수정하기 뷰 라우팅 */}
-        <CtaButton type='icon' onClick={() => {}}>
+        <CtaButton
+          type='icon'
+          color='white'
+          onClick={() => {}}
+          className={styles.ctaButton}
+        >
+          <PenIcon />
           수정하기
         </CtaButton>
         <CtaButton
           type='icon'
+          color='white'
           onClick={() => {
-            handleAlertClick();
+            handleDeleteClick();
           }}
+          className={styles.ctaButton}
         >
+          <DeleteIcon />
           삭제하기
         </CtaButton>
-      </div>
-    </main>
+      </NoticeDetailLayout.Actions>
+    </NoticeDetailLayout>
   );
 };
 
