@@ -64,4 +64,28 @@ export const button = style({
   display: 'flex',
   gap: '1rem',
   padding: '1.7rem 2rem',
+
+  position: 'relative',
+  selectors: {
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: '100%',
+      height: '10rem',
+      pointerEvents: 'none',
+      background: `linear-gradient(
+         180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 15%,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0.55) 70%,
+    rgba(255, 255, 255, 0.9) 85%,
+    rgba(255, 255, 255, 1) 95%,
+    ${ampThemeVars.color.gray_000} 100%
+      )`,
+    },
+  },
 });
