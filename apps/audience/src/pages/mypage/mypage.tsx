@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router';
 
 import { MyPageLayout } from '@amp/shared';
 
-import { ROUTE_PATH } from '@shared/constants/path';
 import LogoutModal from '@widgets/mypage/logout-modal';
+
+import { ROUTE_PATH } from '@shared/constants/path';
 
 const MyPage = () => {
   const navigate = useNavigate();
