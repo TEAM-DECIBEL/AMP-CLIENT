@@ -30,12 +30,12 @@ const Content = ({ data }: ContentProps) => {
   return (
     <div className={styles.noticeDetail}>
       <img src={data.imageUrl} alt={data.title} className={styles.img} />
-      <div className={styles.header}>
+      <header className={styles.header}>
         <p className={styles.category}>
           주최 공지 {'>'} {data.category}
         </p>
         <p className={styles.date}>{data.createdAt}</p>
-      </div>
+      </header>
       <div className={styles.contents}>
         <p className={styles.title}>{data.title}</p>
         <p className={styles.text}>{data.content}</p>
