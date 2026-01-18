@@ -5,7 +5,8 @@
     ".": "./src/components/index.ts",
     "./icons": "./src/icons/index.ts",
     "./styles": "./src/styles/index.ts",
-    "./styles/theme.css": "./src/styles/theme.css.ts"
+    "./styles/theme.css": "./src/styles/theme.css.ts",
+    "./styles/tokens/z-index.ts": "./src/styles/tokens/z-index.ts"
   },
   "scripts": {
     "build": "tsc -b",

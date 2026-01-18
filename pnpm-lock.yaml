@@ -135,6 +135,9 @@ importers:
       '@vanilla-extract/recipes':
         specifier: 'catalog:'
         version: 0.5.7(@vanilla-extract/css@1.18.0)
+      overlay-kit:
+        specifier: ^1.8.6
+        version: 1.8.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: 'catalog:'
         version: 19.2.3
@@ -439,6 +442,9 @@ importers:
 
   packages/shared:
     dependencies:
+      '@amp/ads-ui':
+        specifier: workspace:*
+        version: link:../ads-ui
       '@vanilla-extract/css':
         specifier: 'catalog:'
         version: 1.18.0
