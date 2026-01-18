@@ -14,6 +14,7 @@ import {
   toast,
 } from '@amp/ads-ui';
 
+import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
@@ -35,11 +36,10 @@ const NoticeListPage = () => {
     CATEGORIES[0],
   );
 
-  // TODO: 임시 state, 추후 api 호출 결과 기준으로 토스트 메시지 결정
-  const [isAlertOn, setIsAlertOn] = useState(false);
-
   // TODO: 서버에서 받아온 값으로 기본값 설정
   const [isWatched, setIsWatched] = useState<boolean>(false);
+
+  const { toggleAlert } = useNoticeAlert();
 
   // TODO: API 연동 (공지 목록 불러와서 아래 MOCK_DATA 대체)
 
@@ -64,6 +64,22 @@ const NoticeListPage = () => {
   const handleWatchToggle = () => {
     setIsWatched((prev) => !prev);
     // TODO: 서버에 '관심 공연 등록/해제' API 요청 보내기
+  };
+
+  const handleConfirmAlert = async (close: () => void, unmount: () => void) => {
+    const isNowOn = await toggleAlert();
+
+    if (isNowOn) {
+      toast.show(
+        `${selectedCategory} 공지 알림이 설정되었어요.`,
+        `새 공지가 올라오면 알림을 보내드릴게요.`,
+      );
+    } else {
+      toast.show('알림 설정이 해제되었어요.');
+    }
+
+    close();
+    unmount();
   };
 
   const handleAlertClick = () => {
@@ -95,23 +111,7 @@ const NoticeListPage = () => {
             </RectButton>
             <RectButton
               variant='primary'
-              // TODO: 알림 신청 API 호출, 그 결과 기준 토스트 메시지 출력
-              onClick={() => {
-                const nextState = !isAlertOn;
-                setIsAlertOn(nextState);
-
-                if (nextState) {
-                  toast.show(
-                    `${selectedCategory} 공지 알림이 설정되었어요.`,
-                    `새 공지가 올라오면 알림을 보내드릴게요.`,
-                  );
-                } else {
-                  toast.show('이미 알림을 받고 있어요!');
-                }
-
-                close();
-                unmount();
-              }}
+              onClick={() => handleConfirmAlert(close, unmount)}
             >
               알림 받기
             </RectButton>
