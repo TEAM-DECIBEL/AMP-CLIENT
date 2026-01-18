@@ -120,6 +120,9 @@ importers:
       '@amp/apis':
         specifier: workspace:*
         version: link:../../packages/apis
+      '@amp/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@tanstack/react-query':
         specifier: ^5.90.16
         version: 5.90.16(react@19.2.3)
@@ -181,6 +184,9 @@ importers:
       '@amp/apis':
         specifier: workspace:*
         version: link:../../packages/apis
+      '@amp/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@tanstack/react-query':
         specifier: ^5.90.16
         version: 5.90.16(react@19.2.3)
@@ -237,67 +243,6 @@ importers:
         specifier: 'catalog:'
         version: 7.3.0(@types/node@24.10.6)
 
-  apps/onboarding:
-    dependencies:
-      '@amp/ads-ui':
-        specifier: workspace:*
-        version: link:../../packages/ads-ui
-      '@amp/apis':
-        specifier: workspace:*
-        version: link:../../packages/apis
-      '@tanstack/react-query':
-        specifier: ^5.90.16
-        version: 5.90.16(react@19.2.3)
-      '@vanilla-extract/css':
-        specifier: 'catalog:'
-        version: 1.18.0
-      '@vanilla-extract/recipes':
-        specifier: 'catalog:'
-        version: 0.5.7(@vanilla-extract/css@1.18.0)
-      react:
-        specifier: 'catalog:'
-        version: 19.2.3
-      react-dom:
-        specifier: 'catalog:'
-        version: 19.2.3(react@19.2.3)
-      react-router:
-        specifier: 'catalog:'
-        version: 7.12.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-    devDependencies:
-      '@amp/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/configs/eslint
-      '@amp/prettier-config':
-        specifier: workspace:*
-        version: link:../../packages/configs/prettier
-      '@amp/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/configs/typescript
-      '@amp/vite-config':
-        specifier: workspace:*
-        version: link:../../packages/configs/vite
-      '@tanstack/react-query-devtools':
-        specifier: ^5.91.2
-        version: 5.91.2(@tanstack/react-query@5.90.16(react@19.2.3))(react@19.2.3)
-      '@types/react':
-        specifier: 'catalog:'
-        version: 19.2.7
-      '@types/react-dom':
-        specifier: 'catalog:'
-        version: 19.2.3(@types/react@19.2.7)
-      '@vitejs/plugin-react':
-        specifier: 'catalog:'
-        version: 5.1.2(vite@7.3.0(@types/node@24.10.6))
-      eslint:
-        specifier: 'catalog:'
-        version: 9.39.2
-      typescript:
-        specifier: 'catalog:'
-        version: 5.9.3
-      vite:
-        specifier: 'catalog:'
-        version: 7.3.0(@types/node@24.10.6)
-
   packages/ads-ui:
     dependencies:
       '@vanilla-extract/css':
@@ -308,7 +253,7 @@ importers:
         version: 0.5.7(@vanilla-extract/css@1.18.0)
       '@vanilla-extract/vite-plugin':
         specifier: 'catalog:'
-        version: 5.1.4(@types/node@24.10.6)(vite@7.3.0(@types/node@24.10.6))
+        version: 5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -433,6 +378,52 @@ importers:
       vite-tsconfig-paths:
         specifier: ^6.0.3
         version: 6.0.4(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.6))
+
+  packages/shared:
+    dependencies:
+      '@amp/ads-ui':
+        specifier: workspace:*
+        version: link:../ads-ui
+      '@vanilla-extract/css':
+        specifier: 'catalog:'
+        version: 1.18.0
+      '@vanilla-extract/recipes':
+        specifier: 'catalog:'
+        version: 0.5.7(@vanilla-extract/css@1.18.0)
+      '@vanilla-extract/vite-plugin':
+        specifier: 'catalog:'
+        version: 5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))
+      react:
+        specifier: 'catalog:'
+        version: 19.2.3
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.3(react@19.2.3)
+      react-router:
+        specifier: 'catalog:'
+        version: 7.12.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+    devDependencies:
+      '@amp/eslint-config':
+        specifier: workspace:*
+        version: link:../configs/eslint
+      '@amp/prettier-config':
+        specifier: workspace:*
+        version: link:../configs/prettier
+      '@amp/tsconfig':
+        specifier: workspace:*
+        version: link:../configs/typescript
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.7)
+      eslint:
+        specifier: 'catalog:'
+        version: 9.39.2
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
 
 packages:
 
@@ -3067,6 +3058,26 @@ snapshots:
       '@vanilla-extract/compiler': 0.3.4(@types/node@24.10.6)
       '@vanilla-extract/integration': 8.0.7
       vite: 7.3.0(@types/node@24.10.6)
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - jiti
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - tsx
+      - yaml
+
+  '@vanilla-extract/vite-plugin@5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))':
+    dependencies:
+      '@vanilla-extract/compiler': 0.3.4(@types/node@24.10.6)
+      '@vanilla-extract/integration': 8.0.7
+      vite: 7.3.1(@types/node@24.10.6)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
