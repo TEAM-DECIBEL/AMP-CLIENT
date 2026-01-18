@@ -1,5 +1,4 @@
-import { CardNotice } from '@amp/ads-ui';
-import { EmptyView } from '@amp/ads-ui';
+import { CardNotice, EmptyView } from '@amp/ads-ui';
 
 import * as styles from './notice-card-list.css';
 
