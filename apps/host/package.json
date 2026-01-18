@@ -16,6 +16,7 @@
     "react-dom": "catalog:",
     "react-router": "catalog:",
     "@amp/apis": "workspace:*",
+    "@amp/compositions": "workspace:*",
     "@tanstack/react-query": "^5.90.16"
   },
   "devDependencies": {
