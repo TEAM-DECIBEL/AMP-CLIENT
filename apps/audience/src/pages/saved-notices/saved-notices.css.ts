@@ -4,11 +4,21 @@ import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const page = style({
   padding: '2rem',
+  minHeight: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
 });
 
 export const list = style({
   display: 'flex',
   flexDirection: 'column',
+});
+
+export const empty = style({
+  flex: 1,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 export const divider = style({
