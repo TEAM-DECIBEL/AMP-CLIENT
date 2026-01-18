@@ -242,9 +242,6 @@ importers:
 
   packages/ads-ui:
     dependencies:
-      '@amp/tsconfig':
-        specifier: workspace:*
-        version: link:../configs/typescript
       '@vanilla-extract/css':
         specifier: 'catalog:'
         version: 1.18.0
@@ -279,6 +276,9 @@ importers:
       '@amp/prettier-config':
         specifier: workspace:*
         version: link:../configs/prettier
+      '@amp/tsconfig':
+        specifier: workspace:*
+        version: link:../configs/typescript
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.7
@@ -381,9 +381,6 @@ importers:
       '@amp/ads-ui':
         specifier: workspace:*
         version: link:../ads-ui
-      '@amp/tsconfig':
-        specifier: workspace:*
-        version: link:../configs/typescript
       '@vanilla-extract/css':
         specifier: 'catalog:'
         version: 1.18.0
@@ -409,6 +406,9 @@ importers:
       '@amp/prettier-config':
         specifier: workspace:*
         version: link:../configs/prettier
+      '@amp/tsconfig':
+        specifier: workspace:*
+        version: link:../configs/typescript
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.7
