@@ -14,6 +14,7 @@ interface MyPageLayoutProps {
     onClick: () => void;
   }[];
   dashboard?: ReactNode;
+  onLogout?: () => void;
 }
 
 const MyPageLayout = ({
@@ -22,9 +23,10 @@ const MyPageLayout = ({
   profileImageUrl,
   menuItems,
   dashboard,
+  onLogout,
 }: MyPageLayoutProps) => {
   const handleLogout = () => {
-    // 로그아웃 로직 추가
+    onLogout?.();
   };
 
   return (
