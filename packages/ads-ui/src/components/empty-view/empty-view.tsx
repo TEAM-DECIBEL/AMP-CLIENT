@@ -3,15 +3,28 @@ import type { ReactNode } from 'react';
 import * as styles from './empty-view.css';
 
 interface EmptyViewProps {
-  image: ReactNode | null;
-  text: ReactNode;
+  title: ReactNode;
+  description?: ReactNode;
 }
 
-const EmptyView = ({ image, text }: EmptyViewProps) => {
+const EmptyView = ({ title, description }: EmptyViewProps) => {
+  const hasDescription = Boolean(description);
+
   return (
     <div className={styles.empty}>
-      <span className={styles.image}>{image}</span>
-      <span className={styles.text}>{text}</span>
+      <span className={styles.image} aria-hidden='true' />
+      <div className={styles.textGroup}>
+        <span
+          className={
+            hasDescription ? styles.titleWithDescription : styles.titleOnly
+          }
+        >
+          {title}
+        </span>
+        {hasDescription && (
+          <span className={styles.description}>{description}</span>
+        )}
+      </div>
     </div>
   );
 };

@@ -52,7 +52,7 @@ const HomeFestivalList = ({
     <div className={content}>
       {emptyConfig[selectedTab].isEmpty ? (
         <div className={emptyWrapper}>
-          <EmptyView image={null} text={emptyConfig[selectedTab].text} />
+          <EmptyView title={emptyConfig[selectedTab].text} />
         </div>
       ) : (
         <div className={cardList}>
