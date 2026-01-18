@@ -8,13 +8,13 @@ interface MyPageLayoutProps {
   name: string;
   roleLabel: string;
   profileImageUrl?: string;
-  menuItems?: {
+  menuItems: {
     id: string;
     label: string;
     onClick: () => void;
   }[];
   dashboard?: ReactNode;
-  onLogout?: () => void;
+  onLogout: () => void;
 }
 
 const MyPageLayout = ({
@@ -49,19 +49,17 @@ const MyPageLayout = ({
           <div className={styles.contentWidth}>{dashboard}</div>
         </div>
       ) : null}
-      {menuItems && menuItems.length > 0 ? (
-        <div className={styles.menuSection}>
-          <div className={styles.contentWidth}>
-            <MyPageMenuContainer>
-              {menuItems.map((menu) => (
-                <MyPageMenuItem key={menu.id} onClick={menu.onClick}>
-                  {menu.label}
-                </MyPageMenuItem>
-              ))}
-            </MyPageMenuContainer>
-          </div>
+      <div className={styles.menuSection}>
+        <div className={styles.contentWidth}>
+          <MyPageMenuContainer>
+            {menuItems.map((menu) => (
+              <MyPageMenuItem key={menu.id} onClick={menu.onClick}>
+                {menu.label}
+              </MyPageMenuItem>
+            ))}
+          </MyPageMenuContainer>
         </div>
-      ) : null}
+      </div>
       <button
         type='button'
         className={styles.logoutButton}
