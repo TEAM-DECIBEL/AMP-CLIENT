@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { ChangeEvent } from 'react';
 
+import { toast } from '@amp/ads-ui';
 import {
   AddImageButton,
   CategoryButton,
@@ -15,6 +16,8 @@ import * as styles from './notice-create.css';
 
 const CATEGORIES = ['운영 시간', '입장 안내', 'MD', '이벤트', '퇴근길', '기타'];
 
+const MOCK_PINNED_COUNT = 3;
+
 const NoticeCreatePage = () => {
   const [isPinned, setIsPinned] = useState(false);
   const [image, setImage] = useState<File | null>(null);
@@ -23,7 +26,17 @@ const NoticeCreatePage = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  const handlePinToggle = () => setIsPinned((prev) => !prev);
+  const handlePinToggle = () => {
+    if (!isPinned && MOCK_PINNED_COUNT >= 3) {
+      toast.show(
+        '상단 고정할 수 있는 공지 수를 초과했어요.',
+        '기존 공지를 고정 해제한 후 시도해주세요.',
+      );
+      return;
+    }
+
+    setIsPinned((prev) => !prev);
+  };
 
   const handleImageChange = (file: File | null) => {
     setImage(file);
