@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { ampThemeVars } from '../../../../ads-ui/src/styles';
+import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const form = style({
   paddingTop: '8rem',
