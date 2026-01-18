@@ -15,12 +15,8 @@
     "@tanstack/react-query": "^5.90.16",
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
-<<<<<<< HEAD
     "overlay-kit": "^1.8.6",
-=======
-    "@amp/ads-ui": "workspace:*",
     "@amp/shared": "workspace:*",
->>>>>>> develop
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "catalog:"
