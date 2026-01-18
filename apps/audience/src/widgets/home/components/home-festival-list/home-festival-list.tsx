@@ -13,7 +13,7 @@ import type {
 
 import HomeFestivalCard from '../home-festival-card/home-festival-card';
 
-import { cardList, content } from './home-festival-list.css';
+import { cardList, content, emptyWrapper } from './home-festival-list.css';
 
 interface HomeFestivalListProps {
   selectedTab: TabValue;
@@ -51,7 +51,9 @@ const HomeFestivalList = ({
   return (
     <div className={content}>
       {emptyConfig[selectedTab].isEmpty ? (
-        <EmptyView image={null} text={emptyConfig[selectedTab].text} />
+        <div className={emptyWrapper}>
+          <EmptyView image={null} text={emptyConfig[selectedTab].text} />
+        </div>
       ) : (
         <div className={cardList}>
           {selectedTab === TAB_ALL

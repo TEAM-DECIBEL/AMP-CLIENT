@@ -8,6 +8,8 @@ import type {
 import HomeFestivalList from '../home-festival-list/home-festival-list';
 import HomeFestivalTabs from '../home-festival-tabs/home-festival-tabs';
 
+import * as styles from './home-festival-section.css';
+
 interface HomeFestivalSectionProps {
   selectedTab: TabValue;
   onTabChange: (value: TabValue) => void;
@@ -26,7 +28,7 @@ const HomeFestivalSection = ({
   onToggleUpcomingFestival,
 }: HomeFestivalSectionProps) => {
   return (
-    <>
+    <div className={styles.section}>
       <HomeFestivalTabs selectedTab={selectedTab} onTabChange={onTabChange} />
       <HomeFestivalList
         selectedTab={selectedTab}
@@ -35,7 +37,7 @@ const HomeFestivalSection = ({
         onToggleAllFestival={onToggleAllFestival}
         onToggleUpcomingFestival={onToggleUpcomingFestival}
       />
-    </>
+    </div>
   );
 };
 
