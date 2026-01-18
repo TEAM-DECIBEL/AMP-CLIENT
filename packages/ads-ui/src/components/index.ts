@@ -15,6 +15,7 @@ export { default as NavigationListItem } from './button/navigation-list-button/n
 export { default as CardFestival } from './card/card-festival/card-festival';
 export { default as CardNotice } from './card/card-notice/card-notice';
 export { default as Chip } from './chip/chip';
+export { default as EmptyView } from './empty-view/empty-view';
 export { default as Header } from './header/header';
 export { default as Modal } from './modal/modal';
 export { default as RectButton } from './modal/rect-button/rect-button';
