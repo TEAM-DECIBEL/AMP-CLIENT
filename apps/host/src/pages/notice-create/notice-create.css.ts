@@ -7,6 +7,7 @@ export const container = style({
   flexDirection: 'column',
   gap: '2rem',
   margin: '3.1rem 2rem 0 2rem',
+  paddingBottom: '9rem',
 });
 
 export const titleContainer = style({
@@ -51,7 +52,6 @@ export const divider = style({
 
 export const input = style({
   padding: '1.6rem 2rem',
-  color: ampThemeVars.color.gray_400,
   borderRadius: '16px',
   border: `1px solid ${ampThemeVars.color.gray_200}`,
   caretColor: ampThemeVars.color.primary,

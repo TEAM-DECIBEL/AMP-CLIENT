@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { ChangeEvent } from 'react';
 
 import {
   AddImageButton,
@@ -15,10 +16,54 @@ import * as styles from './notice-create.css';
 const CATEGORIES = ['운영 시간', '입장 안내', 'MD', '이벤트', '퇴근길', '기타'];
 
 const NoticeCreatePage = () => {
+  const [isPinned, setIsPinned] = useState(false);
+  const [image, setImage] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
+  const handlePinToggle = () => setIsPinned((prev) => !prev);
+
+  const handleImageChange = (file: File | null) => {
+    setImage(file);
+    setImageUrl(file ? 'temp-preview-url' : '');
+  };
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
+  };
+
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+  };
+
+  const isValid = useMemo(() => {
+    return (
+      selectedCategory !== '' &&
+      title.trim().length > 0 &&
+      content.trim().length > 0
+    );
+  }, [selectedCategory, title, content]);
+
+  const handleSubmit = () => {
+    if (!isValid) {
+      return;
+    }
+
+    const formData = {
+      isPinned,
+      image,
+      category: selectedCategory,
+      title,
+      content,
+    };
+
+    // TODO: API 전송 로직
   };
 
   return (
@@ -35,13 +80,16 @@ const NoticeCreatePage = () => {
             <PinIcon />
             <p>공지 상단 고정</p>
           </div>
-          <CheckButton />
+          <CheckButton checked={isPinned} onChange={handlePinToggle} />
         </div>
-        <InputLayout id='notice-image' label='공지 이미지' isEssential={false}>
-          <AddImageButton imageUrl='' onFileChange={() => {}} />
+        <InputLayout label='공지 이미지' isEssential={false}>
+          <AddImageButton
+            imageUrl={imageUrl}
+            onFileChange={handleImageChange}
+          />
         </InputLayout>
         <hr className={styles.divider} />
-        <InputLayout id='category' label='카테고리' isEssential={true}>
+        <InputLayout label='카테고리' isEssential={true}>
           <div className={styles.chipContainer}>
             {CATEGORIES.map((category) => (
               <CategoryButton
@@ -57,19 +105,30 @@ const NoticeCreatePage = () => {
         </InputLayout>
         <InputLayout id='notice-title' label='제목' isEssential={true}>
           <input
+            id='notice-title'
             className={styles.input}
             placeholder='공지 제목을 입력해주세요.'
+            value={title}
+            onChange={handleTitleChange}
           />
         </InputLayout>
         <InputLayout id='notice-description' label='내용' isEssential={true}>
           <textarea
+            id='notice-description'
             className={styles.textarea}
             placeholder='공지 내용을 입력해주세요.'
+            value={content}
+            onChange={handleContentChange}
           />
         </InputLayout>
       </main>
       <div className={styles.buttonContainer}>
-        <CtaButton type='common' color='gray' onClick={() => {}}>
+        <CtaButton
+          type='common'
+          color='gray'
+          onClick={handleSubmit}
+          disabled={!isValid}
+        >
           완료
         </CtaButton>
       </div>
