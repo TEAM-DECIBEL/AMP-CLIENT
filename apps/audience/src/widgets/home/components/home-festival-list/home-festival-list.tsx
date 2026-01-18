@@ -6,6 +6,7 @@ import {
   type TabValue,
 } from '@widgets/home/constants/home-tabs';
 
+import formatDday from '@shared/libs/format-dday';
 import type {
   AllFestivalItem,
   UpcomingFestivalItem,
@@ -30,13 +31,6 @@ const HomeFestivalList = ({
   onToggleAllFestival,
   onToggleUpcomingFestival,
 }: HomeFestivalListProps) => {
-  const formatDday = (dDay: number) => {
-    if (dDay === 0) {
-      return 'D-Day';
-    }
-    return dDay > 0 ? `D-${dDay}` : `D+${Math.abs(dDay)}`;
-  };
-
   const emptyConfig = {
     [TAB_ALL]: {
       isEmpty: allFestivals.length === 0,
