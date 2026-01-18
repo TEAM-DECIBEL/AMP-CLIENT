@@ -20,8 +20,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "catalog:",
-    "zustand": "^5.0.10",
-    "@amp/tsconfig": "workspace:*"
+    "zustand": "^5.0.10"
   },
   "devDependencies": {
     "@amp/eslint-config": "workspace:*",
@@ -29,6 +28,7 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "eslint": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "@amp/tsconfig": "workspace:*"
   }
 }
