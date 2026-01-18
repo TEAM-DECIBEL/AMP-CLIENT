@@ -26,7 +26,7 @@ const NoticeCardList = ({ notices, onItemClick }: NoticeCardListProps) => {
   if (notices.length === 0) {
     return (
       <div className={styles.emptyContainer}>
-        <EmptyView title='작성된 공지가 없어요.' />;
+        <EmptyView title='작성된 공지가 없어요.' />
       </div>
     );
   }
