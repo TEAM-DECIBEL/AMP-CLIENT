@@ -40,7 +40,12 @@ const NoticeCreatePage = () => {
 
   const handleImageChange = (file: File | null) => {
     setImage(file);
-    setImageUrl(file ? 'temp-preview-url' : '');
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setImageUrl(url);
+    } else {
+      setImageUrl('');
+    }
   };
 
   const handleCategoryClick = (category: string) => {
