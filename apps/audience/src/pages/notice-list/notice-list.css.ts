@@ -24,42 +24,6 @@ export const contentHeader = style({
   zIndex: zIndex.overlay,
 });
 
-export const cardList = style({
-  flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '0 2rem',
-});
-
-export const card = style({
-  marginBottom: '1.2rem',
-  paddingBottom: '1.2rem',
-  borderBottom: `1px solid ${ampThemeVars.color.gray_200}`,
-  selectors: {
-    '&:last-child': {
-      paddingBottom: '1.2rem',
-      borderBottom: 'none',
-    },
-  },
-});
-
-export const emptyContainer = style({
-  flex: 1,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
-
-export const emptyText = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1.6rem',
-  justifyContent: 'center',
-  alignItems: 'center',
-  color: ampThemeVars.color.gray_500,
-  ...ampThemeVars.font.title_sb_16,
-});
-
 export const buttonContainer = style({
   position: 'fixed',
   bottom: '3rem',

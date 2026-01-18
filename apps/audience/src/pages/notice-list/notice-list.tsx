@@ -3,7 +3,6 @@ import { overlay } from 'overlay-kit';
 
 import {
   AddToWatchButton,
-  CardNotice,
   CircleButton,
   CtaButton,
   Modal,
@@ -13,7 +12,12 @@ import {
   toast,
 } from '@amp/ads-ui';
 import { AlertIcon } from '@amp/ads-ui/icons';
-import { CATEGORIES, CategorySection, CategoryType } from '@amp/shared';
+import {
+  CATEGORIES,
+  CategorySection,
+  CategoryType,
+  NoticeCardList,
+} from '@amp/shared';
 
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
@@ -151,32 +155,8 @@ const NoticeListPage = () => {
             </div>
           )}
         </header>
-        <div className={styles.cardList}>
-          {sortedList.length === 0 ? (
-            <div className={styles.emptyContainer}>
-              <div className={styles.emptyText}>
-                <img src='' alt='작성된 공지 없음' />
-                <p>작성된 공지가 없어요.</p>
-              </div>
-            </div>
-          ) : (
-            sortedList.map((notice) => (
-              <div key={notice.announcementId} className={styles.card}>
-                <CardNotice
-                  imageUrl={notice.imageUrl}
-                  // TODO: 추후 기본 이미지 DEFAULT_IMG로 불러와서, 아래 로직 추가
-                  // imageUrl={notice.imageUrl || DEFAULT_IMG}
-                  title={notice.title}
-                  content={notice.content}
-                  isPinned={notice.isPinned}
-                  createdAt={notice.createdAt}
-                  // TODO: 뷰 이동 로직 추가
-                  onClick={() => {}}
-                />
-              </div>
-            ))
-          )}
-        </div>
+        {/* TODO: 카드 클릭 시 상세 뷰로 이동 */}
+        <NoticeCardList notices={sortedList} onItemClick={() => {}} />
       </div>
       <div className={styles.buttonContainer}>
         <div className={styles.button}>
