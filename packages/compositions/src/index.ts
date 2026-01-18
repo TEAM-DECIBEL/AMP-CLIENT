@@ -1,3 +1,4 @@
+export { default as ButtonGradientSection } from './button-gradient-section/button-gradient-section';
 export { default as CategorySection } from './category-section/category-section';
 export {
   CATEGORIES,
