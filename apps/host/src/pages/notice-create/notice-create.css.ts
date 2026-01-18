@@ -28,6 +28,7 @@ export const description = style({
 export const fixedBox = style({
   display: 'flex',
   justifyContent: 'space-between',
+  alignItems: 'center',
   padding: '1rem 1.2rem 1rem 1.6rem',
   backgroundColor: ampThemeVars.color.gray_100,
   borderRadius: '10px',
@@ -39,4 +40,58 @@ export const fixedText = style({
   gap: '0.4rem',
   color: ampThemeVars.color.gray_900,
   ...ampThemeVars.font.caption_m_12,
+});
+
+export const divider = style({
+  width: '100%',
+  height: '1px',
+  border: 'none',
+  backgroundColor: ampThemeVars.color.gray_200,
+});
+
+export const input = style({
+  padding: '1.6rem 2rem',
+  color: ampThemeVars.color.gray_400,
+  borderRadius: '16px',
+  border: `1px solid ${ampThemeVars.color.gray_200}`,
+  caretColor: ampThemeVars.color.primary,
+  ...ampThemeVars.font.body_m_14,
+
+  selectors: {
+    '&::placeholder': {
+      color: ampThemeVars.color.gray_400,
+    },
+    '&:focus': {
+      outline: 'none',
+      borderColor: ampThemeVars.color.gray_900,
+    },
+  },
+});
+
+export const textarea = style({
+  display: 'block',
+  boxSizing: 'border-box',
+  width: '100%',
+  height: '15rem',
+  padding: '1.6rem 2rem',
+  color: ampThemeVars.color.gray_900,
+  borderRadius: '16px',
+  border: `1px solid ${ampThemeVars.color.gray_200}`,
+  resize: 'none',
+  caretColor: ampThemeVars.color.primary,
+  ...ampThemeVars.font.body_m_14,
+
+  selectors: {
+    '&::placeholder': {
+      color: ampThemeVars.color.gray_400,
+    },
+    '&:focus': {
+      outline: 'none',
+      borderColor: ampThemeVars.color.gray_900,
+    },
+  },
+});
+
+export const buttonContainer = style({
+  padding: '2rem',
 });

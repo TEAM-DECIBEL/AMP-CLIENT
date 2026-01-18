@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import * as styles from './input.css';
+import * as styles from './input-layout.css';
 
 interface InputLayoutProps {
   id: string;
