@@ -331,9 +331,6 @@ importers:
       '@vanilla-extract/recipes':
         specifier: 'catalog:'
         version: 0.5.7(@vanilla-extract/css@1.18.0)
-      '@vanilla-extract/vite-plugin':
-        specifier: 'catalog:'
-        version: 5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -368,6 +365,9 @@ importers:
       '@types/react-dom':
         specifier: 'catalog:'
         version: 19.2.3(@types/react@19.2.7)
+      '@vanilla-extract/vite-plugin':
+        specifier: 'catalog:'
+        version: 5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))
       eslint:
         specifier: 'catalog:'
         version: 9.39.2
