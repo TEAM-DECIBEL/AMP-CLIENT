@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { Modal, RectButton } from '@amp/ads-ui';
 import { MyPageLayout } from '@amp/shared';
+
+import LogoutModal from '@widgets/mypage/logout-modal';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 import Dashboard from '@shared/ui/card/card-dashboard/dashboard';
@@ -62,22 +63,11 @@ const MyPage = () => {
         }))}
         handleLogout={handleLogoutOpen}
       />
-      <Modal open={isLogoutOpen} onClose={handleLogoutClose}>
-        <Modal.Panel role='alertdialog'>
-          <Modal.Content>
-            <Modal.Title>로그아웃</Modal.Title>
-            <Modal.Description>로그아웃 하시겠어요?</Modal.Description>
-          </Modal.Content>
-          <Modal.Actions>
-            <RectButton variant='secondary' onClick={handleLogoutClose}>
-              취소
-            </RectButton>
-            <RectButton variant='primary' onClick={handleLogoutConfirm}>
-              로그아웃
-            </RectButton>
-          </Modal.Actions>
-        </Modal.Panel>
-      </Modal>
+      <LogoutModal
+        open={isLogoutOpen}
+        onClose={handleLogoutClose}
+        onConfirm={handleLogoutConfirm}
+      />
     </>
   );
 };
