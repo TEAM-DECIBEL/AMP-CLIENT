@@ -17,7 +17,7 @@ export const mainContent = style({
 
 export const contentHeader = style({
   position: 'sticky',
-  top: 0,
+  top: 'var(--header-height)',
   marginTop: '-5rem',
   borderRadius: '16px 16px 0 0',
   backgroundColor: ampThemeVars.color.gray_000,
