@@ -77,6 +77,13 @@ export const button = style({
   pointerEvents: 'auto',
 });
 
-export const ctaButton = style({
+export const ctaButtonContainer = style({
+  padding: '0 2rem',
+  height: '3.9rem',
   marginBottom: '1.6rem',
+});
+
+export const ctaButton = style({
+  height: '3.9rem',
+  ...ampThemeVars.font.body_m_14,
 });

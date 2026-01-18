@@ -138,8 +138,13 @@ const NoticeListPage = () => {
             onSelect={handleChipClick}
           />
           {!(selectedCategory === '전체') && (
-            <div className={styles.ctaButton}>
-              <CtaButton type='icon' color='gray' onClick={handleAlertClick}>
+            <div className={styles.ctaButtonContainer}>
+              <CtaButton
+                type='icon'
+                color='gray'
+                onClick={handleAlertClick}
+                className={styles.ctaButton}
+              >
                 <AlertIcon />
                 {selectedCategory} 공지 알림 받기
               </CtaButton>
