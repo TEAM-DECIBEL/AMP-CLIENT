@@ -4,7 +4,6 @@ import { overlay } from 'overlay-kit';
 import {
   AddToWatchButton,
   CardNotice,
-  CategoryButton,
   CircleButton,
   CtaButton,
   Modal,
@@ -14,23 +13,12 @@ import {
   toast,
 } from '@amp/ads-ui';
 import { AlertIcon } from '@amp/ads-ui/icons';
+import { CATEGORIES, CategorySection, CategoryType } from '@amp/shared';
 
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
-
-const CATEGORIES = [
-  '전체',
-  '운영 시간',
-  '입장 안내',
-  'MD',
-  '이벤트',
-  '퇴근길',
-  '기타',
-] as const;
-
-type CategoryType = (typeof CATEGORIES)[number];
 
 const NoticeListPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
@@ -145,18 +133,10 @@ const NoticeListPage = () => {
               </Tabs.List>
             </Tabs>
           </nav>
-          <section className={styles.chipSection}>
-            {CATEGORIES.map((category) => (
-              <CategoryButton
-                key={category}
-                variant='primary'
-                selected={selectedCategory === category}
-                onChange={() => handleChipClick(category)}
-              >
-                {category}
-              </CategoryButton>
-            ))}
-          </section>
+          <CategorySection
+            selectedCategory={selectedCategory}
+            onSelect={handleChipClick}
+          />
           {!(selectedCategory === '전체') && (
             <div className={styles.ctaButton}>
               <CtaButton type='icon' color='gray' onClick={handleAlertClick}>
