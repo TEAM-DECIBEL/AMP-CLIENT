@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { overlay } from 'overlay-kit';
 
+import { StatusSheet } from '@amp/ads-ui';
 import {
   AddToWatchButton,
   CircleButton,
@@ -33,6 +34,10 @@ const NoticeListPage = () => {
 
   const [activeTab, setActiveTab] = useState<string>('notice');
 
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [sheetTitle, setSheetTitle] = useState('');
+  const [status, setStatus] = useState<'여유' | '보통' | '혼잡'>('여유');
+
   // TODO: 서버에서 받아온 값으로 기본값 설정
   const [isWatched, setIsWatched] = useState<boolean>(false);
 
@@ -56,6 +61,15 @@ const NoticeListPage = () => {
 
   const handleChipClick = (category: CategoryType) => {
     setSelectedCategory(category);
+  };
+
+  const handleNoticeItemClick = (id: number) => {
+    const targetItem = LIVE_STATUS_MOCK.find((item) => item.id === id);
+
+    if (targetItem) {
+      setSheetTitle(targetItem.title ?? '');
+      setIsSheetOpen(true);
+    }
   };
 
   const handleWatchToggle = () => {
@@ -171,7 +185,10 @@ const NoticeListPage = () => {
               <ChatIcon />
               <p>지금 계신 곳의 혼잡도 상황을 알려주세요!</p>
             </div>
-            <LiveButtonContainer items={LIVE_STATUS_MOCK} />
+            <LiveButtonContainer
+              items={LIVE_STATUS_MOCK}
+              onClick={handleNoticeItemClick}
+            />
           </div>
         )}
       </div>
@@ -183,6 +200,18 @@ const NoticeListPage = () => {
           </div>
         </div>
       )}
+
+      <StatusSheet
+        open={isSheetOpen}
+        onClose={() => setIsSheetOpen(false)}
+        title={sheetTitle}
+        selectable
+        selected={status}
+        onSelect={(value) => setStatus(value)}
+        onConfirm={() => {
+          setIsSheetOpen(false);
+        }}
+      />
     </main>
   );
 };

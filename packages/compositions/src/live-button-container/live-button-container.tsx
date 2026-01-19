@@ -11,6 +11,7 @@ interface LiveStatusListProps {
     location?: string | null;
     congestionLevel: string;
   }[];
+  onClick?: (id: number) => void;
 }
 
 // TODO: 추후 실제 이미지 import 하고 변경
@@ -20,7 +21,7 @@ const STATUS_IMAGES: Record<LiveStatusType, string> = {
   혼잡: 'https://png.pngtree.com/thumb_back/fh260/background/20210207/pngtree-red-solid-color-simple-background-image_556968.jpg',
 };
 
-const LiveButtonContainer = ({ items }: LiveStatusListProps) => {
+const LiveButtonContainer = ({ items, onClick }: LiveStatusListProps) => {
   return (
     <div className={styles.liveButtonContainer}>
       {items.map((item) => {
@@ -33,7 +34,7 @@ const LiveButtonContainer = ({ items }: LiveStatusListProps) => {
             title={item.title}
             subText={item.location ?? ''}
             imageUrl={statusImageUrl}
-            onClick={() => {}}
+            onClick={() => onClick?.(item.id)}
           />
         );
       })}
