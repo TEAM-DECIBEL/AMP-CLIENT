@@ -8,7 +8,7 @@ export const container = style({
 });
 
 export const content = style({
-  padding: '2rem',
+  padding: '2rem 0',
 });
 
 export const title = style({
@@ -22,8 +22,4 @@ export const description = style({
   ...ampThemeVars.font.body_m_13,
   color: ampThemeVars.color.gray_500,
   textAlign: 'center',
-});
-
-export const image = style({
-  padding: '0 2rem',
 });

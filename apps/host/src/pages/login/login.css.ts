@@ -8,17 +8,19 @@ export const container = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  padding: '0 2rem',
 });
 
 export const ctaButtonContainer = style({
-  padding: '2rem',
+  padding: '2rem 0',
+  width: '100%',
 });
 
 export const skipButton = style({
   ...ampThemeVars.font.body_r_13,
   color: ampThemeVars.color.gray_700,
   textAlign: 'center',
-  marginTop: '2rem',
+  marginTop: '2rem 0',
   textDecoration: 'underline',
   display: 'inline-flex',
 });
