@@ -1,4 +1,5 @@
-import HomeBanner from '@widgets/banner/home-banner/home-banner';
+import { HomeBanner } from '@amp/ads-ui';
+
 import HomeFestivalSection from '@widgets/home/components/home-festival-section/home-festival-section';
 
 import { homeData } from '@shared/mocks/home-data';

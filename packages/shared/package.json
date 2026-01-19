@@ -11,10 +11,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@amp/ads-ui": "workspace:*",
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
     "@vanilla-extract/vite-plugin": "catalog:",
-    "@amp/ads-ui": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "catalog:"

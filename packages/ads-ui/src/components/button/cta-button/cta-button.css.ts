@@ -52,6 +52,15 @@ export const ctaButton = recipe({
         gap: '1rem',
         borderRadius: '40px',
       },
+      alert: {
+        gap: '1rem',
+        padding: '0.8rem 0',
+        border: `1px solid ${ampThemeVars.color.gray_900}`,
+        borderRadius: '40px',
+        backgroundColor: ampThemeVars.color.gray_900,
+        color: ampThemeVars.color.gray_000,
+        ...ampThemeVars.font.body_m_14,
+      },
     },
   },
 });

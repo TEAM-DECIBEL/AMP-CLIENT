@@ -3,6 +3,14 @@ import clsx from 'clsx';
 
 import * as styles from './cta-button.css';
 
+export type CtaButtonType =
+  | 'primary'
+  | 'gray'
+  | 'social'
+  | 'icon'
+  | 'add'
+  | 'alert';
+
 interface CtaButtonProps {
   children: ReactNode;
   type: 'common' | 'icon';
