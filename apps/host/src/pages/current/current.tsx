@@ -6,6 +6,14 @@ import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './current.css';
 
+export type LiveStatusType = '여유' | '보통' | '혼잡';
+
+const STATUS_IMAGES: Record<LiveStatusType, string> = {
+  여유: 'https://png.pngtree.com/thumb_back/fh260/background/20210422/pngtree-abstract-decorative-mint-green-background-image_637109.jpg',
+  보통: 'https://img.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_58702-3356.jpg?semt=ais_hybrid&w=740&q=80',
+  혼잡: 'https://png.pngtree.com/thumb_back/fh260/background/20210207/pngtree-red-solid-color-simple-background-image_556968.jpg',
+};
+
 const CurrentPage = () => {
   return (
     <main className={styles.pageContainer}>
@@ -29,15 +37,19 @@ const CurrentPage = () => {
           </nav>
         </header>
         <div className={styles.liveButtonContainer}>
-          {LIVE_STATUS_MOCK.map((item) => (
-            <LiveButton
-              key={item.id}
-              title={item.title}
-              subText={item.subText}
-              imageUrl={item.imageUrl}
-              onClick={() => {}}
-            />
-          ))}
+          {LIVE_STATUS_MOCK.map((item) => {
+            const statusImageUrl =
+              STATUS_IMAGES[item.congestionLevel as LiveStatusType];
+            return (
+              <LiveButton
+                key={item.id}
+                title={item.title}
+                subText={item.subText ?? ''}
+                imageUrl={statusImageUrl}
+                onClick={() => {}}
+              />
+            );
+          })}
         </div>
       </div>
     </main>
