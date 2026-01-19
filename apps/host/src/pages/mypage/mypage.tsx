@@ -7,22 +7,22 @@ import { LogoutModal, MyPageLayout } from '@amp/shared';
 import { ROUTE_PATH } from '@shared/constants/path';
 import Dashboard from '@shared/ui/card/card-dashboard/dashboard';
 
+const menuItems = [
+  {
+    id: 'ongoing-events',
+    label: '진행 공연',
+    path: `/${ROUTE_PATH.MY_HISTORY}`,
+  },
+  {
+    id: 'token-check',
+    label: '토큰 확인',
+    path: '',
+  },
+] as const;
+
 const MyPage = () => {
   const navigate = useNavigate();
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
-
-  const menuItems = [
-    {
-      id: 'ongoing-events',
-      label: '진행 공연',
-      path: `/${ROUTE_PATH.MY_HISTORY}`,
-    },
-    {
-      id: 'token-check',
-      label: '토큰 확인',
-      path: '',
-    },
-  ] as const;
 
   const dashboardCounts = {
     ongoingCount: 0,

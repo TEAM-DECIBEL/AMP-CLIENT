@@ -5,21 +5,22 @@ import { LogoutModal, MyPageLayout } from '@amp/shared';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
+const menuItems = [
+  {
+    id: 'my-events',
+    label: '내 관람 공연',
+    path: `/${ROUTE_PATH.MY_EVENTS}`,
+  },
+  {
+    id: 'saved-notices',
+    label: '저장한 공지',
+    path: `/${ROUTE_PATH.SAVED_NOTICES}`,
+  },
+] as const;
+
 const MyPage = () => {
   const navigate = useNavigate();
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
-  const menuItems = [
-    {
-      id: 'my-events',
-      label: '내 관람 공연',
-      path: `/${ROUTE_PATH.MY_EVENTS}`,
-    },
-    {
-      id: 'saved-notices',
-      label: '저장한 공지',
-      path: `/${ROUTE_PATH.SAVED_NOTICES}`,
-    },
-  ] as const;
   const handleLogoutOpen = () => {
     setIsLogoutOpen(true);
   };
