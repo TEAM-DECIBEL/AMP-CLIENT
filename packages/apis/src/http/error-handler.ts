@@ -2,22 +2,29 @@ import type { AxiosError } from 'axios';
 
 import { HTTPError } from '../errors/http-error';
 
-export const handleApiError = (error: AxiosError) => {
-  const status = error.response?.status;
-  const responseData = error.response?.data;
-  const message =
-    typeof responseData === 'string'
-      ? responseData
-      : (responseData as { message?: string; msg?: string })?.message ??
-        (responseData as { message?: string; msg?: string })?.msg ??
-        error.message;
-  const code =
-    typeof responseData === 'string'
-      ? undefined
-      : (responseData as { code?: number })?.code;
+interface ApiErrorResponse {
+  message?: string;
+  msg?: string;
+  code?: number;
+}
 
-  if (!status) {
+export const handleApiError = (
+  error: AxiosError<ApiErrorResponse | string>,
+) => {
+  if (!error.response) {
     return Promise.reject(error);
+  }
+
+  const { status, data } = error.response;
+
+  let message = error.message;
+  let code: number | undefined;
+
+  if (typeof data === 'string') {
+    message = data;
+  } else if (data && typeof data === 'object') {
+    message = data.message ?? data.msg ?? error.message;
+    code = data.code;
   }
 
   return Promise.reject(new HTTPError(status, message, code));
