@@ -26,3 +26,5 @@ export const OnboardingPage = lazy(
 );
 
 export const LoginPage = lazy(() => import('@pages/login/login'));
+
+export const CurrentPage = lazy(() => import('@pages/current/current'));
