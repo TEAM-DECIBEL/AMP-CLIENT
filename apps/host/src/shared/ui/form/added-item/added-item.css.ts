@@ -15,7 +15,6 @@ export const addedItemContainer = style({
   gridTemplateColumns: '1fr 1fr auto',
   alignItems: 'center',
   gap: '0.9rem',
-  marginTop: '1.6rem',
   padding: '1rem 1.2rem',
   borderRadius: '10px',
   backgroundColor: ampThemeVars.color.gray_100,
