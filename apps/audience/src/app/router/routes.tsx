@@ -106,6 +106,12 @@ export const globalRoutes = [
   },
   {
     path: ROUTE_PATH.CURRENT,
-    element: <CurrentPage />,
+    element: <SubLayout />,
+    children: [
+      {
+        index: true,
+        element: <CurrentPage />,
+      },
+    ],
   },
 ];
