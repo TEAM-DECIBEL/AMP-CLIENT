@@ -10,7 +10,6 @@ export const content = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  textAlign: 'center',
   gap: '20px',
 });
 
