@@ -1,4 +1,15 @@
-export const myEventsData = {
+type MyEventsStatus = '관람 중' | '관람 예정';
+
+interface MyEventsFestival {
+  festivalId: number;
+  title: string;
+  mainImageUrl: string;
+  period: string;
+  status: MyEventsStatus;
+  wishList: boolean;
+}
+
+export const myEventsData: { festivals: MyEventsFestival[] } = {
   festivals: [
     {
       festivalId: 15,
