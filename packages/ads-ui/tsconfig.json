@@ -3,7 +3,8 @@
   "compilerOptions": {
     "composite": true,
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "allowArbitraryExtensions": true
   },
   "include": ["src", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist"]
