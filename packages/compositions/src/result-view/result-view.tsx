@@ -10,13 +10,13 @@ interface ResultViewProps {
 
 const ResultView = ({ title, description, image }: ResultViewProps) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
+    <section className={styles.container}>
+      <header className={styles.content}>
         <h1 className={styles.title}>{title}</h1>
         {description && <p className={styles.description}>{description}</p>}
-      </div>
-      <div className={styles.image}>{image}</div>
-    </div>
+      </header>
+      {image}
+    </section>
   );
 };
 

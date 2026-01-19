@@ -205,6 +205,9 @@ importers:
       '@vanilla-extract/recipes':
         specifier: 'catalog:'
         version: 0.5.7(@vanilla-extract/css@1.18.0)
+      overlay-kit:
+        specifier: ^1.8.6
+        version: 1.8.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: 'catalog:'
         version: 19.2.3
@@ -259,7 +262,7 @@ importers:
         version: 0.5.7(@vanilla-extract/css@1.18.0)
       '@vanilla-extract/vite-plugin':
         specifier: 'catalog:'
-        version: 5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))
+        version: 5.1.4(@types/node@24.10.6)(vite@7.3.0(@types/node@24.10.6))
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -370,7 +373,7 @@ importers:
         version: 19.2.3(@types/react@19.2.7)
       '@vanilla-extract/vite-plugin':
         specifier: 'catalog:'
-        version: 5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))
+        version: 5.1.4(@types/node@24.10.6)(vite@7.3.0(@types/node@24.10.6))
       eslint:
         specifier: 'catalog:'
         version: 9.39.2
@@ -453,7 +456,7 @@ importers:
         version: 0.5.7(@vanilla-extract/css@1.18.0)
       '@vanilla-extract/vite-plugin':
         specifier: 'catalog:'
-        version: 5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))
+        version: 5.1.4(@types/node@24.10.6)(vite@7.3.0(@types/node@24.10.6))
       react:
         specifier: 'catalog:'
         version: 19.2.3
@@ -3119,26 +3122,6 @@ snapshots:
       '@vanilla-extract/compiler': 0.3.4(@types/node@24.10.6)
       '@vanilla-extract/integration': 8.0.7
       vite: 7.3.0(@types/node@24.10.6)
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - jiti
-      - less
-      - lightningcss
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - tsx
-      - yaml
-
-  '@vanilla-extract/vite-plugin@5.1.4(@types/node@24.10.6)(vite@7.3.1(@types/node@24.10.6))':
-    dependencies:
-      '@vanilla-extract/compiler': 0.3.4(@types/node@24.10.6)
-      '@vanilla-extract/integration': 8.0.7
-      vite: 7.3.1(@types/node@24.10.6)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros

@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const container = style({
-  height: '100dvh',
+  minHeight: '100dvh',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -17,8 +17,6 @@ export const ctaButtonContainer = style({
 export const skipButton = style({
   ...ampThemeVars.font.body_r_13,
   color: ampThemeVars.color.gray_700,
-  textAlign: 'center',
-  marginTop: '2rem',
   textDecoration: 'underline',
   display: 'inline-flex',
 });
