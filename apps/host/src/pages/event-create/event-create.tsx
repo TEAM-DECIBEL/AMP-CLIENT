@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import { AddImageButton } from '@amp/ads-ui';
-import { CtaButton } from '@amp/ads-ui';
-import { Textfield } from '@amp/ads-ui';
-import { FlagIcon, PlusIcon } from '@amp/ads-ui/icons';
-import { CalendarIcon } from '@amp/ads-ui/icons';
-import { TimeIcon } from '@amp/ads-ui/icons';
-import { LocateIcon } from '@amp/ads-ui/icons';
+import { AddImageButton, CtaButton, Textfield } from '@amp/ads-ui';
+import {
+  CalendarIcon,
+  FlagIcon,
+  LocateIcon,
+  PlusIcon,
+  TimeIcon,
+} from '@amp/ads-ui/icons';
 
+import useItemList from '@shared/libs/hooks/use-item-list/use-item-list';
+import useObjectUrl from '@shared/libs/hooks/use-object-url/use-object-url';
 import CategoryChipGroup from '@shared/ui/button/category-chip-group/category-chip-group';
 import { CATEGORIES } from '@shared/ui/button/category-chip-group/category-chip-labels';
 import AddedItem from '@shared/ui/form/added-item/added-item';
@@ -52,26 +55,15 @@ const EventCreatePage = () => {
     boothLocation: '',
   });
 
-  const [scheduleItems, setScheduleItems] = useState<ScheduleItem[]>([]);
-  const [boothItems, setBoothItems] = useState<BoothItem[]>([]);
+  const image = useObjectUrl();
+  const schedules = useItemList<ScheduleItem>();
+  const booths = useItemList<BoothItem>();
 
   const setField = (name: keyof FormState, value: string) => {
     setForm((prev) => {
       return { ...prev, [name]: value };
     });
   };
-
-  const handleFileChange = (newFile: File) => {
-    setField('imageUrl', URL.createObjectURL(newFile));
-  };
-
-  useEffect(() => {
-    return () => {
-      if (form.imageUrl !== '') {
-        URL.revokeObjectURL(form.imageUrl);
-      }
-    };
-  }, [form.imageUrl]);
 
   const selectCategoryId = (id: number) => {
     setActiveCategoryIds((prev) =>
@@ -82,57 +74,31 @@ const EventCreatePage = () => {
   };
 
   const addSchedule = () => {
-    setScheduleItems((prev) => [
-      ...prev,
-      {
-        id: crypto.randomUUID(),
-        date: form.scheduleDate,
-        time: form.scheduleTime,
-      },
-    ]);
-
-    setField('scheduleDate', '');
-    setField('scheduleTime', '');
+    schedules.add({ date: form.scheduleDate, time: form.scheduleTime });
+    setForm((prev) => ({ ...prev, scheduleDate: '', scheduleTime: '' }));
   };
 
   const addBooth = () => {
-    setBoothItems((prev) => [
-      ...prev,
-      {
-        id: crypto.randomUUID(),
-        title: form.boothTitle,
-        location: form.boothLocation || undefined,
-      },
-    ]);
-
-    setField('boothTitle', '');
-    setField('boothLocation', '');
-  };
-
-  const removeSchedule = (id: string) => {
-    setScheduleItems((prev) => {
-      return prev.filter((item) => item.id !== id);
+    booths.add({
+      title: form.boothTitle,
+      location: form.boothLocation.trim() ? form.boothLocation : undefined,
     });
+    setForm((prev) => ({ ...prev, boothTitle: '', boothLocation: '' }));
   };
-
-  const removeBooth = (id: string) => {
-    setBoothItems((prev) => {
-      return prev.filter((item) => item.id !== id);
-    });
-  };
-
-  const hasImage = Boolean(form.imageUrl);
-  const hasCategory = activeCategoryIds.length > 0;
 
   const canAddSchedule =
     isFilled(form.scheduleDate) && isFilled(form.scheduleTime);
+
   const canAddBooth = isFilled(form.boothTitle);
+
+  const hasImage = Boolean(image.url);
+
+  const hasCategory = activeCategoryIds.length > 0;
 
   const canSubmit =
     isFilled(form.eventTitle) &&
-    isFilled(form.scheduleDate) &&
-    isFilled(form.scheduleTime) &&
     isFilled(form.eventLocation) &&
+    schedules.items.length > 0 &&
     hasImage &&
     hasCategory;
 
@@ -148,8 +114,8 @@ const EventCreatePage = () => {
           <FormField label='공연 이미지'>
             <div className={styles.addImageContainer}>
               <AddImageButton
-                imageUrl={form.imageUrl}
-                onFileChange={handleFileChange}
+                imageUrl={image.url}
+                onFileChange={image.setFile}
               />
             </div>
           </FormField>
@@ -159,6 +125,7 @@ const EventCreatePage = () => {
               name='eventTitle'
               variant='default'
               placeholder='공연명을 입력해주세요.'
+              value={form.eventTitle}
               onChange={(e) => setField('eventTitle', e.target.value)}
             />
           </FormField>
@@ -190,8 +157,8 @@ const EventCreatePage = () => {
             </CtaButton>
 
             <AddedItem
-              items={scheduleItems}
-              onRemove={removeSchedule}
+              items={schedules.items}
+              onRemove={schedules.remove}
               getItem={(item) => ({
                 id: item.id,
                 first: item.date,
@@ -251,8 +218,8 @@ const EventCreatePage = () => {
             </CtaButton>
 
             <AddedItem
-              items={boothItems}
-              onRemove={removeBooth}
+              items={booths.items}
+              onRemove={booths.remove}
               getItem={(item) => ({
                 id: item.id,
                 first: item.title,
