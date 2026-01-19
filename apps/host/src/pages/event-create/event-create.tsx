@@ -192,12 +192,14 @@ const EventCreatePage = () => {
             <AddedItem
               items={scheduleItems}
               onRemove={removeSchedule}
-              getId={(item) => item.id}
-              getFirst={(item) => item.date}
-              getSecond={(item) => item.time}
-              firstIcon={<CalendarIcon />}
-              secondIcon={<TimeIcon />}
-              secondType='time'
+              getItem={(item) => ({
+                id: item.id,
+                first: item.date,
+                second: item.time,
+                firstIcon: <CalendarIcon />,
+                secondIcon: <TimeIcon />,
+                secondVariant: 'default',
+              })}
             />
           </FormField>
 
@@ -251,12 +253,14 @@ const EventCreatePage = () => {
             <AddedItem
               items={boothItems}
               onRemove={removeBooth}
-              getId={(item) => item.id}
-              getFirst={(item) => item.title}
-              getSecond={(item) => (item.location ? item.location : '')}
-              firstIcon={<FlagIcon />}
-              secondIcon={<LocateIcon />}
-              secondType='location'
+              getItem={(item) => ({
+                id: item.id,
+                first: item.title,
+                second: item.location,
+                firstIcon: <FlagIcon />,
+                secondIcon: <LocateIcon />,
+                secondVariant: 'location',
+              })}
             />
           </FormField>
 

@@ -4,39 +4,41 @@ import { DeleteIcon } from '@amp/ads-ui/icons';
 
 import * as styles from './added-item.css';
 
+type SecondVariant = 'default' | 'location';
+
+type AddedItemModel = {
+  id: string;
+  first: string;
+  second?: string;
+  firstIcon: ReactNode;
+  secondIcon?: ReactNode;
+  secondVariant?: SecondVariant;
+};
+
 type AddedItemProps<T> = {
   items: T[];
   onRemove: (id: string) => void;
-  getId: (item: T) => string;
-  getFirst: (item: T) => string;
-  getSecond: (item: T) => string;
-  firstIcon: ReactNode;
-  secondIcon: ReactNode;
-  secondType: 'time' | 'location';
+  getItem: (item: T) => AddedItemModel;
 };
 
-const AddedItem = <T,>({
-  items,
-  onRemove,
-  getId,
-  getFirst,
-  getSecond,
-  firstIcon,
-  secondIcon,
-  secondType,
-}: AddedItemProps<T>) => {
+const AddedItem = <T,>({ items, onRemove, getItem }: AddedItemProps<T>) => {
   if (items.length === 0) {
     return null;
   }
-
-  const secondVariant = secondType === 'location' ? 'location' : 'default';
   return (
     <div className={styles.listContainer}>
       {[...items].reverse().map((item) => {
-        const id = getId(item);
-        const first = getFirst(item);
-        const second = getSecond(item);
-        const hasSecond = second.trim() !== '';
+        const {
+          id,
+          first,
+          second,
+          firstIcon,
+          secondIcon,
+          secondVariant = 'default',
+        } = getItem(item);
+
+        const trimmedSecond = second?.trim();
+        const hasSecond = Boolean(trimmedSecond);
 
         return (
           <div key={id} className={styles.addedItemContainer}>
@@ -48,7 +50,7 @@ const AddedItem = <T,>({
             {hasSecond ? (
               <div className={styles.textContainer({ variant: secondVariant })}>
                 <span className={styles.icon}>{secondIcon}</span>
-                <div className={styles.value}>{second}</div>
+                <div className={styles.value}>{trimmedSecond}</div>
               </div>
             ) : (
               <div aria-hidden='true' />
