@@ -1,3 +1,5 @@
+import type { ReactElement } from 'react';
+
 import { CardFestival, Chip } from '@amp/ads-ui';
 
 type MyEventsStatus = '관람 중' | '관람 예정';
@@ -10,20 +12,21 @@ interface FestivalItem {
   status: MyEventsStatus;
 }
 
-const getStatusChip = (status: MyEventsStatus) => {
-  if (status === '관람 중') {
-    return (
-      <Chip variant='status' status='current'>
-        관람 중
-      </Chip>
-    );
-  }
-
-  return (
+const STATUS_CHIP: Record<MyEventsStatus, ReactElement> = {
+  '관람 중': (
+    <Chip variant='status' status='current'>
+      관람 중
+    </Chip>
+  ),
+  '관람 예정': (
     <Chip variant='status' status='upcoming'>
       관람 예정
     </Chip>
-  );
+  ),
+};
+
+const getStatusChip = (status: MyEventsStatus) => {
+  return STATUS_CHIP[status];
 };
 
 interface FestivalListProps {

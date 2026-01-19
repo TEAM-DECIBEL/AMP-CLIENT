@@ -9,7 +9,11 @@ interface MyEventsFestival {
   wishList: boolean;
 }
 
-export const myEventsData: { festivals: MyEventsFestival[] } = {
+interface MyEventsData {
+  festivals: MyEventsFestival[];
+}
+
+export const myEventsData: MyEventsData = {
   festivals: [
     {
       festivalId: 15,
