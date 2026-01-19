@@ -49,14 +49,12 @@ export const put = async <T, B = unknown>(
 
 export const del = async <T, P = unknown, B = unknown>(
   url: string,
-  params?: P,
-  body?: B,
-  config?: AxiosRequestConfig,
+  options?: { params?: P; body?: B; config?: AxiosRequestConfig },
 ): Promise<T> => {
   const res = await instance.delete<SuccessResponse<T>>(url, {
-    ...config,
-    params: params ?? config?.params,
-    data: body ?? config?.data,
+    ...options?.config,
+    params: options?.params,
+    data: options?.body,
   });
   return res.data.data;
 };
