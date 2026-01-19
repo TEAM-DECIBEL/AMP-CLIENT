@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 
 import { CtaButton } from '@amp/ads-ui';
+import { ButtonGradientSection } from '@amp/compositions';
 
 import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
 
@@ -33,12 +34,12 @@ const HomePage = () => {
           upcomingFestivals={upcomingFestivals}
         />
       </div>
-      <div className={styles.ctaArea}>
+      <ButtonGradientSection className={styles.ctaArea}>
         {showTooltip && <Tooltip />}
         <CtaButton type='common' onClick={handleCreateClick}>
           공연 등록하기
         </CtaButton>
-      </div>
+      </ButtonGradientSection>
     </section>
   );
 };
