@@ -18,6 +18,7 @@ const NoticeListPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
     CATEGORIES[0],
   );
+
   const [activeTab, setActiveTab] = useState<string>('notice');
 
   // TODO: API 연동 (공지 목록 불러오기)
@@ -50,35 +51,32 @@ const NoticeListPage = () => {
         date={FESTIVAL_MOCK.date}
       />
       <div className={styles.mainContent}>
-        <header className={styles.contentHeader}>
-          <nav>
-            {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
-            <Tabs
-              defaultValue='notice'
-              variant='notice'
-              onValueChange={(value) => setActiveTab(value)}
-            >
-              <Tabs.List>
-                <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
-                <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
-              </Tabs.List>
-            </Tabs>
-          </nav>
-          {activeTab === 'notice' && (
+        <nav className={styles.contentHeader}>
+          {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
+          <Tabs
+            defaultValue='notice'
+            variant='notice'
+            onValueChange={(value) => setActiveTab(value)}
+          >
+            <Tabs.List>
+              <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
+              <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
+            </Tabs.List>
+          </Tabs>
+        </nav>
+
+        {activeTab === 'notice' ? (
+          <div>
             <CategorySection
               selectedCategory={selectedCategory}
               onSelect={handleChipClick}
             />
-          )}
-        </header>
-
-        {activeTab === 'notice' ? (
-          <NoticeCardList notices={sortedList} onItemClick={() => {}} />
+            <NoticeCardList notices={sortedList} onItemClick={() => {}} />
+          </div>
         ) : (
           <LiveButtonContainer items={LIVE_STATUS_MOCK} />
         )}
       </div>
-
       {activeTab === 'notice' && (
         <div className={styles.buttonContainer}>
           <div className={styles.button}>
