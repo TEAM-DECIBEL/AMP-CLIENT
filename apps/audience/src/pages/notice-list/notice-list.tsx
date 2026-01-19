@@ -37,6 +37,7 @@ const NoticeListPage = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [sheetTitle, setSheetTitle] = useState('');
   const [status, setStatus] = useState<'여유' | '보통' | '혼잡'>('여유');
+  const isAvailable = false;
 
   // TODO: 서버에서 받아온 값으로 기본값 설정
   const [isWatched, setIsWatched] = useState<boolean>(false);
@@ -201,17 +202,26 @@ const NoticeListPage = () => {
         </div>
       )}
 
-      <StatusSheet
-        open={isSheetOpen}
-        onClose={() => setIsSheetOpen(false)}
-        title={sheetTitle}
-        selectable
-        selected={status}
-        onSelect={(value) => setStatus(value)}
-        onConfirm={() => {
-          setIsSheetOpen(false);
-        }}
-      />
+      {isAvailable ? (
+        <StatusSheet
+          open={isSheetOpen}
+          onClose={() => setIsSheetOpen(false)}
+          title={sheetTitle}
+          selectable
+          selected={status}
+          onSelect={(value) => setStatus(value)}
+          onConfirm={() => {
+            setIsSheetOpen(false);
+          }}
+        />
+      ) : (
+        <StatusSheet
+          open={isSheetOpen}
+          selectable={false}
+          onClose={() => setIsSheetOpen(false)}
+          onConfirm={() => setIsSheetOpen(false)}
+        />
+      )}
     </main>
   );
 };
