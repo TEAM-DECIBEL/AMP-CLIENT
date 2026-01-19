@@ -42,3 +42,7 @@ export const buttonContainer = style({
 export const button = style({
   pointerEvents: 'auto',
 });
+
+export const currentContainer = style({
+  padding: '2rem',
+});

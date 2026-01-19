@@ -65,5 +65,8 @@ export const noticeChip = style({
 });
 
 export const noticeContainer = style({
-  padding: '2rem 2rem 0 2rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem',
+  padding: '2rem',
 });

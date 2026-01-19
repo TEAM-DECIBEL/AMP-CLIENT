@@ -74,7 +74,9 @@ const NoticeListPage = () => {
             <NoticeCardList notices={sortedList} onItemClick={() => {}} />
           </div>
         ) : (
-          <LiveButtonContainer items={LIVE_STATUS_MOCK} />
+          <div className={styles.currentContainer}>
+            <LiveButtonContainer items={LIVE_STATUS_MOCK} />
+          </div>
         )}
       </div>
       {activeTab === 'notice' && (
