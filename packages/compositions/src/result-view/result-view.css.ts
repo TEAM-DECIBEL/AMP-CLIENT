@@ -5,7 +5,6 @@ import { ampThemeVars } from '@amp/ads-ui/styles';
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '2rem',
 });
 
 export const content = style({

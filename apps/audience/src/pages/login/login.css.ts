@@ -18,7 +18,6 @@ export const skipButton = style({
   ...ampThemeVars.font.body_r_13,
   color: ampThemeVars.color.gray_700,
   textAlign: 'center',
-  marginTop: '2rem',
   textDecoration: 'underline',
   display: 'inline-flex',
 });
