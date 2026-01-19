@@ -4,7 +4,7 @@ import * as styles from './category-chip-group.css';
 
 type Category = { id: number; label: string };
 
-type CategoryChipGroups = {
+type CategoryChipGroupProps = {
   categories: Category[];
   activeCategoryIds: number[];
   onToggle: (id: number, nextSelected: boolean) => void;
@@ -22,7 +22,7 @@ const CategoryChipGroup = ({
   categories,
   activeCategoryIds,
   onToggle,
-}: CategoryChipGroups) => {
+}: CategoryChipGroupProps) => {
   const rows = chunkCategories(categories);
   return (
     <div className={styles.chipGroupContainer}>
