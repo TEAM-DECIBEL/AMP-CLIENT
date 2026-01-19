@@ -1,14 +1,16 @@
 import { CardFestival, Chip } from '@amp/ads-ui';
 
+type MyEventsStatus = '관람 중' | '관람 예정';
+
 interface FestivalItem {
   festivalId: number;
   title: string;
   mainImageUrl: string;
   period: string;
-  status: string;
+  status: MyEventsStatus;
 }
 
-const getStatusChip = (status: string) => {
+const getStatusChip = (status: MyEventsStatus) => {
   if (status === '관람 중') {
     return (
       <Chip variant='status' status='current'>

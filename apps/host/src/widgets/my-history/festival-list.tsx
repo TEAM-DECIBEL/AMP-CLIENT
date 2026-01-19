@@ -1,8 +1,8 @@
 import { CardFestival, Chip } from '@amp/ads-ui';
 
-import type { FestivalBase } from '@shared/types/festival';
+import type { FestivalBase, FestivalStatus } from '@shared/types/festival';
 
-const getStatusChip = (status: string) => {
+const getStatusChip = (status: FestivalStatus) => {
   if (status === '진행 중') {
     return (
       <Chip variant='status' status='current'>
