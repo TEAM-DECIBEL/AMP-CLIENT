@@ -15,7 +15,7 @@ const ResultView = ({ title, description, image }: ResultViewProps) => {
         <h1 className={styles.title}>{title}</h1>
         {description && <p className={styles.description}>{description}</p>}
       </header>
-      <>{image}</>
+      {image}
     </section>
   );
 };
