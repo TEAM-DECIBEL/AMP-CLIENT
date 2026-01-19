@@ -31,7 +31,7 @@ export default defineConfig(
         manifest: {
           name: 'AMP-HOST',
           short_name: 'AMP',
-          description: '공연 공지를 가장 가까이에서',
+          description: '작은 공지도 크게 울리게 공연 공지의 공식, AMP',
           theme_color: '#ffffff',
           icons: [
             {
