@@ -39,6 +39,11 @@ export const chip = recipe({
         backgroundColor: ampThemeVars.color.gray_100,
         color: ampThemeVars.color.gray_500,
       },
+      dday: {
+        border: `1px solid ${ampThemeVars.color.gray_200}`,
+        backgroundColor: ampThemeVars.color.gray_000,
+        color: ampThemeVars.color.gray_500,
+      },
       completed: {
         border: `1px solid ${ampThemeVars.color.gray_200}`,
         backgroundColor: ampThemeVars.color.gray_000,
@@ -55,6 +60,15 @@ export const chip = recipe({
     },
   },
   compoundVariants: [
+    {
+      variants: {
+        variant: 'status',
+        status: 'dday',
+      },
+      style: {
+        padding: '0.3rem 1.2rem',
+      },
+    },
     {
       variants: {
         variant: 'status',
