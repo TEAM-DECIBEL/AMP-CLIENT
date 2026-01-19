@@ -9,24 +9,25 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@amp/ads-ui": "workspace:*",
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
     "clsx": "^2.1.1",
+    "lottie-react": "^2.4.1",
     "overlay-kit": "^1.8.6",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "catalog:",
-    "zustand": "^5.0.10",
-    "@amp/ads-ui": "workspace:*"
+    "zustand": "^5.0.10"
   },
   "devDependencies": {
     "@amp/eslint-config": "workspace:*",
     "@amp/prettier-config": "workspace:*",
+    "@amp/tsconfig": "workspace:*",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@vanilla-extract/vite-plugin": "catalog:",
     "eslint": "catalog:",
-    "typescript": "catalog:",
-    "@amp/tsconfig": "workspace:*",
-    "@vanilla-extract/vite-plugin": "catalog:"
+    "typescript": "catalog:"
   }
 }

@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router';
 
 import { Header } from '@amp/ads-ui';
+import { Loading } from '@amp/compositions';
 
 interface SubLayoutProps {
   title: string;
@@ -9,7 +10,7 @@ interface SubLayoutProps {
 
 export const SubLayout = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <Header variant='host' kind='main' />
       <Outlet />
     </Suspense>
@@ -18,7 +19,7 @@ export const SubLayout = () => {
 
 export const SubLayoutWithBack = ({ title }: SubLayoutProps) => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <Header variant='host' kind='sub' title={title} />
       <Outlet />
     </Suspense>

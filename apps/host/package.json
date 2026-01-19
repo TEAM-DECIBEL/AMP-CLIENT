@@ -12,12 +12,13 @@
     "@amp/apis": "workspace:*",
     "@amp/compositions": "workspace:*",
     "@amp/shared": "workspace:*",
-    "@tanstack/react-query": "^5.90.16",
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-router": "catalog:"
+    "react-router": "catalog:",
+    "@tanstack/react-query": "^5.90.16",
+    "overlay-kit": "^1.8.6"
   },
   "devDependencies": {
     "@amp/eslint-config": "workspace:*",
