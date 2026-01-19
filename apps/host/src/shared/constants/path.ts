@@ -1,5 +1,4 @@
 export const ROUTE_PATH = {
-  CURRENT: 'current',
   EVENT_CREATE: 'events/new',
   NOTICE_LIST: 'events/:eventId/notices',
   NOTICE_CREATE: 'events/:eventId/notices/new',
