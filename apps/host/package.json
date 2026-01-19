@@ -8,16 +8,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vanilla-extract/css": "catalog:",
-    "@vanilla-extract/recipes": "catalog:",
     "@amp/ads-ui": "workspace:*",
-    "@amp/shared": "workspace:*",
-    "react": "catalog:",
-    "react-dom": "catalog:",
-    "react-router": "catalog:",
     "@amp/apis": "workspace:*",
     "@amp/compositions": "workspace:*",
-    "@tanstack/react-query": "^5.90.16"
+    "@amp/shared": "workspace:*",
+    "@tanstack/react-query": "^5.90.16",
+    "@vanilla-extract/css": "catalog:",
+    "@vanilla-extract/recipes": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-router": "catalog:"
   },
   "devDependencies": {
     "@amp/eslint-config": "workspace:*",
@@ -30,6 +30,7 @@
     "@vitejs/plugin-react": "catalog:",
     "eslint": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "vite-plugin-pwa": "^1.2.0"
   }
 }
