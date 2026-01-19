@@ -4,6 +4,7 @@ export {
   CATEGORIES,
   type CategoryType,
 } from './category-section/category-section';
+export { default as LiveButtonContainer } from './live-button-container/live-button-container';
 export { default as Loading } from './loading/loading';
 export { default as NicknameForm } from './nickname-form/nickname-form';
 export { default as NoticeCardList } from './notice-card-list/notice-card-list';
