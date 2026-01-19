@@ -51,3 +51,19 @@ export const ctaButton = style({
   height: '3.9rem',
   ...ampThemeVars.font.body_m_14,
 });
+
+export const noticeChip = style({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  gap: '1rem',
+  height: '4.3rem',
+  padding: '1rem 1.2rem',
+  borderRadius: '1.6rem',
+  border: `1px solid ${ampThemeVars.color.gray_200}`,
+  ...ampThemeVars.font.body_sb_13,
+});
+
+export const noticeContainer = style({
+  padding: '2rem 2rem 0 2rem',
+});

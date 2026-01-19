@@ -11,15 +11,17 @@ import {
   Tabs,
   toast,
 } from '@amp/ads-ui';
-import { AlertIcon } from '@amp/ads-ui/icons';
+import { AlertIcon, ChatIcon } from '@amp/ads-ui/icons';
 import {
   CATEGORIES,
   CategorySection,
   CategoryType,
+  LiveButtonContainer,
   NoticeCardList,
 } from '@amp/compositions';
 
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
+import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
 import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
@@ -28,6 +30,8 @@ const NoticeListPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
     CATEGORIES[0],
   );
+
+  const [activeTab, setActiveTab] = useState<string>('notice');
 
   // TODO: 서버에서 받아온 값으로 기본값 설정
   const [isWatched, setIsWatched] = useState<boolean>(false);
@@ -127,43 +131,58 @@ const NoticeListPage = () => {
         }
       />
       <div className={styles.mainContent}>
-        <header className={styles.contentHeader}>
-          <nav>
-            {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
-            <Tabs defaultValue='notice' variant='notice'>
-              <Tabs.List>
-                <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
-                <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
-              </Tabs.List>
-            </Tabs>
-          </nav>
-          <CategorySection
-            selectedCategory={selectedCategory}
-            onSelect={handleChipClick}
-          />
-          {!(selectedCategory === '전체') && (
-            <div className={styles.ctaButtonContainer}>
-              <CtaButton
-                type='icon'
-                color='gray'
-                onClick={handleAlertClick}
-                className={styles.ctaButton}
-              >
-                <AlertIcon />
-                {selectedCategory} 공지 알림 받기
-              </CtaButton>
+        <nav className={styles.contentHeader}>
+          {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
+          <Tabs
+            defaultValue='notice'
+            variant='notice'
+            onValueChange={(value) => setActiveTab(value)}
+          >
+            <Tabs.List>
+              <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
+              <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
+            </Tabs.List>
+          </Tabs>
+        </nav>
+        {activeTab === 'notice' ? (
+          <div>
+            <CategorySection
+              selectedCategory={selectedCategory}
+              onSelect={handleChipClick}
+            />
+            {!(selectedCategory === '전체') && (
+              <div className={styles.ctaButtonContainer}>
+                <CtaButton
+                  type='icon'
+                  color='gray'
+                  onClick={handleAlertClick}
+                  className={styles.ctaButton}
+                >
+                  <AlertIcon />
+                  {selectedCategory} 공지 알림 받기
+                </CtaButton>
+              </div>
+            )}
+            <NoticeCardList notices={sortedList} onItemClick={() => {}} />
+          </div>
+        ) : (
+          <div className={styles.noticeContainer}>
+            <div className={styles.noticeChip}>
+              <ChatIcon />
+              <p>지금 계신 곳의 혼잡도 상황을 알려주세요!</p>
             </div>
-          )}
-        </header>
-        {/* TODO: 카드 클릭 시 상세 뷰로 이동 */}
-        <NoticeCardList notices={sortedList} onItemClick={() => {}} />
+            <LiveButtonContainer items={LIVE_STATUS_MOCK} />
+          </div>
+        )}
       </div>
-      <div className={styles.buttonContainer}>
-        <div className={styles.button}>
-          {/* TODO: 뷰 이동 로직 추가 */}
-          <CircleButton type='write' onClick={() => {}} />
+      {activeTab === 'notice' && (
+        <div className={styles.buttonContainer}>
+          <div className={styles.button}>
+            {/* TODO: 뷰 이동 로직 추가 */}
+            <CircleButton type='write' onClick={() => {}} />
+          </div>
         </div>
-      </div>
+      )}
     </main>
   );
 };
