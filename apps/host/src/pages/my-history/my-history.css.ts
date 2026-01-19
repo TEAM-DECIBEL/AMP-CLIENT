@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 export const page = style({
   padding: '2rem',
-  minHeight: '100vh',
+  minHeight: '100dvh',
   display: 'flex',
   flexDirection: 'column',
 });
