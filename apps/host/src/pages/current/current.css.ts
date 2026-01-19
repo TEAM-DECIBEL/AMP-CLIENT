@@ -6,7 +6,9 @@ import { zIndex } from '@amp/ads-ui/styles/tokens/z-index.ts';
 export const pageContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  height: '100dvh',
+  height: 'calc(100dvh - var(--header-height))',
+  overflowY: 'auto',
+  overscrollBehaviorY: 'contain',
 });
 
 export const mainContent = style({
@@ -17,9 +19,18 @@ export const mainContent = style({
 
 export const contentHeader = style({
   position: 'sticky',
-  top: 'var(--header-height)',
+  top: 0,
   marginTop: '-5rem',
   borderRadius: '16px 16px 0 0',
   backgroundColor: ampThemeVars.color.gray_000,
   zIndex: zIndex.overlay,
+});
+
+export const liveButtonContainer = style({
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: '1rem',
+  padding: '2rem',
+  width: '100%',
+  boxSizing: 'border-box',
 });

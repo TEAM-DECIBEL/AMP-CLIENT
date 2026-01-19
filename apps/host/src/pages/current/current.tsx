@@ -1,5 +1,7 @@
 import { NoticeBanner, Tabs } from '@amp/ads-ui';
+import { LiveButton } from '@amp/ads-ui';
 
+import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './current.css';
@@ -18,7 +20,7 @@ const CurrentPage = () => {
         <header className={styles.contentHeader}>
           <nav>
             {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
-            <Tabs defaultValue='notice' variant='notice'>
+            <Tabs variant='notice'>
               <Tabs.List>
                 <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
                 <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
@@ -26,7 +28,17 @@ const CurrentPage = () => {
             </Tabs>
           </nav>
         </header>
-        <div></div>
+        <div className={styles.liveButtonContainer}>
+          {LIVE_STATUS_MOCK.map((item) => (
+            <LiveButton
+              key={item.id}
+              title={item.title}
+              subText={item.subText}
+              imageUrl={item.imageUrl}
+              onClick={() => {}}
+            />
+          ))}
+        </div>
       </div>
     </main>
   );
