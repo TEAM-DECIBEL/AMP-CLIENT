@@ -28,6 +28,8 @@ const AddedItem = <T,>({
   if (items.length === 0) {
     return null;
   }
+
+  const secondVariant = secondType === 'location' ? 'location' : 'default';
   return (
     <div className={styles.listContainer}>
       {[...items].reverse().map((item) => {
@@ -44,11 +46,7 @@ const AddedItem = <T,>({
             </div>
 
             {hasSecond ? (
-              <div
-                className={styles.textContainer({
-                  variant: secondType === 'location' ? 'location' : 'default',
-                })}
-              >
+              <div className={styles.textContainer({ variant: secondVariant })}>
                 <span className={styles.icon}>{secondIcon}</span>
                 <div className={styles.value}>{second}</div>
               </div>
@@ -60,6 +58,7 @@ const AddedItem = <T,>({
               type='button'
               className={styles.removeButton}
               onClick={() => onRemove(id)}
+              aria-label='항목 삭제'
             >
               <DeleteIcon />
             </button>
