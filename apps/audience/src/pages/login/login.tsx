@@ -15,7 +15,7 @@ const Login = () => {
     //TODO: API 연결
   };
 
-  const handleClick = () => {
+  const handleSkipLogin = () => {
     navigate(ROUTE_PATH.HOME);
   };
   return (
@@ -30,7 +30,11 @@ const Login = () => {
           <span>Google로 시작하기</span>
         </CtaButton>
       </div>
-      <button type='button' onClick={handleClick} className={styles.skipButton}>
+      <button
+        type='button'
+        onClick={handleSkipLogin}
+        className={styles.skipButton}
+      >
         로그인 없이 공지 확인하기
       </button>
     </div>

@@ -1,23 +1,14 @@
-import { useNavigate } from 'react-router';
-
 import { CtaButton } from '@amp/ads-ui';
 import { GoogleIcon } from '@amp/ads-ui/icons';
 import { ResultView } from '@amp/compositions';
 
-import { ROUTE_PATH } from '@shared/constants/path';
-
 import * as styles from './login.css';
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const handleLoginClick = () => {
     //TODO: API 연결
   };
 
-  const handleSkipLogin = () => {
-    navigate(ROUTE_PATH.HOME);
-  };
   return (
     <div className={styles.container}>
       <ResultView
@@ -30,13 +21,6 @@ const Login = () => {
           <span>Google로 시작하기</span>
         </CtaButton>
       </div>
-      <button
-        type='button'
-        onClick={handleSkipLogin}
-        className={styles.skipButton}
-      >
-        로그인 없이 공지 확인하기
-      </button>
     </div>
   );
 };
