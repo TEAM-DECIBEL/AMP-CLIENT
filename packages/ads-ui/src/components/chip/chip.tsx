@@ -10,7 +10,7 @@ interface ChipBaseProps {
 
 interface ChipStatusProps extends ChipBaseProps {
   variant: 'status';
-  status: 'current' | 'upcoming' | 'dday';
+  status: 'current' | 'upcoming' | 'completed';
 }
 
 interface ChipDayProps extends ChipBaseProps {

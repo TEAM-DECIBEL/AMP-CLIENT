@@ -20,7 +20,7 @@ const getStatusChip = (status: string) => {
   }
 
   return (
-    <Chip variant='status' status='dday'>
+    <Chip variant='status' status='completed'>
       진행 완료
     </Chip>
   );
