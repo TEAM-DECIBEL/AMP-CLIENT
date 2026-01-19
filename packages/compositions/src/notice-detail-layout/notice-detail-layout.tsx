@@ -12,23 +12,23 @@ interface NoticeData {
   content: string;
 }
 
-interface LayoutProps {
+interface NoticeDetailLayoutProps {
   children: ReactNode;
 }
 
-interface ContentProps {
+interface NoticeDetailContentProps {
   data: NoticeData;
 }
 
-interface ActionsProps {
+interface NoticeDetailActionsProps {
   children: ReactNode;
 }
 
-const NoticeDetailLayoutRoot = ({ children }: LayoutProps) => {
+const NoticeDetailLayoutRoot = ({ children }: NoticeDetailLayoutProps) => {
   return <main className={styles.container}>{children}</main>;
 };
 
-const Content = ({ data }: ContentProps) => {
+const Content = ({ data }: NoticeDetailContentProps) => {
   return (
     <div className={styles.noticeDetail}>
       <img src={data.imageUrl} alt={data.title} className={styles.img} />
@@ -46,7 +46,7 @@ const Content = ({ data }: ContentProps) => {
   );
 };
 
-const Actions = ({ children }: ActionsProps) => {
+const Actions = ({ children }: NoticeDetailActionsProps) => {
   return (
     <ButtonGradientSection className={styles.button}>
       {children}
