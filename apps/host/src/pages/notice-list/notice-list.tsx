@@ -1,20 +1,18 @@
 import { useState } from 'react';
 
 import { CircleButton, NoticeBanner } from '@amp/ads-ui';
-import { LiveButtonContainer } from '@amp/compositions';
+import {
+  LiveButtonContainer,
+  NOTICE_TAB,
+  NoticeListTab,
+  NoticeTabContent,
+} from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
 import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
-
-export const NOTICE_TAB = {
-  NOTICE: 'notice',
-  STATUS: 'status',
-} as const;
-
-import { NoticeListTab, NoticeTabContent } from '@amp/compositions';
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 

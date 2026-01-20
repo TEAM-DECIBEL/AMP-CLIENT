@@ -1,11 +1,10 @@
 import { CtaButton } from '@amp/ads-ui';
 import { AlertIcon } from '@amp/ads-ui/icons';
-import {
-  CategorySection,
-  CategoryType,
-  NoticeCardList,
-  NoticeItem,
-} from '@amp/compositions';
+
+import type { CategoryType } from '../../../compositions/src/category-section/category-section';
+import CategorySection from '../../../compositions/src/category-section/category-section';
+import type { NoticeItem } from '../../../compositions/src/notice-card-list/notice-card-list';
+import NoticeCardList from '../../../compositions/src/notice-card-list/notice-card-list';
 
 import * as styles from './notice-tab-content.css';
 

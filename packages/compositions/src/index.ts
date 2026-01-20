@@ -12,6 +12,9 @@ export {
   type NoticeItem,
 } from './notice-card-list/notice-card-list';
 export { default as NoticeDetailLayout } from './notice-detail-layout/notice-detail-layout';
-export { default as NoticeListTab } from './notice-list-tab/notice-list-tab';
+export {
+  NOTICE_TAB,
+  default as NoticeListTab,
+} from './notice-list-tab/notice-list-tab';
 export { default as NoticeTabContent } from './notice-tab-content/notice-tab-content';
 export { default as ResultView } from './result-view/result-view';

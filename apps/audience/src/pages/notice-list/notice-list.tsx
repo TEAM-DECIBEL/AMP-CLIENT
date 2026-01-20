@@ -12,6 +12,7 @@ import {
 import { ChatIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
+  NOTICE_TAB,
   NoticeListTab,
   NoticeTabContent,
 } from '@amp/compositions';
@@ -23,11 +24,6 @@ import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
 
 import * as styles from './notice-list.css';
-
-export const NOTICE_TAB = {
-  NOTICE: 'notice',
-  STATUS: 'status',
-} as const;
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 

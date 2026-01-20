@@ -17,22 +17,20 @@ interface NoticeTabContentProps {
 
 const NoticeTabContent = ({ onChange }: NoticeTabContentProps) => {
   return (
-    <>
-      <Tabs
-        defaultValue='notice'
-        variant='notice'
-        onValueChange={(value) => {
-          if (isNoticeTab(value)) {
-            onChange(value);
-          }
-        }}
-      >
-        <Tabs.List>
-          <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
-          <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
-        </Tabs.List>
-      </Tabs>
-    </>
+    <Tabs
+      defaultValue='notice'
+      variant='notice'
+      onValueChange={(value) => {
+        if (isNoticeTab(value)) {
+          onChange(value);
+        }
+      }}
+    >
+      <Tabs.List>
+        <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
+        <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
+      </Tabs.List>
+    </Tabs>
   );
 };
 
