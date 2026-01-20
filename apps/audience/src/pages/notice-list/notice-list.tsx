@@ -4,20 +4,17 @@ import { overlay } from 'overlay-kit';
 import {
   AddToWatchButton,
   CircleButton,
-  CtaButton,
   Modal,
   NoticeBanner,
   RectButton,
-  Tabs,
   toast,
 } from '@amp/ads-ui';
-import { AlertIcon, ChatIcon } from '@amp/ads-ui/icons';
+import { ChatIcon } from '@amp/ads-ui/icons';
 import {
-  CategorySection,
   LiveButtonContainer,
-  NoticeCardList,
+  NoticeListTab,
+  NoticeTabContent,
 } from '@amp/compositions';
-import { NoticeListTab, NoticeTabContent } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
 import { useLiveStatus } from '@shared/hooks/use-live-status';
@@ -33,10 +30,6 @@ export const NOTICE_TAB = {
 } as const;
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
-
-const isNoticeTab = (value: string): value is NoticeTab => {
-  return value === NOTICE_TAB.NOTICE || value === NOTICE_TAB.STATUS;
-};
 
 const NoticeListPage = () => {
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
@@ -143,6 +136,7 @@ const NoticeListPage = () => {
           <NoticeTabContent
             selectedCategory={selectedCategory}
             noticeList={noticeList}
+            isSelectedCategory={true}
             onSelectCategory={handleChipClick}
             onAlertClick={handleAlertClick}
             onNoticeItemClick={handleNoticeItemClick}

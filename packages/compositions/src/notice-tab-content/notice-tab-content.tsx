@@ -12,6 +12,7 @@ import * as styles from './notice-tab-content.css';
 interface NoticeTabContentProps {
   selectedCategory: CategoryType;
   noticeList: NoticeItem[]; // TODO: Notice 타입으로 교체
+  isSelectedCategory?: boolean;
   onSelectCategory: (category: CategoryType) => void;
   onAlertClick?: () => void;
   onNoticeItemClick: (id: number) => void; // TODO: 추후 타입 변경
@@ -20,6 +21,7 @@ interface NoticeTabContentProps {
 const NoticeTabContent = ({
   selectedCategory,
   noticeList,
+  isSelectedCategory = false,
   onSelectCategory,
   onAlertClick,
   onNoticeItemClick,
@@ -31,7 +33,7 @@ const NoticeTabContent = ({
         onSelect={onSelectCategory}
       />
 
-      {selectedCategory !== '전체' && (
+      {isSelectedCategory && selectedCategory !== '전체' && (
         <div className={styles.ctaButtonContainer}>
           <CtaButton
             type='icon'

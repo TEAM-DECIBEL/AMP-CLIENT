@@ -1,6 +1,7 @@
 {
   "extends": "@amp/tsconfig/react-library",
   "compilerOptions": {
+    "rootDir": "src",
     "outDir": "dist"
   },
   "include": ["src"],
