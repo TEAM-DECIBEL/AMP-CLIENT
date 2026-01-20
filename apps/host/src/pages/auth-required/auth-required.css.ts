@@ -6,7 +6,7 @@ export const container = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '0 2rem',
+  padding: '0 2rem 9rem 2rem',
 });
 
 export const ctaButtonContainer = style({
