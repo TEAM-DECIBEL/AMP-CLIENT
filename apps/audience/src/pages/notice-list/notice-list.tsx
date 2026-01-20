@@ -8,7 +8,6 @@ import {
   Modal,
   NoticeBanner,
   RectButton,
-  StatusSheet,
   Tabs,
   toast,
 } from '@amp/ads-ui';
@@ -23,6 +22,7 @@ import { useNoticeList } from '@amp/shared/hooks';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
+import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
 
 import * as styles from './notice-list.css';
 
@@ -190,22 +190,14 @@ const NoticeListPage = () => {
         </section>
       )}
 
-      {isAvailableTime ? (
-        <StatusSheet
-          open={isSheetOpen}
-          onClose={closeStatusSheet}
-          selectable
-          title={sheetTitle}
-          selected={status}
-          onConfirm={confirmStatus}
-        />
-      ) : (
-        <StatusSheet
-          open={isSheetOpen}
-          selectable={false}
-          onClose={closeStatusSheet}
-        />
-      )}
+      <LiveStatusSheet
+        open={isSheetOpen}
+        onClose={closeStatusSheet}
+        isAvailableTime={isAvailableTime}
+        title={sheetTitle}
+        selected={status}
+        onConfirm={confirmStatus}
+      />
     </main>
   );
 };

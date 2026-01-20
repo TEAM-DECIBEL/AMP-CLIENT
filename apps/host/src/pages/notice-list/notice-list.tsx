@@ -31,6 +31,10 @@ const NoticeListPage = () => {
 
   // TODO: API 연동 (공지 목록 불러오기)
 
+  const handleNoticeItemClick = (id: number) => {
+    // TODO: 공지 상세 페이지 이동 등 로직 추가
+  };
+
   return (
     <main className={styles.pageContainer}>
       <NoticeBanner
@@ -64,7 +68,10 @@ const NoticeListPage = () => {
               selectedCategory={selectedCategory}
               onSelect={handleChipClick}
             />
-            <NoticeCardList notices={noticeList} onItemClick={() => {}} />
+            <NoticeCardList
+              notices={noticeList}
+              onItemClick={handleNoticeItemClick}
+            />
           </section>
         ) : (
           <section className={styles.currentContainer}>
