@@ -1,4 +1,4 @@
-export const onlyDigits = (s: string) => s.replace(/\D/g, '');
+export const onlyDigits = (s: string): string => s.replace(/\D/g, '');
 
 export const formatDateYYYYMMDD = (digits: string, isDeleting: boolean) => {
   const d = digits.slice(0, 8);
