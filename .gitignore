@@ -34,6 +34,8 @@ dist-ssr
 apps/**/src/**/*.js
 packages/**/src/**/*.js
 
+.env
+
 # PWA dev assets
 dev-dist
 devDist
