@@ -72,8 +72,12 @@ const Textfield = ({
       isDeleting,
     );
 
-    (e.currentTarget as HTMLInputElement).value = formatted;
-    onChange?.(e);
+    const syntheticEvent = {
+      ...e,
+      currentTarget: { ...e.currentTarget, value: formatted },
+      target: { ...e.target, value: formatted },
+    } as React.ChangeEvent<HTMLInputElement>;
+    onChange?.(syntheticEvent);
 
     if (!isControlled) {
       setInnerValue(formatted);
