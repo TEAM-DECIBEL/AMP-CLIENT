@@ -17,6 +17,7 @@ import {
   LiveButtonContainer,
   NoticeCardList,
 } from '@amp/compositions';
+import { NoticeListTab, NoticeTabContent } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
 import { useLiveStatus } from '@shared/hooks/use-live-status';
@@ -46,6 +47,11 @@ const NoticeListPage = () => {
   const { toggleAlert } = useNoticeAlert();
 
   const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
+
+  const handleNoticeItemClick = (id: number) => {
+    // TODO: 공지 상세 페이지 이동 등 로직 추가
+  };
+
   const {
     statusItems,
     isSheetOpen,
@@ -131,42 +137,16 @@ const NoticeListPage = () => {
       />
       <div className={styles.mainContent}>
         <nav className={styles.contentHeader}>
-          <Tabs
-            defaultValue='notice'
-            variant='notice'
-            onValueChange={(value) => {
-              if (isNoticeTab(value)) {
-                setActiveTab(value);
-              }
-            }}
-          >
-            <Tabs.List>
-              <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
-              <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
-            </Tabs.List>
-          </Tabs>
+          <NoticeListTab onChange={setActiveTab} />
         </nav>
-        {activeTab === 'notice' ? (
-          <section>
-            <CategorySection
-              selectedCategory={selectedCategory}
-              onSelect={handleChipClick}
-            />
-            {selectedCategory !== '전체' && (
-              <div className={styles.ctaButtonContainer}>
-                <CtaButton
-                  type='icon'
-                  color='gray'
-                  onClick={handleAlertClick}
-                  className={styles.ctaButton}
-                >
-                  <AlertIcon />
-                  {selectedCategory} 공지 알림 받기
-                </CtaButton>
-              </div>
-            )}
-            <NoticeCardList notices={noticeList} onItemClick={() => {}} />
-          </section>
+        {activeTab === NOTICE_TAB.NOTICE ? (
+          <NoticeTabContent
+            selectedCategory={selectedCategory}
+            noticeList={noticeList}
+            onSelectCategory={handleChipClick}
+            onAlertClick={handleAlertClick}
+            onNoticeItemClick={handleNoticeItemClick}
+          />
         ) : (
           <div className={styles.noticeContainer}>
             <div className={styles.noticeChip}>

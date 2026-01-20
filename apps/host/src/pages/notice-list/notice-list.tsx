@@ -1,11 +1,7 @@
 import { useState } from 'react';
 
-import { CircleButton, NoticeBanner, Tabs } from '@amp/ads-ui';
-import {
-  CategorySection,
-  LiveButtonContainer,
-  NoticeCardList,
-} from '@amp/compositions';
+import { CircleButton, NoticeBanner } from '@amp/ads-ui';
+import { LiveButtonContainer } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
 import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
@@ -18,11 +14,9 @@ export const NOTICE_TAB = {
   STATUS: 'status',
 } as const;
 
-type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
+import { NoticeListTab, NoticeTabContent } from '@amp/compositions';
 
-const isNoticeTab = (value: string): value is NoticeTab => {
-  return value === NOTICE_TAB.NOTICE || value === NOTICE_TAB.STATUS;
-};
+type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
 const NoticeListPage = () => {
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
@@ -46,33 +40,16 @@ const NoticeListPage = () => {
       />
       <div className={styles.mainContent}>
         <nav className={styles.contentHeader}>
-          <Tabs
-            defaultValue='notice'
-            variant='notice'
-            onValueChange={(value) => {
-              if (isNoticeTab(value)) {
-                setActiveTab(value);
-              }
-            }}
-          >
-            <Tabs.List>
-              <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
-              <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
-            </Tabs.List>
-          </Tabs>
+          <NoticeListTab onChange={setActiveTab} />
         </nav>
 
         {activeTab === 'notice' ? (
-          <section>
-            <CategorySection
-              selectedCategory={selectedCategory}
-              onSelect={handleChipClick}
-            />
-            <NoticeCardList
-              notices={noticeList}
-              onItemClick={handleNoticeItemClick}
-            />
-          </section>
+          <NoticeTabContent
+            selectedCategory={selectedCategory}
+            noticeList={noticeList}
+            onSelectCategory={handleChipClick}
+            onNoticeItemClick={handleNoticeItemClick}
+          />
         ) : (
           <section className={styles.currentContainer}>
             <LiveButtonContainer items={LIVE_STATUS_MOCK} isDisabled={true} />
