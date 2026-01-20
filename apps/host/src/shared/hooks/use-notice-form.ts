@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import { toast } from '@amp/ads-ui';
 
@@ -51,13 +51,10 @@ export const useNoticeForm = () => {
   const handleCategoryClick = (category: string) =>
     setSelectedCategory(category);
 
-  const isValid = useMemo(() => {
-    return (
-      selectedCategory !== '' &&
-      title.trim().length > 0 &&
-      content.trim().length > 0
-    );
-  }, [selectedCategory, title, content]);
+  const isValid =
+    selectedCategory !== '' &&
+    title.trim().length > 0 &&
+    content.trim().length > 0;
 
   const handleSubmit = () => {
     if (!isValid) {
