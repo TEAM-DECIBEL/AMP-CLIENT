@@ -6,7 +6,6 @@ import {
   CircleButton,
   CtaButton,
   Modal,
-  NoticeBanner,
   RectButton,
   Tabs,
   toast,
@@ -16,6 +15,7 @@ import {
   CATEGORIES,
   CategorySection,
   CategoryType,
+  NoticeBanner,
   NoticeCardList,
 } from '@amp/compositions';
 
