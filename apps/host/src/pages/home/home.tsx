@@ -20,7 +20,7 @@ const HomePage = () => {
   const showTooltip = summary.ongoingCount === 0 && summary.upcomingCount === 0;
   const navigate = useNavigate();
   const handleCreateClick = () => {
-    navigate(`${ROUTE_PATH.EVENT_CREATE}`);
+    navigate(ROUTE_PATH.EVENT_CREATE);
   };
 
   return (

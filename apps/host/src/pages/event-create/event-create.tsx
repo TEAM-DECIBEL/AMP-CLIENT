@@ -43,21 +43,32 @@ const isFilled = (value: string) => {
   return value.trim() !== '';
 };
 
+const INITIAL_FORM_STATE: FormState = {
+  imageUrl: '',
+  eventTitle: '',
+  scheduleDate: '',
+  scheduleTime: '',
+  eventLocation: '',
+  boothTitle: '',
+  boothLocation: '',
+};
+
 const EventCreatePage = () => {
   const [activeCategoryIds, setActiveCategoryIds] = useState<number[]>([]);
-  const [form, setForm] = useState<FormState>({
-    imageUrl: '',
-    eventTitle: '',
-    scheduleDate: '',
-    scheduleTime: '',
-    eventLocation: '',
-    boothTitle: '',
-    boothLocation: '',
-  });
+  const [form, setForm] = useState<FormState>(INITIAL_FORM_STATE);
 
   const image = useObjectUrl();
   const schedules = useItemList<ScheduleItem>();
   const booths = useItemList<BoothItem>();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!canSubmit) {
+      return;
+    }
+
+    // TODO: API 연결
+  };
 
   const setField = (name: keyof FormState, value: string) => {
     setForm((prev) => {
@@ -104,7 +115,7 @@ const EventCreatePage = () => {
 
   return (
     <section className={styles.pageContainer}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <section className={styles.scrollArea}>
           <p className={styles.sectionText({ kind: 'title' })}>기본 정보</p>
           <p className={styles.sectionText({ kind: 'subText' })}>
@@ -131,7 +142,6 @@ const EventCreatePage = () => {
           </FormField>
 
           <FormField label='공연 일시'>
-            {/* TODO: Textfield 수정 */}
             <div className={styles.grid}>
               <Textfield
                 name='scheduleDate'
@@ -151,6 +161,7 @@ const EventCreatePage = () => {
 
             <CtaButton
               type='icon'
+              htmlType='button'
               onClick={addSchedule}
               className={styles.addButton}
               disabled={!canAddSchedule}
@@ -195,7 +206,6 @@ const EventCreatePage = () => {
           </p>
 
           <FormField>
-            {/* TODO: Textfield 수정 */}
             <Textfield
               name='boothTitle'
               variant='flag'
@@ -212,6 +222,7 @@ const EventCreatePage = () => {
             />
             <CtaButton
               type='icon'
+              htmlType='button'
               onClick={addBooth}
               className={styles.addButton}
               disabled={!canAddBooth}
@@ -249,8 +260,8 @@ const EventCreatePage = () => {
         <section className={styles.bottom}>
           <CtaButton
             type='common'
+            htmlType='submit'
             color='gray'
-            onClick={() => {}} // TODO: API 연결
             disabled={!canSubmit}
           >
             완료

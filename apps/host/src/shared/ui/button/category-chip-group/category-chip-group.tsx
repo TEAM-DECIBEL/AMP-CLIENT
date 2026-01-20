@@ -7,18 +7,32 @@ interface Category {
   label: string;
 }
 
+interface CategoryRow {
+  key: string;
+  items: Category[];
+}
+
 interface CategoryChipGroupProps {
   categories: Category[];
   activeCategoryIds: number[];
   onToggle: (id: number, nextSelected: boolean) => void;
 }
 
-const chunkCategories = (categories: Category[]) => {
-  const chunk: Category[][] = [];
-  for (let i = 0; i < categories.length; i += 3) {
-    chunk.push(categories.slice(i, i + 3));
+const CHIPS_PER_ROW = 3;
+
+const chunkCategories = (categories: Category[]): CategoryRow[] => {
+  const rows: CategoryRow[] = [];
+
+  for (let i = 0; i < categories.length; i += CHIPS_PER_ROW) {
+    const items = categories.slice(i, i + CHIPS_PER_ROW);
+
+    rows.push({
+      key: items.map((c) => c.id).join('-'),
+      items,
+    });
   }
-  return chunk;
+
+  return rows;
 };
 
 const CategoryChipGroup = ({
@@ -27,12 +41,14 @@ const CategoryChipGroup = ({
   onToggle,
 }: CategoryChipGroupProps) => {
   const rows = chunkCategories(categories);
+
   return (
     <div className={styles.chipGroupContainer}>
-      {rows.map((row, rowIdx) => (
-        <div key={rowIdx} className={styles.row}>
-          {row.map((c) => {
+      {rows.map((row) => (
+        <div key={row.key} className={styles.row}>
+          {row.items.map((c) => {
             const selected = activeCategoryIds.includes(c.id);
+
             return (
               <CategoryButton
                 key={c.id}

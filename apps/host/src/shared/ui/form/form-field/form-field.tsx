@@ -2,12 +2,12 @@ import type { ReactNode } from 'react';
 
 import * as styles from './form-field.css';
 
-interface FieldProps {
+interface FormFieldProps {
   label?: string;
   children: ReactNode;
 }
 
-const FormField = ({ label, children }: FieldProps) => {
+const FormField = ({ label, children }: FormFieldProps) => {
   return (
     <div className={styles.field}>
       {label && <p className={styles.fieldLabel}>{label}</p>}

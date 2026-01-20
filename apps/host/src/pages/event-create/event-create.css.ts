@@ -9,8 +9,8 @@ export const pageContainer = style({
 });
 
 export const scrollArea = style({
-  flex: 1,
-  gap: '2rem',
+  display: 'flex',
+  flexDirection: 'column',
 });
 
 export const bottom = style({
