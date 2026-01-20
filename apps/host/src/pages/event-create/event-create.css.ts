@@ -23,6 +23,7 @@ export const bottom = style({
 
 export const sectionText = recipe({
   base: {
+    marginTop: '0.2rem',
     marginLeft: '0.5rem',
   },
   variants: {

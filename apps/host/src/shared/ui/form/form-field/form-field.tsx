@@ -2,10 +2,10 @@ import type { ReactNode } from 'react';
 
 import * as styles from './form-field.css';
 
-type FieldProps = {
+interface FieldProps {
   label?: string;
   children: ReactNode;
-};
+}
 
 const FormField = ({ label, children }: FieldProps) => {
   return (
