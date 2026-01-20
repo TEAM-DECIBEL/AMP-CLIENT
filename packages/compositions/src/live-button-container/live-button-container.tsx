@@ -9,6 +9,8 @@ interface LiveButtonContainerProps {
     location?: string | null;
     congestionLevel: string;
   }[];
+  showIcon?: boolean;
+  isDisabled?: boolean;
   onClick?: (id: number) => void;
 }
 
@@ -21,7 +23,8 @@ const STATUS_IMAGES: Record<StatusSheetValue, string> = {
 
 const LiveButtonContainer = ({
   items,
-
+  showIcon = false,
+  isDisabled = false,
   onClick,
 }: LiveButtonContainerProps) => {
   return (
@@ -36,6 +39,8 @@ const LiveButtonContainer = ({
             title={item.title}
             subText={item.location ?? ''}
             imageUrl={statusImageUrl}
+            showIcon={showIcon}
+            isDisabled={isDisabled}
             onClick={() => onClick?.(item.id)}
           />
         );

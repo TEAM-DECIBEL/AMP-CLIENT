@@ -13,8 +13,19 @@ import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
 
+export const NOTICE_TAB = {
+  NOTICE: 'notice',
+  STATUS: 'status',
+} as const;
+
+type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
+
+const isNoticeTab = (value: string): value is NoticeTab => {
+  return value === NOTICE_TAB.NOTICE || value === NOTICE_TAB.STATUS;
+};
+
 const NoticeListPage = () => {
-  const [activeTab, setActiveTab] = useState<string>('notice');
+  const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
 
   const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
 
@@ -34,7 +45,11 @@ const NoticeListPage = () => {
           <Tabs
             defaultValue='notice'
             variant='notice'
-            onValueChange={(value) => setActiveTab(value)}
+            onValueChange={(value) => {
+              if (isNoticeTab(value)) {
+                setActiveTab(value);
+              }
+            }}
           >
             <Tabs.List>
               <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
@@ -53,7 +68,7 @@ const NoticeListPage = () => {
           </section>
         ) : (
           <section className={styles.currentContainer}>
-            <LiveButtonContainer items={LIVE_STATUS_MOCK} />
+            <LiveButtonContainer items={LIVE_STATUS_MOCK} isDisabled={true} />
           </section>
         )}
       </div>

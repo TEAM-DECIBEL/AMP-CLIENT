@@ -66,3 +66,9 @@ export const img = style({
   borderRadius: '8px',
   objectFit: 'cover',
 });
+
+export const disabled = style({
+  pointerEvents: 'none',
+  userSelect: 'none',
+  cursor: 'not-allowed',
+});
