@@ -131,7 +131,7 @@ const EventCreatePage = () => {
             </div>
           </FormField>
 
-          <FormField label='공연명'>
+          <FormField id='eventTitle' label='공연명'>
             <Textfield
               name='eventTitle'
               variant='default'
@@ -141,9 +141,10 @@ const EventCreatePage = () => {
             />
           </FormField>
 
-          <FormField label='공연 일시'>
+          <FormField id='scheduleDate' label='공연 일시'>
             <div className={styles.grid}>
               <Textfield
+                id='scheduleDate'
                 name='scheduleDate'
                 variant='date'
                 placeholder='공연 일자'
@@ -151,6 +152,7 @@ const EventCreatePage = () => {
                 onChange={(e) => setField('scheduleDate', e.target.value)}
               />
               <Textfield
+                id='scheduleTime'
                 name='scheduleTime'
                 variant='time'
                 placeholder='공연 시작 시간'
@@ -184,8 +186,9 @@ const EventCreatePage = () => {
             />
           </FormField>
 
-          <FormField label='공연 장소'>
+          <FormField id='eventLocation' label='공연 장소'>
             <Textfield
+              id='eventLocation'
               name='eventLocation'
               variant='default'
               placeholder='공연 장소를 입력해주세요.'
@@ -205,8 +208,9 @@ const EventCreatePage = () => {
             관객이 현장 복잡도를 직접 입력할 수 있어요.
           </p>
 
-          <FormField>
+          <FormField id='boothTitle'>
             <Textfield
+              id='boothTitle'
               name='boothTitle'
               variant='flag'
               value={form.boothTitle}
@@ -214,6 +218,7 @@ const EventCreatePage = () => {
               onChange={(e) => setField('boothTitle', e.target.value)}
             />
             <Textfield
+              id='boothLocation'
               name='boothLocation'
               variant='location'
               value={form.boothLocation}
