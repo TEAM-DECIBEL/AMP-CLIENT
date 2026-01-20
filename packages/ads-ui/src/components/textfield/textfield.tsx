@@ -20,6 +20,12 @@ const formatterByVariant: Record<
   time: formatTimeHHMM,
 };
 
+const iconByVariant = {
+  flag: FlagIcon,
+  date: CalendarIcon,
+  time: TimeIcon,
+} as const;
+
 const Textfield = ({
   variant,
   value,
@@ -79,11 +85,14 @@ const Textfield = ({
   const inputMode = isFormatVariant ? 'numeric' : props.inputMode;
   const maxLength = isDate ? 10 : isTime ? 5 : props.maxLength;
 
+  const IconComponent =
+    variant !== 'default'
+      ? iconByVariant[variant as keyof typeof iconByVariant]
+      : null;
+
   return (
     <div className={styles.textfield({ variant })}>
-      {variant === 'flag' && <FlagIcon className={styles.icon} />}
-      {variant === 'date' && <CalendarIcon className={styles.icon} />}
-      {variant === 'time' && <TimeIcon className={styles.icon} />}
+      {IconComponent && <IconComponent className={styles.icon} />}
 
       <input
         className={styles.input}
