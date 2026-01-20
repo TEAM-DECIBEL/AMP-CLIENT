@@ -30,7 +30,6 @@ export const useLiveStatus = () => {
   const confirmStatus = (value: StatusSheetValue) => {
     setStatus(value);
     toast.show('선택하신 현장 상황이 반영되었어요.');
-    closeStatusSheet();
   };
 
   return {

@@ -103,6 +103,7 @@ const StatusSheet = (props: StatusSheetProps) => {
     }
 
     props.onConfirm(draft);
+    onClose();
   };
 
   return (
