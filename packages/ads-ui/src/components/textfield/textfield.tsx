@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { CalendarIcon, FlagIcon, TimeIcon } from '../../icons';
+import { CalendarIcon, FlagIcon, LocateIcon, TimeIcon } from '../../icons';
 import { formatDateYYYYMMDD, formatTimeHHMM, onlyDigits } from './formatters';
 
 import * as styles from './textfield.css';
 
 interface TextfieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  variant: 'default' | 'flag' | 'date' | 'time';
+  variant: 'default' | 'flag' | 'date' | 'time' | 'location';
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
@@ -25,6 +25,7 @@ const iconByVariant = {
   flag: FlagIcon,
   date: CalendarIcon,
   time: TimeIcon,
+  location: LocateIcon,
 } as const;
 
 const Textfield = ({
@@ -106,7 +107,6 @@ const Textfield = ({
   return (
     <div className={styles.textfield({ variant })}>
       {IconComponent && <IconComponent className={styles.icon} />}
-
       <input
         className={styles.input}
         {...props}
