@@ -27,7 +27,7 @@ const NoticeTabContent = ({
   onNoticeItemClick,
 }: NoticeTabContentProps) => {
   return (
-    <section>
+    <section className={styles.container}>
       <CategorySection
         selectedCategory={selectedCategory}
         onSelect={onSelectCategory}
