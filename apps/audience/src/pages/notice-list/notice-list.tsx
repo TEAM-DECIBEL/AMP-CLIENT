@@ -132,7 +132,7 @@ const NoticeListPage = () => {
           </Tabs>
         </nav>
         {activeTab === 'notice' ? (
-          <div>
+          <>
             <CategorySection
               selectedCategory={selectedCategory}
               onSelect={handleChipClick}
@@ -151,7 +151,7 @@ const NoticeListPage = () => {
               </div>
             )}
             <NoticeCardList notices={noticeList} onItemClick={() => {}} />
-          </div>
+          </>
         ) : (
           <div className={styles.noticeContainer}>
             <div className={styles.noticeChip}>

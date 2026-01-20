@@ -87,12 +87,12 @@ const StatusSheet = (props: StatusSheetProps) => {
 
   const [draft, setDraft] = useState<StatusSheetValue | undefined>(undefined);
 
-  const handleClose = () => {
+  const handleCloseSheet = () => {
     setDraft(undefined);
     onClose();
   };
 
-  const handleConfirm = () => {
+  const handleConfirmSheet = () => {
     if (props.selectable !== true) {
       onClose();
       return;
@@ -103,13 +103,13 @@ const StatusSheet = (props: StatusSheetProps) => {
     }
 
     props.onConfirm(draft);
-    handleClose();
+    handleCloseSheet();
   };
 
   const isConfirmDisabled = props.selectable === true ? !draft : false;
 
   return (
-    <BottomSheet open={open} onClose={handleClose}>
+    <BottomSheet open={open} onClose={handleCloseSheet}>
       <BottomSheet.Panel>
         <BottomSheet.Handle />
 
@@ -127,7 +127,7 @@ const StatusSheet = (props: StatusSheetProps) => {
           <CtaButton
             type='common'
             color='gray'
-            onClick={handleConfirm}
+            onClick={handleConfirmSheet}
             disabled={isConfirmDisabled}
           >
             확인
