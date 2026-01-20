@@ -1,5 +1,5 @@
-export { default as HomeBanner } from './banner/home-banner/home-banner';
-export { default as NoticeBanner } from './banner/notice-banner/notice-banner';
+export { default as HomeBanner } from '../../../compositions/src/banner/home-banner/home-banner';
+export { default as NoticeBanner } from '../../../compositions/src/banner/notice-banner/notice-banner';
 export { default as BottomSheet } from './bottom-sheet/bottom-sheet';
 export { default as OptionSheet } from './bottom-sheet/option-sheet/option-sheet';
 export { default as StatusSheet } from './bottom-sheet/status-sheet/status-sheet';
