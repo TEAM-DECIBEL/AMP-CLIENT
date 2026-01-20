@@ -9,8 +9,9 @@ export const content = style({
   padding: '2rem',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
+  alignItems: 'stretch',
   gap: '20px',
+  width: '100%',
 });
 
 export const ctaArea = style({

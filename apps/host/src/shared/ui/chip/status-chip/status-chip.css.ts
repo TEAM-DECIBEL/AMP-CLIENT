@@ -4,7 +4,7 @@ import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const container = style({
   display: 'flex',
-  width: '33.5rem',
+  width: '100%',
   height: '3.5rem',
   padding: '0.7rem 1.2rem',
   flexDirection: 'column',
