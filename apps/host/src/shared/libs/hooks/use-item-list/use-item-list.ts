@@ -1,13 +1,15 @@
 import { useState } from 'react';
 
-type WithId = { id: string };
+interface WithId {
+  id: string;
+}
 
-type UseItemListReturn<T extends WithId> = {
+interface UseItemListReturn<T extends WithId> {
   items: T[];
   add: (item: Omit<T, 'id'>) => void;
   remove: (id: string) => void;
   clear: () => void;
-};
+}
 
 const useItemList = <T extends WithId>(): UseItemListReturn<T> => {
   const [items, setItems] = useState<T[]>([]);

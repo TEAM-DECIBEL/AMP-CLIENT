@@ -2,13 +2,16 @@ import { CategoryButton } from '@amp/ads-ui';
 
 import * as styles from './category-chip-group.css';
 
-type Category = { id: number; label: string };
+interface Category {
+  id: number;
+  label: string;
+}
 
-type CategoryChipGroupProps = {
+interface CategoryChipGroupProps {
   categories: Category[];
   activeCategoryIds: number[];
   onToggle: (id: number, nextSelected: boolean) => void;
-};
+}
 
 const chunkCategories = (categories: Category[]) => {
   const chunk: Category[][] = [];

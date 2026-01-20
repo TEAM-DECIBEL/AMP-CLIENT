@@ -6,20 +6,20 @@ import * as styles from './added-item.css';
 
 type SecondVariant = 'default' | 'location';
 
-type AddedItemModel = {
+interface AddedItemModel {
   id: string;
   first: string;
   second?: string;
   firstIcon: ReactNode;
   secondIcon?: ReactNode;
   secondVariant?: SecondVariant;
-};
+}
 
-type AddedItemProps<T> = {
+interface AddedItemProps<T> {
   items: T[];
   onRemove: (id: string) => void;
   getItem: (item: T) => AddedItemModel;
-};
+}
 
 const AddedItem = <T,>({ items, onRemove, getItem }: AddedItemProps<T>) => {
   if (items.length === 0) {

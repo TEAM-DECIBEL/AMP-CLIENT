@@ -18,7 +18,7 @@ import FormField from '@shared/ui/form/form-field/form-field';
 
 import * as styles from './event-create.css';
 
-type FormState = {
+interface FormState {
   imageUrl: string;
   eventTitle: string;
   scheduleDate: string;
@@ -26,18 +26,18 @@ type FormState = {
   eventLocation: string;
   boothTitle: string;
   boothLocation: string;
-};
-type ScheduleItem = {
+}
+interface ScheduleItem {
   id: string;
   date: string;
   time: string;
-};
+}
 
-type BoothItem = {
+interface BoothItem {
   id: string;
   title: string;
   location?: string;
-};
+}
 
 const isFilled = (value: string) => {
   return value.trim() !== '';

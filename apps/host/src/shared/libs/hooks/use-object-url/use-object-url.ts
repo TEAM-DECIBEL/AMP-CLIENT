@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-type UseObjectUrlReturn = {
+interface UseObjectUrlReturn {
   url: string;
   setFile: (file: File) => void;
-};
+}
 
 const useObjectUrl = (): UseObjectUrlReturn => {
   const [url, setUrl] = useState('');
