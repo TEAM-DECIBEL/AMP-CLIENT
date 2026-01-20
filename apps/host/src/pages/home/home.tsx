@@ -6,11 +6,10 @@ import { ButtonGradientSection } from '@amp/compositions';
 
 import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
 
+import { HOME_QUERY_OPTIONS } from '@shared/apis/domain/home/query';
 import { ROUTE_PATH } from '@shared/constants/path';
 import CardHomebannerOrg from '@shared/ui/card/card-homebanner-organizer/card-homebanner-org';
 import Tooltip from '@shared/ui/tooltip/tooltip';
-
-import { HOME_QUERY_OPTIONS } from '../../shared/apis/domain/home/query';
 
 import * as styles from './home.css';
 
