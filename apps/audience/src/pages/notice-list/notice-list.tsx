@@ -151,7 +151,7 @@ const NoticeListPage = () => {
           </div>
         )}
       </div>
-      {activeTab === 'notice' && (
+      {activeTab === NOTICE_TAB.NOTICE && (
         <section className={styles.buttonContainer}>
           <div className={styles.button}>
             {/* TODO: 뷰 이동 로직 추가 */}
