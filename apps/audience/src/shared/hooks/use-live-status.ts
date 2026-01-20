@@ -4,10 +4,12 @@ import { toast } from '@amp/ads-ui';
 
 import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
 
+type StatusSheetValue = '여유' | '보통' | '혼잡';
+
 export const useLiveStatus = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [sheetTitle, setSheetTitle] = useState('');
-  const [status, setStatus] = useState<'여유' | '보통' | '혼잡'>('여유');
+  const [status, setStatus] = useState<StatusSheetValue>('여유');
 
   // TODO: 8시간 이내 현장 상황 입력 불가 관리 테스트용 임시 상태 삭제
   const [isAvailableTime] = useState(true);
@@ -25,7 +27,7 @@ export const useLiveStatus = () => {
   const closeSheet = () => setIsSheetOpen(false);
 
   // TODO: 토스트는 추후 서버 에러 활용 분기 처리. 현재 임시 구조
-  const confirmStatus = (value: '여유' | '보통' | '혼잡') => {
+  const confirmStatus = (value: StatusSheetValue) => {
     setStatus(value);
     toast.show('선택하신 현장 상황이 반영되었어요.');
     closeSheet();

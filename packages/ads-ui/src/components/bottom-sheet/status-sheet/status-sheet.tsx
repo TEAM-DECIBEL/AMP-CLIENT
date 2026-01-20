@@ -17,7 +17,7 @@ import * as styles from './status-sheet.css';
 
 interface StatusSheetBaseProps {
   open: boolean;
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 interface StatusSheetSelectableProps extends StatusSheetBaseProps {
@@ -94,7 +94,7 @@ const StatusSheet = (props: StatusSheetProps) => {
 
   const handleConfirm = () => {
     if (props.selectable !== true) {
-      onClose?.();
+      onClose();
       return;
     }
 
