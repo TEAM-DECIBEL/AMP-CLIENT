@@ -6,8 +6,8 @@ import {
   LiveButtonContainer,
   NoticeCardList,
 } from '@amp/compositions';
+import { useNoticeList } from '@amp/shared/hooks';
 
-import { useNoticeList } from '@shared/hooks/use-notice-list';
 import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 

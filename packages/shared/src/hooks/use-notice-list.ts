@@ -1,10 +1,15 @@
 import { useMemo, useState } from 'react';
 
-import { CATEGORIES, CategoryType } from '@amp/compositions';
+import { MOCK_DATA } from '../../mocks/notice-list';
+import { CATEGORIES, type CategoryType, type Notice } from '../types';
 
-import { MOCK_DATA } from '@shared/mocks/notice-list';
+interface UseNoticeListReturn {
+  selectedCategory: CategoryType;
+  handleChipClick: (category: CategoryType) => void;
+  noticeList: Notice[];
+}
 
-export const useNoticeList = () => {
+export const useNoticeList = (): UseNoticeListReturn => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
     CATEGORIES[0],
   );
@@ -33,7 +38,6 @@ export const useNoticeList = () => {
 
   return {
     selectedCategory,
-    setSelectedCategory,
     handleChipClick,
     noticeList: sortedList,
   };
