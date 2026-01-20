@@ -29,7 +29,7 @@ const NoticeCreatePage = () => {
   } = handlers;
   return (
     <>
-      <main className={styles.container}>
+      <form className={styles.container} onSubmit={handleSubmit}>
         <div className={styles.titleContainer}>
           <p className={styles.title}>공연 공지</p>
           <p className={styles.description}>
@@ -81,12 +81,12 @@ const NoticeCreatePage = () => {
             onChange={handleContentChange}
           />
         </InputLayout>
-      </main>
+      </form>
       <div className={styles.buttonContainer}>
         <CtaButton
           type='common'
+          htmlType='submit'
           color='gray'
-          onClick={handleSubmit}
           disabled={!isValid}
         >
           완료

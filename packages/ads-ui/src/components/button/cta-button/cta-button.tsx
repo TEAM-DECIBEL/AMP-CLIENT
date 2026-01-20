@@ -6,27 +6,26 @@ import * as styles from './cta-button.css';
 interface CtaButtonProps {
   children: ReactNode;
   type: 'common' | 'icon';
+  htmlType?: 'button' | 'submit' | 'reset';
   color?: 'primary' | 'gray' | 'white';
   selected?: boolean;
   disabled?: boolean;
-  onClick: () => void;
   className?: string;
 }
 
 const CtaButton = ({
   children,
   type,
+  htmlType = 'button',
   color = 'primary',
   selected,
   disabled,
   className,
-  onClick,
 }: CtaButtonProps) => {
   return (
     <button
-      type='button'
+      type={htmlType}
       disabled={disabled}
-      onClick={onClick}
       aria-pressed={selected}
       className={clsx(styles.ctaButton({ type, color }), className)}
     >
