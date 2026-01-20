@@ -1,5 +1,5 @@
 import { overlay } from 'overlay-kit'; // ✨ 모달 라이브러리 import
-import { useLocation, useNavigate } from 'react-router';
+import { matchPath, useLocation, useNavigate } from 'react-router';
 
 import {
   Modal,
@@ -15,6 +15,17 @@ import {
 } from '../../icons';
 
 import * as styles from './header.css';
+
+const CONFIRM_LEAVE_PATH_PATTERNS = [
+  '/events/:eventId/notices/new',
+  '/events/new',
+] as const;
+
+const checkConfirmLeavePath = (pathname: string) => {
+  return CONFIRM_LEAVE_PATH_PATTERNS.some((pattern) =>
+    matchPath(pattern, pathname),
+  );
+};
 
 interface HeaderProps {
   variant: 'host' | 'audience';
@@ -32,52 +43,54 @@ const Header = ({ variant, kind, title, hasNewAlert = false }: HeaderProps) => {
   const location = useLocation();
 
   const handleBackClick = () => {
-    if (location.pathname.includes('events/:eventId/notices/new')) {
-      overlay.open(({ isOpen, close, unmount }) => (
-        <Modal
-          open={isOpen}
-          onClose={() => {
-            close();
-            unmount();
-          }}
-        >
-          <Modal.Panel>
-            <Modal.Content>
-              <Modal.Title>페이지를 나가시겠어요?</Modal.Title>
-              <Modal.Description>
-                지금까지 작성한 내용은 사라져요.
-              </Modal.Description>
-            </Modal.Content>
-            <Modal.Actions>
-              <RectButton
-                variant='secondary'
-                onClick={() => {
-                  close();
-                  unmount();
-                }}
-              >
-                취소
-              </RectButton>
+    const hasConfirmLeavePath = checkConfirmLeavePath(location.pathname);
 
-              <RectButton
-                variant='primary'
-                onClick={() => {
-                  close();
-                  unmount();
-                  navigate(-1);
-                }}
-              >
-                나가기
-              </RectButton>
-            </Modal.Actions>
-          </Modal.Panel>
-        </Modal>
-      ));
-
+    if (!hasConfirmLeavePath) {
+      navigate(-1);
       return;
     }
 
-    navigate(-1);
+    overlay.open(({ isOpen, close, unmount }) => (
+      <Modal
+        open={isOpen}
+        onClose={() => {
+          close();
+          unmount();
+        }}
+      >
+        <Modal.Panel>
+          <Modal.Content>
+            <Modal.Title>페이지를 나가시겠어요?</Modal.Title>
+            <Modal.Description>
+              지금까지 작성한 내용은 사라져요.
+            </Modal.Description>
+          </Modal.Content>
+
+          <Modal.Actions>
+            <RectButton
+              variant='secondary'
+              onClick={() => {
+                close();
+                unmount();
+              }}
+            >
+              취소
+            </RectButton>
+
+            <RectButton
+              variant='primary'
+              onClick={() => {
+                close();
+                unmount();
+                navigate(-1);
+              }}
+            >
+              나가기
+            </RectButton>
+          </Modal.Actions>
+        </Modal.Panel>
+      </Modal>
+    ));
   };
 
   return (
