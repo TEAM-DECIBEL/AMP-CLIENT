@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
 import { toast } from '@amp/ads-ui';
+import { StatusSheetValue } from '@amp/ads-ui';
 
 import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
 
-type StatusSheetValue = '여유' | '보통' | '혼잡';
-
-export const useLiveStatus = () => {
+export default () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [sheetTitle, setSheetTitle] = useState('');
   const [status, setStatus] = useState<StatusSheetValue>('여유');

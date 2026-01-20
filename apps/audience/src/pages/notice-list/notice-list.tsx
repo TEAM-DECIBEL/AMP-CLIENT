@@ -19,7 +19,7 @@ import {
   NoticeCardList,
 } from '@amp/compositions';
 
-import { useLiveStatus } from '@shared/hooks/use-live-status';
+import useLiveStatus from '@shared/hooks/use-live-status';
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { useNoticeList } from '@shared/hooks/use-notice-list';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
