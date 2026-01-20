@@ -94,7 +94,7 @@ const Header = ({ variant, kind, title, hasNewAlert = false }: HeaderProps) => {
     <header className={styles.header}>
       {isMain && (
         <div className={styles.mainRow}>
-          <img src={IMAGES.LOGO} className={styles.logo} />
+          <img src={IMAGES.LOGO} className={styles.logo} alt='로고 이미지' />
           <div className={styles.mainIcons}>
             {showAlert && (
               <button
