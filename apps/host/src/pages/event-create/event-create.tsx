@@ -132,20 +132,23 @@ const EventCreatePage = () => {
 
           <FormField label='공연 일시'>
             {/* TODO: Textfield 수정 */}
-            <Textfield
-              name='scheduleDate'
-              variant='default'
-              placeholder='공연 일자'
-              value={form.scheduleDate}
-              onChange={(e) => setField('scheduleDate', e.target.value)}
-            />
-            <Textfield
-              name='scheduleTime'
-              variant='default'
-              placeholder='공연 시작 시간'
-              value={form.scheduleTime}
-              onChange={(e) => setField('scheduleTime', e.target.value)}
-            />
+            <div className={styles.grid}>
+              <Textfield
+                name='scheduleDate'
+                variant='date'
+                placeholder='공연 일자'
+                value={form.scheduleDate}
+                onChange={(e) => setField('scheduleDate', e.target.value)}
+              />
+              <Textfield
+                name='scheduleTime'
+                variant='time'
+                placeholder='공연 시작 시간'
+                value={form.scheduleTime}
+                onChange={(e) => setField('scheduleTime', e.target.value)}
+              />
+            </div>
+
             <CtaButton
               type='icon'
               onClick={addSchedule}
@@ -195,14 +198,14 @@ const EventCreatePage = () => {
             {/* TODO: Textfield 수정 */}
             <Textfield
               name='boothTitle'
-              variant='icon'
+              variant='flag'
               value={form.boothTitle}
               placeholder='무대, 부스명을 입력해주세요.'
               onChange={(e) => setField('boothTitle', e.target.value)}
             />
             <Textfield
               name='boothLocation'
-              variant='default'
+              variant='location'
               value={form.boothLocation}
               placeholder='위치를 입력해주세요. (선택)'
               onChange={(e) => setField('boothLocation', e.target.value)}

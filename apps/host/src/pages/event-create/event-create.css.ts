@@ -46,19 +46,10 @@ export const divider = style({
   margin: '4rem 0',
 });
 
-export const grid = recipe({
-  base: {
-    display: 'grid',
-    gap: '1rem',
-  },
-  variants: {
-    columns: {
-      one: { gridTemplateColumns: '1fr' },
-      twoEqual: { gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' },
-      twoRightTight: { gridTemplateColumns: 'minmax(0, 1fr) auto' },
-    },
-  },
-  defaultVariants: { columns: 'one' },
+export const grid = style({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+  gap: '1rem',
 });
 
 export const addButton = style({
