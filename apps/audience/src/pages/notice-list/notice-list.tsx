@@ -132,12 +132,12 @@ const NoticeListPage = () => {
           </Tabs>
         </nav>
         {activeTab === 'notice' ? (
-          <>
+          <section>
             <CategorySection
               selectedCategory={selectedCategory}
               onSelect={handleChipClick}
             />
-            {!(selectedCategory === '전체') && (
+            {selectedCategory !== '전체' && (
               <div className={styles.ctaButtonContainer}>
                 <CtaButton
                   type='icon'
@@ -151,7 +151,7 @@ const NoticeListPage = () => {
               </div>
             )}
             <NoticeCardList notices={noticeList} onItemClick={() => {}} />
-          </>
+          </section>
         ) : (
           <div className={styles.noticeContainer}>
             <div className={styles.noticeChip}>
@@ -166,12 +166,12 @@ const NoticeListPage = () => {
         )}
       </div>
       {activeTab === 'notice' && (
-        <div className={styles.buttonContainer}>
+        <section className={styles.buttonContainer}>
           <div className={styles.button}>
             {/* TODO: 뷰 이동 로직 추가 */}
             <CircleButton type='write' onClick={() => {}} />
           </div>
-        </div>
+        </section>
       )}
 
       {isAvailableTime ? (

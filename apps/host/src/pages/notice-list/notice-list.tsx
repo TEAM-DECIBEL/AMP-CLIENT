@@ -44,17 +44,17 @@ const NoticeListPage = () => {
         </nav>
 
         {activeTab === 'notice' ? (
-          <>
+          <section>
             <CategorySection
               selectedCategory={selectedCategory}
               onSelect={handleChipClick}
             />
             <NoticeCardList notices={noticeList} onItemClick={() => {}} />
-          </>
+          </section>
         ) : (
-          <div className={styles.currentContainer}>
+          <section className={styles.currentContainer}>
             <LiveButtonContainer items={LIVE_STATUS_MOCK} />
-          </div>
+          </section>
         )}
       </div>
       {activeTab === 'notice' && (

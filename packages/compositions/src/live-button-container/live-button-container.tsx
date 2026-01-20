@@ -1,5 +1,4 @@
-import { LiveButton } from '@amp/ads-ui';
-import { StatusSheetValue } from '@amp/ads-ui';
+import { LiveButton, StatusSheetValue } from '@amp/ads-ui';
 
 import * as styles from './live-button-container.css';
 

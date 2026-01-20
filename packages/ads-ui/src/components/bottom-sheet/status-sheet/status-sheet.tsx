@@ -85,7 +85,7 @@ const StatusEmptyContent = () => {
 const StatusSheet = (props: StatusSheetProps) => {
   const { open, onClose } = props;
 
-  const [draft, setDraft] = useState<StatusSheetValue | undefined>(undefined);
+  const [draft, setDraft] = useState<StatusSheetValue>();
 
   const handleCloseSheet = () => {
     setDraft(undefined);

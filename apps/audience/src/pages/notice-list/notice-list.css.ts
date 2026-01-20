@@ -58,10 +58,10 @@ export const noticeChip = style({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  gap: '1rem',
+  gap: '0.6rem',
   height: '4.3rem',
   padding: '1rem 1.2rem',
-  borderRadius: '1.6rem',
+  borderRadius: '16px',
   border: `1px solid ${ampThemeVars.color.gray_200}`,
   ...ampThemeVars.font.body_sb_13,
 });
