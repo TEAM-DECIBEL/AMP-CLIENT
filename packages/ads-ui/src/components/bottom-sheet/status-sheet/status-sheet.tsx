@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
 import { NoticeIcon } from '../../../icons';
@@ -85,12 +85,12 @@ const StatusEmptyContent = () => {
 const StatusSheet = (props: StatusSheetProps) => {
   const { open, onClose } = props;
 
-  const [draft, setDraft] = useState<StatusSheetValue | undefined>(() => {
-    if (props.selectable === true) {
-      return props.selected;
-    }
-    return undefined;
-  });
+  const [draft, setDraft] = useState<StatusSheetValue | undefined>(undefined);
+
+  const handleClose = () => {
+    setDraft(undefined);
+    onClose();
+  };
 
   const handleConfirm = () => {
     if (props.selectable !== true) {
@@ -103,11 +103,13 @@ const StatusSheet = (props: StatusSheetProps) => {
     }
 
     props.onConfirm(draft);
-    onClose();
+    handleClose();
   };
 
+  const isConfirmDisabled = props.selectable === true ? !draft : false;
+
   return (
-    <BottomSheet open={open} onClose={onClose}>
+    <BottomSheet open={open} onClose={handleClose}>
       <BottomSheet.Panel>
         <BottomSheet.Handle />
 
@@ -122,7 +124,12 @@ const StatusSheet = (props: StatusSheetProps) => {
         )}
 
         <div className={styles.actions}>
-          <CtaButton type='common' color='gray' onClick={handleConfirm}>
+          <CtaButton
+            type='common'
+            color='gray'
+            onClick={handleConfirm}
+            disabled={isConfirmDisabled}
+          >
             확인
           </CtaButton>
         </div>
