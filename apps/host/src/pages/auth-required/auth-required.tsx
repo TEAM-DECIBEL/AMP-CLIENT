@@ -20,7 +20,7 @@ const AuthRequired = () => {
       <ResultView
         title='로그인이 필요한 기능이에요!'
         description='로그인하고 기능을 계속 이용해보세요.'
-        image={<img src={IMAGES.LOGIN} alt='' aria-hidden />}
+        image={<img src={IMAGES.LOGIN} alt='' />}
       />
       <div className={styles.ctaButtonContainer}>
         <CtaButton type='common' color='gray' onClick={handleLoginClick}>

@@ -20,7 +20,7 @@ const NotFound = () => {
       <ResultView
         title='페이지 오류가 발생했어요.'
         description='홈으로 이동해 다시 시도해 주세요.'
-        image={<img src={IMAGES.NOT_FOUND} alt='' aria-hidden />}
+        image={<img src={IMAGES.NOT_FOUND} alt='' />}
       />
       <div className={styles.ctaButtonContainer}>
         <CtaButton type='common' color='gray' onClick={handleHomeClick}>
