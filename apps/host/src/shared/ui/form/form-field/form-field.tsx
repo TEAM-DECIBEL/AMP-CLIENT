@@ -10,7 +10,7 @@ type FieldProps = {
 const FormField = ({ label, children }: FieldProps) => {
   return (
     <div className={styles.field}>
-      <p className={styles.fieldLabel}>{label}</p>
+      {label && <p className={styles.fieldLabel}>{label}</p>}
       {children}
     </div>
   );
