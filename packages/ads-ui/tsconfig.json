@@ -1,8 +1,10 @@
 {
   "extends": "@amp/tsconfig/react-library",
   "compilerOptions": {
+    "composite": true,
+    "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src"],
+  "include": ["src", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

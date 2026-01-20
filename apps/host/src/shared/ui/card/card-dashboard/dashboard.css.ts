@@ -5,6 +5,7 @@ import { ampThemeVars } from '@amp/ads-ui/styles';
 export const dashboard = style({
   display: 'flex',
   alignItems: 'center',
+  width: '100%',
   padding: '1.2rem 0',
   borderRadius: '16px',
   border: `1px solid ${ampThemeVars.color.gray_200}`,

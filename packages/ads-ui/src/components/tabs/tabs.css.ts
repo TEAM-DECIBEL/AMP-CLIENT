@@ -21,6 +21,9 @@ export const list = recipe({
       notice: {
         gap: '6px',
         padding: '1.6rem 0 0 2rem',
+        height: '5rem',
+        borderRadius: '16px 16px 0 0',
+        borderBottom: `1px solid ${ampThemeVars.color.gray_200}`,
       },
     },
   },
@@ -52,7 +55,7 @@ export const trigger = recipe({
         ...ampThemeVars.font.body_m_16,
         color: ampThemeVars.color.gray_300,
         textAlign: 'center',
-        paddingBottom: '0.8rem',
+        paddingBottom: '1rem',
         position: 'relative',
         width: '8rem',
         justifyContent: 'center',

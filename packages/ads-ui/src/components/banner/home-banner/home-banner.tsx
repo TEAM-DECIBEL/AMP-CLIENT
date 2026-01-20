@@ -1,4 +1,4 @@
-import CardHome from '@shared/ui/card/card-home/card-home';
+import CardHome from '../../card/card-home/card-home';
 
 import * as styles from './home-banner.css';
 

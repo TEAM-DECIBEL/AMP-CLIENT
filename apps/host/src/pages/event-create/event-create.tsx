@@ -9,8 +9,8 @@ import {
   TimeIcon,
 } from '@amp/ads-ui/icons';
 
-import useItemList from '@shared/libs/hooks/use-item-list/use-item-list';
-import useObjectUrl from '@shared/libs/hooks/use-object-url/use-object-url';
+import useItemList from '@shared/hooks/use-item-list/use-item-list';
+import useObjectUrl from '@shared/hooks/use-object-url/use-object-url';
 import CategoryChipGroup from '@shared/ui/button/category-chip-group/category-chip-group';
 import { CATEGORIES } from '@shared/ui/button/category-chip-group/category-chip-labels';
 import AddedItem from '@shared/ui/form/added-item/added-item';

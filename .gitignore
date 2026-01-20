@@ -33,3 +33,11 @@ dist-ssr
 
 apps/**/src/**/*.js
 packages/**/src/**/*.js
+
+# PWA dev assets
+dev-dist
+devDist
+sw.js
+sw.js.map
+workbox-*.js
+worker-*.js
