@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { CalendarIcon, FlagIcon, TimeIcon } from '../../icons';
+import { formatDateYYYYMMDD, formatTimeHHMM, onlyDigits } from './formatters';
 
 import * as styles from './textfield.css';
 
@@ -10,79 +11,66 @@ interface TextfieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const onlyDigits = (s: string) => s.replace(/\D/g, '');
-
-const formatDateYYYYMMDD = (digits: string, isDeleting: boolean) => {
-  const d = digits.slice(0, 8);
-  const y = d.slice(0, 4);
-  const m = d.slice(4, 6);
-  const day = d.slice(6, 8);
-
-  if (d.length <= 3) {
-    return d;
-  }
-
-  if (d.length === 4) {
-    return isDeleting ? y : `${y}-`;
-  }
-
-  if (d.length <= 6) {
-    const ym = `${y}-${m}`;
-    if (d.length === 6) {
-      return isDeleting ? ym : `${ym}-`;
-    }
-    return ym;
-  }
-
-  return `${y}-${m}-${day}`;
-};
+const formatterByVariant = {
+  date: formatDateYYYYMMDD,
+  time: formatTimeHHMM,
+} as const;
 
 const Textfield = ({
   variant,
   value,
   onChange,
-  placeholder,
+  type,
   ...props
 }: TextfieldProps) => {
   const isDate = variant === 'date';
+  const isTime = variant === 'time';
+  const isFormatVariant = isDate || isTime;
+
   const isControlled = value !== undefined;
 
   const [innerValue, setInnerValue] = useState<string>('');
   const resolvedValue = isControlled ? value! : innerValue;
 
   const prevValueRef = useRef<string>(resolvedValue);
+  const prevVariantRef = useRef<TextfieldProps['variant']>(variant);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    if (!isDate) {
+    if (prevVariantRef.current !== variant) {
+      prevVariantRef.current = variant;
+      prevValueRef.current = resolvedValue;
+    }
+
+    if (!isFormatVariant) {
       onChange?.(e);
+
       if (!isControlled) {
-        setInnerValue(e.target.value);
+        setInnerValue(e.currentTarget.value);
       }
-      prevValueRef.current = e.target.value;
+
+      prevValueRef.current = e.currentTarget.value;
       return;
     }
 
-    const raw = e.target.value;
+    const raw = e.currentTarget.value;
     const isDeleting = raw.length < prevValueRef.current.length;
 
-    const digits = onlyDigits(raw).slice(0, 8);
-    const formatted = formatDateYYYYMMDD(digits, isDeleting);
+    const digits = onlyDigits(raw);
 
-    // input 값을 formatted로 맞춘 뒤, 원 이벤트로 전달
+    const formatted = formatterByVariant[variant](digits, isDeleting);
+
     (e.currentTarget as HTMLInputElement).value = formatted;
     onChange?.(e);
 
     if (!isControlled) {
       setInnerValue(formatted);
     }
+
     prevValueRef.current = formatted;
   };
 
-  const inputMode = isDate ? 'numeric' : props.inputMode;
-  const maxLength = isDate ? 10 : props.maxLength;
-  const resolvedPlaceholder = isDate
-    ? (placeholder ?? '공연 일자')
-    : placeholder;
+  const inputMode = isFormatVariant ? 'numeric' : props.inputMode;
+  const maxLength = isDate ? 10 : isTime ? 5 : props.maxLength;
 
   return (
     <div className={styles.textfield({ variant })}>
@@ -93,7 +81,7 @@ const Textfield = ({
       <input
         className={styles.input}
         {...props}
-        placeholder={resolvedPlaceholder}
+        type={isFormatVariant ? 'text' : type}
         inputMode={inputMode}
         maxLength={maxLength}
         value={resolvedValue}
