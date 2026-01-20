@@ -117,6 +117,7 @@ const EventCreatePage = () => {
     <section className={styles.pageContainer}>
       <form onSubmit={handleSubmit}>
         <section className={styles.scrollArea}>
+          {/* TODO: 섹션별 컴포넌트 분리 */}
           <p className={styles.sectionText({ kind: 'title' })}>기본 정보</p>
           <p className={styles.sectionText({ kind: 'subText' })}>
             공연에 대한 기본적인 정보들을 적어주세요.
