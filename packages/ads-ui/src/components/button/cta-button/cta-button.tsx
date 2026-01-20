@@ -18,7 +18,7 @@ interface CtaButtonProps {
   color?: 'primary' | 'gray' | 'white';
   selected?: boolean;
   disabled?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
 }
 
