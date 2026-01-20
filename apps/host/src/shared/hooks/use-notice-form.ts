@@ -8,8 +8,8 @@ const MOCK_PINNED_COUNT = 3;
 export const useNoticeForm = () => {
   const [isPinned, setIsPinned] = useState(false);
   const [image, setImage] = useState<File | null>(null);
-  const [imageUrl, setImageUrl] = useState<string>('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
