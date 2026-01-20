@@ -5,7 +5,7 @@ import { ampThemeVars } from '@amp/ads-ui/styles';
 export const bannerStyle = style({
   display: 'flex',
   alignItems: 'center',
-  gap: '1rem',
+  gap: '2rem',
   padding: '2rem',
   backgroundColor: ampThemeVars.color.gray_50,
 });
