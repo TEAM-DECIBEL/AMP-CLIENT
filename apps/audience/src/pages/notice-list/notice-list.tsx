@@ -41,8 +41,8 @@ const NoticeListPage = () => {
     sheetTitle,
     status,
     isAvailableTime,
-    openSheet,
-    closeSheet,
+    openStatusSheet,
+    closeStatusSheet,
     confirmStatus,
   } = useLiveStatus();
 
@@ -159,7 +159,10 @@ const NoticeListPage = () => {
               <ChatIcon />
               <p>지금 계신 곳의 혼잡도 상황을 알려주세요!</p>
             </div>
-            <LiveButtonContainer items={statusItems} onClick={openSheet} />
+            <LiveButtonContainer
+              items={statusItems}
+              onClick={openStatusSheet}
+            />
           </div>
         )}
       </div>
@@ -175,7 +178,7 @@ const NoticeListPage = () => {
       {isAvailableTime ? (
         <StatusSheet
           open={isSheetOpen}
-          onClose={closeSheet}
+          onClose={closeStatusSheet}
           selectable
           title={sheetTitle}
           selected={status}
@@ -185,7 +188,7 @@ const NoticeListPage = () => {
         <StatusSheet
           open={isSheetOpen}
           selectable={false}
-          onClose={closeSheet}
+          onClose={closeStatusSheet}
         />
       )}
     </main>
