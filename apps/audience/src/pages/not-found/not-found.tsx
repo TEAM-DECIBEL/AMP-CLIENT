@@ -23,7 +23,7 @@ const NotFound = () => {
         image={<img src={IMAGES.NOT_FOUND} alt='' aria-hidden />}
       />
       <div className={styles.ctaButtonContainer}>
-        <CtaButton type='icon' color='gray' onClick={handleHomeClick}>
+        <CtaButton type='common' color='gray' onClick={handleHomeClick}>
           홈으로 이동하기
         </CtaButton>
       </div>

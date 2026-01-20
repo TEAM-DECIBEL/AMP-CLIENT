@@ -23,7 +23,7 @@ const AuthRequired = () => {
         image={<img src={IMAGES.LOGIN} alt='' aria-hidden />}
       />
       <div className={styles.ctaButtonContainer}>
-        <CtaButton type='icon' color='gray' onClick={handleLoginClick}>
+        <CtaButton type='common' color='gray' onClick={handleLoginClick}>
           로그인 하러가기
         </CtaButton>
       </div>
