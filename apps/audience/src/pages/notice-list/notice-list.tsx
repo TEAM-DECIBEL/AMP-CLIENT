@@ -120,7 +120,6 @@ const NoticeListPage = () => {
       />
       <div className={styles.mainContent}>
         <nav className={styles.contentHeader}>
-          {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
           <Tabs
             defaultValue='notice'
             variant='notice'

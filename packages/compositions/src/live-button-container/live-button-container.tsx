@@ -4,7 +4,7 @@ import * as styles from './live-button-container.css';
 
 type LiveStatusType = '여유' | '보통' | '혼잡';
 
-interface LiveStatusListProps {
+interface LiveButtonContainerProps {
   items: {
     id: number;
     title: string;
@@ -25,7 +25,7 @@ const LiveButtonContainer = ({
   items,
 
   onClick,
-}: LiveStatusListProps) => {
+}: LiveButtonContainerProps) => {
   return (
     <div className={styles.liveButtonContainer}>
       {items.map((item) => {
