@@ -1,6 +1,9 @@
+import NotFound from '@pages/not-found/not-found';
+
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
+  AuthRequiredPage,
   HomePage,
   LoginPage,
   MyEventsPage,
@@ -102,5 +105,13 @@ export const globalRoutes = [
   {
     path: ROUTE_PATH.LOGIN,
     element: <LoginPage />,
+  },
+  {
+    path: ROUTE_PATH.AUTH_REQUIRED,
+    element: <AuthRequiredPage />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ];
