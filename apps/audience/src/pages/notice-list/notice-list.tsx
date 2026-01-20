@@ -5,7 +5,6 @@ import {
   AddToWatchButton,
   CircleButton,
   Modal,
-  NoticeBanner,
   RectButton,
   toast,
 } from '@amp/ads-ui';
@@ -13,6 +12,7 @@ import { ChatIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
   NOTICE_TAB,
+  NoticeBanner,
   NoticeListTab,
   NoticeTabContent,
 } from '@amp/compositions';

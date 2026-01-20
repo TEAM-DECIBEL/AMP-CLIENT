@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-import { CircleButton, NoticeBanner } from '@amp/ads-ui';
+import { CircleButton } from '@amp/ads-ui';
 import {
   LiveButtonContainer,
   NOTICE_TAB,
+  NoticeBanner,
   NoticeListTab,
   NoticeTabContent,
 } from '@amp/compositions';
