@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { CalendarIcon, FlagIcon, TimeIcon } from '../../icons';
 import { formatDateYYYYMMDD, formatTimeHHMM, onlyDigits } from './formatters';
@@ -10,6 +10,7 @@ interface TextfieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
+
 type FormatVariant = 'date' | 'time';
 
 const formatterByVariant: Record<
@@ -45,6 +46,12 @@ const Textfield = ({
   const prevValueRef = useRef<string>(resolvedValue);
   const prevVariantRef = useRef<TextfieldProps['variant']>(variant);
 
+  useEffect(() => {
+    if (isControlled) {
+      prevValueRef.current = value ?? '';
+    }
+  }, [isControlled, value]);
+
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (prevVariantRef.current !== variant) {
       prevVariantRef.current = variant;
@@ -54,11 +61,13 @@ const Textfield = ({
     if (!isFormatVariant) {
       onChange?.(e);
 
+      const next = e.currentTarget.value;
+
       if (!isControlled) {
-        setInnerValue(e.currentTarget.value);
+        setInnerValue(next);
       }
 
-      prevValueRef.current = e.currentTarget.value;
+      prevValueRef.current = next;
       return;
     }
 
