@@ -9,37 +9,18 @@ import {
   NoticeCardList,
 } from '@amp/compositions';
 
+import { useNoticeList } from '@shared/hooks/use-notice-list';
 import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
-import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
+import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
 
 const NoticeListPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
-    CATEGORIES[0],
-  );
-
   const [activeTab, setActiveTab] = useState<string>('notice');
 
+  const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
+
   // TODO: API 연동 (공지 목록 불러오기)
-
-  const sortedList = useMemo(() => {
-    const filtered =
-      selectedCategory === '전체'
-        ? MOCK_DATA
-        : MOCK_DATA.filter((item) => item.categoryName === selectedCategory);
-
-    return [...filtered].sort((a, b) => {
-      if (a.isPinned !== b.isPinned) {
-        return a.isPinned ? -1 : 1;
-      }
-      return 0;
-    });
-  }, [selectedCategory]);
-
-  const handleChipClick = (category: CategoryType) => {
-    setSelectedCategory(category);
-  };
 
   return (
     <main className={styles.pageContainer}>
@@ -71,7 +52,7 @@ const NoticeListPage = () => {
               selectedCategory={selectedCategory}
               onSelect={handleChipClick}
             />
-            <NoticeCardList notices={sortedList} onItemClick={() => {}} />
+            <NoticeCardList notices={noticeList} onItemClick={() => {}} />
           </div>
         ) : (
           <div className={styles.currentContainer}>
