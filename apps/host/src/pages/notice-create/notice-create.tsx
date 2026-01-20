@@ -81,17 +81,17 @@ const NoticeCreatePage = () => {
             onChange={handleContentChange}
           />
         </InputLayout>
+        <div className={styles.buttonContainer}>
+          <CtaButton
+            type='common'
+            htmlType='submit'
+            color='gray'
+            disabled={!isValid}
+          >
+            완료
+          </CtaButton>
+        </div>
       </form>
-      <div className={styles.buttonContainer}>
-        <CtaButton
-          type='common'
-          htmlType='submit'
-          color='gray'
-          disabled={!isValid}
-        >
-          완료
-        </CtaButton>
-      </div>
     </>
   );
 };
