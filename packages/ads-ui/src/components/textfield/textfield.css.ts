@@ -31,7 +31,9 @@ export const textfield = recipe({
   variants: {
     variant: {
       default: { padding: '1.6rem 2rem' },
-      icon: { padding: '1.3rem 1.6rem' },
+      flag: { padding: '1.3rem 1.6rem' },
+      date: { padding: '1.3rem 1.6rem' },
+      time: { padding: '1.3rem 1.6rem' },
     },
   },
 });
