@@ -2,7 +2,8 @@
   "name": "@amp/compositions",
   "private": true,
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./assets": "./src/assets/index.ts"
   },
   "scripts": {
     "build": "tsc -b",

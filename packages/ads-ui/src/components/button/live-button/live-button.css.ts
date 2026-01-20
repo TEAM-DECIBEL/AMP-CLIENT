@@ -12,6 +12,7 @@ export const liveButtonContainer = style({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
+  minWidth: 0,
   aspectRatio: '1.95 / 1',
   padding: '0.7rem',
   gap: '0.5rem',
@@ -64,4 +65,10 @@ export const img = style({
   aspectRatio: '1.95 / 1',
   borderRadius: '8px',
   objectFit: 'cover',
+});
+
+export const disabled = style({
+  pointerEvents: 'none',
+  userSelect: 'none',
+  cursor: 'not-allowed',
 });

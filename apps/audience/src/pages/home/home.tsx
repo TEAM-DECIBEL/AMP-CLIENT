@@ -1,4 +1,4 @@
-import { HomeBanner } from '@amp/ads-ui';
+import { HomeBanner } from '@amp/compositions';
 
 import HomeFestivalSection from '@widgets/home/components/home-festival-section/home-festival-section';
 
