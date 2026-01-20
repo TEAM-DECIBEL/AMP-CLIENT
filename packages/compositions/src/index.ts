@@ -1,3 +1,5 @@
+export { default as HomeBanner } from './banner/home-banner/home-banner';
+export { default as NoticeBanner } from './banner/notice-banner/notice-banner';
 export { default as ButtonGradientSection } from './button-gradient-section/button-gradient-section';
 export { default as CategorySection } from './category-section/category-section';
 export {
