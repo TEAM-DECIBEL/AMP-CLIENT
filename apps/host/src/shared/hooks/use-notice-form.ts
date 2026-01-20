@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import { toast } from '@amp/ads-ui';
 
@@ -56,7 +56,8 @@ export const useNoticeForm = () => {
     title.trim().length > 0 &&
     content.trim().length > 0;
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!isValid) {
       return;
     }
