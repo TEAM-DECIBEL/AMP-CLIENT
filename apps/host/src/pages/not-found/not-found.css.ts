@@ -10,6 +10,9 @@ export const container = style({
 });
 
 export const ctaButtonContainer = style({
-  padding: '2rem 0',
+  padding: '2rem',
   width: '100%',
+  position: 'fixed',
+  bottom: 0,
+  maxWidth: '43rem',
 });
