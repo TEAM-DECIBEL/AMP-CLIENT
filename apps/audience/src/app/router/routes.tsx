@@ -1,5 +1,3 @@
-import NotFound from '@pages/not-found/not-found';
-
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
@@ -8,6 +6,7 @@ import {
   LoginPage,
   MyEventsPage,
   MyPage,
+  NotFoundPage,
   NoticeDetailsPage,
   NoticeListPage,
   NotificationPage,
@@ -112,6 +111,6 @@ export const globalRoutes = [
   },
   {
     path: '*',
-    element: <NotFound />,
+    element: <NotFoundPage />,
   },
 ];
