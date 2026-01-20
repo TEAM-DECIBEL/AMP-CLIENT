@@ -16,12 +16,16 @@ interface LiveStatusListProps {
 
 // TODO: 추후 실제 이미지 import 하고 변경
 const STATUS_IMAGES: Record<LiveStatusType, string> = {
-  여유: 'https://png.pngtree.com/thumb_back/fh260/background/20210422/pngtree-abstract-decorative-mint-green-background-image_637109.jpg',
-  보통: 'https://img.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_58702-3356.jpg?semt=ais_hybrid&w=740&q=80',
-  혼잡: 'https://png.pngtree.com/thumb_back/fh260/background/20210207/pngtree-red-solid-color-simple-background-image_556968.jpg',
+  여유: 'https://dummyimage.com/600x360/27ae60/ffffff&text=LOW',
+  보통: 'https://dummyimage.com/600x360/f1c40f/ffffff&text=MEDIUM',
+  혼잡: 'https://dummyimage.com/600x360/e74c3c/ffffff&text=HIGH',
 };
 
-const LiveButtonContainer = ({ items, onClick }: LiveStatusListProps) => {
+const LiveButtonContainer = ({
+  items,
+
+  onClick,
+}: LiveStatusListProps) => {
   return (
     <div className={styles.liveButtonContainer}>
       {items.map((item) => {

@@ -1,7 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { overlay } from 'overlay-kit';
 
-import { StatusSheet } from '@amp/ads-ui';
 import {
   AddToWatchButton,
   CircleButton,
@@ -9,69 +8,43 @@ import {
   Modal,
   NoticeBanner,
   RectButton,
+  StatusSheet,
   Tabs,
   toast,
 } from '@amp/ads-ui';
 import { AlertIcon, ChatIcon } from '@amp/ads-ui/icons';
 import {
-  CATEGORIES,
   CategorySection,
-  CategoryType,
   LiveButtonContainer,
   NoticeCardList,
 } from '@amp/compositions';
 
+import { useLiveStatus } from '@shared/hooks/use-live-status';
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
-import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
-import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
+import { useNoticeList } from '@shared/hooks/use-notice-list';
+import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
 
 const NoticeListPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
-    CATEGORIES[0],
-  );
-
   const [activeTab, setActiveTab] = useState<string>('notice');
-
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [sheetTitle, setSheetTitle] = useState('');
-  const [status, setStatus] = useState<'여유' | '보통' | '혼잡'>('여유');
-  const isAvailable = false;
 
   // TODO: 서버에서 받아온 값으로 기본값 설정
   const [isWatched, setIsWatched] = useState<boolean>(false);
 
   const { toggleAlert } = useNoticeAlert();
 
-  // TODO: API 연동 (공지 목록 불러와서 아래 MOCK_DATA 대체)
-
-  const sortedList = useMemo(() => {
-    const filtered =
-      selectedCategory === '전체'
-        ? MOCK_DATA
-        : MOCK_DATA.filter((item) => item.categoryName === selectedCategory);
-
-    return [...filtered].sort((a, b) => {
-      if (a.isPinned !== b.isPinned) {
-        return a.isPinned ? -1 : 1;
-      }
-      return 0;
-    });
-  }, [selectedCategory]);
-
-  const handleChipClick = (category: CategoryType) => {
-    setSelectedCategory(category);
-  };
-
-  const handleNoticeItemClick = (id: number) => {
-    const targetItem = LIVE_STATUS_MOCK.find((item) => item.id === id);
-
-    if (targetItem) {
-      setSheetTitle(targetItem.title ?? '');
-      setIsSheetOpen(true);
-    }
-  };
+  const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
+  const {
+    statusItems,
+    isSheetOpen,
+    sheetTitle,
+    status,
+    isAvailableTime,
+    openSheet,
+    closeSheet,
+    confirmStatus,
+  } = useLiveStatus();
 
   const handleWatchToggle = () => {
     setIsWatched((prev) => !prev);
@@ -178,7 +151,7 @@ const NoticeListPage = () => {
                 </CtaButton>
               </div>
             )}
-            <NoticeCardList notices={sortedList} onItemClick={() => {}} />
+            <NoticeCardList notices={noticeList} onItemClick={() => {}} />
           </div>
         ) : (
           <div className={styles.noticeContainer}>
@@ -186,10 +159,7 @@ const NoticeListPage = () => {
               <ChatIcon />
               <p>지금 계신 곳의 혼잡도 상황을 알려주세요!</p>
             </div>
-            <LiveButtonContainer
-              items={LIVE_STATUS_MOCK}
-              onClick={handleNoticeItemClick}
-            />
+            <LiveButtonContainer items={statusItems} onClick={openSheet} />
           </div>
         )}
       </div>
@@ -202,24 +172,20 @@ const NoticeListPage = () => {
         </div>
       )}
 
-      {isAvailable ? (
+      {isAvailableTime ? (
         <StatusSheet
           open={isSheetOpen}
-          onClose={() => setIsSheetOpen(false)}
-          title={sheetTitle}
+          onClose={closeSheet}
           selectable
+          title={sheetTitle}
           selected={status}
-          onSelect={(value) => setStatus(value)}
-          onConfirm={() => {
-            setIsSheetOpen(false);
-          }}
+          onConfirm={confirmStatus}
         />
       ) : (
         <StatusSheet
           open={isSheetOpen}
           selectable={false}
-          onClose={() => setIsSheetOpen(false)}
-          onConfirm={() => setIsSheetOpen(false)}
+          onClose={closeSheet}
         />
       )}
     </main>
