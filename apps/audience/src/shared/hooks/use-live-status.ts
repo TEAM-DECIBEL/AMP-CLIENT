@@ -5,10 +5,10 @@ import { StatusSheetValue } from '@amp/ads-ui';
 
 import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
 
-export default () => {
+export const useLiveStatus = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [sheetTitle, setSheetTitle] = useState('');
-  const [status, setStatus] = useState<StatusSheetValue>('여유');
+  const [status, setStatus] = useState<StatusSheetValue | undefined>(undefined);
 
   // TODO: 8시간 이내 현장 상황 입력 불가 관리 테스트용 임시 상태 삭제
   const [isAvailableTime] = useState(true);

@@ -19,7 +19,7 @@ import {
   NoticeCardList,
 } from '@amp/compositions';
 
-import useLiveStatus from '@shared/hooks/use-live-status';
+import { useLiveStatus } from '@shared/hooks/use-live-status';
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { useNoticeList } from '@shared/hooks/use-notice-list';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
@@ -27,10 +27,10 @@ import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import * as styles from './notice-list.css';
 
 const NoticeListPage = () => {
-  const [activeTab, setActiveTab] = useState<string>('notice');
+  const [activeTab, setActiveTab] = useState('notice');
 
   // TODO: 서버에서 받아온 값으로 기본값 설정
-  const [isWatched, setIsWatched] = useState<boolean>(false);
+  const [isWatched, setIsWatched] = useState(false);
 
   const { toggleAlert } = useNoticeAlert();
 
