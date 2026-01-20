@@ -24,3 +24,11 @@ export const MyHistoryPage = lazy(() => import('@pages/my-history/my-history'));
 export const OnboardingPage = lazy(
   () => import('@pages/onboarding/onboarding'),
 );
+
+export const LoginPage = lazy(() => import('@pages/login/login'));
+
+export const AuthRequiredPage = lazy(
+  () => import('@pages/auth-required/auth-required'),
+);
+
+export const NotFoundPage = lazy(() => import('@pages/not-found/not-found'));

@@ -10,15 +10,15 @@
   "dependencies": {
     "@amp/ads-ui": "workspace:*",
     "@amp/apis": "workspace:*",
-    "@tanstack/react-query": "^5.90.16",
+    "@amp/compositions": "workspace:*",
+    "@amp/shared": "workspace:*",
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
-    "overlay-kit": "^1.8.6",
-    "@amp/shared": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "catalog:",
-    "@amp/compositions": "workspace:*"
+    "@tanstack/react-query": "^5.90.16",
+    "overlay-kit": "^1.8.6"
   },
   "devDependencies": {
     "@amp/eslint-config": "workspace:*",
@@ -31,6 +31,7 @@
     "@vitejs/plugin-react": "catalog:",
     "eslint": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "vite-plugin-pwa": "^1.2.0"
   }
 }

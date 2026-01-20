@@ -35,3 +35,10 @@ apps/**/src/**/*.js
 packages/**/src/**/*.js
 
 .env
+# PWA dev assets
+dev-dist
+devDist
+sw.js
+sw.js.map
+workbox-*.js
+worker-*.js

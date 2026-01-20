@@ -5,3 +5,8 @@ declare module '*.svg?react' {
   >;
   export default ReactComponent;
 }
+
+declare module '*.webp' {
+  const src: string;
+  export default src;
+}
