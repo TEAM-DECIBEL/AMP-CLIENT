@@ -33,3 +33,5 @@ dist-ssr
 
 apps/**/src/**/*.js
 packages/**/src/**/*.js
+
+.env
