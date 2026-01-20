@@ -1,4 +1,4 @@
-import cardHome from './card_home.webp';
+import cardHome from './card-home.webp';
 
 export const BACKGROUND_IMAGES = {
   CARD_HOME: cardHome,
