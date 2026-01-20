@@ -43,7 +43,7 @@ const NoticeListPage = () => {
           <NoticeListTab onChange={setActiveTab} />
         </nav>
 
-        {activeTab === 'notice' ? (
+        {activeTab === NOTICE_TAB.NOTICE ? (
           <NoticeTabContent
             selectedCategory={selectedCategory}
             noticeList={noticeList}
