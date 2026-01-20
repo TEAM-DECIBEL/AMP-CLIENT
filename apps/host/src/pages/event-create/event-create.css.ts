@@ -53,6 +53,7 @@ export const grid = style({
 });
 
 export const addButton = style({
+  borderRadius: '99px',
   backgroundColor: ampThemeVars.color.gray_800,
   color: ampThemeVars.color.gray_000,
   ...ampThemeVars.font.body_sb_13,
@@ -60,7 +61,6 @@ export const addButton = style({
   selectors: {
     '&:disabled': {
       border: `1px solid ${ampThemeVars.color.gray_200}`,
-      borderRadius: '99px',
       backgroundColor: ampThemeVars.color.gray_000,
       color: ampThemeVars.color.gray_500,
     },

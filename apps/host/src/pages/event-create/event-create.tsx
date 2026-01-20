@@ -76,11 +76,11 @@ const EventCreatePage = () => {
     });
   };
 
-  const selectCategoryId = (id: number) => {
+  const selectCategoryId = (id: number, nextSelected: boolean) => {
     setActiveCategoryIds((prev) =>
-      prev.includes(id)
-        ? prev.filter((categoryId) => categoryId !== id)
-        : [...prev, id],
+      nextSelected
+        ? [...prev, id]
+        : prev.filter((categoryId) => categoryId !== id),
     );
   };
 
