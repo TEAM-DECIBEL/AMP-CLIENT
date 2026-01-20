@@ -1,14 +1,11 @@
-import { overlay } from 'overlay-kit'; // ✨ 모달 라이브러리 import
+import { overlay } from 'overlay-kit';
 import { matchPath, useLocation, useNavigate } from 'react-router';
 
-import {
-  Modal,
-  RectButton, // ✨ 모달 내부 버튼 컴포넌트 import
-} from '@amp/ads-ui';
+import { Modal, RectButton } from '@amp/ads-ui';
 
+import { IMAGES } from '../../assets';
 import {
   BackIcon,
-  ExLogoIcon,
   MyPageIcon,
   StatusNewIcon,
   StatusNoneIcon,
@@ -97,7 +94,7 @@ const Header = ({ variant, kind, title, hasNewAlert = false }: HeaderProps) => {
     <header className={styles.header}>
       {isMain && (
         <div className={styles.mainRow}>
-          <ExLogoIcon />
+          <img src={IMAGES.LOGO} className={styles.logo} alt='로고 이미지' />
           <div className={styles.mainIcons}>
             {showAlert && (
               <button

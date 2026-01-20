@@ -1,4 +1,4 @@
-import CardHome from '../../card/card-home/card-home';
+import { CardHome } from '@amp/ads-ui';
 
 import * as styles from './home-banner.css';
 

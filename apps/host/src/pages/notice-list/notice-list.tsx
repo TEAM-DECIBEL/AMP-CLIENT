@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
 
-import { CircleButton, NoticeBanner, Tabs } from '@amp/ads-ui';
+import { CircleButton, Tabs } from '@amp/ads-ui';
 import {
   CATEGORIES,
   CategorySection,
   CategoryType,
+  NoticeBanner,
   NoticeCardList,
 } from '@amp/compositions';
 
