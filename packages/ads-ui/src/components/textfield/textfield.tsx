@@ -10,11 +10,15 @@ interface TextfieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
+type FormatVariant = 'date' | 'time';
 
-const formatterByVariant = {
+const formatterByVariant: Record<
+  FormatVariant,
+  (digits: string, isDeleting: boolean) => string
+> = {
   date: formatDateYYYYMMDD,
   time: formatTimeHHMM,
-} as const;
+};
 
 const Textfield = ({
   variant,
@@ -57,7 +61,10 @@ const Textfield = ({
 
     const digits = onlyDigits(raw);
 
-    const formatted = formatterByVariant[variant](digits, isDeleting);
+    const formatted = formatterByVariant[variant as FormatVariant](
+      digits,
+      isDeleting,
+    );
 
     (e.currentTarget as HTMLInputElement).value = formatted;
     onChange?.(e);
