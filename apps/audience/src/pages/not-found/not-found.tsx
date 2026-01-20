@@ -11,7 +11,7 @@ import * as styles from './not-found.css';
 const NotFound = () => {
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
+  const handleHomeClick = () => {
     navigate(ROUTE_PATH.HOME);
   };
 
@@ -23,7 +23,7 @@ const NotFound = () => {
         image={<img src={IMAGES.NOT_FOUND} alt='404 이미지' />}
       />
       <div className={styles.ctaButtonContainer}>
-        <CtaButton type='icon' color='gray' onClick={handleLoginClick}>
+        <CtaButton type='icon' color='gray' onClick={handleHomeClick}>
           홈으로 이동하기
         </CtaButton>
       </div>
