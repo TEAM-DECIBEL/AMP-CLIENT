@@ -15,6 +15,7 @@ export const imgStyle = style({
   height: '5.8rem',
   flexShrink: 0,
   objectFit: 'contain',
+  transform: 'scaleX(-1)',
 });
 
 export const textStyle = style({
