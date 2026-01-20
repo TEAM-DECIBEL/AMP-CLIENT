@@ -1,1 +1,2 @@
-export { default as NicknameForm } from './nickname-form/nickname-form';
+export { default as LogoutModal } from './logout-modal/logout-modal';
+export { default as MyPageLayout } from './mypage-layout/mypage-layout';

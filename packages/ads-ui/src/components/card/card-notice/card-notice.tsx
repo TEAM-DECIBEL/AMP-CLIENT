@@ -8,6 +8,7 @@ interface CardNoticeProps {
   content: string;
   isPinned?: boolean;
   createdAt?: string;
+  onClick?: () => void;
 }
 
 const CardNotice = ({
@@ -16,9 +17,10 @@ const CardNotice = ({
   content,
   isPinned,
   createdAt,
+  onClick,
 }: CardNoticeProps) => {
   return (
-    <article className={styles.notice}>
+    <article className={styles.notice} onClick={onClick}>
       <img
         src={imageUrl}
         alt={`${title} 공지 이미지`}

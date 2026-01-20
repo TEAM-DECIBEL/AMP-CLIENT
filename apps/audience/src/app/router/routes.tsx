@@ -1,9 +1,12 @@
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
+  AuthRequiredPage,
   HomePage,
+  LoginPage,
   MyEventsPage,
   MyPage,
+  NotFoundPage,
   NoticeDetailsPage,
   NoticeListPage,
   NotificationPage,
@@ -99,7 +102,15 @@ export const globalRoutes = [
     element: <OnboardingPage />,
   },
   {
-    path: ROUTE_PATH.ONBOARDING,
-    element: <OnboardingPage />,
+    path: ROUTE_PATH.LOGIN,
+    element: <LoginPage />,
+  },
+  {
+    path: ROUTE_PATH.AUTH_REQUIRED,
+    element: <AuthRequiredPage />,
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ];

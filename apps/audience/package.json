@@ -10,15 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@amp/ads-ui": "workspace:*",
+    "@amp/apis": "workspace:*",
+    "@amp/compositions": "workspace:*",
+    "@amp/shared": "workspace:*",
+    "@tanstack/react-query": "^5.90.16",
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
-    "@amp/ads-ui": "workspace:*",
-    "@amp/shared": "workspace:*",
+    "overlay-kit": "^1.8.6",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-router": "catalog:",
-    "@amp/apis": "workspace:*",
-    "@tanstack/react-query": "^5.90.16"
+    "react-router": "catalog:"
   },
   "devDependencies": {
     "@amp/eslint-config": "workspace:*",
@@ -31,6 +33,7 @@
     "@vitejs/plugin-react": "catalog:",
     "eslint": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "vite-plugin-pwa": "^1.2.0"
   }
 }

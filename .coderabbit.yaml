@@ -1,0 +1,370 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: 'ko-KR' # 리뷰 언어 설정
+early_access: true # 얼리 액세스 기능 활성화
+
+# 리뷰 톤 및 스타일 지정(스키마 maxLength=250을 준수해 축약)
+tone_instructions: |
+  한국어 존댓말로 둥글고 건설적인 리뷰를 제공해요.
+  블로킹 이슈는 Must, 개선 제안은 Suggest로 구분해요.
+  보안·성능·유지보수성을 우선하며,
+  개인 취향이 아닌 근거와 맥락 중심으로 설명해요.
+  대안이 있다면 함께 제시하고,
+  불확실한 부분은 질문으로 남겨요.
+  상세 규칙은 레포의 컨벤션 문서를 최우선으로 적용해요.
+
+reviews:
+  profile: 'assertive' # 리뷰 스타일: assertive(엄격), chill(관대)
+  request_changes_workflow: false
+  high_level_summary: true # PR 요약 생성
+  poem: false # 시(POEM) 생성 비활성화
+  review_status: true # 리뷰 상태 표시
+  assess_linked_issues: false # 연결된 이슈 분석
+  related_prs: false # 관련 PR 표시
+  suggested_labels: true # 라벨 자동 제안
+  sequence_diagrams: false # 시퀀스 다이어그램 생성 비활성화(기본 노이즈 절감)
+  changed_files_summary: true # 변경된 파일 요약
+
+  # 워크플로우 개선
+  high_level_summary_in_walkthrough: true # 요약을 워크스루에 포함
+  high_level_summary_placeholder: '이 PR의 주요 변경사항을 요약합니다'
+  collapse_walkthrough: true # 워크스루 섹션 접기(기본은 접어서 노이즈 감소)
+  commit_status: true # 커밋 상태 체크
+  fail_commit_status: false # 커밋 실패 시 상태 체크 실패하지 않음
+  related_issues: false # 관련 이슈 추적
+  abort_on_close: true # PR 닫힐 때 리뷰 중단
+
+  # 파일 경로 필터링 (프로젝트 구조에 맞춘 설정)
+  path_filters:
+    # apps
+    - 'apps/**/src/**'
+    # packages
+    - 'packages/**/src/**'
+    # config / infra
+    - '.github/**'
+    - 'package.json'
+    - 'pnpm-workspace.yaml'
+    - 'turbo.json'
+    - '.coderabbit.yaml'
+      # 제외(deny-list)
+    - '!node_modules/**'
+    - '!dist/**'
+    - '!build/**'
+    - '!coverage/**'
+    - '!**/*.png'
+    - '!**/*.jpg'
+    - '!**/*.jpeg'
+    - '!**/*.svg'
+    - '!**/*.gif'
+    - '!**/*.webp'
+    - '!**/*.ico'
+    - '!**/*.avif'
+    - '!**/*.mp4'
+    - '!**/*.webm'
+    - '!**/*.mp3'
+    - '!**/*.ogg'
+    - '!*.lock'
+    - '!pnpm-lock.yaml'
+    - '!package-lock.json'
+    - '!bun.lockb'
+
+  # 경로별 특별 지침 (구체적인 패턴부터 일반적인 패턴 순으로 배열)
+  path_instructions:
+    # 가장 구체적인 패턴들
+    - path: '.coderabbit.yaml'
+      instructions: |
+        CodeRabbit 설정 파일 리뷰 시:
+        - YAML 문법의 정확성 확인
+        - 스키마 호환성 검증 (지원되지 않는 필드 사용 여부)
+        - path_filters의 포함/제외 패턴 검토
+        - path_instructions의 중복 또는 누락 확인
+        - 프로젝트 구조와 설정의 일치성 검토
+
+    - path: 'packages/**/src/**'
+      instructions: |
+        공용 패키지 코드예요.
+        - 앱(apps) 코드보다 변경 영향 범위를 더 신중히 검토해요.
+
+    - path: 'packages/shared/src/{hooks,utils}/**'
+      instructions: |
+        범용 훅/유틸 코드예요.
+        - 특정 앱(host/audience)에 종속된 로직 금지
+        - UI, 레이아웃, JSX 포함 금지
+        - 도메인 중립적인 네이밍 유지
+
+    - path: 'packages/ads-ui/src/**'
+      instructions: |
+        디자인 시스템 패키지예요.
+        - props/스타일 변경 시 영향 범위 확인
+        - 접근성(a11y)과 토큰 일관성 우선 검토
+
+    - path: 'packages/compositions/src/**'
+      instructions: |
+        compositions 패키지예요.
+        host/audience에서 공통으로 사용하는
+        위젯 수준의 UI 조합 컴포넌트예요.
+        - 특정 앱 도메인(host/audience)에 종속된 로직은 금지해요.
+        - 라우트, 페이지, 전역 상태 의존은 허용하지 않아요.
+        - 완성된 UX 단위까지만 포함해요.
+        - 이 기준을 벗어나면 Must로 표시해요.
+
+    - path: '{apps,packages}/**/src/**/components/**/*.tsx'
+      instructions: |
+        컴포넌트 파일 리뷰 시:
+        - 컴포넌트 이름은 PascalCase인지 확인
+        - 파일명과 폴더명은 kebab-case인지 확인
+        - Props 타입은 컴포넌트명Props 형식인지 확인
+        - 이벤트 핸들러는 handle 접두사 사용
+        - children이 불필요한 경우 self-closing 사용
+        - 의미 없는 div 지양, 최상단 fragment 사용
+
+        # 선택적 품질 가이드 (Suggest)
+        - 단일 export 컴포넌트는 default export를 고려할 수 있어요
+        - 공용/반복 렌더링 컴포넌트는 memo/useMemo/useCallback 적용을 검토해요
+        - ref를 전달하는 컴포넌트는 forwardRef와 displayName 사용을 확인해요
+
+    - path: 'packages/ads-ui/src/styles/tokens/**/*.ts'
+      instructions: |
+        디자인 토큰 정의 파일이에요.
+        - 순수 값만 정의해요 (JSX, globalStyle 금지)
+        - 의미 기반 네이밍 유지 (color, font, zIndex 등)
+        - as const로 타입을 고정해요
+
+    - path: 'packages/ads-ui/src/styles/theme.css.ts'
+      instructions: |
+        디자인 토큰을 CSS 변수로 변환하는 파일이에요.
+        - createGlobalTheme 사용
+        - 토큰 구조를 그대로 노출해요
+        - 비즈니스 로직이나 컴포넌트 의존 금지
+
+    - path: 'packages/ads-ui/src/styles/*.{css.ts}'
+      instructions: |
+        전역 스타일 파일이에요.
+        - globalStyle 사용이 정상이에요
+        - reset/base 스타일만 정의해요
+        - 컴포넌트 캡슐화나 recipe 사용을 요구하지 않아요
+
+    - path: '{apps,packages}/**/src/**/components/**/*.css.ts'
+      instructions: |
+        컴포넌트 로컬 스타일 파일이에요.
+        - 디자인 토큰(vars)을 직접 사용하고 있는지 확인해요.
+        - 상태/변형이 있다면 recipe 사용을 고려해요.
+        - 컴포넌트 외부 DOM 구조에 의존하지 않도록 주의해요.
+        - 중복되는 스타일 정의는 제거해요.
+        - 스타일 책임이 컴포넌트 단위로 잘 분리되어 있는지 확인해요.
+
+    - path: '{apps,packages}/**/src/**/hooks/**/*.ts'
+      instructions: |
+        커스텀 훅 리뷰 시:
+        - 파일명/함수명은 use* 접두사 사용
+        - 의존성 배열(exhaustive-deps) 준수, 참조 안정성 유지(함수/객체 메모이제이션)
+        - 반환 값 일관성(tuple/object), 에러/로딩 상태 명확화
+        - 제네릭 훅은 타입 매개변수 기본값 검토
+        - TanStack Query 훅 네이밍: use + 행위 + 대상 + Query/Mutation (예: useGetUserListQuery)
+
+    - path: '{apps,packages}/**/src/**/types/**/*.ts'
+      instructions: |
+        타입 정의 리뷰 시:
+        - import type 사용, default export 지양
+        - Discriminated Union으로 분기 명확화
+        - 상수 리터럴은 as const로 리터럴 타입 유지
+
+    # 중간 수준의 구체적인 패턴들
+    - path: 'apps/**/src/shared/components/**'
+      instructions: |
+        앱 내부 공용 컴포넌트예요.
+        - 특정 페이지보다는 feature/widget 재사용 목적이에요.
+        - 도메인 결합도가 과하지 않은지 확인해요.
+
+    - path: 'apps/**/src/app/**'
+      instructions: |
+        App 레이어예요.
+        - 전역 Provider, Router, Store 설정만 허용돼요.
+        - UI 컴포넌트 직접 구현은 지양해요.
+        - 비즈니스 로직 포함은 Must로 지적해요.
+
+    - path: 'apps/**/src/entities/**'
+      instructions: |
+        Entity 레이어예요.
+        - 단일 도메인 개념을 표현해요.
+        - 다른 entity에 의존하지 않아요.
+        - 페이지/라우트 개념은 금지예요.
+        - UI가 있다면 최소 표현만 허용돼요.
+
+    - path: 'apps/**/src/features/**'
+      instructions: |
+        Feature 레이어예요.
+        - 하나의 사용자 행동/시나리오를 담당해요.
+        - 여러 entity를 조합할 수 있어요.
+        - 다른 feature에 직접 의존하면 Must로 지적해요.
+
+    - path: 'apps/**/src/widgets/**'
+      instructions: |
+        Widget 레이어예요.
+        - 여러 feature/entity를 조합한 화면 블록이에요.
+        - 페이지에 직접 종속되지는 않아요.
+        - 비즈니스 로직은 feature에 위임해요.
+        - 다른 앱에서 재사용될 경우 compositions 이전을 고려해요.
+
+    - path: 'apps/**/src/pages/**'
+      instructions: |
+        Page 레이어예요.
+        - 특정 라우트에 종속된 조립 레이어예요.
+        - widgets/features/entities를 조합해요.
+        - 재사용 목적 컴포넌트는 두지 않아요.
+
+    - path: 'apps/**/src/shared/**'
+      instructions: |
+        Shared 레이어예요.
+        - 특정 도메인(entity/feature)에 종속되면 안 돼요.
+        - 재사용 가능한 UI/훅/유틸만 허용돼요.
+
+    - path: 'apps/**/src/**/apis/**'
+      instructions: |
+        앱 API 레이어예요.
+        - request 래퍼 사용(axios 직접 호출 금지), 공통 에러 포맷 정규화
+        - TanStack Query와의 통합(QueryKey Factory 사용) 
+        - 재시도/취소 신호(AbortController) 처리 일관성
+        - 타입 안정성 확보(응답 제네릭, 불변 데이터)
+        - HTTP메서드 + 명사 네이밍 규칙 확인 (getUserList, postComment 등)
+        - async/await 패턴 일관성 확인
+
+    - path: 'packages/apis/src/**'
+      instructions: |
+        API 클라이언트 패키지예요.
+        - UI/React 의존 금지
+        - HTTP/도메인 경계 명확화
+        - 응답 타입은 export 해서 앱에서 재사용
+
+    - path: 'apps/**/src/routes/**'
+      instructions: |
+        라우팅 레이어예요.
+        - 코드 스플리팅(dynamic import)과 적절한 청크 분리
+        - 라우트 전환 시 상태 보존 전략 검토
+        - 중첩 라우트의 레이아웃/에러 경계 사용 확인
+
+    - path: '{apps,packages}/**/src/**/constants/**'
+      instructions: |
+        상수 파일 리뷰 시:
+        - 모든 상수가 UPPER_SNAKE_CASE로 작성되었는지 확인
+        - export const 사용 확인
+        - 의미있는 이름 사용 여부 확인
+        - 리터럴은 as const로 타입 좁히기
+
+    - path: '{apps,packages}/**/src/**/*.ts'
+      instructions: |
+        TypeScript 파일 리뷰 시:
+        - Props 타입은 컴포넌트명 + Props 형식
+        - 일반 타입은 Types 접미사 사용
+        - 객체 구조는 interface 사용 지향
+        - API Response는 XXXResponse 네이밍 따르는지 확인
+        - var 사용 금지, const 우선 사용 확인
+        - type-only import 사용(import type), 불필요한 런타임 의존성 제거
+        - satisfies 연산자 활용으로 정확한 타입 보장
+
+    # 가장 일반적인 패턴 (마지막에 배치)
+    - path: '{apps,packages}/**/src/**'
+      instructions: |
+        전체 프로젝트 코드 리뷰 시:
+
+        # 기본 규칙
+        - 모든 컴포넌트는 반드시 TypeScript로 작성
+        - SVG는 ?react 쿼리를 통해 React 컴포넌트로 임포트
+        - 스타일은 반드시 Vanilla Extract(.css.ts)로 작성
+        - 절대 경로 임포트 사용 (@pages, @shared 등)
+        - overlay-kit을 통한 모달 관리 패턴 준수
+
+        # 네이밍 컨벤션
+        - 컴포넌트와 클래스는 PascalCase 사용
+        - 컴포넌트 이름은 PascalCase 사용
+        - 폴더명과 파일명은 kebab-case 사용 (소문자 시작)
+        - 변수와 함수는 camelCase 사용
+        - 상수는 UPPER_SNAKE_CASE 사용
+        - 모든 타입/인터페이스는 PascalCase, Type/I/T 접두사·접미사 금지 (제네릭 T 제외)
+        - Props 타입은 컴포넌트명 + Props 형식
+        - API Response 타입은 XXXResponse 형식
+        - 함수 네이밍: get/create/check/handle/is/has/can 접두사 활용
+        - API 함수는 HTTP메서드 + 명사 형식 (getUserList, postComment)
+        - TanStack Query 훅: use + 행위 + 대상 + Query/Mutation (예: useGetUserListQuery)
+        - 커스텀 훅 파일명: use*.ts
+
+        # 보안 및 성능
+        - 환경 변수는 반드시 import.meta.env 사용
+        - API 키나 시크릿을 하드코딩하지 않음
+        - React.memo, useMemo, useCallback의 적절한 사용
+        - 큰 번들 사이즈 경고 (dynamic import 제안)
+        - 템플릿 리터럴 사용 권장 (문자열 조합 시)
+        - 구조 분해 할당 적극 활용
+
+        # 커밋 및 브랜치 패턴
+        - 커밋 타입: feat, fix, docs, style, refactor, test, chore, design, comment, rename, remove
+        - 브랜치 패턴: type/description/#issue-number 형식
+
+  auto_review:
+    enabled: true # 자동 리뷰 활성화
+    drafts: false # 드래프트 리뷰 사용 여부
+    base_branches: # Git Flow와 정렬
+      - 'develop'
+      - 'main'
+    labels: # 라벨 기반 필터(느슨한 NOT 매칭)
+      - '!wip'
+      - '!draft'
+      - '!skip-review'
+    ignore_usernames: # 봇 PR 무시
+      - 'dependabot'
+      - 'renovate'
+    ignore_title_keywords: # 특정 키워드가 포함된 PR 제목 무시
+      - '[docs]'
+      - '[skip-review]'
+
+  # 사전 병합 검사(팀 규칙의 가시화, 엄격도는 warning로 시작)
+  pre_merge_checks:
+    title:
+      mode: 'warning'
+      requirements: 'PR 제목은 [type] 제목 형식을 따르고 50자 이내로 간결하게 작성해요.'
+    description:
+      mode: 'warning'
+    issue_assessment:
+      mode: 'off'
+
+  # 코드 개선 기능 (finishing_touches) - 전역 비활성화
+  finishing_touches:
+    docstrings:
+      enabled: false
+    unit_tests:
+      enabled: false
+
+  # TypeScript/React 환경에 최적화된 도구들 (실제 사용하는 것만)
+  tools:
+    eslint:
+      enabled: true # TypeScript/React 린팅
+    languagetool:
+      enabled: true # 한국어 문법 검사
+      level: 'default'
+    markdownlint:
+      enabled: true # 문서 품질 검사
+    gitleaks:
+      enabled: true # 보안 비밀 정보 스캔
+    yamllint:
+      enabled: true # YAML 파일 검증
+    actionlint:
+      enabled: true # GitHub Actions 검증
+
+# 채팅 설정
+chat:
+  art: false # 아스키/이모지 아트 비활성화(전문성 유지)
+  auto_reply: true # AI 자동 답변 활성화
+
+# 지식 베이스 설정
+knowledge_base:
+  web_search:
+    enabled: true # 웹 검색 기능 활성화
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - 'README.md'
+      - 'docs/README.md'
+      - 'docs/architecture/**/*.md'
+      - 'docs/reference/**/*.md'
+      - 'docs/decisions/**/*.md'
+      - 'docs/changes/**/*.md'
+      - 'docs/operations/**/*.md'
