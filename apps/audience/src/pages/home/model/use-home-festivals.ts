@@ -28,6 +28,9 @@ const useHomeFestivals = () => {
     ...HOME_QUERY_OPTIONS.PLANNED_FESTIVALS({ page: 0, size: 20 }),
     enabled: selectedTab === TAB_UPCOMING,
   });
+  const { data: upcomingFestivalData } = useQuery({
+    ...HOME_QUERY_OPTIONS.UPCOMING_FESTIVAL(),
+  });
 
   useEffect(() => {
     if (allFestivalsData?.festivals) {
@@ -106,6 +109,7 @@ const useHomeFestivals = () => {
   return {
     allFestivals,
     upcomingFestivals,
+    bannerFestival: upcomingFestivalData?.festivals?.[0],
     selectedTab,
     setSelectedTab,
     handleToggleAllFestival,

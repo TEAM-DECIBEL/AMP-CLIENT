@@ -10,6 +10,7 @@ const HomePage = () => {
   const nickname = '관객 이름';
   const {
     allFestivals,
+    bannerFestival,
     upcomingFestivals,
     selectedTab,
     setSelectedTab,
@@ -17,7 +18,6 @@ const HomePage = () => {
     handleToggleUpcomingFestival,
   } = useHomeFestivals();
 
-  const bannerFestival = upcomingFestivals[0];
   const banner = bannerFestival ? (
     <HomeBanner
       nickname={nickname}
