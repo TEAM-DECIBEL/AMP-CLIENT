@@ -23,7 +23,7 @@ const Onboarding = () => {
 
   const { mutate } = useOnboardingCompleteMutation();
 
-  const ctaTextByStep: Record<number, string> = {
+  const ctaTextByStep: Record<Step, string> = {
     1: '다음으로',
     2: '시작하기',
   };
