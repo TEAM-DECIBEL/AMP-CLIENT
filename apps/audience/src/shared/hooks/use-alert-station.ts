@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export interface NoticeAlert {
   id: string;
@@ -14,7 +14,7 @@ interface FetchAlertsResponse {
 
 export const useAlertStation = () => {
   const [alerts, setAlerts] = useState<NoticeAlert[]>([]);
-  const [readAlertIds, setReadAlertIds] = useState<string[]>([]);
+  const [readAlertIds, setReadAlertIds] = useState<Set<string>>(new Set());
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,26 +35,26 @@ export const useAlertStation = () => {
     setHasMore(true);
   };
 
-  const appendMock = () => {
-    const loadedCount = alerts.length;
+  const appendMock = useCallback(() => {
+    setAlerts((prev) => {
+      const loadedCount = prev.length;
+      const next: NoticeAlert[] = Array.from({ length: 8 }, (_, i) => {
+        const index = loadedCount + i + 1;
+        return {
+          id: `alert-${index}`,
+          title: index % 3 === 0 ? '퇴근길' : '공지',
+          message: `[Grand Mint Festival] ${index}잔디마당 입장 통제`,
+          time: '10',
+        };
+      });
 
-    const next: NoticeAlert[] = Array.from({ length: 8 }, (_, i) => {
-      const index = loadedCount + i + 1;
+      if (loadedCount + next.length >= 40) {
+        setHasMore(false);
+      }
 
-      return {
-        id: `alert-${index}`,
-        title: index % 3 === 0 ? '퇴근길' : '공지',
-        message: `[Grand Mint Festival] ${index}잔디마당 입장 통제`,
-        time: '10',
-      };
+      return [...prev, ...next];
     });
-
-    setAlerts((prev) => [...prev, ...next]);
-
-    if (loadedCount + next.length >= 40) {
-      setHasMore(false);
-    }
-  };
+  }, []);
 
   // TODO: API 연결
   const fetchAlerts = async (params?: {
@@ -69,12 +69,15 @@ export const useAlertStation = () => {
   const markAlertAsRead = async (alertId: string): Promise<void> => {};
 
   const markAsReadLocal = (alertId: string) => {
-    setReadAlertIds((prev) =>
-      prev.includes(alertId) ? prev : [...prev, alertId],
-    );
+    setReadAlertIds((prev) => {
+      if (prev.has(alertId)) {
+        return prev;
+      }
+      return new Set(prev).add(alertId);
+    });
   };
 
-  const isRead = (alertId: string) => readAlertIds.includes(alertId);
+  const isRead = (alertId: string) => readAlertIds.has(alertId);
 
   return {
     alerts,

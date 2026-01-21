@@ -10,10 +10,10 @@ import * as styles from './notification.css';
 const NotificationPage = () => {
   const {
     alerts,
-    hasMore,
+    // hasMore,
     isLoading,
     initMock,
-    appendMock,
+    // appendMock,
     markAsReadLocal,
     isRead,
   } = useAlertStation();
@@ -44,24 +44,22 @@ const NotificationPage = () => {
         </div>
       ) : (
         <section aria-label='알림 목록'>
-          {alerts.map((alert) => (
-            <>
-              <button
-                key={alert.id}
-                type='button'
-                className={styles.alertCardContainer}
-                onClick={() => handleAlertClick(alert.id)}
-              >
+          <ul>
+            {alerts.map((alert, index) => (
+              <li key={alert.id}>
                 <AlertCard
                   title={`${alert.title} 공지가 업로드 되었어요!`}
                   description={`${alert.message}`}
                   time={`${alert.time}분 전`}
                   isRead={isRead(alert.id)}
+                  onClick={() => handleAlertClick(alert.id)}
                 />
-              </button>
-              <div className={styles.divider} />
-            </>
-          ))}
+                {index < alerts.length - 1 && (
+                  <div className={styles.divider} />
+                )}
+              </li>
+            ))}
+          </ul>
         </section>
       )}
     </main>

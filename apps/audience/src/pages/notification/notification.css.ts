@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const pageContainer = style({
-  height: '100dvh',
+  height: '100vh',
   padding: '2rem',
 });
 
@@ -25,8 +25,7 @@ export const emptyContainer = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: '1.6rem',
-  marginTop: '22.8rem',
-  marginBottom: '27.6rem',
+  height: '100%',
   textAlign: 'center',
 });
 
