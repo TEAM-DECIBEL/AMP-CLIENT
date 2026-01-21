@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router';
 
 import { CircleButton } from '@amp/ads-ui';
 import {
@@ -10,17 +12,29 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
+import { NOTICES_QUERY_OPTIONS } from '@features/notice/apis/query';
+
 import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
-
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
 const NoticeListPage = () => {
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
+  const { festivalId } = useParams<{ festivalId: string }>();
 
-  const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
+  const { data } = useQuery(
+    NOTICES_QUERY_OPTIONS.LIST(Number(festivalId), {
+      page: 0,
+      size: 20,
+    }),
+  );
+
+  const announcements = data?.announcements ?? [];
+
+  const { selectedCategory, noticeList, handleChipClick } =
+    useNoticeList(announcements);
 
   const handleNoticeItemClick = (id: number) => {
     // TODO: 공지 상세 페이지 이동 등 로직 추가

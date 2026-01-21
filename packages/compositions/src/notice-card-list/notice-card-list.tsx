@@ -4,13 +4,14 @@ import * as styles from './notice-card-list.css';
 
 // TODO: 현재는 목데이터 기준, 추후 type에서 import
 export interface NoticeItem {
-  announcementId: number;
-  imageUrl: string | null;
+  noticeId: number;
+  categoryName: string;
   title: string;
   content: string;
+  imageUrl: string | null;
   isPinned: boolean;
+  isSaved: boolean;
   createdAt: string;
-  categoryName?: string;
 }
 
 interface NoticeCardListProps {
@@ -33,7 +34,7 @@ const NoticeCardList = ({ notices, onItemClick }: NoticeCardListProps) => {
   return (
     <div className={styles.cardList}>
       {notices.map((notice) => (
-        <div key={notice.announcementId} className={styles.card}>
+        <div key={notice.noticeId} className={styles.card}>
           <CardNotice
             // TODO: 기본 이미지 처리 로직 적용
             imageUrl={notice.imageUrl || DEFAULT_IMG}
@@ -41,7 +42,7 @@ const NoticeCardList = ({ notices, onItemClick }: NoticeCardListProps) => {
             content={notice.content}
             isPinned={notice.isPinned}
             createdAt={notice.createdAt}
-            onClick={() => onItemClick(notice.announcementId)}
+            onClick={() => onItemClick(notice.noticeId)}
           />
         </div>
       ))}
