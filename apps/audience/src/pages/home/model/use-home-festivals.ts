@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import {
   TAB_ALL,
@@ -7,7 +7,7 @@ import {
   type TabValue,
 } from '@widgets/home/constants/home-tabs';
 
-import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
+import { HOME_QUERY_OPTIONS, putWishList } from '@features/home/apis/query';
 
 import type {
   AllFestivalItem,
@@ -77,10 +77,23 @@ const useHomeFestivals = () => {
     };
   };
 
+  const wishListMutation = useMutation({
+    mutationFn: ({
+      festivalId,
+      wishList,
+    }: {
+      festivalId: number;
+      wishList: boolean;
+    }) => putWishList(festivalId, { wishList }),
+  });
+
   const handleToggleAllFestival = (
     festivalId: number,
     nextSelected: boolean,
   ) => {
+    const prevAll = allFestivals;
+    const prevUpcoming = upcomingFestivals;
+
     setAllFestivals((prev) => toggleWishList(prev, festivalId, nextSelected));
     setUpcomingFestivals((prev) => {
       if (nextSelected) {
@@ -92,18 +105,41 @@ const useHomeFestivals = () => {
       }
       return removeById(prev, festivalId);
     });
+
+    wishListMutation.mutate(
+      { festivalId, wishList: nextSelected },
+      {
+        onError: () => {
+          setAllFestivals(prevAll);
+          setUpcomingFestivals(prevUpcoming);
+        },
+      },
+    );
   };
 
   const handleToggleUpcomingFestival = (
     festivalId: number,
     nextSelected: boolean,
   ) => {
+    const prevAll = allFestivals;
+    const prevUpcoming = upcomingFestivals;
+
     setUpcomingFestivals((prev) =>
       nextSelected
         ? toggleWishList(prev, festivalId, nextSelected)
         : removeById(prev, festivalId),
     );
     setAllFestivals((prev) => toggleWishList(prev, festivalId, nextSelected));
+
+    wishListMutation.mutate(
+      { festivalId, wishList: nextSelected },
+      {
+        onError: () => {
+          setAllFestivals(prevAll);
+          setUpcomingFestivals(prevUpcoming);
+        },
+      },
+    );
   };
 
   return {
