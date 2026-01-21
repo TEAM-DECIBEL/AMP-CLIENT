@@ -1,20 +1,46 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router';
 
 import { toast } from '@amp/ads-ui';
 import { StatusSheetValue } from '@amp/ads-ui';
 
-import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
+import { CONGESTION_QUERY_OPTIONS } from '@features/notice-details/query';
+
+type LiveStatusItem = {
+  id: number;
+  title: string;
+  location: string;
+  congestionLevel: StatusSheetValue;
+};
 
 export const useLiveStatus = () => {
+  const { eventId: eventIdParam } = useParams<{ eventId: string }>();
+  const eventId = Number(eventIdParam);
+
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [sheetTitle, setSheetTitle] = useState('');
   const [status, setStatus] = useState<StatusSheetValue | undefined>(undefined);
 
-  // TODO: 8시간 이내 현장 상황 입력 불가 관리 테스트용 임시 상태 삭제
-  const [isAvailableTime] = useState(true);
+  const { data } = useQuery(
+    CONGESTION_QUERY_OPTIONS.STAGES(eventId, { page: 0, size: 10 }),
+  );
+
+  const statusItems: LiveStatusItem[] = useMemo(
+    () =>
+      data?.stages.map((stage) => ({
+        id: stage.stageId,
+        title: stage.title,
+        location: stage.location,
+        congestionLevel: stage.congestionLevel,
+      })) ?? [],
+    [data],
+  );
+
+  const isAvailableTime = data?.isInputAvailable ?? false;
 
   const openStatusSheet = (id: number) => {
-    const targetItem = LIVE_STATUS_MOCK.find((item) => item.id === id);
+    const targetItem = statusItems.find((item) => item.id === id);
     if (!targetItem) {
       return;
     }
@@ -32,7 +58,7 @@ export const useLiveStatus = () => {
   };
 
   return {
-    statusItems: LIVE_STATUS_MOCK,
+    statusItems,
     isSheetOpen,
     sheetTitle,
     status,

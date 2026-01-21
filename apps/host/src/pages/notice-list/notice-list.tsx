@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { data, useParams } from 'react-router';
+import { useParams } from 'react-router';
 
 import { CircleButton } from '@amp/ads-ui';
 import {
@@ -39,11 +39,6 @@ const NoticeListPage = () => {
       location: stage.location,
       congestionLevel: stage.congestionLevel,
     })) ?? [];
-
-  console.log('congestionData:', JSON.stringify(congestionData, null, 2));
-  console.log('liveItems:', JSON.stringify(liveItems, null, 2));
-
-  // TODO: API 연동 (공지 목록 불러오기)
 
   const handleNoticeItemClick = (id: number) => {
     // TODO: 공지 상세 페이지 이동 등 로직 추가
