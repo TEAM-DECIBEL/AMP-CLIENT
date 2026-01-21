@@ -2,9 +2,10 @@ import { useMutation } from '@tanstack/react-query';
 
 import { postOnboardingComplete } from '@features/onboarding/query';
 
+import { OnboardingCompleteBody } from '@shared/types/onboarding';
+
 export const useOnboardingCompleteMutation = () => {
   return useMutation({
-    mutationFn: (body: { nickname: string; userType: string }) =>
-      postOnboardingComplete(body),
+    mutationFn: (body: OnboardingCompleteBody) => postOnboardingComplete(body),
   });
 };

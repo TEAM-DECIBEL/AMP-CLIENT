@@ -2,7 +2,7 @@ import { post } from '@amp/apis';
 
 import { END_POINT } from '@shared/constants/end-point';
 
-interface OnboardingCompleteBody {
+export interface OnboardingCompleteBody {
   organizerName: string;
   userType: string;
 }
