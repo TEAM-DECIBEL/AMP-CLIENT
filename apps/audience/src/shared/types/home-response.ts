@@ -30,3 +30,8 @@ export interface AllFestivalsResponseData {
   festivals: AllFestivalItem[];
   pagination: PaginationResponse;
 }
+
+export interface UpcomingFestivalsResponseData {
+  festivals: UpcomingFestivalItem[];
+  pagination: PaginationResponse;
+}
