@@ -20,7 +20,7 @@ declare module '*.jpeg' {
   export default src;
 }
 
-declare module '*.svg' {
+declare module '*.svg?url' {
   const src: string;
   export default src;
 }
