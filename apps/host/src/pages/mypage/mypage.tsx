@@ -15,7 +15,7 @@ const menuItems = [
   {
     id: 'ongoing-events',
     label: '진행 공연',
-    path: `/${ROUTE_PATH.MY_HISTORY}`,
+    path: ROUTE_PATH.MY_HISTORY,
   },
   {
     id: 'token-check',
