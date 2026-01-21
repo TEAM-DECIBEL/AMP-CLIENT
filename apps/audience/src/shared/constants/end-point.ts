@@ -5,4 +5,4 @@ export const END_POINT = {
   GET_UPCOMING_FESTIVAL: '/users/me/festivals/recent',
   PUT_WISH_LIST: (festivalId: number) =>
     `/users/me/festivals/${festivalId}/wishList`,
-};
+} as const;
