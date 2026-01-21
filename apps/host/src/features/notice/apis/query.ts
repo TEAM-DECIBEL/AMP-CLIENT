@@ -21,6 +21,6 @@ export const NOTICES_QUERY_OPTIONS = {
     queryOptions({
       queryKey: [...ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICES(festivalId), params],
       queryFn: () => getFestivalNotices(festivalId, params),
-      enabled: Boolean(festivalId),
+      enabled: Number.isFinite(festivalId),
     }),
 } as const;
