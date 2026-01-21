@@ -1,0 +1,91 @@
+export const LIVE_STATUS_MOCK = [
+  {
+    id: 1,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '혼잡',
+  },
+  {
+    id: 2,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '여유',
+  },
+  {
+    id: 3,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '혼잡',
+  },
+  {
+    id: 4,
+    title: 'Mint Breeze Stage',
+    congestionLevel: '보통',
+  },
+  {
+    id: 5,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '혼잡',
+  },
+  {
+    id: 6,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '혼잡',
+  },
+  {
+    id: 7,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '보통',
+  },
+  {
+    id: 8,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '여유',
+  },
+  {
+    id: 9,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '혼잡',
+  },
+  {
+    id: 10,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '혼잡',
+  },
+  {
+    id: 11,
+    title: 'Mint Breeze Stage',
+    location: null,
+    congestionLevel: '혼잡',
+  },
+  {
+    id: 12,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '혼잡',
+  },
+  {
+    id: 13,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '혼잡',
+  },
+  {
+    id: 14,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '여유',
+  },
+  {
+    id: 15,
+    title: 'Mint Breeze Stage',
+    location: '88 잔디광장',
+    congestionLevel: '보통',
+  },
+];

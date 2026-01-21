@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import type { ReactNode } from 'react';
 
 import { NoticeIcon } from '../../../icons';
+import CrowdLevelButton from '../../button/crowd-level-button/crowd-level-button';
 import CtaButton from '../../button/cta-button/cta-button';
 import BottomSheet from '../bottom-sheet';
 import {
+  CROWD_OPTIONS,
   EMPTY_DESCRIPTION,
   EMPTY_TITLE,
   STATUS_DESCRIPTION,
@@ -14,15 +17,14 @@ import * as styles from './status-sheet.css';
 
 interface StatusSheetBaseProps {
   open: boolean;
-  onClose?: () => void;
-  onConfirm?: () => void;
+  onClose: () => void;
 }
 
 interface StatusSheetSelectableProps extends StatusSheetBaseProps {
   selectable: true;
   title: ReactNode;
   selected?: StatusSheetValue;
-  onSelect: (value: StatusSheetValue) => void;
+  onConfirm: (value: StatusSheetValue) => void;
 }
 
 interface StatusSheetReadonlyProps extends StatusSheetBaseProps {
@@ -31,28 +33,34 @@ interface StatusSheetReadonlyProps extends StatusSheetBaseProps {
 
 type StatusSheetProps = StatusSheetSelectableProps | StatusSheetReadonlyProps;
 
-const StatusSelectableContent = ({ title }: { title: ReactNode }) => {
+interface StatusSelectableContentProps {
+  title: ReactNode;
+  selected?: StatusSheetValue;
+  onSelect: (value: StatusSheetValue) => void;
+}
+
+const StatusSelectableContent = ({
+  title,
+  selected,
+  onSelect,
+}: StatusSelectableContentProps) => {
   return (
     <>
       <BottomSheet.Header>
         <BottomSheet.Title>{title} 현장 상황</BottomSheet.Title>
         <BottomSheet.Description>{STATUS_DESCRIPTION}</BottomSheet.Description>
       </BottomSheet.Header>
+
       <div className={styles.options}>
-        {/* SelectButton 추가되면 수정 예정*/}
-        {/* {[
-          { value: '여유', preset: { kind: 'crowding', variant: 'relaxed' } },
-          { value: '보통', preset: { kind: 'crowding', variant: 'normal' } },
-          { value: '혼잡', preset: { kind: 'crowding', variant: 'crowded' } },
-        ].map(({ value, preset }) => (
-          <SelectButton
+        {CROWD_OPTIONS.map(({ value, variant, imageUrl }) => (
+          <CrowdLevelButton
             key={value}
-            preset={preset}
-            imageUrl=''
+            variant={variant}
+            imageUrl={imageUrl}
             selected={selected === value}
-            onChange={() => onSelect?.(value)}
+            onChange={() => onSelect(value)}
           />
-        ))} */}
+        ))}
       </div>
     </>
   );
@@ -75,26 +83,53 @@ const StatusEmptyContent = () => {
 };
 
 const StatusSheet = (props: StatusSheetProps) => {
-  const { open, onClose, onConfirm } = props;
-  const handleConfirm = () => {
-    if (props.selectable === true && !props.selected) {
-      return;
-    }
-    onConfirm?.();
-    onClose?.();
+  const { open, onClose } = props;
+
+  const [draft, setDraft] = useState<StatusSheetValue>();
+
+  const handleCloseSheet = () => {
+    setDraft(undefined);
+    onClose();
   };
 
+  const handleConfirmSheet = () => {
+    if (props.selectable !== true) {
+      onClose();
+      return;
+    }
+
+    if (!draft) {
+      return;
+    }
+
+    props.onConfirm(draft);
+    handleCloseSheet();
+  };
+
+  const isConfirmDisabled = props.selectable === true ? !draft : false;
+
   return (
-    <BottomSheet open={open} onClose={onClose}>
+    <BottomSheet open={open} onClose={handleCloseSheet}>
       <BottomSheet.Panel>
         <BottomSheet.Handle />
+
         {props.selectable === true ? (
-          <StatusSelectableContent title={props.title} />
+          <StatusSelectableContent
+            title={props.title}
+            selected={draft}
+            onSelect={setDraft}
+          />
         ) : (
           <StatusEmptyContent />
         )}
+
         <div className={styles.actions}>
-          <CtaButton type='common' color='gray' onClick={handleConfirm}>
+          <CtaButton
+            type='common'
+            color='gray'
+            onClick={handleConfirmSheet}
+            disabled={isConfirmDisabled}
+          >
             확인
           </CtaButton>
         </div>

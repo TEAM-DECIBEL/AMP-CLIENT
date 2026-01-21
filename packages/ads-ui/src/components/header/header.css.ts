@@ -54,3 +54,8 @@ export const title = style({
   color: ampThemeVars.color.gray_900,
   ...ampThemeVars.font.title_sb_16,
 });
+
+export const logo = style({
+  width: '12rem',
+  height: '3rem',
+});

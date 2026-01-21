@@ -1,8 +1,7 @@
-export { default as HomeBanner } from './banner/home-banner/home-banner';
-export { default as NoticeBanner } from './banner/notice-banner/notice-banner';
 export { default as BottomSheet } from './bottom-sheet/bottom-sheet';
 export { default as OptionSheet } from './bottom-sheet/option-sheet/option-sheet';
 export { default as StatusSheet } from './bottom-sheet/status-sheet/status-sheet';
+export type { StatusSheetValue } from './bottom-sheet/status-sheet/status-sheet.constants';
 export { default as AddImageButton } from './button/add-image-button/add-image-button';
 export { default as AddToWatchButton } from './button/add-to-watch/add-to-watch';
 export { default as CategoryButton } from './button/category-button/category-button';
@@ -17,6 +16,7 @@ export { default as NavigationListContainer } from './button/navigation-list-but
 export { default as MyPageMenuItem } from './button/navigation-list-button/navigation-list-item';
 export { default as NavigationListItem } from './button/navigation-list-button/navigation-list-item';
 export { default as CardFestival } from './card/card-festival/card-festival';
+export { default as CardHome } from './card/card-home/card-home';
 export { default as CardNotice } from './card/card-notice/card-notice';
 export { default as Chip } from './chip/chip';
 export { default as EmptyView } from './empty-view/empty-view';

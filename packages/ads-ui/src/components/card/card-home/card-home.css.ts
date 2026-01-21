@@ -2,11 +2,11 @@ import { style } from '@vanilla-extract/css';
 
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
-import { BACKGROUND_IMAGES } from '../../../assets';
+import { IMAGES } from '../../../assets';
 
 export const background = style({
   padding: '1.2rem 1.5rem',
-  backgroundImage: `url(${BACKGROUND_IMAGES.CARD_HOME})`,
+  backgroundImage: `url(${IMAGES.CARD_HOME})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
 });
