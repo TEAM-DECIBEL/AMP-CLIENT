@@ -9,7 +9,7 @@ export interface NoticeAuthor {
   nickname: string;
 }
 
-export interface NoticeDetail {
+export interface NoticeDetailResponse {
   noticeId: number;
   festivalId: number;
   festivalTitle: string;

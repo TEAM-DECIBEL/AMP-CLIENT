@@ -4,10 +4,10 @@ import { get } from '@amp/apis';
 
 import { END_POINT } from '@shared/constants/end-point';
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
-import type { NoticeDetail } from '@shared/types/notice-detail-response';
+import type { NoticeDetailResponse } from '@shared/types/notice-detail-response';
 
 export const getFestivalNoticeDetail = (noticeId: number) =>
-  get<NoticeDetail>(END_POINT.GET_FESTIVAL_NOTICE_DETAIL(noticeId));
+  get<NoticeDetailResponse>(END_POINT.GET_FESTIVAL_NOTICE_DETAIL(noticeId));
 
 export const NOTICE_DETAIL_QUERY_OPTIONS = {
   DETAIL: (noticeId: number) =>
