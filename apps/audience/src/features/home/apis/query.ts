@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import { get, put } from '@amp/apis';
-import { PageSizeParams } from '@amp/shared/types';
+import type { PageSizeParams } from '@amp/shared/types';
 
 import { END_POINT } from '@shared/constants/end-point';
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
