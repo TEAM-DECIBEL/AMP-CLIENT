@@ -17,10 +17,17 @@ export default defineConfig(
     },
     plugins: [
       VitePWA({
+        injectRegister: null,
+
         registerType: 'autoUpdate',
         devOptions: {
           enabled: true,
+          type: 'module',
         },
+
+        strategies: 'injectManifest',
+        srcDir: 'src',
+        filename: 'sw.ts',
 
         includeAssets: [
           'favicon.svg',
@@ -31,20 +38,23 @@ export default defineConfig(
           name: 'AMP',
           short_name: 'AMP',
           description: '작은 공지도 크게 울리게 공연 공지의 공식, AMP',
+          start_url: '/login',
+          display: 'standalone',
+          background_color: '#ffffff',
           theme_color: '#ffffff',
           icons: [
             {
-              src: 'amp-pwa-logo-192.png',
+              src: '/amp-pwa-logo-192.png',
               sizes: '192x192',
               type: 'image/png',
             },
             {
-              src: 'amp-pwa-logo-512.png',
+              src: '/amp-pwa-logo-512.png',
               sizes: '512x512',
               type: 'image/png',
             },
             {
-              src: 'amp-pwa-logo-512.png',
+              src: '/amp-pwa-logo-512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any maskable',

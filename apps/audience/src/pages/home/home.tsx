@@ -1,3 +1,5 @@
+import { enablePushAndGetToken } from 'src/push';
+
 import { HomeBanner } from '@amp/compositions';
 
 import HomeFestivalSection from '@widgets/home/components/home-festival-section/home-festival-section';
@@ -44,6 +46,14 @@ const HomePage = () => {
         onToggleAllFestival={handleToggleAllFestival}
         onToggleUpcomingFestival={handleToggleUpcomingFestival}
       />
+      <button
+        onClick={async () => {
+          const token = await enablePushAndGetToken();
+          console.log('FCM token:', token);
+        }}
+      >
+        알림 허용 & 토큰 발급
+      </button>
     </div>
   );
 };

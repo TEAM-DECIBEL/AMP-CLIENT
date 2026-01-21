@@ -12,13 +12,15 @@
     "@amp/apis": "workspace:*",
     "@amp/compositions": "workspace:*",
     "@amp/shared": "workspace:*",
+    "@tanstack/react-query": "^5.90.16",
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
+    "firebase": "^12.8.0",
+    "overlay-kit": "^1.8.6",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "catalog:",
-    "@tanstack/react-query": "^5.90.16",
-    "overlay-kit": "^1.8.6"
+    "workbox-window": "^7.4.0"
   },
   "devDependencies": {
     "@amp/eslint-config": "workspace:*",
@@ -32,6 +34,11 @@
     "eslint": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
-    "vite-plugin-pwa": "^1.2.0"
+    "vite-plugin-pwa": "^1.2.0",
+    "workbox-build": "^7.4.0",
+    "workbox-core": "^7.4.0",
+    "workbox-precaching": "^7.4.0",
+    "workbox-routing": "^7.4.0",
+    "workbox-strategies": "^7.4.0"
   }
 }
