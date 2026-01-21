@@ -8,7 +8,6 @@ import tseslint from 'typescript-eslint';
 export const baseConfig = [
   {
     ignores: [
-      'dev-dist',
       'dist',
       'build',
       'out',
