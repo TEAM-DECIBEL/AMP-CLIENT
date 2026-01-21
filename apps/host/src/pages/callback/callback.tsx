@@ -1,17 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
 const Callback = () => {
   const [params] = useSearchParams();
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = params.get('token');
-    const status = params.get('status');
+  const token = params.get('token');
+  const status = params.get('status');
 
+  useEffect(() => {
     if (!token) {
       navigate(ROUTE_PATH.LOGIN, { replace: true });
       return;
@@ -21,10 +20,13 @@ const Callback = () => {
 
     if (status === 'PENDING') {
       navigate(ROUTE_PATH.ONBOARDING, { replace: true });
-    } else if (status === 'COMPLETED') {
+      return;
+    }
+
+    if (status === 'COMPLETED') {
       navigate(ROUTE_PATH.HOME, { replace: true });
     }
-  }, [params, navigate]);
+  }, [token, status, navigate]);
 
   return null;
 };
