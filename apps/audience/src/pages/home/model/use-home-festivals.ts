@@ -66,6 +66,7 @@ const useHomeFestivals = () => {
       festivalId: target.festivalId,
       title: target.title,
       mainImageUrl: target.mainImageUrl,
+      location: target.location,
       period: target.period,
       status: '관람 예정',
       wishList: true,

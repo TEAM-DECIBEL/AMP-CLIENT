@@ -4,7 +4,7 @@ import * as styles from './card-home.css';
 
 interface CardHomeProps {
   title: string;
-  location?: string;
+  location: string;
   date: string;
   dday: number;
 }
@@ -19,12 +19,10 @@ const CardHome = ({ title, location, date, dday }: CardHomeProps) => {
         </div>
         <div className={styles.descriptionSection}>
           <div className={styles.description}>
-            {location ? (
-              <div className={styles.location}>
-                <LocateIcon className={styles.locateIcon} />
-                <p>{location}</p>
-              </div>
-            ) : null}
+            <div className={styles.location}>
+              <LocateIcon className={styles.locateIcon} />
+              <p>{location}</p>
+            </div>
             <p>{date}</p>
           </div>
           <div className={styles.dday}>
