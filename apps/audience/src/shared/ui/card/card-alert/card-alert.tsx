@@ -17,6 +17,7 @@ const AlertCard = ({
 }: AlertCardProps) => {
   return (
     <button
+      type='button'
       className={[styles.alertCard, isRead && styles.read]
         .filter(Boolean)
         .join(' ')}
