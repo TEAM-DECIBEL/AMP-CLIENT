@@ -7,4 +7,7 @@ export const END_POINT = {
   GET_MY_PAGE: '/organizer/mypage',
   // 로그아웃
   POST_LOGOUT: '/auth/logout',
+
+  // 온보딩
+  POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
 } as const;

@@ -3,11 +3,13 @@ import { style } from '@vanilla-extract/css';
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const alertCard = style({
+  width: '100%',
   display: 'flex',
   flexDirection: 'column',
   gap: '0.3rem',
   padding: '0.5rem 1.75rem 0.5rem 1rem',
   backgroundColor: ampThemeVars.color.gray_000,
+  textAlign: 'left',
 });
 
 export const read = style({});

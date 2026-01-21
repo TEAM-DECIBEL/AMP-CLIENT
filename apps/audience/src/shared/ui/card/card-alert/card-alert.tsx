@@ -5,14 +5,23 @@ interface AlertCardProps {
   description: string;
   time: string;
   isRead: boolean;
+  onClick: () => void;
 }
 
-const AlertCard = ({ title, description, time, isRead }: AlertCardProps) => {
+const AlertCard = ({
+  title,
+  description,
+  time,
+  isRead,
+  onClick,
+}: AlertCardProps) => {
   return (
-    <article
+    <button
+      type='button'
       className={[styles.alertCard, isRead && styles.read]
         .filter(Boolean)
         .join(' ')}
+      onClick={onClick}
     >
       <div className={styles.titleSection}>
         <p className={styles.title}>{title}</p>
@@ -20,7 +29,7 @@ const AlertCard = ({ title, description, time, isRead }: AlertCardProps) => {
       </div>
 
       <p className={styles.description}>{description}</p>
-    </article>
+    </button>
   );
 };
 
