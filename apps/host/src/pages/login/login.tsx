@@ -1,6 +1,8 @@
 import { CtaButton } from '@amp/ads-ui';
 import { GoogleIcon } from '@amp/ads-ui/icons';
+import { ENV } from '@amp/apis';
 import { ResultView } from '@amp/compositions';
+import { OAUTH_PATH } from '@amp/shared/constants';
 
 import { IMAGES } from '@shared/assets/images';
 
@@ -8,7 +10,7 @@ import * as styles from './login.css';
 
 const Login = () => {
   const handleLoginClick = () => {
-    window.location.href = `${import.meta.env.VITE_HOST_BASE_URL}/oauth2/authorization/google?userType=ORGANIZER`;
+    window.location.href = `${ENV.HOST_BASE_URL}${OAUTH_PATH.GOOGLE}?userType=ORGANIZER`;
   };
 
   return (

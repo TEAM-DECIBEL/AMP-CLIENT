@@ -2,7 +2,9 @@ import { useNavigate } from 'react-router';
 
 import { CtaButton } from '@amp/ads-ui';
 import { GoogleIcon } from '@amp/ads-ui/icons';
+import { ENV } from '@amp/apis';
 import { ResultView } from '@amp/compositions';
+import { OAUTH_PATH } from '@amp/shared/constants';
 
 import { IMAGES } from '@shared/assets';
 import { ROUTE_PATH } from '@shared/constants/path';
@@ -13,7 +15,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    window.location.href = `${import.meta.env.VITE_AUDIENCE_BASE_URL}/oauth2/authorization/google`;
+    window.location.href = `${ENV.AUDIENCE_BASE_URL}${OAUTH_PATH.GOOGLE}`;
   };
 
   const handleSkipLogin = () => {
@@ -22,7 +24,7 @@ const Login = () => {
   return (
     <div className={styles.container}>
       <ResultView
-        title={`흩어져 있던 공연 공지를\n관객에게 가장 가까이`}
+        title={`작은 공지도 크게 울리는\n공연 공지의 공식, AMP`}
         image={<img src={IMAGES.ONBOARDING} alt='' />}
       />
       <div className={styles.ctaButtonContainer}>
