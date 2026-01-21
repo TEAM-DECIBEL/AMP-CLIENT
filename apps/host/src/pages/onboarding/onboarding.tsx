@@ -18,15 +18,15 @@ const Onboarding = () => {
   const [name, setName] = useState('');
   const [step, setStep] = useState<Step>(1);
 
-  const disabled = step === 1 ? name.trim().length === 0 : false;
+  const { mutate, isPending } = useOnboardingCompleteMutation();
+
+  const disabled = (step === 1 ? name.trim().length === 0 : false) || isPending;
   const selected = !disabled;
 
   const ctaTextByStep: Record<Step, string> = {
     1: '다음으로',
     2: '시작하기',
   };
-
-  const { mutate } = useOnboardingCompleteMutation();
 
   const handleNext = () => {
     if (step === 1) {

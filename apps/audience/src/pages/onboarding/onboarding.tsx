@@ -18,10 +18,10 @@ const Onboarding = () => {
   const [name, setName] = useState('');
   const [step, setStep] = useState<Step>(1);
 
-  const disabled = step === 1 ? name.trim().length === 0 : false;
-  const selected = !disabled;
+  const { mutate, isPending } = useOnboardingCompleteMutation();
 
-  const { mutate } = useOnboardingCompleteMutation();
+  const disabled = (step === 1 ? name.trim().length === 0 : false) || isPending;
+  const selected = !disabled;
 
   const ctaTextByStep: Record<Step, string> = {
     1: '다음으로',
