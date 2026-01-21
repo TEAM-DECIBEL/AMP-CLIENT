@@ -22,6 +22,7 @@ export const profileImage = style({
   height: '9.2rem',
   borderRadius: '50%',
   objectFit: 'cover',
+  border: '1px '
 });
 
 export const profilePlaceholder = style({
