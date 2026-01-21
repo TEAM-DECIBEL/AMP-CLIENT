@@ -17,7 +17,7 @@ export interface MyHistoryPagination {
   hasPrevious: boolean;
 }
 
-export interface MyHistoryResponseData {
+export interface MyHistoryResponse {
   festivals: MyHistoryFestival[];
   pagination: MyHistoryPagination;
 }

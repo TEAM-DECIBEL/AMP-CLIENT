@@ -9,7 +9,7 @@ import type { MyPageResponseData } from '@shared/types/mypage-response';
 export const getMyPage = () => get<MyPageResponseData>(END_POINT.GET_MY_PAGE);
 
 export const MY_PAGE_QUERY_OPTIONS = {
-  MYPAGE: () =>
+  MY_PAGE: () =>
     queryOptions({
       queryKey: ORGANIZERS_QUERY_KEY.MY_PAGE(),
       queryFn: () => getMyPage(),

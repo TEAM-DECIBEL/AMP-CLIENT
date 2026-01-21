@@ -3,6 +3,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { toast } from '@amp/ads-ui';
+import { Loading } from '@amp/compositions';
 import { LogoutModal, MyPageLayout } from '@amp/shared';
 
 import { postLogout } from '@features/auth/apis/query';
@@ -28,10 +29,16 @@ const MyPage = () => {
   const navigate = useNavigate();
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
-  const { data: myPageData } = useQuery(MY_PAGE_QUERY_OPTIONS.MYPAGE());
+  const { data: myPageData, isPending } = useQuery(
+    MY_PAGE_QUERY_OPTIONS.MY_PAGE(),
+  );
   const logoutMutation = useMutation({
     mutationFn: postLogout,
   });
+
+  if (isPending) {
+    return <Loading />;
+  }
 
   if (!myPageData) {
     return null;

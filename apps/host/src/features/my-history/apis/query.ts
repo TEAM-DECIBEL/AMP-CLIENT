@@ -5,10 +5,10 @@ import type { PageSizeParams } from '@amp/shared/types';
 
 import { END_POINT } from '@shared/constants/end-point';
 import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
-import type { MyHistoryResponseData } from '@shared/types/my-history-response';
+import type { MyHistoryResponse } from '@shared/types/my-history-response';
 
 export const getMyHistoryFestivals = (params: PageSizeParams = {}) =>
-  get<MyHistoryResponseData, PageSizeParams>(
+  get<MyHistoryResponse, PageSizeParams>(
     END_POINT.GET_MY_FESTIVALS_ALL,
     params,
   );
