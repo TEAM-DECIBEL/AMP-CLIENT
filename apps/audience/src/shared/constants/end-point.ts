@@ -9,4 +9,6 @@ export const END_POINT = {
   GET_MY_PAGE: '/users/mypage',
   //온보딩
   POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
+  // 로그아웃
+  POST_LOGOUT: '/api/auth/logout',
 } as const;

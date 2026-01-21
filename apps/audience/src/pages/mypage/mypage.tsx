@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
+import { toast } from '@amp/ads-ui';
 import { Loading } from '@amp/compositions';
 import { LogoutModal, MyPageLayout } from '@amp/shared';
 
+import { postLogout } from '@features/auth/apis/query';
 import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
 import { ROUTE_PATH } from '@shared/constants/path';
@@ -28,6 +30,9 @@ const MyPage = () => {
   const { data: myPageData, isPending } = useQuery(
     MY_PAGE_QUERY_OPTIONS.MY_PAGE(),
   );
+  const logoutMutation = useMutation({
+    mutationFn: postLogout,
+  });
   const handleLogoutOpen = () => {
     setIsLogoutOpen(true);
   };
@@ -35,7 +40,15 @@ const MyPage = () => {
     setIsLogoutOpen(false);
   };
   const handleLogoutConfirm = () => {
-    setIsLogoutOpen(false);
+    logoutMutation.mutate(undefined, {
+      onSuccess: () => {
+        setIsLogoutOpen(false);
+        navigate(ROUTE_PATH.LOGIN);
+      },
+      onError: () => {
+        toast.show('로그아웃에 실패했어요.');
+      },
+    });
   };
 
   if (isPending) {
