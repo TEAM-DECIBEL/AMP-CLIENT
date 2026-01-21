@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { toast } from '@amp/ads-ui';
 import { LogoutModal, MyPageLayout } from '@amp/shared';
+
+import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 import Dashboard from '@shared/ui/card/card-dashboard/dashboard';
@@ -24,9 +27,15 @@ const MyPage = () => {
   const navigate = useNavigate();
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
+  const { data: myPageData } = useQuery(MY_PAGE_QUERY_OPTIONS.MYPAGE());
+
+  if (!myPageData) {
+    return null;
+  }
+
   const dashboardCounts = {
-    ongoingCount: 0,
-    upcomingCount: 0,
+    ongoingCount: myPageData.ongoingFestivalCount,
+    upcomingCount: myPageData.upcomingFestivalCount,
   };
 
   const handleTokenCheck = () => {
@@ -49,8 +58,9 @@ const MyPage = () => {
   return (
     <>
       <MyPageLayout
-        name='공연주최사 이름'
+        name={myPageData.organizerName}
         roleLabel='주최'
+        profileImageUrl={myPageData.profileImageUrl}
         dashboard={
           <Dashboard
             ongoingCount={dashboardCounts.ongoingCount}
