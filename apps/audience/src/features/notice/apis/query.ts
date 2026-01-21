@@ -5,7 +5,7 @@ import type { PageSizeParams } from '@amp/shared/types';
 
 import { END_POINT } from '@shared/constants/end-point';
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
-import type { FestivalNoticesResponseData } from '@shared/types/home-response';
+import type { FestivalNoticesResponseData } from '@shared/types/notice-response';
 
 export const getFestivalNotices = (
   festivalId: number,

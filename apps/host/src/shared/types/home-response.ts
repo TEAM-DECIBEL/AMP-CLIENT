@@ -1,4 +1,3 @@
-import type { Announcement } from './announcement';
 import type { FestivalWithDDay } from './festival';
 
 export interface HomeSummary {
@@ -21,10 +20,5 @@ export interface HomeResponseData {
   summary: HomeSummary;
   ongoingFestivals: Festival[];
   upcomingFestivals: Festival[];
-  paginationResponse: PaginationResponse;
-}
-
-export interface FestivalNoticesResponseData {
-  announcements: Announcement[];
   paginationResponse: PaginationResponse;
 }

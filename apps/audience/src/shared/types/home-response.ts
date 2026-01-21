@@ -1,5 +1,3 @@
-import { Announcement } from './announcement';
-
 export interface AllFestivalItem {
   festivalId: number;
   title: string;
@@ -26,9 +24,4 @@ export interface PaginationResponse {
   size: number;
   hasNext: boolean;
   hasPrevious: boolean;
-}
-
-export interface FestivalNoticesResponseData {
-  announcements: Announcement[];
-  paginationResponse: PaginationResponse;
 }
