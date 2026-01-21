@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { data, useParams } from 'react-router';
 
 import { CircleButton } from '@amp/ads-ui';
 import {
@@ -10,7 +12,8 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
-import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
+import { CONGESTION_QUERY_OPTIONS } from '@features/notice-details/query';
+
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
@@ -20,7 +23,25 @@ type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 const NoticeListPage = () => {
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
 
+  const { eventId: eventIdParam } = useParams<{ eventId: string }>();
+  const eventId = Number(eventIdParam);
+
   const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
+
+  const { data: congestionData } = useQuery(
+    CONGESTION_QUERY_OPTIONS.STAGES(eventId, { page: 0, size: 10 }),
+  );
+
+  const liveItems =
+    congestionData?.stages.map((stage) => ({
+      id: stage.stageId,
+      title: stage.title,
+      location: stage.location,
+      congestionLevel: stage.congestionLevel,
+    })) ?? [];
+
+  console.log('congestionData:', JSON.stringify(congestionData, null, 2));
+  console.log('liveItems:', JSON.stringify(liveItems, null, 2));
 
   // TODO: API 연동 (공지 목록 불러오기)
 
@@ -51,7 +72,7 @@ const NoticeListPage = () => {
           />
         ) : (
           <section className={styles.currentContainer}>
-            <LiveButtonContainer items={LIVE_STATUS_MOCK} isDisabled={true} />
+            <LiveButtonContainer items={liveItems} isDisabled={true} />
           </section>
         )}
       </div>
