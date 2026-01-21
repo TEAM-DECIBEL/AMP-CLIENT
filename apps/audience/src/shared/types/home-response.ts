@@ -16,3 +16,17 @@ export interface UpcomingFestivalItem {
   wishList: boolean;
   dDay: number;
 }
+
+export interface PaginationResponse {
+  currentPage: number;
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  hasNext: boolean;
+  hasPrevious: boolean;
+}
+
+export interface AllFestivalsResponseData {
+  festivals: AllFestivalItem[];
+  pagination: PaginationResponse;
+}
