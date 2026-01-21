@@ -20,9 +20,9 @@ const Callback = () => {
     localStorage.setItem('accessToken', token);
 
     if (status === 'PENDING') {
-      navigate(ROUTE_PATH.ONBOARDING);
+      navigate(ROUTE_PATH.ONBOARDING, { replace: true });
     } else if (status === 'COMPLETED') {
-      navigate(ROUTE_PATH.HOME);
+      navigate(ROUTE_PATH.HOME, { replace: true });
     }
   }, [params, navigate]);
 
