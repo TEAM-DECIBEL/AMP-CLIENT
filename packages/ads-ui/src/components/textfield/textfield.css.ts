@@ -6,6 +6,10 @@ import { ampThemeVars } from '../../styles';
 
 export const iconColorVar = createVar();
 
+const iconPadding = {
+  padding: '1.3rem 1.6rem',
+} as const;
+
 export const textfield = recipe({
   base: {
     vars: {
@@ -31,7 +35,10 @@ export const textfield = recipe({
   variants: {
     variant: {
       default: { padding: '1.6rem 2rem' },
-      icon: { padding: '1.3rem 1.6rem' },
+      flag: iconPadding,
+      location: iconPadding,
+      date: iconPadding,
+      time: iconPadding,
     },
   },
 });

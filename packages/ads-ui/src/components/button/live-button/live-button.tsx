@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { ArrowIcon } from '../../../icons';
 
 import * as styles from './live-button.css';
@@ -7,6 +9,7 @@ type LiveButtonProps = {
   subText?: string;
   showIcon?: boolean;
   imageUrl: string;
+  isDisabled: boolean;
   onClick: () => void;
 };
 
@@ -15,12 +18,16 @@ const LiveButton = ({
   subText,
   showIcon = false,
   imageUrl,
+  isDisabled,
   onClick,
 }: LiveButtonProps) => {
   return (
     <button
       type='button'
-      className={styles.liveButtonContainer}
+      className={clsx(
+        styles.liveButtonContainer,
+        isDisabled && styles.disabled,
+      )}
       onClick={onClick}
     >
       <img src={imageUrl} alt={`${title} 썸네일`} className={styles.img} />

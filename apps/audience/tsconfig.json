@@ -12,5 +12,5 @@
       "@shared/*": ["src/shared/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "../../packages/compositions/src/notice-list-tab"]
 }
