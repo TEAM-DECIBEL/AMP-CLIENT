@@ -1,11 +1,27 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { CardNotice, EmptyView } from '@amp/ads-ui';
 
-import { savedNoticesData } from '@shared/mocks/saved-notices-data';
+import { SAVED_NOTICES_QUERY_OPTIONS } from '@features/saved-notice/query';
 
 import * as styles from './saved-notices.css';
 
 const SavedNoticesPage = () => {
-  if (savedNoticesData.notices.length === 0) {
+  const { data, isError } = useQuery(
+    SAVED_NOTICES_QUERY_OPTIONS.LIST({ page: 0, size: 20 }),
+  );
+
+  if (isError || !data) {
+    return (
+      <section className={styles.page}>
+        <div className={styles.empty}>
+          <EmptyView title='저장한 공지가 없어요' />
+        </div>
+      </section>
+    );
+  }
+
+  if (data.notices.length === 0) {
     return (
       <section className={styles.page}>
         <div className={styles.empty}>
@@ -18,14 +34,14 @@ const SavedNoticesPage = () => {
   return (
     <section className={styles.page}>
       <div className={styles.list}>
-        {savedNoticesData.notices.map((notice, index) => (
+        {data.notices.map((notice, index) => (
           <div key={notice.noticeId}>
             <CardNotice
-              imageUrl={notice.imageUrl ?? notice.festival.mainImageUrl}
+              imageUrl={notice.imageUrl ?? notice.imageUrl}
               title={notice.title}
-              content={notice.content}
+              content={notice.categoryName}
             />
-            {index < savedNoticesData.notices.length - 1 && (
+            {index < data.notices.length - 1 && (
               <div className={styles.divider} aria-hidden='true' />
             )}
           </div>
