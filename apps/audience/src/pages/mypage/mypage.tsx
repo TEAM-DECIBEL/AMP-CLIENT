@@ -1,7 +1,11 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
+import { Loading } from '@amp/compositions';
 import { LogoutModal, MyPageLayout } from '@amp/shared';
+
+import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
@@ -21,6 +25,9 @@ const menuItems = [
 const MyPage = () => {
   const navigate = useNavigate();
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+  const { data: myPageData, isPending } = useQuery(
+    MY_PAGE_QUERY_OPTIONS.MY_PAGE(),
+  );
   const handleLogoutOpen = () => {
     setIsLogoutOpen(true);
   };
@@ -31,11 +38,20 @@ const MyPage = () => {
     setIsLogoutOpen(false);
   };
 
+  if (isPending) {
+    return <Loading />;
+  }
+
+  if (!myPageData) {
+    return null;
+  }
+
   return (
     <>
       <MyPageLayout
-        name='관객 이름'
+        name={myPageData.nickname}
         roleLabel='관객'
+        profileImageUrl={myPageData.profileImageUrl}
         menuItems={menuItems.map((menu) => ({
           id: menu.id,
           label: menu.label,
