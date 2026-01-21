@@ -20,7 +20,7 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
-import { NOTICES_QUERY_OPTIONS } from '@features/notice/apis/query';
+import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 
 import { useLiveStatus } from '@shared/hooks/use-live-status';
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
