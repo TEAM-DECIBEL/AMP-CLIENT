@@ -14,7 +14,7 @@ const Login = () => {
   return (
     <div className={styles.container}>
       <ResultView
-        title={`흩어져 있던 공연 공지를\n관객에게 가장 가까이`}
+        title={`작은 공지도 크게 울리는\n공연 공지의 공식, AMP`}
         image={<img src={IMAGES.ONBOARDING} alt='로그인 안내 이미지' />}
       />
       <div className={styles.ctaButtonContainer}>
