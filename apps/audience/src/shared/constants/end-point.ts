@@ -5,6 +5,8 @@ export const END_POINT = {
   GET_UPCOMING_FESTIVAL: '/users/me/festivals/recent',
   PUT_WISH_LIST: (festivalId: number) =>
     `/users/me/festivals/${festivalId}/wishList`,
+  // 마이페이지
+  GET_MY_PAGE: '/users/mypage',
   //온보딩
   POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
 } as const;
