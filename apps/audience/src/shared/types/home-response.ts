@@ -1,3 +1,5 @@
+import { Announcement } from './announcement';
+
 export interface AllFestivalItem {
   festivalId: number;
   title: string;
@@ -15,4 +17,18 @@ export interface UpcomingFestivalItem {
   status: string;
   wishList: boolean;
   dDay: number;
+}
+
+export interface PaginationResponse {
+  currentPage: number;
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  hasNext: boolean;
+  hasPrevious: boolean;
+}
+
+export interface FestivalNoticesResponseData {
+  announcements: Announcement[];
+  paginationResponse: PaginationResponse;
 }

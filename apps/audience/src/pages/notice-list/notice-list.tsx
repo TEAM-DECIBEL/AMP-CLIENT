@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
+import { useParams } from 'react-router';
 
 import {
   AddToWatchButton,
@@ -18,6 +20,8 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
+import { NOTICES_QUERY_OPTIONS } from '@features/notice/apis/query';
+
 import { useLiveStatus } from '@shared/hooks/use-live-status';
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
@@ -35,7 +39,19 @@ const NoticeListPage = () => {
 
   const { toggleAlert } = useNoticeAlert();
 
-  const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
+  const { festivalId } = useParams<{ festivalId: string }>();
+
+  const { data } = useQuery(
+    NOTICES_QUERY_OPTIONS.LIST(Number(festivalId), {
+      page: 0,
+      size: 20,
+    }),
+  );
+
+  const announcements = data?.announcements ?? [];
+
+  const { selectedCategory, noticeList, handleChipClick } =
+    useNoticeList(announcements);
 
   const handleNoticeItemClick = (id: number) => {
     // TODO: 공지 상세 페이지 이동 등 로직 추가
