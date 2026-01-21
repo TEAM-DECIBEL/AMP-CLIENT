@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router';
 import { CtaButton } from '@amp/ads-ui';
 import { NicknameForm, ResultView } from '@amp/compositions';
 
+import { useOnboardingCompleteMutation } from '@features/onboarding/use-onboarding';
+
 import { IMAGES } from '@shared/assets';
 import { ROUTE_PATH } from '@shared/constants/path';
 
@@ -19,6 +21,8 @@ const Onboarding = () => {
   const disabled = step === 1 ? name.trim().length === 0 : false;
   const selected = !disabled;
 
+  const { mutate } = useOnboardingCompleteMutation();
+
   const ctaTextByStep: Record<number, string> = {
     1: '다음으로',
     2: '시작하기',
@@ -27,10 +31,23 @@ const Onboarding = () => {
   const handleNext = () => {
     if (step === 1) {
       setStep(2);
+      mutate(
+        { nickname: name, userType: 'AUDIENCE' },
+        {
+          onSuccess: () => {
+            navigate(ROUTE_PATH.HOME, { replace: true });
+          },
+          onError: () => {
+            navigate(ROUTE_PATH.LOGIN, { replace: true });
+          },
+        },
+      );
+      return;
     } else if (step === 2) {
       navigate(ROUTE_PATH.HOME);
     }
   };
+
   return (
     <div className={styles.container}>
       {step === 1 && (
@@ -39,8 +56,8 @@ const Onboarding = () => {
       {step === 2 && (
         <div className={styles.ResultViewContainer}>
           <ResultView
-            title='주최사 가입이 완료됐어요!'
-            description='이제 공연을 등록하고 공지를 올려보세요.'
+            title='관객으로 가입이 완료됐어요!'
+            description='관람할 공연의 공지를 바로 확인해보세요.'
             image={<img src={IMAGES.LOGIN_COMPLETE} alt='' />}
           />
         </div>
