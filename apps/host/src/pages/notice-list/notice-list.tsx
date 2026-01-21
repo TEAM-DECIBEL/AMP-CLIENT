@@ -22,8 +22,6 @@ const NoticeListPage = () => {
 
   const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
 
-  // TODO: API 연동 (공지 목록 불러오기)
-
   const handleNoticeItemClick = (id: number) => {
     // TODO: 공지 상세 페이지 이동 등 로직 추가
   };
