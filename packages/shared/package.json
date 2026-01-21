@@ -4,7 +4,8 @@
   "exports": {
     ".": "./src/compositions/index.ts",
     "./hooks": "./src/hooks/index.ts",
-    "./utils": "./src/utils/index.ts"
+    "./utils": "./src/utils/index.ts",
+    "./types": "./src/types/index.ts"
   },
   "scripts": {
     "build": "tsc -b",
