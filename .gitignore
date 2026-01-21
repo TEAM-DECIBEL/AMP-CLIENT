@@ -36,6 +36,7 @@ packages/**/src/**/*.js
 
 .env
 
+.env
 # PWA dev assets
 dev-dist
 devDist

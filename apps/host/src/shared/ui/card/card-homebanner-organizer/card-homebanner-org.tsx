@@ -1,3 +1,5 @@
+import homeBannerImage from '@shared/assets/images/home-banner.webp';
+
 import * as styles from './card-homebanner-org.css';
 
 interface CardHomebannerOrgProps {
@@ -8,7 +10,7 @@ const CardHomebannerOrg = ({ nickname }: CardHomebannerOrgProps) => {
   return (
     <article className={styles.bannerStyle}>
       <img
-        src=''
+        src={homeBannerImage}
         alt='homebanner_branding_img'
         className={styles.imgStyle}
       ></img>

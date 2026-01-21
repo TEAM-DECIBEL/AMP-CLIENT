@@ -11,6 +11,7 @@ export const card = style({
   border: `1px solid ${ampThemeVars.color.gray_200}`,
   padding: '0.9rem 1rem',
   textAlign: 'left',
+  width: '100%',
 });
 
 export const image = style({
