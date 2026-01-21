@@ -4,4 +4,6 @@ export const END_POINT = {
 
   // 공연 등록 화면
   POST_FESTIVAL_CREATE: '/organizer/festivals',
+  // 온보딩
+  POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
 } as const;
