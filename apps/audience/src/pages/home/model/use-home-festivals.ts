@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import { TAB_ALL, type TabValue } from '@widgets/home/constants/home-tabs';
 
-import {
-  allFestivalData,
-  upcomingFestivalData,
-} from '@shared/mocks/home-festival-data';
+import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
+
+import { upcomingFestivalData } from '@shared/mocks/home-festival-data';
 import type {
   AllFestivalItem,
   UpcomingFestivalItem,
@@ -13,12 +13,19 @@ import type {
 
 const useHomeFestivals = () => {
   const [selectedTab, setSelectedTab] = useState<TabValue>(TAB_ALL);
-  const [allFestivals, setAllFestivals] = useState<AllFestivalItem[]>(
-    allFestivalData.data.festivals,
-  );
+  const [allFestivals, setAllFestivals] = useState<AllFestivalItem[]>([]);
   const [upcomingFestivals, setUpcomingFestivals] = useState<
     UpcomingFestivalItem[]
   >(upcomingFestivalData.data.festivals);
+  const { data: allFestivalsData } = useQuery(
+    HOME_QUERY_OPTIONS.ALL_FESTIVALS({ page: 0, size: 20 }),
+  );
+
+  useEffect(() => {
+    if (allFestivalsData?.festivals) {
+      setAllFestivals(allFestivalsData.festivals);
+    }
+  }, [allFestivalsData]);
 
   const removeById = <T extends { festivalId: number }>(
     list: T[],
