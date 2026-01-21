@@ -22,6 +22,12 @@ export const getPlannedFestivals = (params: PageSizeParams = {}) =>
     params,
   );
 
+export const getUpcomingFestival = (params: PageSizeParams = {}) =>
+  get<UpcomingFestivalsResponseData, PageSizeParams>(
+    END_POINT.GET_UPCOMING_FESTIVAL,
+    params,
+  );
+
 export const HOME_QUERY_OPTIONS = {
   ALL_FESTIVALS: (params: PageSizeParams = {}) =>
     queryOptions({
@@ -32,5 +38,10 @@ export const HOME_QUERY_OPTIONS = {
     queryOptions({
       queryKey: [...USERS_QUERY_KEY.HOME_FESTIVALS_PLANNED(), params],
       queryFn: () => getPlannedFestivals(params),
+    }),
+  UPCOMING_FESTIVAL: (params: PageSizeParams = {}) =>
+    queryOptions({
+      queryKey: [...USERS_QUERY_KEY.HOME_FESTIVAL_UPCOMING(), params],
+      queryFn: () => getUpcomingFestival(params),
     }),
 } as const;
