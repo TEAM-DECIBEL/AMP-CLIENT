@@ -3,4 +3,6 @@ export const END_POINT = {
   GET_ALL_FESTIVALS: '/users/festivals',
   GET_PLANNED_FESTIVALS: '/users/me/festivals',
   GET_UPCOMING_FESTIVAL: '/users/me/festivals/recent',
+  PUT_WISH_LIST: (festivalId: number) =>
+    `/users/me/festivals/${festivalId}/wishList`,
 };
