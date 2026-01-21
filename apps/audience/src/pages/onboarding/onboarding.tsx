@@ -30,12 +30,11 @@ const Onboarding = () => {
 
   const handleNext = () => {
     if (step === 1) {
-      setStep(2);
       mutate(
         { nickname: name, userType: 'AUDIENCE' },
         {
           onSuccess: () => {
-            navigate(ROUTE_PATH.HOME, { replace: true });
+            setStep(2);
           },
           onError: () => {
             navigate(ROUTE_PATH.LOGIN, { replace: true });
@@ -44,7 +43,7 @@ const Onboarding = () => {
       );
       return;
     } else if (step === 2) {
-      navigate(ROUTE_PATH.HOME);
+      navigate(ROUTE_PATH.HOME, { replace: true });
     }
   };
 

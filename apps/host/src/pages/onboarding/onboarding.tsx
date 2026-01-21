@@ -30,21 +30,20 @@ const Onboarding = () => {
 
   const handleNext = () => {
     if (step === 1) {
-      setStep(2);
-      return;
+      mutate(
+        { organizerName: name, userType: 'ORGANIZER' },
+        {
+          onSuccess: () => {
+            setStep(2);
+          },
+          onError: () => {
+            navigate(ROUTE_PATH.LOGIN, { replace: true });
+          },
+        },
+      );
+    } else if (step === 2) {
+      navigate(ROUTE_PATH.HOME, { replace: true });
     }
-
-    mutate(
-      { organizerName: name, userType: 'ORGANIZER' },
-      {
-        onSuccess: () => {
-          navigate(ROUTE_PATH.HOME, { replace: true });
-        },
-        onError: () => {
-          navigate(ROUTE_PATH.LOGIN, { replace: true });
-        },
-      },
-    );
   };
 
   return (
