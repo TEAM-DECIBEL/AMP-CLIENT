@@ -3,4 +3,6 @@ export const END_POINT = {
   GET_HOME_FESTIVALS: '/organizer/me/festivals/active',
   // 마이페이지
   GET_MY_PAGE: '/organizer/mypage',
+  // 로그아웃
+  POST_LOGOUT: '/auth/logout',
 } as const;
