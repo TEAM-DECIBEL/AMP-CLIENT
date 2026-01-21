@@ -17,7 +17,7 @@ const Login = () => {
     <div className={styles.container}>
       <ResultView
         title={`작은 공지도 크게 울리는\n공연 공지의 공식, AMP`}
-        image={<img src={IMAGES.ONBOARDING} alt='로그인 안내 이미지' />}
+        image={<img src={IMAGES.ONBOARDING} />}
       />
       <div className={styles.ctaButtonContainer}>
         <CtaButton type='icon' color='white' onClick={handleLoginClick}>

@@ -1,4 +1,4 @@
 export interface OnboardingCompleteBody {
   organizerName: string;
-  userType: string;
+  userType: 'ORGANIZER' | 'AUDIENCE';
 }

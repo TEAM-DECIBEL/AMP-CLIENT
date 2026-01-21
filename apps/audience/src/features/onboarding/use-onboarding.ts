@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import { postOnboardingComplete } from '@features/onboarding/query';
 
-import { OnboardingCompleteBody } from '@shared/types/onboarding';
+import type { OnboardingCompleteBody } from '@shared/types/onboarding';
 
 export const useOnboardingCompleteMutation = () => {
   return useMutation({
