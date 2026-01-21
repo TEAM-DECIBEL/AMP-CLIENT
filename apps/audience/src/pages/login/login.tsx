@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    //TODO: API 연결
+    window.location.href = `${import.meta.env.VITE_AUDIENCE_BASE_URL}/oauth2/authorization/google`;
   };
 
   const handleSkipLogin = () => {
@@ -23,7 +23,7 @@ const Login = () => {
     <div className={styles.container}>
       <ResultView
         title={`흩어져 있던 공연 공지를\n관객에게 가장 가까이`}
-        image={<img src={IMAGES.ONBOARDING} alt='로그인 안내 이미지' />}
+        image={<img src={IMAGES.ONBOARDING} alt='' />}
       />
       <div className={styles.ctaButtonContainer}>
         <CtaButton type='icon' color='white' onClick={handleLoginClick}>
