@@ -1,5 +1,5 @@
 import cardHome from './card-home.webp';
-import emptyAlert from './img_empty_alert.svg?url';
+import emptyAlert from './img_empty_alert.svg';
 import logo from './logo.webp';
 
 export const IMAGES = {
