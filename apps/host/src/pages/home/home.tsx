@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
-x;
+
 import { CtaButton } from '@amp/ads-ui';
 import { ButtonGradientSection } from '@amp/compositions';
 
