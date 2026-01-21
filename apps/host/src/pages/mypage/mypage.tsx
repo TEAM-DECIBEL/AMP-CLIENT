@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { toast } from '@amp/ads-ui';
 import { LogoutModal, MyPageLayout } from '@amp/shared';
 
+import { postLogout } from '@features/auth/apis/query';
 import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
 import { ROUTE_PATH } from '@shared/constants/path';
@@ -28,6 +29,9 @@ const MyPage = () => {
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
   const { data: myPageData } = useQuery(MY_PAGE_QUERY_OPTIONS.MYPAGE());
+  const logoutMutation = useMutation({
+    mutationFn: postLogout,
+  });
 
   if (!myPageData) {
     return null;
@@ -40,6 +44,17 @@ const MyPage = () => {
 
   const handleTokenCheck = () => {
     toast.show('현재 준비중인 기능이에요!');
+  };
+  const handleLogoutConfirm = () => {
+    logoutMutation.mutate(undefined, {
+      onSuccess: () => {
+        setLogoutOpen(false);
+        navigate(ROUTE_PATH.LOGIN);
+      },
+      onError: () => {
+        toast.show('로그아웃에 실패했어요.');
+      },
+    });
   };
   const handleMenuItemClick = (menu: (typeof menuItems)[number]) => {
     if (menu.id === 'token-check') {
@@ -77,7 +92,7 @@ const MyPage = () => {
       <LogoutModal
         open={isLogoutOpen}
         onClose={() => setLogoutOpen(false)}
-        onConfirm={() => setLogoutOpen(false)}
+        onConfirm={handleLogoutConfirm}
       />
     </>
   );
