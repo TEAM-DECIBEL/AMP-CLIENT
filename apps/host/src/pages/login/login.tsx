@@ -8,7 +8,7 @@ import * as styles from './login.css';
 
 const Login = () => {
   const handleLoginClick = () => {
-    //TODO: API 연결
+    window.location.href = `${import.meta.env.VITE_HOST_BASE_URL}/oauth2/authorization/google`;
   };
 
   return (
