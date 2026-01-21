@@ -37,3 +37,12 @@ export interface UpcomingFestivalsResponseData {
   festivals: UpcomingFestivalItem[];
   pagination: PaginationResponse;
 }
+
+export interface WishListRequest {
+  wishList: boolean;
+}
+
+export interface WishListResponseData {
+  festivalId: number;
+  wishList: boolean;
+}
