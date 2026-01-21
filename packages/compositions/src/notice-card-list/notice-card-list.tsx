@@ -3,7 +3,7 @@ import { CardNotice, EmptyView } from '@amp/ads-ui';
 import * as styles from './notice-card-list.css';
 
 // TODO: 현재는 목데이터 기준, 추후 type에서 import
-interface NoticeItem {
+export interface NoticeItem {
   announcementId: number;
   imageUrl: string | null;
   title: string;

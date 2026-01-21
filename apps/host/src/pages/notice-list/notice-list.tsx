@@ -1,41 +1,31 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
-import { CircleButton, Tabs } from '@amp/ads-ui';
+import { CircleButton } from '@amp/ads-ui';
 import {
-  CATEGORIES,
-  CategorySection,
-  CategoryType,
+  LiveButtonContainer,
+  NOTICE_TAB,
   NoticeBanner,
-  NoticeCardList,
+  NoticeListTab,
+  NoticeTabContent,
 } from '@amp/compositions';
+import { useNoticeList } from '@amp/shared/hooks';
 
-import { FESTIVAL_MOCK, MOCK_DATA } from '@shared/mocks/notice-list';
+import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
+import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
 
+type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
+
 const NoticeListPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
-    CATEGORIES[0],
-  );
+  const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
+
+  const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
 
   // TODO: API 연동 (공지 목록 불러오기)
 
-  const sortedList = useMemo(() => {
-    const filtered =
-      selectedCategory === '전체'
-        ? MOCK_DATA
-        : MOCK_DATA.filter((item) => item.categoryName === selectedCategory);
-
-    return [...filtered].sort((a, b) => {
-      if (a.isPinned !== b.isPinned) {
-        return a.isPinned ? -1 : 1;
-      }
-      return 0;
-    });
-  }, [selectedCategory]);
-
-  const handleChipClick = (category: CategoryType) => {
-    setSelectedCategory(category);
+  const handleNoticeItemClick = (id: number) => {
+    // TODO: 공지 상세 페이지 이동 등 로직 추가
   };
 
   return (
@@ -48,29 +38,31 @@ const NoticeListPage = () => {
         date={FESTIVAL_MOCK.date}
       />
       <div className={styles.mainContent}>
-        <header className={styles.contentHeader}>
-          <nav>
-            {/* TODO: 탭바 value에 따른 뷰 조건부 렌더링 */}
-            <Tabs defaultValue='notice' variant='notice'>
-              <Tabs.List>
-                <Tabs.Trigger value='notice'>주최 공지</Tabs.Trigger>
-                <Tabs.Trigger value='status'>현장 상황</Tabs.Trigger>
-              </Tabs.List>
-            </Tabs>
-          </nav>
-          <CategorySection
+        <nav className={styles.contentHeader}>
+          <NoticeListTab onChange={setActiveTab} />
+        </nav>
+
+        {activeTab === NOTICE_TAB.NOTICE ? (
+          <NoticeTabContent
             selectedCategory={selectedCategory}
-            onSelect={handleChipClick}
+            noticeList={noticeList}
+            onSelectCategory={handleChipClick}
+            onNoticeItemClick={handleNoticeItemClick}
           />
-        </header>
-        <NoticeCardList notices={sortedList} onItemClick={() => {}} />
+        ) : (
+          <section className={styles.currentContainer}>
+            <LiveButtonContainer items={LIVE_STATUS_MOCK} isDisabled={true} />
+          </section>
+        )}
       </div>
-      <div className={styles.buttonContainer}>
-        <div className={styles.button}>
-          {/* TODO: 뷰 이동 로직 추가 */}
-          <CircleButton type='write' onClick={() => {}} />
+      {activeTab === NOTICE_TAB.NOTICE && (
+        <div className={styles.buttonContainer}>
+          <div className={styles.button}>
+            {/* TODO: 뷰 이동 로직 추가 */}
+            <CircleButton type='write' onClick={() => {}} />
+          </div>
         </div>
-      </div>
+      )}
     </main>
   );
 };

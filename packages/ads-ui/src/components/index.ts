@@ -1,6 +1,7 @@
 export { default as BottomSheet } from './bottom-sheet/bottom-sheet';
 export { default as OptionSheet } from './bottom-sheet/option-sheet/option-sheet';
 export { default as StatusSheet } from './bottom-sheet/status-sheet/status-sheet';
+export type { StatusSheetValue } from './bottom-sheet/status-sheet/status-sheet.constants';
 export { default as AddImageButton } from './button/add-image-button/add-image-button';
 export { default as AddToWatchButton } from './button/add-to-watch/add-to-watch';
 export { default as CategoryButton } from './button/category-button/category-button';

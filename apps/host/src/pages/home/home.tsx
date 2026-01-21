@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
-
+x;
 import { CtaButton } from '@amp/ads-ui';
 import { ButtonGradientSection } from '@amp/compositions';
 
 import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
 
 import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
+
 import { ROUTE_PATH } from '@shared/constants/path';
 import CardHomebannerOrg from '@shared/ui/card/card-homebanner-organizer/card-homebanner-org';
 import Tooltip from '@shared/ui/tooltip/tooltip';
@@ -29,7 +30,7 @@ const HomePage = () => {
   const showTooltip = summary.ongoingCount === 0 && summary.upcomingCount === 0;
 
   const handleCreateClick = () => {
-    navigate(`${ROUTE_PATH.EVENT_CREATE}`);
+    navigate(ROUTE_PATH.EVENT_CREATE);
   };
 
   return (
