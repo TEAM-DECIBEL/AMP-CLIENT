@@ -39,10 +39,10 @@ const NoticeListPage = () => {
 
   const { toggleAlert } = useNoticeAlert();
 
-  const { festivalId } = useParams<{ festivalId: string }>();
+  const { eventId } = useParams<{ eventId: string }>();
 
   const { data } = useQuery(
-    NOTICES_QUERY_OPTIONS.LIST(Number(festivalId), {
+    NOTICES_QUERY_OPTIONS.LIST(Number(eventId), {
       page: 0,
       size: 20,
     }),

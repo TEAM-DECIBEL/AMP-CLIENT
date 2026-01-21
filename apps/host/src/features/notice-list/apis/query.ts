@@ -8,19 +8,19 @@ import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
 import type { FestivalNoticesResponseData } from '@shared/types/notice-response';
 
 export const getFestivalNotices = (
-  festivalId: number,
+  eventId: number,
   params: PageSizeParams = {},
 ) =>
   get<FestivalNoticesResponseData, PageSizeParams>(
-    END_POINT.GET_FESTIVAL_NOTICES(festivalId),
+    END_POINT.GET_FESTIVAL_NOTICES(eventId),
     params,
   );
 
 export const NOTICES_QUERY_OPTIONS = {
-  LIST: (festivalId: number, params: PageSizeParams = {}) =>
+  LIST: (eventId: number, params: PageSizeParams = {}) =>
     queryOptions({
-      queryKey: [...ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICES(festivalId), params],
-      queryFn: () => getFestivalNotices(festivalId, params),
-      enabled: Number.isFinite(festivalId),
+      queryKey: [...ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICES(eventId), params],
+      queryFn: () => getFestivalNotices(eventId, params),
+      enabled: Number.isFinite(eventId),
     }),
 } as const;

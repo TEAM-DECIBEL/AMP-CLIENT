@@ -1,8 +1,8 @@
 export const USERS_QUERY_KEY = {
   ALL: ['users'],
-  FESTIVAL_NOTICES: (festivalId: number) => [
+  FESTIVAL_NOTICES: (eventId: number) => [
     ...USERS_QUERY_KEY.ALL,
     'festival-notices',
-    festivalId,
+    eventId,
   ],
 } as const;

@@ -22,10 +22,10 @@ type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
 const NoticeListPage = () => {
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
-  const { festivalId } = useParams<{ festivalId: string }>();
+  const { eventId } = useParams<{ eventId: string }>();
 
   const { data } = useQuery(
-    NOTICES_QUERY_OPTIONS.LIST(Number(festivalId), {
+    NOTICES_QUERY_OPTIONS.LIST(Number(eventId), {
       page: 0,
       size: 20,
     }),

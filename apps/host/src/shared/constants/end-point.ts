@@ -3,6 +3,6 @@ export const END_POINT = {
   GET_HOME_FESTIVALS: '/organizer/me/festivals/active',
 
   // 주최 공지
-  GET_FESTIVAL_NOTICES: (festivalId: number) =>
-    `/common/festivals/${festivalId}/notices`,
+  GET_FESTIVAL_NOTICES: (eventId: number) =>
+    `/common/festivals/${eventId}/notices`,
 } as const;
