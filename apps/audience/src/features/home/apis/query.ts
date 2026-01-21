@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
-import { PageSizeParams } from 'node_modules/@amp/shared/src/types';
 
 import { get, put } from '@amp/apis';
+import type { PageSizeParams } from '@amp/shared/types';
 
 import { END_POINT } from '@shared/constants/end-point';
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
@@ -31,10 +31,7 @@ export const getUpcomingFestival = (params: PageSizeParams = {}) =>
     params,
   );
 
-export const putWishList = (
-  festivalId: number,
-  body: WishListRequest,
-) =>
+export const putWishList = (festivalId: number, body: WishListRequest) =>
   put<WishListResponseData, WishListRequest>(
     END_POINT.PUT_WISH_LIST(festivalId),
     body,

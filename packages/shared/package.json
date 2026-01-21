@@ -4,6 +4,7 @@
   "exports": {
     ".": "./src/compositions/index.ts",
     "./hooks": "./src/hooks/index.ts",
+    "./types": "./src/types/index.ts",
     "./utils": "./src/utils/index.ts"
   },
   "scripts": {
