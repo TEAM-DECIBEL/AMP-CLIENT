@@ -2,19 +2,21 @@
 
 import { initializeApp } from 'firebase/app';
 import { getMessaging, onBackgroundMessage } from 'firebase/messaging/sw';
-import {
-  createHandlerBoundToURL,
-  precacheAndRoute,
-  type PrecacheEntry,
-} from 'workbox-precaching';
-import { NavigationRoute, registerRoute } from 'workbox-routing';
+import { precacheAndRoute, type PrecacheEntry } from 'workbox-precaching';
+import { registerRoute } from 'workbox-routing';
+import { NetworkFirst } from 'workbox-strategies';
 
 declare let self: ServiceWorkerGlobalScope & {
   __WB_MANIFEST: Array<PrecacheEntry | string>;
 };
 
 precacheAndRoute(self.__WB_MANIFEST);
-registerRoute(new NavigationRoute(createHandlerBoundToURL('/index.html')));
+
+registerRoute(
+  ({ request }) => request.mode === 'navigate',
+  new NetworkFirst({ cacheName: 'html-cache' }),
+);
+
 
 const firebaseApp = initializeApp({
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -31,7 +33,5 @@ onBackgroundMessage(messaging, (payload) => {
   const title = payload.notification?.title ?? '알림';
   const body = payload.notification?.body ?? '';
 
-  self.registration.showNotification(title, {
-    body,
-  });
+  self.registration.showNotification(title, { body });
 });
