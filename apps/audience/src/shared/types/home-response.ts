@@ -38,6 +38,16 @@ export interface UpcomingFestivalsResponseData {
   pagination: PaginationResponse;
 }
 
+export interface UpcomingFestivalResponseData {
+  festivalId: number;
+  title: string;
+  mainImageUrl: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  dday: number;
+}
+
 export interface WishListRequest {
   wishList: boolean;
 }

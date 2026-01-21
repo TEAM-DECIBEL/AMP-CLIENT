@@ -7,6 +7,7 @@ import { END_POINT } from '@shared/constants/end-point';
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
 import type {
   AllFestivalsResponseData,
+  UpcomingFestivalResponseData,
   UpcomingFestivalsResponseData,
   WishListRequest,
   WishListResponseData,
@@ -25,7 +26,7 @@ export const getPlannedFestivals = (params: PageSizeParams = {}) =>
   );
 
 export const getUpcomingFestival = (params: PageSizeParams = {}) =>
-  get<UpcomingFestivalsResponseData, PageSizeParams>(
+  get<UpcomingFestivalResponseData, PageSizeParams>(
     END_POINT.GET_UPCOMING_FESTIVAL,
     params,
   );

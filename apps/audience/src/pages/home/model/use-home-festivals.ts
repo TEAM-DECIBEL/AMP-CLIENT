@@ -145,7 +145,16 @@ const useHomeFestivals = () => {
   return {
     allFestivals,
     upcomingFestivals,
-    bannerFestival: upcomingFestivalData?.festivals?.[0],
+    bannerFestival: upcomingFestivalData
+      ? {
+          festivalId: upcomingFestivalData.festivalId,
+          title: upcomingFestivalData.title,
+          mainImageUrl: upcomingFestivalData.mainImageUrl,
+          location: upcomingFestivalData.location,
+          period: `${upcomingFestivalData.startDate} ~ ${upcomingFestivalData.endDate}`,
+          dDay: upcomingFestivalData.dday,
+        }
+      : undefined,
     selectedTab,
     setSelectedTab,
     handleToggleAllFestival,
