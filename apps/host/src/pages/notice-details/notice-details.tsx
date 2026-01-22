@@ -1,14 +1,25 @@
+import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
+import { useParams } from 'react-router';
 
 import { CtaButton, Modal, RectButton } from '@amp/ads-ui';
 import { PenIcon, TrashIcon } from '@amp/ads-ui/icons';
 import { NoticeDetailLayout } from '@amp/compositions';
 
-import { MOCK_DATA } from '@shared/mocks/notice-details';
+import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-detail/query';
 
 import * as styles from './notice-details.css';
 
 const NoticeDetailsPage = () => {
+  const { noticeId } = useParams<{ noticeId: string }>();
+  const noticeIdNumber = Number(noticeId);
+
+  const { data } = useQuery(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
+
+  if (!data) {
+    return null;
+  }
+
   const handleDeleteClick = () => {
     overlay.open(({ isOpen, close, unmount }) => (
       <Modal
@@ -51,7 +62,7 @@ const NoticeDetailsPage = () => {
 
   return (
     <NoticeDetailLayout>
-      <NoticeDetailLayout.Content data={MOCK_DATA} />
+      <NoticeDetailLayout.Content data={data} />
       <NoticeDetailLayout.Actions>
         {/* TODO: 수정하기 뷰 라우팅 */}
         <CtaButton

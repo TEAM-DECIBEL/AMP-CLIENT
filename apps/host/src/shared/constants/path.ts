@@ -9,4 +9,5 @@ export const ROUTE_PATH = {
   LOGIN: '/login',
   HOME: '/',
   AUTH_REQUIRED: '/auth/required',
+  CALLBACK: '/callback',
 } as const;

@@ -1,3 +1,5 @@
+import { Announcement } from './announcement';
+
 export interface PaginationResponse {
   currentPage: number;
   totalPages: number;
@@ -16,8 +18,12 @@ export interface SavedNotice {
   imageUrl: string;
 }
 
-// 최종 API 응답 data 타입
 export interface SavedNoticesResponseData {
   notices: SavedNotice[];
   pagination: PaginationResponse;
+}
+
+export interface FestivalNoticesResponseData {
+  announcements: Announcement[];
+  paginationResponse: PaginationResponse;
 }
