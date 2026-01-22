@@ -1,12 +1,10 @@
 import crowded from './crowded.webp';
-import none from './none.webp';
-import normal from './normal.webp';
-
 import emptyNotice from './empty-notice.webp';
 import homeBannerAudience from './homebanner-audience.svg';
 import homeBannerAudienceNone from './homebanner-audience-none.svg';
 import emptyNoticeCard from './img-empty-notice.webp';
-
+import none from './none.webp';
+import normal from './normal.webp';
 import noticeBanner from './notice-banner.webp';
 import smooth from './smooth.webp';
 
