@@ -4,7 +4,7 @@ import * as styles from './live-button-container.css';
 
 interface LiveButtonContainerProps {
   items: {
-    id: number;
+    stageId: number;
     title: string;
     location?: string | null;
     congestionLevel: string;
@@ -14,11 +14,12 @@ interface LiveButtonContainerProps {
   onClick?: (id: number) => void;
 }
 
-// TODO: 추후 실제 이미지 import 하고 변경
+// TODO: 이전 PR 머지하고 다시 확인
 const STATUS_IMAGES: Record<StatusSheetValue, string> = {
-  여유: 'https://dummyimage.com/600x360/27ae60/ffffff&text=LOW',
-  보통: 'https://dummyimage.com/600x360/f1c40f/ffffff&text=MEDIUM',
-  혼잡: 'https://dummyimage.com/600x360/e74c3c/ffffff&text=HIGH',
+  SMOOTH: 'https://dummyimage.com/600x360/27ae60/ffffff&text=LOW',
+  NORMAL: 'https://dummyimage.com/600x360/f1c40f/ffffff&text=MEDIUM',
+  CROWDED: 'https://dummyimage.com/600x360/e74c3c/ffffff&text=HIGH',
+  NONE: '',
 };
 
 const LiveButtonContainer = ({
@@ -35,13 +36,13 @@ const LiveButtonContainer = ({
 
         return (
           <LiveButton
-            key={item.id}
+            key={item.stageId}
             title={item.title}
             subText={item.location ?? ''}
             imageUrl={statusImageUrl}
             showIcon={showIcon}
             isDisabled={isDisabled}
-            onClick={() => onClick?.(item.id)}
+            onClick={() => onClick?.(item.stageId)}
           />
         );
       })}

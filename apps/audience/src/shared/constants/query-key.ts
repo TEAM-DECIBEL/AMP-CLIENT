@@ -9,4 +9,6 @@ export const USERS_QUERY_KEY = {
     ...USERS_QUERY_KEY.ALL,
     'home-festivals-upcoming',
   ],
+  STAGE_CONGESTION: (stageId: number) =>
+    [...USERS_QUERY_KEY.ALL, 'stages', stageId, 'congestion'] as const,
 } as const;

@@ -18,7 +18,7 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
-import { useLiveStatus } from '@shared/hooks/use-live-status';
+import useLiveStatus from '@shared/hooks/use-live-status';
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
