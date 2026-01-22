@@ -4,7 +4,10 @@ export const END_POINT = {
     `/common/notices/${noticeId}`,
   GET_FESTIVAL_NOTICES: (eventId: number) =>
     `/common/festivals/${eventId}/notices`,
-  POST_FESTIVAL_NOTIFICATIONS_SUBSCRIBE : (festivalId: number,categoryCode: string )=> `/festivals/${festivalId}/users/notifications/${categoryCode}/subscribe`,
+  POST_FESTIVAL_NOTIFICATIONS_SUBSCRIBE: (
+    festivalId: number,
+    categoryCode: string,
+  ) => `/festivals/${festivalId}/users/notifications/${categoryCode}/subscribe`,
 
   // 홈 화면
   GET_ALL_FESTIVALS: '/users/festivals',
@@ -19,7 +22,6 @@ export const END_POINT = {
 
   //온보딩
   POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
-
 
   // 로그아웃
   POST_LOGOUT: '/api/auth/logout',

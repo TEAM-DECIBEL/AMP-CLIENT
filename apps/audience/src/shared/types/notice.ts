@@ -15,6 +15,6 @@ export interface SavedNotice {
   };
 }
 
-export interface NotificationSubscribeBody{
+export interface NotificationSubscribeBody {
   fcmToken: string;
 }

@@ -32,7 +32,7 @@ export const NOTICES_QUERY_OPTIONS = {
     }),
 } as const;
 
-  export const postNotificationsSubscribe = (
+export const postNotificationsSubscribe = (
   festivalId: number,
   categoryCode: string,
   body: NotificationSubscribeBody,
@@ -42,4 +42,3 @@ export const NOTICES_QUERY_OPTIONS = {
     body,
   );
 };
-

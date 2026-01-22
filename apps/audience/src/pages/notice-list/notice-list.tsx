@@ -37,7 +37,6 @@ const NoticeListPage = () => {
 
   const { eventId } = useParams<{ eventId: string }>();
   const festivalId = Number(eventId);
-  
 
   const { data } = useQuery(
     NOTICES_QUERY_OPTIONS.LIST(festivalId, {
@@ -46,13 +45,9 @@ const NoticeListPage = () => {
     }),
   );
 
-  const {mutate} = useNotificationsSubscribeMutation();
-
-  
+  const { mutate } = useNotificationsSubscribeMutation();
 
   const announcements = data?.announcements ?? [];
-
-  
 
   const { selectedCategory, noticeList, handleChipClick } =
     useNoticeList(announcements);
@@ -72,87 +67,83 @@ const NoticeListPage = () => {
     confirmStatus,
   } = useLiveStatus();
 
-const categoryCode = CATEGORY_CODE_BY_LABEL[selectedCategory] ?? 'OTHERS';
-
+  const categoryCode = CATEGORY_CODE_BY_LABEL[selectedCategory] ?? 'OTHERS';
 
   const handleWatchToggle = () => {
     setIsWatched((prev) => !prev);
     // TODO: 서버에 '관심 공연 등록/해제' API 요청 보내기
   };
 
-
-
   const handleAlertClick = () => {
-  overlay.open(({ isOpen, close, unmount }) => {
-    const handleConfirmAlert = async () => {
-      try {
-        const token = await enablePushAndGetToken();
-        if (!token) {
-          toast.show('토큰 발급에 실패했어요.');
-          return;
-        }
+    overlay.open(({ isOpen, close, unmount }) => {
+      const handleConfirmAlert = async () => {
+        try {
+          const token = await enablePushAndGetToken();
+          if (!token) {
+            toast.show('토큰 발급에 실패했어요.');
+            return;
+          }
 
-        const body = { fcmToken: token };
+          const body = { fcmToken: token };
 
-        mutate(
-          { festivalId, categoryCode, body },
-          {
-            onSuccess: () => {
-              toast.show(
-                `${selectedCategory} 공지 알림이 설정되었어요.`,
-                '새 공지가 올라오면 알림을 보내드릴게요.',
-              );
-              close();
-              unmount();
-            },
-            onError: () => {
-              toast.show('이미 알림을 받고 있어요!');
-              close();
-              unmount();
-            },
-          },
-        );
-      } catch (e) {
-        toast.show('알림 권한 설정/토큰 발급 중 오류가 발생했어요.');
-      }
-    };
-
-    return (
-      <Modal
-        open={isOpen}
-        onClose={() => {
-          close();
-          unmount();
-        }}
-      >
-        <Modal.Panel>
-          <Modal.Content>
-            <Modal.Title>공지 알림을 받으시겠어요?</Modal.Title>
-            <Modal.Description>
-              {selectedCategory} 공지가 새로 올라오면 알려드려요.
-            </Modal.Description>
-          </Modal.Content>
-
-          <Modal.Actions>
-            <RectButton
-              variant="secondary"
-              onClick={() => {
+          mutate(
+            { festivalId, categoryCode, body },
+            {
+              onSuccess: () => {
+                toast.show(
+                  `${selectedCategory} 공지 알림이 설정되었어요.`,
+                  '새 공지가 올라오면 알림을 보내드릴게요.',
+                );
                 close();
                 unmount();
-              }}
-            >
-              취소
-            </RectButton>
-            <RectButton variant="primary" onClick={handleConfirmAlert}>
-              알림 받기
-            </RectButton>
-          </Modal.Actions>
-        </Modal.Panel>
-      </Modal>
-    );
-  });
-};
+              },
+              onError: () => {
+                toast.show('이미 알림을 받고 있어요!');
+                close();
+                unmount();
+              },
+            },
+          );
+        } catch (e) {
+          toast.show('알림 권한 설정/토큰 발급 중 오류가 발생했어요.');
+        }
+      };
 
+      return (
+        <Modal
+          open={isOpen}
+          onClose={() => {
+            close();
+            unmount();
+          }}
+        >
+          <Modal.Panel>
+            <Modal.Content>
+              <Modal.Title>공지 알림을 받으시겠어요?</Modal.Title>
+              <Modal.Description>
+                {selectedCategory} 공지가 새로 올라오면 알려드려요.
+              </Modal.Description>
+            </Modal.Content>
+
+            <Modal.Actions>
+              <RectButton
+                variant='secondary'
+                onClick={() => {
+                  close();
+                  unmount();
+                }}
+              >
+                취소
+              </RectButton>
+              <RectButton variant='primary' onClick={handleConfirmAlert}>
+                알림 받기
+              </RectButton>
+            </Modal.Actions>
+          </Modal.Panel>
+        </Modal>
+      );
+    });
+  };
 
   return (
     <main className={styles.pageContainer}>

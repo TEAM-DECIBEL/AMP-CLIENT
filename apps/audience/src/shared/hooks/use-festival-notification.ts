@@ -4,11 +4,11 @@ import { postNotificationsSubscribe } from '@features/notice-list/apis/query';
 
 import { NotificationSubscribeBody } from '@shared/types/notice';
 
-type SubscribeVars = {
+interface SubscribeVars {
   festivalId: number;
   categoryCode: string;
   body: NotificationSubscribeBody;
-};
+}
 
 export const useNotificationsSubscribeMutation = () => {
   return useMutation({
