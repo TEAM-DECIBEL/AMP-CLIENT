@@ -1,33 +1,55 @@
-import { useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMemo, useState } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router';
 
+import type { StatusSheetValue } from '@amp/ads-ui';
 import { toast } from '@amp/ads-ui';
-import { StatusSheetValue } from '@amp/ads-ui';
 
 import {
   type CongestionLevel,
   postStageCongestion,
 } from '@features/congestion/query';
+import { CONGESTION_QUERY_OPTIONS } from '@features/notice-details/query';
 
-import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
+type LiveStatusItem = {
+  stageId: number;
+  title: string;
+  location: string;
+  congestionLevel: StatusSheetValue;
+};
 
 const toCongestionLevel = (value: StatusSheetValue): CongestionLevel => {
   if (value === 'SMOOTH' || value === 'NORMAL' || value === 'CROWDED') {
     return value;
   }
-
   throw new Error(`Unknown StatusSheetValue: ${String(value)}`);
 };
 
-export default () => {
+export const useLiveStatus = () => {
+  const { eventId: eventIdParam } = useParams<{ eventId: string }>();
+  const eventId = Number(eventIdParam);
+
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [sheetTitle, setSheetTitle] = useState('');
   const [status, setStatus] = useState<StatusSheetValue | undefined>(undefined);
-
   const [stageId, setStageId] = useState<number | null>(null);
 
-  // TODO: 8시간 이내 현장 상황 입력 불가 관리 테스트용 임시 상태 삭제
-  const [isAvailableTime] = useState(true);
+  const { data } = useQuery(
+    CONGESTION_QUERY_OPTIONS.STAGES(eventId, { page: 0, size: 10 }),
+  );
+
+  const statusItems: LiveStatusItem[] = useMemo(
+    () =>
+      data?.stages.map((stage) => ({
+        stageId: stage.stageId,
+        title: stage.title,
+        location: stage.location,
+        congestionLevel: stage.congestionLevel,
+      })) ?? [],
+    [data],
+  );
+
+  const isAvailableTime = true;
 
   const congestionMutation = useMutation({
     mutationFn: ({
@@ -37,6 +59,7 @@ export default () => {
       stageId: number;
       congestion: CongestionLevel;
     }) => postStageCongestion(stageId, congestion),
+
     onSuccess: () => {
       toast.show('선택하신 현장 상황이 반영되었어요.');
     },
@@ -48,16 +71,17 @@ export default () => {
     },
   });
 
-  const openStatusSheet = (id: number) => {
-    const targetItem = LIVE_STATUS_MOCK.find((item) => item.stageId === id);
+  const openStatusSheet = (targetStageId: number) => {
+    const targetItem = statusItems.find(
+      (item) => item.stageId === targetStageId,
+    );
     if (!targetItem) {
       return;
     }
 
-    setSheetTitle(targetItem.title ?? '');
+    setSheetTitle(targetItem.title);
+    setStageId(targetStageId);
     setIsSheetOpen(true);
-
-    setStageId(id);
   };
 
   const closeStatusSheet = () => setIsSheetOpen(false);
@@ -70,16 +94,22 @@ export default () => {
       return;
     }
 
+    if (!isAvailableTime) {
+      toast.show('현장 상황은 15분에 한 번씩만 입력할 수 있어요.');
+      return;
+    }
+
     if (congestionMutation.isPending) {
       return;
     }
 
     const congestion = toCongestionLevel(value);
     congestionMutation.mutate({ stageId, congestion });
+    closeStatusSheet();
   };
 
   return {
-    statusItems: LIVE_STATUS_MOCK,
+    statusItems,
     isSheetOpen,
     sheetTitle,
     status,

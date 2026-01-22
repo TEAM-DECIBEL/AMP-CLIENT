@@ -19,6 +19,7 @@ import { SubLayout, SubLayoutWithBack } from './sub-layout';
 const subLayoutTitles = {
   eventCreate: '공연 등록',
   noticeCreate: '공지 작성',
+  noticeEdit: '공지 수정',
   noticeDetails: '주최 공지',
   myPage: '마이페이지',
   myHistory: '진행 공연',
@@ -47,6 +48,16 @@ export const globalRoutes = [
   {
     path: ROUTE_PATH.NOTICE_CREATE,
     element: <SubLayoutWithBack title={subLayoutTitles.noticeCreate} />,
+    children: [
+      {
+        index: true,
+        element: <NoticeCreatePage />,
+      },
+    ],
+  },
+  {
+    path: ROUTE_PATH.NOTICE_EDIT,
+    element: <SubLayoutWithBack title={subLayoutTitles.noticeEdit} />,
     children: [
       {
         index: true,

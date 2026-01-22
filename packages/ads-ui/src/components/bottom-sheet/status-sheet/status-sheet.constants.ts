@@ -8,7 +8,8 @@ export const EMPTY_TITLE = '아직 현장 상황 입력 시간이 아니에요!'
 export const EMPTY_DESCRIPTION = '공연 시작 시간 8시간 전부터 입력이 가능해요.';
 
 export const CROWD_OPTIONS: {
-  variant: 'smooth' | 'normal' | 'crowded';
+  variant: 'smooth' | 'normal' | 'crowded' | 'none';
+
   value: StatusSheetValue;
   imageUrl: string;
 }[] = [
@@ -25,6 +26,7 @@ export const CROWD_OPTIONS: {
   {
     variant: 'crowded',
     value: 'CROWDED',
+
     imageUrl: IMAGES.CROWDED_BUTTON,
   },
 ];

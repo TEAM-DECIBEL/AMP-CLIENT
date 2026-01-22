@@ -1,13 +1,10 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
+import { useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 
-import {
-  AddToWatchButton,
-  CircleButton,
-  Modal,
-  RectButton,
-  toast,
-} from '@amp/ads-ui';
+import { AddToWatchButton, Modal, RectButton, toast } from '@amp/ads-ui';
 import { ChatIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
@@ -18,7 +15,9 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
-import useLiveStatus from '@shared/hooks/use-live-status';
+import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
+
+import { useLiveStatus } from '@shared/hooks/use-live-status';
 import { useNoticeAlert } from '@shared/hooks/use-notice-alert';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
@@ -28,17 +27,29 @@ import * as styles from './notice-list.css';
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
 const NoticeListPage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
 
-  // TODO: 서버에서 받아온 값으로 기본값 설정
   const [isWatched, setIsWatched] = useState(false);
 
   const { toggleAlert } = useNoticeAlert();
 
-  const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
+  const { eventId } = useParams<{ eventId: string }>();
 
-  const handleNoticeItemClick = (id: number) => {
-    // TODO: 공지 상세 페이지 이동 등 로직 추가
+  const { data } = useQuery(
+    NOTICES_QUERY_OPTIONS.LIST(Number(eventId), {
+      page: 0,
+      size: 20,
+    }),
+  );
+
+  const announcements = data?.announcements ?? [];
+
+  const { selectedCategory, noticeList, handleChipClick } =
+    useNoticeList(announcements);
+
+  const handleNoticeItemClick = (noticeId: number) => {
+    navigate(`/events/:eventId/notices/${noticeId}`);
   };
 
   const {
@@ -54,7 +65,6 @@ const NoticeListPage = () => {
 
   const handleWatchToggle = () => {
     setIsWatched((prev) => !prev);
-    // TODO: 서버에 '관심 공연 등록/해제' API 요청 보내기
   };
 
   const handleConfirmAlert = async (close: () => void, unmount: () => void) => {
@@ -151,14 +161,6 @@ const NoticeListPage = () => {
           </div>
         )}
       </div>
-      {activeTab === NOTICE_TAB.NOTICE && (
-        <section className={styles.buttonContainer}>
-          <div className={styles.button}>
-            {/* TODO: 뷰 이동 로직 추가 */}
-            <CircleButton type='write' onClick={() => {}} />
-          </div>
-        </section>
-      )}
 
       <LiveStatusSheet
         open={isSheetOpen}

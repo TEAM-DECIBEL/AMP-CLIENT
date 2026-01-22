@@ -1,5 +1,7 @@
 import { LiveButton, StatusSheetValue } from '@amp/ads-ui';
 
+import { IMAGES } from '../assets/index';
+
 import * as styles from './live-button-container.css';
 
 interface LiveButtonContainerProps {
@@ -15,11 +17,12 @@ interface LiveButtonContainerProps {
 }
 
 // TODO: 이전 PR 머지하고 다시 확인
+
 const STATUS_IMAGES: Record<StatusSheetValue, string> = {
-  SMOOTH: 'https://dummyimage.com/600x360/27ae60/ffffff&text=LOW',
-  NORMAL: 'https://dummyimage.com/600x360/f1c40f/ffffff&text=MEDIUM',
-  CROWDED: 'https://dummyimage.com/600x360/e74c3c/ffffff&text=HIGH',
-  NONE: '',
+  SMOOTH: IMAGES.SMOOTH,
+  NORMAL: IMAGES.NORMAL,
+  CROWDED: IMAGES.CROWDED,
+  NONE: IMAGES.NONE,
 };
 
 const LiveButtonContainer = ({

@@ -3,18 +3,34 @@ import type { ChangeEvent, FormEvent } from 'react';
 
 import { toast } from '@amp/ads-ui';
 
-// TODO: 추후 서버에서 데이터 가져와서 사용
-const MOCK_PINNED_COUNT = 3;
+import {
+  useNoticeCreateMutation,
+  useNoticeUpdateMutation,
+} from '@features/notice/use-notice';
 
-export const useNoticeForm = () => {
-  const [isPinned, setIsPinned] = useState(false);
+import { getCategoryIdByLabel } from '@shared/constants/category';
+import type { NoticeDetail } from '@shared/types/notice';
+
+const MOCK_PINNED_COUNT = 0;
+
+export const useNoticeForm = (
+  festivalId: number | null,
+  initialData?: NoticeDetail | null,
+  noticeId?: number | null,
+) => {
+  const initialCategoryId = initialData
+    ? getCategoryIdByLabel(initialData.category.categoryName)
+    : null;
+  const [isPinned, setIsPinned] = useState(() => initialData?.isPinned ?? false);
   const [image, setImage] = useState<File | null>(null);
-  const [imageUrl, setImageUrl] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-
-  // TODO: 기존 데이터 위 state와 동기화 로직 필요
+  const [imageUrl, setImageUrl] = useState(() => initialData?.imageUrl ?? '');
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
+    () => initialCategoryId,
+  );
+  const [title, setTitle] = useState(() => initialData?.title ?? '');
+  const [content, setContent] = useState(() => initialData?.content ?? '');
+  const { mutate: createNotice } = useNoticeCreateMutation(festivalId ?? 0);
+  const { mutate: updateNotice } = useNoticeUpdateMutation(noticeId ?? 0);
 
   const handlePinToggle = () => {
     if (!isPinned && MOCK_PINNED_COUNT >= 3) {
@@ -39,7 +55,7 @@ export const useNoticeForm = () => {
 
   useEffect(() => {
     return () => {
-      if (imageUrl) {
+      if (imageUrl.startsWith('blob:')) {
         URL.revokeObjectURL(imageUrl);
       }
     };
@@ -49,11 +65,11 @@ export const useNoticeForm = () => {
     setTitle(e.target.value);
   const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
     setContent(e.target.value);
-  const handleCategoryClick = (category: string) =>
-    setSelectedCategory(category);
+  const handleCategoryClick = (categoryId: number) =>
+    setSelectedCategoryId(categoryId);
 
   const isValid =
-    selectedCategory !== '' &&
+    selectedCategoryId !== null &&
     title.trim().length > 0 &&
     content.trim().length > 0;
 
@@ -62,12 +78,47 @@ export const useNoticeForm = () => {
     if (!isValid) {
       return;
     }
+    if (!festivalId) {
+      toast.show('공연 정보를 찾을 수 없어요.', '잠시 후 다시 시도해주세요.');
+      return;
+    }
+    if (selectedCategoryId === null) {
+      return;
+    }
 
-    // TODO: API 호출 로직
+    if (noticeId) {
+      const shouldUsePreviousImage =
+        !image && imageUrl && !imageUrl.startsWith('blob:');
+      updateNotice({
+        festivalId,
+        title,
+        categoryId: selectedCategoryId,
+        newImage: image,
+        content,
+        isPinned,
+        previousImageUrl: shouldUsePreviousImage ? imageUrl : undefined,
+      });
+      return;
+    }
+
+    createNotice({
+      title,
+      categoryId: selectedCategoryId,
+      image,
+      content,
+      isPinned,
+    });
   };
 
   return {
-    formState: { isPinned, image, imageUrl, selectedCategory, title, content },
+    formState: {
+      isPinned,
+      image,
+      imageUrl,
+      selectedCategoryId,
+      title,
+      content,
+    },
     handlers: {
       handlePinToggle,
       handleImageChange,

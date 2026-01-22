@@ -1,14 +1,40 @@
+import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
+import { generatePath, useNavigate, useParams } from 'react-router';
 
 import { CtaButton, Modal, RectButton } from '@amp/ads-ui';
 import { PenIcon, TrashIcon } from '@amp/ads-ui/icons';
 import { NoticeDetailLayout } from '@amp/compositions';
 
-import { MOCK_DATA } from '@shared/mocks/notice-details';
+import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-detail/query';
+
+import { ROUTE_PATH } from '@shared/constants/path';
 
 import * as styles from './notice-details.css';
 
 const NoticeDetailsPage = () => {
+  const navigate = useNavigate();
+  const { eventId, noticeId } = useParams();
+
+  const handleEditClick = () => {
+    if (!eventId || !noticeId) {
+      return;
+    }
+    navigate(
+      generatePath(ROUTE_PATH.NOTICE_EDIT, {
+        eventId,
+        noticeId,
+      }),
+    );
+  };
+  const noticeIdNumber = Number(noticeId);
+
+  const { data } = useQuery(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
+
+  if (!data) {
+    return null;
+  }
+
   const handleDeleteClick = () => {
     overlay.open(({ isOpen, close, unmount }) => (
       <Modal
@@ -51,13 +77,12 @@ const NoticeDetailsPage = () => {
 
   return (
     <NoticeDetailLayout>
-      <NoticeDetailLayout.Content data={MOCK_DATA} />
+      <NoticeDetailLayout.Content data={data} />
       <NoticeDetailLayout.Actions>
-        {/* TODO: 수정하기 뷰 라우팅 */}
         <CtaButton
           type='icon'
           color='white'
-          onClick={() => {}}
+          onClick={handleEditClick}
           className={styles.ctaButton}
         >
           <PenIcon />

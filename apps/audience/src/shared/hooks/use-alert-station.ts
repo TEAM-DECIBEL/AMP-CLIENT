@@ -16,7 +16,7 @@ export const useAlertStation = () => {
   const [alerts, setAlerts] = useState<NoticeAlert[]>([]);
   const [readAlertIds, setReadAlertIds] = useState<Set<string>>(new Set());
   const [hasMore, setHasMore] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   // 테스트용, API 연결 후 삭제
   const initMock = () => {
@@ -57,7 +57,7 @@ export const useAlertStation = () => {
   }, []);
 
   // TODO: API 연결
-  const fetchAlerts = async (params?: {
+  const fetchAlerts = async (_params?: {
     cursor?: string;
     limit?: number;
   }): Promise<FetchAlertsResponse> => {
@@ -66,7 +66,7 @@ export const useAlertStation = () => {
 
   const fetchMoreAlerts = async (): Promise<void> => {};
 
-  const markAlertAsRead = async (alertId: string): Promise<void> => {};
+  const markAlertAsRead = async (_alertId: string): Promise<void> => {};
 
   const markAsReadLocal = (alertId: string) => {
     setReadAlertIds((prev) => {
