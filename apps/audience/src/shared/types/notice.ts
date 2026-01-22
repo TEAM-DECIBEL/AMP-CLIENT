@@ -14,3 +14,7 @@ export interface SavedNotice {
     categoryCode: string;
   };
 }
+
+export interface NotificationSubscribeBody {
+  fcmToken: string;
+}
