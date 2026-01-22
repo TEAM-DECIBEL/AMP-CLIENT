@@ -19,6 +19,7 @@ interface HeaderProps {
   title?: string;
   hasNewAlert?: boolean;
   myPagePath?: string;
+  alertPath?: string;
 }
 
 const CONFIRM_LEAVE_PATHS = [
@@ -32,6 +33,7 @@ const Header = ({
   title,
   hasNewAlert = false,
   myPagePath,
+  alertPath,
 }: HeaderProps) => {
   const isMain = kind === 'main';
   const isSub = kind === 'sub';
@@ -104,6 +106,11 @@ const Header = ({
                 type='button'
                 className={styles.iconButton}
                 aria-label='알림'
+                onClick={() => {
+                  if (alertPath) {
+                    navigate(alertPath);
+                  }
+                }}
               >
                 {hasNewAlert ? <StatusNewIcon /> : <StatusNoneIcon />}
               </button>
