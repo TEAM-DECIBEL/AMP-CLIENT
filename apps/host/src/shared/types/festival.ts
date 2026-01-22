@@ -11,3 +11,19 @@ export interface FestivalBase {
 export interface FestivalWithDDay extends FestivalBase {
   dDay: number;
 }
+
+export interface ActiveCategory {
+  categoryId: number;
+  categoryName: string;
+  categoryCode: string;
+}
+
+export interface FestivalNoticeBanner {
+  festivalId: number;
+  title: string;
+  location: string;
+  period: string;
+  isWishlist: boolean;
+  dday: number;
+  activeCategories: ActiveCategory[];
+}

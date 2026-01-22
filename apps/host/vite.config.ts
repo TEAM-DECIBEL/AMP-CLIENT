@@ -15,6 +15,9 @@ export default defineConfig(
     server: {
       port: 5174,
     },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+    },
 
     plugins: [
       VitePWA({
@@ -22,6 +25,7 @@ export default defineConfig(
         devOptions: {
           enabled: true,
         },
+
 
         includeAssets: [
           'favicon.svg',
@@ -32,6 +36,7 @@ export default defineConfig(
           name: 'AMP-HOST',
           short_name: 'AMP',
           description: '작은 공지도 크게 울리게 공연 공지의 공식, AMP',
+          start_url: '/login',
           theme_color: '#ffffff',
           icons: [
             {

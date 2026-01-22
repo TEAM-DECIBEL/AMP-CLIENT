@@ -39,6 +39,12 @@ interface StatusSelectableContentProps {
   onSelect: (value: StatusSheetValue) => void;
 }
 
+const isNotNone = (
+  option: (typeof CROWD_OPTIONS)[number],
+): option is (typeof CROWD_OPTIONS)[number] & {
+  variant: Exclude<(typeof CROWD_OPTIONS)[number]['variant'], 'none'>;
+} => option.variant !== 'none';
+
 const StatusSelectableContent = ({
   title,
   selected,
@@ -52,7 +58,7 @@ const StatusSelectableContent = ({
       </BottomSheet.Header>
 
       <div className={styles.options}>
-        {CROWD_OPTIONS.map(({ value, variant, imageUrl }) => (
+        {CROWD_OPTIONS.filter(isNotNone).map(({ value, variant, imageUrl }) => (
           <CrowdLevelButton
             key={value}
             variant={variant}

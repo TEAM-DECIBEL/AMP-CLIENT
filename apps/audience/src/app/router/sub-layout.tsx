@@ -4,6 +4,8 @@ import { Outlet } from 'react-router';
 import { Header } from '@amp/ads-ui';
 import { Loading } from '@amp/compositions';
 
+import { ROUTE_PATH } from '@shared/constants/path';
+
 interface SubLayoutProps {
   title?: string;
   hasNewAlert?: boolean;
@@ -12,7 +14,13 @@ interface SubLayoutProps {
 export const SubLayout = ({ hasNewAlert }: SubLayoutProps) => {
   return (
     <Suspense fallback={<Loading />}>
-      <Header variant='audience' kind='main' hasNewAlert={hasNewAlert} />
+      <Header
+        variant='audience'
+        kind='main'
+        hasNewAlert={hasNewAlert}
+        myPagePath={ROUTE_PATH.MYPAGE}
+        alertPath={ROUTE_PATH.NOTIFICATION}
+      />
       <Outlet />
     </Suspense>
   );

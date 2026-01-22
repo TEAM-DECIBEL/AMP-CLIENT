@@ -3,6 +3,7 @@ export const ROUTE_PATH = {
   EVENT_DETAILS: '/events/:eventId',
   NOTICE_LIST: '/events/:eventId/notices',
   NOTICE_CREATE: '/events/:eventId/notices/new',
+  NOTICE_EDIT: '/events/:eventId/notices/:noticeId/edit',
   NOTICE_DETAILS: '/events/:eventId/notices/:noticeId',
   MYPAGE: '/mypage',
   ONBOARDING: '/onboarding',

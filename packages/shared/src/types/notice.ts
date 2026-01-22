@@ -11,12 +11,12 @@ export const CATEGORIES = [
 export type CategoryType = (typeof CATEGORIES)[number];
 
 export interface Notice {
-  announcementId: number;
+  noticeId: number;
   categoryName: string;
   title: string;
   content: string;
-  imageUrl: string;
+  imageUrl: string | null;
   isPinned: boolean;
-  isSaved: boolean; // 북마크 여부
+  isSaved: boolean;
   createdAt: string;
 }
