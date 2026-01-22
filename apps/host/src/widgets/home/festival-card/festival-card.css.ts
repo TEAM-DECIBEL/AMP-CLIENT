@@ -4,3 +4,7 @@ export const moreButton = style({
   display: 'flex',
   alignItems: 'center',
 });
+
+export const cardButton = style({
+  cursor: 'pointer',
+});

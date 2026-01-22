@@ -13,22 +13,13 @@ import {
 
 import * as styles from './header.css';
 
-const CONFIRM_LEAVE_PATH_PATTERNS = [
-  '/events/:eventId/notices/new',
-  '/events/new',
-] as const;
-
-const checkConfirmLeavePath = (pathname: string) => {
-  return CONFIRM_LEAVE_PATH_PATTERNS.some((pattern) =>
-    matchPath(pattern, pathname),
-  );
-};
-
 interface HeaderProps {
   variant: 'host' | 'audience';
   kind: 'main' | 'sub';
   title?: string;
   hasNewAlert?: boolean;
+  myPagePath?: string;
+  alertPath?: string;
 }
 
 const CONFIRM_LEAVE_PATHS = [
@@ -36,7 +27,14 @@ const CONFIRM_LEAVE_PATHS = [
   '/events/new',
 ] as const;
 
-const Header = ({ variant, kind, title, hasNewAlert = false }: HeaderProps) => {
+const Header = ({
+  variant,
+  kind,
+  title,
+  hasNewAlert = false,
+  myPagePath,
+  alertPath,
+}: HeaderProps) => {
   const isMain = kind === 'main';
   const isSub = kind === 'sub';
   const showAlert = isMain && variant === 'audience';
@@ -108,6 +106,11 @@ const Header = ({ variant, kind, title, hasNewAlert = false }: HeaderProps) => {
                 type='button'
                 className={styles.iconButton}
                 aria-label='알림'
+                onClick={() => {
+                  if (alertPath) {
+                    navigate(alertPath);
+                  }
+                }}
               >
                 {hasNewAlert ? <StatusNewIcon /> : <StatusNoneIcon />}
               </button>
@@ -116,6 +119,11 @@ const Header = ({ variant, kind, title, hasNewAlert = false }: HeaderProps) => {
               type='button'
               className={styles.iconButton}
               aria-label='마이페이지'
+              onClick={() => {
+                if (myPagePath) {
+                  navigate(myPagePath);
+                }
+              }}
             >
               <MyPageIcon />
             </button>

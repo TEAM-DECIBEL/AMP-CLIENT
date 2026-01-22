@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router';
+import { generatePath, useNavigate } from 'react-router';
 
 import { CtaButton } from '@amp/ads-ui';
 import { ButtonGradientSection } from '@amp/compositions';
@@ -33,6 +33,13 @@ const HomePage = () => {
   const handleCreateClick = () => {
     navigate(ROUTE_PATH.EVENT_CREATE);
   };
+  const handleCardClick = (festivalId: number) => {
+    navigate(
+      generatePath(ROUTE_PATH.NOTICE_LIST, {
+        eventId: String(festivalId),
+      }),
+    );
+  };
 
   return (
     <section className={styles.page}>
@@ -43,6 +50,7 @@ const HomePage = () => {
           upcomingCount={summary.upcomingCount}
           ongoingFestivals={ongoingFestivals}
           upcomingFestivals={upcomingFestivals}
+          onCardClick={handleCardClick}
         />
       </div>
       <ButtonGradientSection className={styles.ctaArea}>

@@ -33,6 +33,10 @@ export const END_POINT = {
   GET_FESTIVAL_NOTICES: (festivalId: number) =>
     `/common/festivals/${festivalId}/notices`,
 
+  // 공연 배너
+  GET_FESTIVAL_BANNER: (festivalId: number) =>
+    `/common/festivals/${festivalId}`,
+
   // 온보딩
   POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
 } as const;

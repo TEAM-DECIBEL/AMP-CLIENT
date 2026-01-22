@@ -9,14 +9,23 @@ import * as styles from './festival-section.css';
 interface FestivalListProps {
   festivals: Festival[];
   onMoreClick: (festivalId: number) => void;
+  onCardClick: (festivalId: number) => void;
 }
 
-const FestivalList = ({ festivals, onMoreClick }: FestivalListProps) => {
+const FestivalList = ({
+  festivals,
+  onMoreClick,
+  onCardClick,
+}: FestivalListProps) => {
   return (
     <div className={styles.list}>
       {festivals.map((festival) => (
         <div key={festival.festivalId} className={styles.item}>
-          <FestivalCard festival={festival} onMoreClick={onMoreClick} />
+          <FestivalCard
+            festival={festival}
+            onMoreClick={onMoreClick}
+            onCardClick={onCardClick}
+          />
         </div>
       ))}
     </div>
@@ -29,6 +38,7 @@ interface FestivalSectionProps {
   festivals: Festival[];
   emptyText: string;
   onMoreClick: (festivalId: number) => void;
+  onCardClick: (festivalId: number) => void;
 }
 
 const FestivalSection = ({
@@ -37,12 +47,17 @@ const FestivalSection = ({
   festivals,
   emptyText,
   onMoreClick,
+  onCardClick,
 }: FestivalSectionProps) => {
   const content =
     festivals.length === 0 ? (
       <EmptyCard>{emptyText}</EmptyCard>
     ) : (
-      <FestivalList festivals={festivals} onMoreClick={onMoreClick} />
+      <FestivalList
+        festivals={festivals}
+        onMoreClick={onMoreClick}
+        onCardClick={onCardClick}
+      />
     );
 
   return (
