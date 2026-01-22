@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 
+.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -33,6 +35,8 @@ dist-ssr
 
 apps/**/src/**/*.js
 packages/**/src/**/*.js
+
+.env
 
 .env
 # PWA dev assets
