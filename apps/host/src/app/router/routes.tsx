@@ -1,3 +1,5 @@
+import EventDetailsPage from '@pages/event-details/event-details';
+
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
@@ -18,6 +20,7 @@ import { SubLayout, SubLayoutWithBack } from './sub-layout';
 
 const subLayoutTitles = {
   eventCreate: '공연 등록',
+  eventDetails: '공연 수정',
   noticeCreate: '공지 작성',
   noticeDetails: '주최 공지',
   myPage: '마이페이지',
@@ -41,6 +44,16 @@ export const globalRoutes = [
       {
         index: true,
         element: <EventCreatePage />,
+      },
+    ],
+  },
+  {
+    path: ROUTE_PATH.EVENT_DETAILS,
+    element: <SubLayoutWithBack title={subLayoutTitles.eventDetails} />,
+    children: [
+      {
+        index: true,
+        element: <EventDetailsPage />,
       },
     ],
   },
