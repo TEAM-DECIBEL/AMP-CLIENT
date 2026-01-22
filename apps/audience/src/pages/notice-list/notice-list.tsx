@@ -3,7 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router';
-import { enablePushAndGetToken } from 'src/push';
 
 import { AddToWatchButton, Modal, RectButton, toast } from '@amp/ads-ui';
 import { ChatIcon } from '@amp/ads-ui/icons';
@@ -23,6 +22,8 @@ import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-no
 import { useLiveStatus } from '@shared/hooks/use-live-status';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
+
+import { enablePushAndGetToken } from '../../push';
 
 import * as styles from './notice-list.css';
 
@@ -104,7 +105,7 @@ const NoticeListPage = () => {
               },
             },
           );
-        } catch (e) {
+        } catch {
           toast.show('알림 권한 설정/토큰 발급 중 오류가 발생했어요.');
         }
       };
