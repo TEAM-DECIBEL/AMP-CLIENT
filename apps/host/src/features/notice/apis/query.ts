@@ -28,11 +28,6 @@ export const postFestivalNotice = (
   return post<CreateNoticeResponse, FormData>(
     END_POINT.POST_FESTIVAL_NOTICE(festivalId),
     formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    },
   );
 };
 
@@ -53,11 +48,6 @@ export const putNotice = (noticeId: number, body: UpdateNoticeBody) => {
   return put<UpdateNoticeResponse, FormData>(
     END_POINT.PUT_NOTICE(noticeId),
     formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    },
   );
 };
 
