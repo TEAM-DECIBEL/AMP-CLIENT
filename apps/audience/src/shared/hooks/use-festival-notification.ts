@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-import { NotificationSubscribeBody } from 'node_modules/@amp/shared/src/types/notice';
 
 import { postNotificationsSubscribe } from '@features/notice-list/apis/query';
+
+import { NotificationSubscribeBody } from '@shared/types/notice';
 
 type SubscribeVars = {
   festivalId: number;
