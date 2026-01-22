@@ -23,9 +23,6 @@ export default defineConfig(
           enabled: true,
         },
 
-        strategies: 'injectManifest',
-        srcDir: 'src',
-        filename: 'sw.ts',
 
         includeAssets: [
           'favicon.svg',
