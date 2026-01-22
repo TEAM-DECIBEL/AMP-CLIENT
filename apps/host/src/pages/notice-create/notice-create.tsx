@@ -1,3 +1,5 @@
+import { useParams } from 'react-router';
+
 import {
   AddImageButton,
   CategoryButton,
@@ -13,12 +15,22 @@ import Textarea from '@shared/ui/textarea/textarea';
 
 import * as styles from './notice-create.css';
 
-const CATEGORIES = ['운영 시간', '입장 안내', 'MD', '이벤트', '퇴근길', '기타'];
+const CATEGORIES = [
+  { id: 1, label: '운영 시간' },
+  { id: 2, label: '입장 안내' },
+  { id: 3, label: 'MD' },
+  { id: 4, label: '이벤트' },
+  { id: 5, label: '퇴근길' },
+  { id: 6, label: '기타' },
+];
 
 const NoticeCreatePage = () => {
-  const { formState, handlers, isValid } = useNoticeForm();
+  const { eventId } = useParams();
+  const parsedFestivalId = eventId ? Number(eventId) : NaN;
+  const festivalId = Number.isNaN(parsedFestivalId) ? null : parsedFestivalId;
+  const { formState, handlers, isValid } = useNoticeForm(festivalId);
 
-  const { isPinned, imageUrl, selectedCategory, title, content } = formState;
+  const { isPinned, imageUrl, selectedCategoryId, title, content } = formState;
   const {
     handlePinToggle,
     handleImageChange,
@@ -54,12 +66,12 @@ const NoticeCreatePage = () => {
           <div className={styles.chipContainer}>
             {CATEGORIES.map((category) => (
               <CategoryButton
-                key={category}
+                key={category.id}
                 variant='neutral'
-                selected={selectedCategory === category}
-                onChange={() => handleCategoryClick(category)}
+                selected={selectedCategoryId === category.id}
+                onChange={() => handleCategoryClick(category.id)}
               >
-                {category}
+                {category.label}
               </CategoryButton>
             ))}
           </div>
