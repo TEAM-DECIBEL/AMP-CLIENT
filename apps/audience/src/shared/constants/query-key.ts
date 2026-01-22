@@ -18,4 +18,6 @@ export const USERS_QUERY_KEY = {
     ...USERS_QUERY_KEY.ALL,
     'home-festivals-upcoming',
   ],
+  MY_PAGE: () => [...USERS_QUERY_KEY.ALL, 'my-page'],
+  SAVED_NOTICES: () => [...USERS_QUERY_KEY.ALL, 'saved-notices'],
 } as const;
