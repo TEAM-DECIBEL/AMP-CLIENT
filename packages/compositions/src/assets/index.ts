@@ -14,7 +14,7 @@ export const IMAGES = {
   NOTICE_BANNER: noticeBanner,
 
   CROWDED: crowded,
-  NORAML: normal,
+  NORMAL: normal,
   SMOOTH: smooth,
   NONE: none,
 

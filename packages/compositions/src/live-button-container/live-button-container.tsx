@@ -18,7 +18,7 @@ interface LiveButtonContainerProps {
 
 const STATUS_IMAGES: Record<StatusSheetValue, string> = {
   SMOOTH: IMAGES.SMOOTH,
-  NORMAL: IMAGES.NORAML,
+  NORMAL: IMAGES.NORMAL,
   CROWDED: IMAGES.CROWDED,
   NONE: IMAGES.NONE,
 };
