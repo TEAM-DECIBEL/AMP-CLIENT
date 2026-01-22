@@ -1,3 +1,5 @@
+import type { KeyboardEvent } from 'react';
+
 import { CardFestival, Chip } from '@amp/ads-ui';
 import { MoreIcon } from '@amp/ads-ui/icons';
 
@@ -59,7 +61,7 @@ const FestivalCard = ({
       role='button'
       tabIndex={0}
       onClick={() => onCardClick(festival.festivalId)}
-      onKeyDown={(event) => {
+      onKeyDown={(event: KeyboardEvent<HTMLElement>) => {
         if (event.key === 'Enter' || event.key === ' ') {
           onCardClick(festival.festivalId);
         }

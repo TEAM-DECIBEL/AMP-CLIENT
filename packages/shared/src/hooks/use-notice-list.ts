@@ -8,7 +8,9 @@ interface UseNoticeListReturn {
   noticeList: Notice[];
 }
 
-export const useNoticeList = (notices: Notice[]): UseNoticeListReturn => {
+export const useNoticeList = (
+  notices: Notice[] = [],
+): UseNoticeListReturn => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
     CATEGORIES[0],
   );

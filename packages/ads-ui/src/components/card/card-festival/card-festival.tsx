@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
 
 import * as styles from './card-festival.css';
 
@@ -50,12 +50,21 @@ const Root = ({ children, ...rest }: RootProps) => (
     {children}
   </article>
 );
+
+type CardFestivalComponent = ((props: RootProps) => ReactElement) & {
+  Image: typeof Image;
+  Body: typeof Body;
+  Chip: typeof Chip;
+  Button: typeof Button;
+  Icon: typeof Icon;
+};
+
 export const CardFestival = Object.assign(Root, {
   Image,
   Body,
   Chip,
   Button,
   Icon,
-});
+}) as CardFestivalComponent;
 
 export default CardFestival;

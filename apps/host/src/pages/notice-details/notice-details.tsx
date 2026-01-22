@@ -9,6 +9,7 @@ import { NoticeDetailLayout } from '@amp/compositions';
 import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-detail/query';
 
 import { ROUTE_PATH } from '@shared/constants/path';
+import type { NoticeDetailResponse } from '@shared/types/notice-detail-response';
 
 import * as styles from './notice-details.css';
 
@@ -29,7 +30,12 @@ const NoticeDetailsPage = () => {
   };
   const noticeIdNumber = Number(noticeId);
 
-  const { data } = useQuery(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
+  const { data } = useQuery<
+    NoticeDetailResponse,
+    Error,
+    NoticeDetailResponse,
+    (string | number)[]
+  >(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
 
   if (!data) {
     return null;
