@@ -9,4 +9,8 @@ export const USERS_QUERY_KEY = {
     ...USERS_QUERY_KEY.ALL,
     'home-festivals-upcoming',
   ],
+  BOOKMARKS: {
+    ALL: () => [...USERS_QUERY_KEY.ALL, 'bookmarks'] as const,
+    NOTICES: () => [...USERS_QUERY_KEY.ALL, 'bookmarks', 'notices'] as const,
+  },
 } as const;
