@@ -1,5 +1,11 @@
 export const END_POINT = {
-  // 주최 공지
+  // 저장한 공지
+  GET_SAVED_NOTICES: '/users/me/bookmark',
+
+  // 공지 상세
+  GET_FESTIVAL_NOTICE_DETAIL: (noticeId: number | string) =>
+    `/common/notices/${noticeId}`,
+
   GET_FESTIVAL_NOTICES: (eventId: number) =>
     `/common/festivals/${eventId}/notices`,
 
@@ -12,11 +18,10 @@ export const END_POINT = {
 
   // 마이페이지
   GET_MY_PAGE: '/users/mypage',
-  GET_SAVED_NOTICES: '/users/me/bookmark',
 
   //온보딩
   POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
-  
+
   // 로그아웃
   POST_LOGOUT: '/api/auth/logout',
 } as const;

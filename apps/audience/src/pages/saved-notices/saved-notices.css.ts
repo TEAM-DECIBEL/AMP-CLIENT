@@ -3,8 +3,8 @@ import { style } from '@vanilla-extract/css';
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const page = style({
-  padding: '2rem',
-  minHeight: '100vh',
+  padding: '0 2rem',
+  minHeight: 'calc(100dvh - var(--header-height))',
   display: 'flex',
   flexDirection: 'column',
 });
