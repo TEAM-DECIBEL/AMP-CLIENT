@@ -1,6 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
+import { NotificationSubscribeBody } from 'node_modules/@amp/shared/src/types/notice';
 
-import { get } from '@amp/apis';
+import { get, post } from '@amp/apis';
 import type { PageSizeParams } from '@amp/shared/types';
 
 import { END_POINT } from '@shared/constants/end-point';
@@ -30,3 +31,15 @@ export const NOTICES_QUERY_OPTIONS = {
       enabled: Number.isFinite(eventId),
     }),
 } as const;
+
+  export const postNotificationsSubscribe = (
+  festivalId: number,
+  categoryCode: string,
+  body: NotificationSubscribeBody,
+) => {
+  return post<void>(
+    END_POINT.POST_FESTIVAL_NOTIFICATIONS_SUBSCRIBE(festivalId, categoryCode),
+    body,
+  );
+};
+

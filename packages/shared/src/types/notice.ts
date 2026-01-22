@@ -20,3 +20,7 @@ export interface Notice {
   isSaved: boolean;
   createdAt: string;
 }
+
+export interface NotificationSubscribeBody{
+  fcmToken: string;
+}

@@ -10,8 +10,5 @@ export async function listenForegroundMessages(onReceive: (payload: MessagePaylo
 
   onMessage(messaging, (payload) => {
     onReceive(payload);
-    //  const title = payload.notification?.title ?? '알림';
-    // const body = payload.notification?.body ?? '';
-     // toast.show({ title, description: body });
   });
 }

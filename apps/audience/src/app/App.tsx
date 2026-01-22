@@ -11,8 +11,7 @@ import { router } from './router/router';
 function App() {
   useEffect(() => {
     listenForegroundMessages((payload) => {
-      console.log('[FCM][foreground]', payload);
-
+      // console.log('[FCM][foreground]', payload);
       //TODO 
       // queryClient.invalidateQueries({ queryKey: ['notifications'] });
     });

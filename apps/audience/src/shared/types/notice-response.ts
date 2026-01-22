@@ -13,3 +13,4 @@ export interface FestivalNoticesResponseData {
   announcements: Announcement[];
   paginationResponse: PaginationResponse;
 }
+
