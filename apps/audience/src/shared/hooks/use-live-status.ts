@@ -15,7 +15,7 @@ type LiveStatusItem = {
   stageId: number;
   title: string;
   location: string;
-  congestionLevel: StatusSheetValue;
+  congestionLevel: string;
 };
 
 const toCongestionLevel = (value: StatusSheetValue): CongestionLevel => {
@@ -44,7 +44,7 @@ export const useLiveStatus = () => {
         stageId: stage.stageId,
         title: stage.title,
         location: stage.location,
-        congestionLevel: stage.congestionLevel,
+        congestionLevel: String(stage.congestionLevel),
       })) ?? [],
     [data],
   );
