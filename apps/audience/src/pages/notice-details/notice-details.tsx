@@ -8,10 +8,13 @@ import { NoticeDetailLayout } from '@amp/compositions';
 import { useNoticeBookmark } from '@features/bookmark/query';
 import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-detail/query';
 
+import * as styles from './notice-details.css';
+
 const NoticeDetailsPage = () => {
   const { noticeId } = useParams<{ noticeId: string }>();
   const noticeIdNumber = Number(noticeId);
 
+  const { data } = useQuery(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
   const bookmarkMutation = useNoticeBookmark();
 
   const handleBookmark = () => {
@@ -21,11 +24,15 @@ const NoticeDetailsPage = () => {
     if (!Number.isFinite(noticeIdNumber)) {
       return;
     }
+    if (!data) {
+      return;
+    }
 
-    bookmarkMutation.mutate(noticeIdNumber);
+    bookmarkMutation.mutate({
+      noticeId: noticeIdNumber,
+      isBookmarked: !data.isSaved,
+    });
   };
-
-  const { data } = useQuery(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
 
   if (!data) {
     return null;
@@ -38,8 +45,17 @@ const NoticeDetailsPage = () => {
         <div>
           <CircleButton type='share' onClick={() => {}} />
         </div>
-        <CtaButton type='icon' color='gray' onClick={handleBookmark}>
-          <SaveIcon />
+        <CtaButton
+          type='icon'
+          color='gray'
+          onClick={handleBookmark}
+          className={!data.isSaved ? styles.unsaved : undefined}
+        >
+          <div>
+            <SaveIcon
+              className={!data.isSaved ? styles.unsavedIcon : undefined}
+            />
+          </div>
           저장하기
         </CtaButton>
       </NoticeDetailLayout.Actions>
