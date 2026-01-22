@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router';
 
 import {
@@ -9,26 +10,55 @@ import {
 } from '@amp/ads-ui';
 import { PinIcon } from '@amp/ads-ui/icons';
 
+import { NOTICE_QUERY_OPTIONS } from '@features/notice/apis/query';
+
+import { CATEGORIES } from '@shared/constants/category';
 import { useNoticeForm } from '@shared/hooks/use-notice-form';
+import type { NoticeDetail } from '@shared/types/notice';
 import InputLayout from '@shared/ui/input/input-layout';
 import Textarea from '@shared/ui/textarea/textarea';
 
 import * as styles from './notice-create.css';
 
-const CATEGORIES = [
-  { id: 1, label: '운영 시간' },
-  { id: 2, label: '입장 안내' },
-  { id: 3, label: 'MD' },
-  { id: 4, label: '이벤트' },
-  { id: 5, label: '퇴근길' },
-  { id: 6, label: '기타' },
-];
-
 const NoticeCreatePage = () => {
-  const { eventId } = useParams();
+  const { eventId, noticeId } = useParams();
   const parsedFestivalId = eventId ? Number(eventId) : NaN;
   const festivalId = Number.isNaN(parsedFestivalId) ? null : parsedFestivalId;
-  const { formState, handlers, isValid } = useNoticeForm(festivalId);
+  const parsedNoticeId = noticeId ? Number(noticeId) : NaN;
+  const noticeIdValue = Number.isNaN(parsedNoticeId) ? null : parsedNoticeId;
+  const { data: noticeDetail } = useQuery({
+    ...NOTICE_QUERY_OPTIONS.DETAIL(noticeIdValue ?? 0),
+    enabled: noticeIdValue !== null,
+  });
+
+  if (noticeIdValue !== null && !noticeDetail) {
+    return null;
+  }
+
+  const formKey = noticeDetail ? `edit-${noticeDetail.noticeId}` : 'create';
+
+  return (
+    <NoticeCreateForm
+      key={formKey}
+      festivalId={festivalId}
+      noticeDetail={noticeDetail}
+    />
+  );
+};
+
+interface NoticeCreateFormProps {
+  festivalId: number | null;
+  noticeDetail?: NoticeDetail;
+}
+
+const NoticeCreateForm = ({
+  festivalId,
+  noticeDetail,
+}: NoticeCreateFormProps) => {
+  const { formState, handlers, isValid } = useNoticeForm(
+    festivalId,
+    noticeDetail,
+  );
 
   const { isPinned, imageUrl, selectedCategoryId, title, content } = formState;
   const {

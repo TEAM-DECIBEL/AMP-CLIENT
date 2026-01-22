@@ -9,3 +9,16 @@ export interface CreateNoticeBody {
 export interface CreateNoticeResponse {
   noticeId: number;
 }
+
+export interface NoticeDetail {
+  noticeId: number;
+  title: string;
+  content: string;
+  imageUrl: string | null;
+  isPinned: boolean;
+  category: {
+    categoryId: number;
+    categoryName: string;
+    categoryCode: string;
+  };
+}

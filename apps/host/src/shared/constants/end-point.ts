@@ -6,6 +6,9 @@ export const END_POINT = {
   POST_FESTIVAL_NOTICE: (festivalId: number) =>
     `/organizer/festivals/${festivalId}/notices`,
 
+  // 공지 상세
+  GET_NOTICE_DETAIL: (noticeId: number) => `/common/notices/${noticeId}`,
+
   // 온보딩
   POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
 } as const;
