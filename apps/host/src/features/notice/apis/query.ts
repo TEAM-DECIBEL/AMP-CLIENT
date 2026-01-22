@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { get, post } from '@amp/apis';
+import { get, post, put } from '@amp/apis';
 
 import { END_POINT } from '@shared/constants/end-point';
 import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
@@ -8,6 +8,8 @@ import type {
   CreateNoticeBody,
   CreateNoticeResponse,
   NoticeDetail,
+  UpdateNoticeBody,
+  UpdateNoticeResponse,
 } from '@shared/types/notice';
 
 export const postFestivalNotice = (
@@ -25,6 +27,31 @@ export const postFestivalNotice = (
 
   return post<CreateNoticeResponse, FormData>(
     END_POINT.POST_FESTIVAL_NOTICE(festivalId),
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  );
+};
+
+export const putNotice = (noticeId: number, body: UpdateNoticeBody) => {
+  const formData = new FormData();
+  formData.append('festivalId', String(body.festivalId));
+  formData.append('title', body.title);
+  formData.append('categoryId', String(body.categoryId));
+  formData.append('content', body.content);
+  formData.append('isPinned', String(body.isPinned));
+  if (body.newImage) {
+    formData.append('newImage', body.newImage);
+  }
+  if (body.previousImageUrl) {
+    formData.append('previousImageUrl', body.previousImageUrl);
+  }
+
+  return put<UpdateNoticeResponse, FormData>(
+    END_POINT.PUT_NOTICE(noticeId),
     formData,
     {
       headers: {

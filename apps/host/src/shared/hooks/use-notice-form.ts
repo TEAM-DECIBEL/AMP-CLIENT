@@ -3,7 +3,10 @@ import type { ChangeEvent, FormEvent } from 'react';
 
 import { toast } from '@amp/ads-ui';
 
-import { useNoticeCreateMutation } from '@features/notice/use-notice';
+import {
+  useNoticeCreateMutation,
+  useNoticeUpdateMutation,
+} from '@features/notice/use-notice';
 
 import { getCategoryIdByLabel } from '@shared/constants/category';
 import type { NoticeDetail } from '@shared/types/notice';
@@ -13,6 +16,7 @@ const MOCK_PINNED_COUNT = 0;
 export const useNoticeForm = (
   festivalId: number | null,
   initialData?: NoticeDetail | null,
+  noticeId?: number | null,
 ) => {
   const initialCategoryId = initialData
     ? getCategoryIdByLabel(initialData.category.categoryName)
@@ -26,6 +30,7 @@ export const useNoticeForm = (
   const [title, setTitle] = useState(() => initialData?.title ?? '');
   const [content, setContent] = useState(() => initialData?.content ?? '');
   const { mutate: createNotice } = useNoticeCreateMutation(festivalId ?? 0);
+  const { mutate: updateNotice } = useNoticeUpdateMutation(noticeId ?? 0);
 
   const handlePinToggle = () => {
     if (!isPinned && MOCK_PINNED_COUNT >= 3) {
@@ -78,6 +83,21 @@ export const useNoticeForm = (
       return;
     }
     if (selectedCategoryId === null) {
+      return;
+    }
+
+    if (noticeId) {
+      const shouldUsePreviousImage =
+        !image && imageUrl && !imageUrl.startsWith('blob:');
+      updateNotice({
+        festivalId,
+        title,
+        categoryId: selectedCategoryId,
+        newImage: image,
+        content,
+        isPinned,
+        previousImageUrl: shouldUsePreviousImage ? imageUrl : undefined,
+      });
       return;
     }
 

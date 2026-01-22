@@ -6,6 +6,12 @@ export const ORGANIZERS_QUERY_KEY = {
     'notice',
     noticeId,
   ],
+  NOTICE_UPDATE: (noticeId: number) => [
+    ...ORGANIZERS_QUERY_KEY.ALL,
+    'notice',
+    noticeId,
+    'update',
+  ],
   NOTICE_CREATE: (festivalId: number) => [
     ...ORGANIZERS_QUERY_KEY.ALL,
     'festival',

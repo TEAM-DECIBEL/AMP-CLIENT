@@ -58,6 +58,7 @@ const NoticeCreateForm = ({
   const { formState, handlers, isValid } = useNoticeForm(
     festivalId,
     noticeDetail,
+    noticeDetail?.noticeId ?? null,
   );
 
   const { isPinned, imageUrl, selectedCategoryId, title, content } = formState;

@@ -10,6 +10,20 @@ export interface CreateNoticeResponse {
   noticeId: number;
 }
 
+export interface UpdateNoticeBody {
+  festivalId: number;
+  title: string;
+  categoryId: number;
+  newImage?: File | null;
+  content: string;
+  isPinned: boolean;
+  previousImageUrl?: string;
+}
+
+export interface UpdateNoticeResponse {
+  noticeId: number;
+}
+
 export interface NoticeDetail {
   noticeId: number;
   title: string;
