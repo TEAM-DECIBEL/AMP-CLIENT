@@ -20,15 +20,6 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('accessToken');
-  if (token) {
-    config.headers = config.headers ?? {};
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-
 instance.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error) => handleApiError(error),

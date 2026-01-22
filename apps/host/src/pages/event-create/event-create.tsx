@@ -24,10 +24,12 @@ const EventCreatePage = () => {
         createMutation.mutate(formData, {
           onSuccess: (data) => {
             console.log('created festivalId:', data.festivalId);
+            // TODO: 성공 후 페이지 이동 추가
           },
           onError: (err) => {
             console.error(err);
             alert('공연 등록에 실패했어요.');
+            // TODO: 에러 UI
           },
         });
       }}

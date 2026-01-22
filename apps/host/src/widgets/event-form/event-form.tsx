@@ -16,7 +16,7 @@ import { CATEGORIES } from '@shared/ui/button/category-chip-group/category-chip-
 import AddedItem from '@shared/ui/form/added-item/added-item';
 import FormField from '@shared/ui/form/form-field/form-field';
 
-import * as styles from '@pages/event-create/event-create.css';
+import * as styles from './event-form.css';
 
 interface FormState {
   imageUrl: string;
@@ -27,25 +27,12 @@ interface FormState {
   boothTitle: string;
   boothLocation: string;
 }
-interface ScheduleItem {
-  id: string;
-  date: string;
-  time: string;
-}
-interface BoothItem {
-  id: string;
-  title: string;
-  location?: string;
-}
 
-export type EventFormSubmitValues = {
-  title: string;
-  location: string;
-  schedules: ScheduleItem[];
-  stages: BoothItem[];
-  activeCategoryIds: number[];
-  mainImageFile: File | null;
-};
+import type {
+  EventFormSubmitValues,
+  EventScheduleValue as ScheduleItem,
+  EventStageValue as BoothItem,
+} from '@shared/types/event-form';
 
 const isFilled = (value: string) => value.trim() !== '';
 
@@ -59,17 +46,17 @@ const INITIAL_FORM_STATE: FormState = {
   boothLocation: '',
 };
 
-type Props = {
+interface EventFormProps {
   submitText?: string;
   submitDisabled?: boolean;
   onSubmit: (values: EventFormSubmitValues) => void;
-};
+}
 
 const EventForm = ({
   submitText = '완료',
   submitDisabled = false,
   onSubmit,
-}: Props) => {
+}: EventFormProps) => {
   const [activeCategoryIds, setActiveCategoryIds] = useState<number[]>([]);
   const [form, setForm] = useState<FormState>(INITIAL_FORM_STATE);
 

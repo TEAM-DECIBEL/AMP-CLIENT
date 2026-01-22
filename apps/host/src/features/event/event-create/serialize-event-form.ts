@@ -1,7 +1,7 @@
 import { toFormData } from '@shared/libs/to-form-data';
 import type { EventFormSubmitValues } from '@shared/types/event-form';
 
-export const serializeCreateFestivalFormData = (v: EventFormSubmitValues) => {
+export const serializeCreateFestivalFormData = (v: EventFormSubmitValues): FormData | null => {
   if (!v.mainImageFile) {
     return null;
   }
