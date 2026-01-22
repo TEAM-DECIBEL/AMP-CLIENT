@@ -167,14 +167,6 @@ const NoticeListPage = () => {
           </div>
         )}
       </div>
-      {activeTab === NOTICE_TAB.NOTICE && (
-        <section className={styles.buttonContainer}>
-          <div className={styles.button}>
-            {/* TODO: 뷰 이동 로직 추가 */}
-            <CircleButton type='write' onClick={() => {}} />
-          </div>
-        </section>
-      )}
 
       <LiveStatusSheet
         open={isSheetOpen}
