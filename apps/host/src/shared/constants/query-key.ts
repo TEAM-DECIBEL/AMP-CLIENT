@@ -18,4 +18,9 @@ export const ORGANIZERS_QUERY_KEY = {
     festivalId,
     'notice-create',
   ],
+  FESTIVAL_NOTICES: (eventId: number) => [
+    ...ORGANIZERS_QUERY_KEY.ALL,
+    'festival-notices',
+    eventId,
+  ],
 } as const;
