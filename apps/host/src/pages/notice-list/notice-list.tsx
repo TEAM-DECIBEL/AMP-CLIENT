@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { CircleButton } from '@amp/ads-ui';
 import {
@@ -21,6 +22,7 @@ import * as styles from './notice-list.css';
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
 const NoticeListPage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
   const { eventId } = useParams<{ eventId: string }>();
 
@@ -36,8 +38,8 @@ const NoticeListPage = () => {
   const { selectedCategory, noticeList, handleChipClick } =
     useNoticeList(announcements);
 
-  const handleNoticeItemClick = (id: number) => {
-    // TODO: 공지 상세 페이지 이동 등 로직 추가
+  const handleNoticeItemClick = (noticeId: number) => {
+    navigate(`/events/:eventId/notices/${noticeId}`);
   };
 
   return (

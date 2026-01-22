@@ -2,14 +2,9 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 
-import {
-  AddToWatchButton,
-  CircleButton,
-  Modal,
-  RectButton,
-  toast,
-} from '@amp/ads-ui';
+import { AddToWatchButton, Modal, RectButton, toast } from '@amp/ads-ui';
 import { ChatIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
@@ -32,6 +27,7 @@ import * as styles from './notice-list.css';
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
 const NoticeListPage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
 
   // TODO: 서버에서 받아온 값으로 기본값 설정
@@ -53,8 +49,8 @@ const NoticeListPage = () => {
   const { selectedCategory, noticeList, handleChipClick } =
     useNoticeList(announcements);
 
-  const handleNoticeItemClick = (id: number) => {
-    // TODO: 공지 상세 페이지 이동 등 로직 추가
+  const handleNoticeItemClick = (noticeId: number) => {
+    navigate(`/events/:eventId/notices/${noticeId}`);
   };
 
   const {
