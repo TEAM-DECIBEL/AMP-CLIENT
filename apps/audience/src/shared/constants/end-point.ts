@@ -1,4 +1,8 @@
 export const END_POINT = {
+  // 공연 혼잡도 조회
+  GET_FESTIVAL_CONGESTION: (eventId: number) =>
+    `common/festivals/${eventId}/congestion`,
+
   // 저장한 공지
   GET_SAVED_NOTICES: '/users/me/bookmark',
 
