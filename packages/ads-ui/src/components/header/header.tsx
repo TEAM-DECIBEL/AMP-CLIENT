@@ -13,17 +13,6 @@ import {
 
 import * as styles from './header.css';
 
-const CONFIRM_LEAVE_PATH_PATTERNS = [
-  '/events/:eventId/notices/new',
-  '/events/new',
-] as const;
-
-const checkConfirmLeavePath = (pathname: string) => {
-  return CONFIRM_LEAVE_PATH_PATTERNS.some((pattern) =>
-    matchPath(pattern, pathname),
-  );
-};
-
 interface HeaderProps {
   variant: 'host' | 'audience';
   kind: 'main' | 'sub';
