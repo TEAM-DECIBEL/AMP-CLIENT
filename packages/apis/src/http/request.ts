@@ -8,14 +8,20 @@ export interface SuccessResponse<T> {
   data: T;
 }
 
+type RequestOptions = {
+  signal?: AbortSignal;
+};
+
 export const get = async <T, P = unknown>(
   url: string,
   params?: P,
   config?: AxiosRequestConfig,
+  options: RequestOptions = {},
 ): Promise<T> => {
   const res = await instance.get<SuccessResponse<T>>(url, {
     ...config,
     params: params ?? config?.params,
+    signal: options.signal,
   });
   return res.data.data;
 };
