@@ -99,7 +99,12 @@ const Header = ({
     <header className={styles.header}>
       {isMain && (
         <div className={styles.mainRow}>
-          <img src={IMAGES.LOGO} className={styles.logo} alt='로고 이미지' />
+          <img
+            src={IMAGES.LOGO}
+            className={styles.logo}
+            alt='로고 이미지'
+            onClick={() => navigate('/')}
+          />
           <div className={styles.mainIcons}>
             {showAlert && (
               <button
