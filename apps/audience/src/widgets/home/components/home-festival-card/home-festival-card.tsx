@@ -27,12 +27,17 @@ const HomeFestivalCard = ({
       <CardFestival.Body title={title} date={period}>
         <CardFestival.Chip>{chips}</CardFestival.Chip>
       </CardFestival.Body>
-      <CardFestival.Button
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <FlagButton selected={wishList} onChange={onToggle} />
+      <CardFestival.Button>
+        <span
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          onPointerDown={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <FlagButton selected={wishList} onChange={onToggle} />
+        </span>
       </CardFestival.Button>
     </CardFestival>
   );
