@@ -18,6 +18,7 @@ interface HeaderProps {
   kind: 'main' | 'sub';
   title?: string;
   hasNewAlert?: boolean;
+  myPagePath?: string;
 }
 
 const CONFIRM_LEAVE_PATHS = [
@@ -25,7 +26,13 @@ const CONFIRM_LEAVE_PATHS = [
   '/events/new',
 ] as const;
 
-const Header = ({ variant, kind, title, hasNewAlert = false }: HeaderProps) => {
+const Header = ({
+  variant,
+  kind,
+  title,
+  hasNewAlert = false,
+  myPagePath,
+}: HeaderProps) => {
   const isMain = kind === 'main';
   const isSub = kind === 'sub';
   const showAlert = isMain && variant === 'audience';
@@ -105,6 +112,11 @@ const Header = ({ variant, kind, title, hasNewAlert = false }: HeaderProps) => {
               type='button'
               className={styles.iconButton}
               aria-label='마이페이지'
+              onClick={() => {
+                if (myPagePath) {
+                  navigate(myPagePath);
+                }
+              }}
             >
               <MyPageIcon />
             </button>
