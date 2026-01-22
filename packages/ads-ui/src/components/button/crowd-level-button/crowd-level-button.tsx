@@ -1,11 +1,11 @@
 import * as styles from './crowd-level-button.css';
 
-type CrowdVariant = 'low' | 'medium' | 'high';
+type CrowdVariant = 'smooth' | 'normal' | 'crowded';
 
 const crowdLabels: Record<CrowdVariant, string> = {
-  low: '여유',
-  medium: '보통',
-  high: '혼잡',
+  smooth: '여유',
+  normal: '보통',
+  crowded: '혼잡',
 };
 
 interface CrowdLevelButtonProps {

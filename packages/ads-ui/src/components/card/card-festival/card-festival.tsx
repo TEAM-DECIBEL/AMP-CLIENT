@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 import * as styles from './card-festival.css';
 
@@ -29,18 +29,27 @@ const Chip = ({ children }: { children: ReactNode }) => (
   <div className={styles.chip}>{children}</div>
 );
 
-const Button = ({ children }: { children: ReactNode }) => (
-  <div className={styles.buttonSlot}>{children}</div>
+type SlotProps = ComponentPropsWithoutRef<'div'> & { children: ReactNode };
+
+const Button = ({ children, ...rest }: SlotProps) => (
+  <div className={styles.buttonSlot} {...rest}>
+    {children}
+  </div>
 );
 
 const Icon = ({ children }: { children: ReactNode }) => (
   <div className={styles.iconSlot}>{children}</div>
 );
 
-const Root = ({ children }: { children: ReactNode }) => (
-  <article className={styles.card}>{children}</article>
-);
+type RootProps = ComponentPropsWithoutRef<'article'> & {
+  children: ReactNode;
+};
 
+const Root = ({ children, ...rest }: RootProps) => (
+  <article className={styles.card} {...rest}>
+    {children}
+  </article>
+);
 export const CardFestival = Object.assign(Root, {
   Image,
   Body,

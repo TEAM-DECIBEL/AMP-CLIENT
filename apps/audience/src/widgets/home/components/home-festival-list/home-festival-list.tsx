@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router';
+
 import { Chip, EmptyView } from '@amp/ads-ui';
 
 import {
@@ -6,6 +8,7 @@ import {
   type TabValue,
 } from '@widgets/home/constants/home-tabs';
 
+import { ROUTE_PATH } from '@shared/constants/path';
 import formatDday from '@shared/libs/format-dday';
 import type {
   AllFestivalItem,
@@ -31,6 +34,12 @@ const HomeFestivalList = ({
   onToggleAllFestival,
   onToggleUpcomingFestival,
 }: HomeFestivalListProps) => {
+  const navigate = useNavigate();
+
+  const handleMoveToFestival = (festivalId: number) => {
+    navigate(ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)));
+  };
+
   const emptyConfig = {
     [TAB_ALL]: {
       isEmpty: allFestivals.length === 0,
@@ -58,6 +67,7 @@ const HomeFestivalList = ({
                   period={festival.period}
                   imageUrl={festival.mainImageUrl}
                   wishList={festival.wishList}
+                  onClick={() => handleMoveToFestival(festival.festivalId)}
                   onToggle={(nextSelected) =>
                     onToggleAllFestival(festival.festivalId, nextSelected)
                   }
@@ -82,6 +92,7 @@ const HomeFestivalList = ({
                   period={festival.period}
                   imageUrl={festival.mainImageUrl}
                   wishList={festival.wishList}
+                  onClick={() => handleMoveToFestival(festival.festivalId)}
                   onToggle={(nextSelected) =>
                     onToggleUpcomingFestival(festival.festivalId, nextSelected)
                   }
