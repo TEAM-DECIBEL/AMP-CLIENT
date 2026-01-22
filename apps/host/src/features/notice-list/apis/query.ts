@@ -12,21 +12,22 @@ type RequestOptions = {
 };
 
 export const getFestivalNotices = (
-  eventId: number,
+  festivalId: number,
   params: PageSizeParams = {},
   options: RequestOptions = {},
 ) =>
   get<FestivalNoticesResponseData, PageSizeParams>(
-    END_POINT.GET_FESTIVAL_NOTICES(eventId),
+    END_POINT.GET_FESTIVAL_NOTICES(festivalId),
     params,
     options,
   );
 
 export const NOTICES_QUERY_OPTIONS = {
-  LIST: (eventId: number, params: PageSizeParams = {}) =>
+  LIST: (festivalId: number, params: PageSizeParams = {}) =>
     queryOptions({
-      queryKey: [...ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICES(eventId), params],
-      queryFn: ({ signal }) => getFestivalNotices(eventId, params, { signal }),
-      enabled: Number.isFinite(eventId),
+      queryKey: [...ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICES(festivalId), params],
+      queryFn: ({ signal }) =>
+        getFestivalNotices(festivalId, params, { signal }),
+      enabled: Number.isFinite(festivalId),
     }),
 } as const;

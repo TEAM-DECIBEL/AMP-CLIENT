@@ -13,8 +13,8 @@ export const END_POINT = {
   PUT_NOTICE: (noticeId: number) => `/organizer/notices/${noticeId}`,
 
   // 주최 공지
-  GET_FESTIVAL_NOTICES: (eventId: number) =>
-    `/common/festivals/${eventId}/notices`,
+  GET_FESTIVAL_NOTICES: (festivalId: number) =>
+    `/common/festivals/${festivalId}/notices`,
 
   // 온보딩
   POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
