@@ -16,21 +16,31 @@ import { useNoticeList } from '@amp/shared/hooks';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 
 import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
-import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
+
+const formatDday = (dDay: number) => {
+  if (dDay === 0) {
+    return 'D-Day';
+  }
+  return dDay > 0 ? `D-${dDay}` : `D+${Math.abs(dDay)}`;
+};
 
 const NoticeListPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
   const { eventId } = useParams<{ eventId: string }>();
+  const festivalId = Number(eventId);
 
   const { data } = useQuery(
-    NOTICES_QUERY_OPTIONS.LIST(Number(eventId), {
+    NOTICES_QUERY_OPTIONS.LIST(festivalId, {
       page: 0,
       size: 20,
     }),
+  );
+  const { data: festivalBanner } = useQuery(
+    NOTICES_QUERY_OPTIONS.BANNER(festivalId),
   );
 
   const announcements = data?.announcements ?? [];
@@ -39,18 +49,19 @@ const NoticeListPage = () => {
     useNoticeList(announcements);
 
   const handleNoticeItemClick = (noticeId: number) => {
-    navigate(`/events/:eventId/notices/${noticeId}`);
+    navigate(`/events/${eventId}/notices/${noticeId}`);
   };
 
   return (
     <main className={styles.pageContainer}>
-      <NoticeBanner
-        // TODO: 관련 공연 정보 데이터 불러와서 Props 전달
-        dday={FESTIVAL_MOCK.dday}
-        title={FESTIVAL_MOCK.title}
-        location={FESTIVAL_MOCK.location}
-        date={FESTIVAL_MOCK.date}
-      />
+      {festivalBanner && (
+        <NoticeBanner
+          dday={formatDday(festivalBanner.dday)}
+          title={festivalBanner.title}
+          location={festivalBanner.location}
+          date={festivalBanner.period}
+        />
+      )}
       <div className={styles.mainContent}>
         <nav className={styles.contentHeader}>
           <NoticeListTab onChange={setActiveTab} />

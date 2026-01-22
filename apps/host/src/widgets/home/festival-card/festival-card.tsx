@@ -45,14 +45,26 @@ const CHIP_ASSETS = {
 interface FestivalCardProps {
   festival: Festival;
   onMoreClick: (festivalId: number) => void;
+  onCardClick: (festivalId: number) => void;
 }
 
 const FestivalCard = ({
   festival,
   onMoreClick,
+  onCardClick,
 }: FestivalCardProps) => {
   return (
-    <CardFestival>
+    <CardFestival
+      className={styles.cardButton}
+      role='button'
+      tabIndex={0}
+      onClick={() => onCardClick(festival.festivalId)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          onCardClick(festival.festivalId);
+        }
+      }}
+    >
       <CardFestival.Image src={festival.mainImageUrl} alt={festival.title} />
       <CardFestival.Body title={festival.title} date={festival.period}>
         <CardFestival.Chip>
@@ -65,7 +77,10 @@ const FestivalCard = ({
           type='button'
           className={styles.moreButton}
           aria-label='더보기'
-          onClick={() => onMoreClick(festival.festivalId)}
+          onClick={(event) => {
+            event.stopPropagation();
+            onMoreClick(festival.festivalId);
+          }}
         >
           <MoreIcon aria-hidden />
         </button>

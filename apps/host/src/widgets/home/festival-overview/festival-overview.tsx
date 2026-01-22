@@ -11,6 +11,7 @@ interface FestivalOverviewProps {
   upcomingCount: number;
   ongoingFestivals: Festival[];
   upcomingFestivals: Festival[];
+  onCardClick: (festivalId: number) => void;
 }
 
 const FestivalOverview = ({
@@ -18,6 +19,7 @@ const FestivalOverview = ({
   upcomingCount,
   ongoingFestivals,
   upcomingFestivals,
+  onCardClick,
 }: FestivalOverviewProps) => {
   const sections = [
     {
@@ -43,6 +45,7 @@ const FestivalOverview = ({
               key={section.title}
               {...section}
               onMoreClick={handleOpenOptionSheet}
+              onCardClick={onCardClick}
             />
           ))}
         </div>

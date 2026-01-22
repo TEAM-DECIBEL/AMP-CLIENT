@@ -15,4 +15,9 @@ export const ORGANIZERS_QUERY_KEY = {
     'festival-notices',
     eventId,
   ],
+  FESTIVAL_BANNER: (festivalId: number) => [
+    ...ORGANIZERS_QUERY_KEY.ALL,
+    'festival-banner',
+    festivalId,
+  ],
 } as const;
