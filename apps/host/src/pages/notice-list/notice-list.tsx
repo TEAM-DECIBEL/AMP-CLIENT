@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useNavigate, useParams } from 'react-router';
 
 import { CircleButton } from '@amp/ads-ui';
 import {
@@ -10,7 +12,9 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
-import { LIVE_STATUS_MOCK } from '@shared/mocks/current';
+import { CONGESTION_QUERY_OPTIONS } from '@features/notice-details/query';
+import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
+
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 
 import * as styles from './notice-list.css';
@@ -18,25 +22,47 @@ import * as styles from './notice-list.css';
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
 const NoticeListPage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
 
-  const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
+  const { eventId: eventIdParam } = useParams<{ eventId: string }>();
+  const eventId = Number(eventIdParam);
 
-  // TODO: API 연동 (공지 목록 불러오기)
+  const { data: noticesData } = useQuery(
+    NOTICES_QUERY_OPTIONS.LIST(eventId, { page: 0, size: 20 }),
+  );
 
-  const handleNoticeItemClick = (id: number) => {
-    // TODO: 공지 상세 페이지 이동 등 로직 추가
+  const announcements = noticesData?.announcements ?? [];
+
+  const { selectedCategory, noticeList, handleChipClick } =
+    useNoticeList(announcements);
+
+  const { data: congestionData } = useQuery(
+    CONGESTION_QUERY_OPTIONS.STAGES(eventId, { page: 0, size: 10 }),
+  );
+
+  const liveItems =
+    congestionData?.stages.map((stage) => ({
+      id: stage.stageId,
+      title: stage.title,
+      location: stage.location,
+      congestionLevel: stage.congestionLevel,
+    })) ?? [];
+
+  const handleNoticeItemClick = (noticeId: number) => {
+    // ✅ 실제 eventId를 넣어야 라우팅이 됩니다
+    navigate(`/events/${eventId}/notices/${noticeId}`);
   };
 
   return (
     <main className={styles.pageContainer}>
       <NoticeBanner
-        // TODO: 관련 공연 정보 데이터 불러와서 Props 전달
         dday={FESTIVAL_MOCK.dday}
         title={FESTIVAL_MOCK.title}
         location={FESTIVAL_MOCK.location}
         date={FESTIVAL_MOCK.date}
       />
+
       <div className={styles.mainContent}>
         <nav className={styles.contentHeader}>
           <NoticeListTab onChange={setActiveTab} />
@@ -51,14 +77,14 @@ const NoticeListPage = () => {
           />
         ) : (
           <section className={styles.currentContainer}>
-            <LiveButtonContainer items={LIVE_STATUS_MOCK} isDisabled={true} />
+            <LiveButtonContainer items={liveItems} isDisabled />
           </section>
         )}
       </div>
+
       {activeTab === NOTICE_TAB.NOTICE && (
         <div className={styles.buttonContainer}>
           <div className={styles.button}>
-            {/* TODO: 뷰 이동 로직 추가 */}
             <CircleButton type='write' onClick={() => {}} />
           </div>
         </div>
