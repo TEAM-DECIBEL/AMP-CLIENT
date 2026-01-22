@@ -1,6 +1,15 @@
 export const USERS_QUERY_KEY = {
   ALL: ['users'],
 
+  FESTIVAL_CONGESTION: (eventId: number) => [
+    ...USERS_QUERY_KEY.ALL,
+    'festival',
+    eventId,
+    'congestion',
+  ],
+
+  HOME_FESTIVALS: () => [...USERS_QUERY_KEY.ALL, 'home-festivals'],
+
   FESTIVAL_NOTICE_DETAIL: (noticeId: number | string) => [
     ...USERS_QUERY_KEY.ALL,
     'festival-notice-detail',
@@ -24,6 +33,13 @@ export const USERS_QUERY_KEY = {
     ...USERS_QUERY_KEY.ALL,
     'home-festivals-upcoming',
   ],
+
+  BOOKMARKS: {
+    ALL: () => [...USERS_QUERY_KEY.ALL, 'bookmarks'] as const,
+    NOTICES: () => [...USERS_QUERY_KEY.ALL, 'bookmarks', 'notices'] as const,
+  },
+
   MY_PAGE: () => [...USERS_QUERY_KEY.ALL, 'my-page'],
+
   SAVED_NOTICES: () => [...USERS_QUERY_KEY.ALL, 'saved-notices'],
 } as const;

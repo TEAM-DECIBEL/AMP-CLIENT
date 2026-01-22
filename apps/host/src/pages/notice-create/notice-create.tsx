@@ -1,3 +1,6 @@
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router';
+
 import {
   AddImageButton,
   CategoryButton,
@@ -7,18 +10,58 @@ import {
 } from '@amp/ads-ui';
 import { PinIcon } from '@amp/ads-ui/icons';
 
+import { NOTICE_QUERY_OPTIONS } from '@features/notice/apis/query';
+
+import { CATEGORIES } from '@shared/constants/category';
 import { useNoticeForm } from '@shared/hooks/use-notice-form';
+import type { NoticeDetail } from '@shared/types/notice';
 import InputLayout from '@shared/ui/input/input-layout';
 import Textarea from '@shared/ui/textarea/textarea';
 
 import * as styles from './notice-create.css';
 
-const CATEGORIES = ['운영 시간', '입장 안내', 'MD', '이벤트', '퇴근길', '기타'];
-
 const NoticeCreatePage = () => {
-  const { formState, handlers, isValid } = useNoticeForm();
+  const { eventId, noticeId } = useParams();
+  const parsedFestivalId = eventId ? Number(eventId) : NaN;
+  const festivalId = Number.isNaN(parsedFestivalId) ? null : parsedFestivalId;
+  const parsedNoticeId = noticeId ? Number(noticeId) : NaN;
+  const noticeIdValue = Number.isNaN(parsedNoticeId) ? null : parsedNoticeId;
+  const { data: noticeDetail } = useQuery({
+    ...NOTICE_QUERY_OPTIONS.DETAIL(noticeIdValue ?? 0),
+    enabled: noticeIdValue !== null,
+  });
 
-  const { isPinned, imageUrl, selectedCategory, title, content } = formState;
+  if (noticeIdValue !== null && !noticeDetail) {
+    return null;
+  }
+
+  const formKey = noticeDetail ? `edit-${noticeDetail.noticeId}` : 'create';
+
+  return (
+    <NoticeCreateForm
+      key={formKey}
+      festivalId={festivalId}
+      noticeDetail={noticeDetail}
+    />
+  );
+};
+
+interface NoticeCreateFormProps {
+  festivalId: number | null;
+  noticeDetail?: NoticeDetail;
+}
+
+const NoticeCreateForm = ({
+  festivalId,
+  noticeDetail,
+}: NoticeCreateFormProps) => {
+  const { formState, handlers, isValid } = useNoticeForm(
+    festivalId,
+    noticeDetail,
+    noticeDetail?.noticeId ?? null,
+  );
+
+  const { isPinned, imageUrl, selectedCategoryId, title, content } = formState;
   const {
     handlePinToggle,
     handleImageChange,
@@ -54,12 +97,12 @@ const NoticeCreatePage = () => {
           <div className={styles.chipContainer}>
             {CATEGORIES.map((category) => (
               <CategoryButton
-                key={category}
+                key={category.id}
                 variant='neutral'
-                selected={selectedCategory === category}
-                onChange={() => handleCategoryClick(category)}
+                selected={selectedCategoryId === category.id}
+                onChange={() => handleCategoryClick(category.id)}
               >
-                {category}
+                {category.label}
               </CategoryButton>
             ))}
           </div>

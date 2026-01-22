@@ -15,7 +15,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    window.location.href = `${ENV.AUDIENCE_BASE_URL}${OAUTH_PATH.GOOGLE}`;
+    window.location.assign(`${ENV.AUDIENCE_BASE_URL}${OAUTH_PATH.GOOGLE}`);
   };
 
   const handleSkipLogin = () => {

@@ -1,13 +1,18 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { HomeBanner } from '@amp/compositions';
 
 import HomeFestivalSection from '@widgets/home/components/home-festival-section/home-festival-section';
+
+import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
 import useHomeFestivals from './model/use-home-festivals';
 
 import { page } from './home.css';
 
 const HomePage = () => {
-  const nickname = '관객 이름';
+  const { data: myPageData } = useQuery(MY_PAGE_QUERY_OPTIONS.MY_PAGE());
+  const nickname = myPageData?.nickname ?? '';
   const {
     allFestivals,
     bannerFestival,

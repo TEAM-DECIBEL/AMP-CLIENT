@@ -1,5 +1,7 @@
 import { LiveButton, StatusSheetValue } from '@amp/ads-ui';
 
+import { IMAGES } from '../assets/index';
+
 import * as styles from './live-button-container.css';
 
 interface LiveButtonContainerProps {
@@ -14,11 +16,11 @@ interface LiveButtonContainerProps {
   onClick?: (id: number) => void;
 }
 
-// TODO: 추후 실제 이미지 import 하고 변경
 const STATUS_IMAGES: Record<StatusSheetValue, string> = {
-  여유: 'https://dummyimage.com/600x360/27ae60/ffffff&text=LOW',
-  보통: 'https://dummyimage.com/600x360/f1c40f/ffffff&text=MEDIUM',
-  혼잡: 'https://dummyimage.com/600x360/e74c3c/ffffff&text=HIGH',
+  SMOOTH: IMAGES.SMOOTH,
+  NORMAL: IMAGES.NORMAL,
+  CROWDED: IMAGES.CROWDED,
+  NONE: IMAGES.NONE,
 };
 
 const LiveButtonContainer = ({
