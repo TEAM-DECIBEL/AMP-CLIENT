@@ -37,7 +37,7 @@ const NoticeListPage = () => {
 
   const { selectedCategory, noticeList, handleChipClick } = useNoticeList();
 
-  const handleNoticeItemClick = (id: number) => {
+  const handleNoticeItemClick = (_id: number) => {
     // TODO: 공지 상세 페이지 이동 등 로직 추가
   };
 
