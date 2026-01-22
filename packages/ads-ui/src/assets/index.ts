@@ -3,7 +3,7 @@ import cardHome from './card-home.webp';
 import crowdedBtn from './congestion-crowded-btn.webp';
 import normalBtn from './congestion-normal-btn.webp';
 import smoothBtn from './congestion-smooth-btn.webp';
-import emptyAlert from './img_empty_alert.svg';
+import emptyAlert from './empty-alert.webp';
 import logo from './logo.webp';
 
 export const IMAGES = {
