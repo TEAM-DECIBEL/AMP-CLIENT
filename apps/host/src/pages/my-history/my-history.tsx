@@ -1,13 +1,19 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { EmptyView } from '@amp/ads-ui';
 
 import FestivalList from '@widgets/my-history/festival-list';
 
-import { myHistoryFestivals } from '@shared/mocks/my-history-data';
+import { MY_HISTORY_QUERY_OPTIONS } from '@features/my-history/apis/query';
 
 import * as styles from './my-history.css';
 
 const MyHistory = () => {
-  if (myHistoryFestivals.length === 0) {
+  const { data: myHistoryData } = useQuery(
+    MY_HISTORY_QUERY_OPTIONS.FESTIVALS({ page: 0, size: 20 }),
+  );
+
+  if (!myHistoryData || myHistoryData.festivals.length === 0) {
     return (
       <section className={styles.page}>
         <div className={styles.empty}>
@@ -20,7 +26,7 @@ const MyHistory = () => {
   return (
     <section className={styles.page}>
       <div className={styles.list}>
-        <FestivalList festivals={myHistoryFestivals} />
+        <FestivalList festivals={myHistoryData.festivals} />
       </div>
     </section>
   );
