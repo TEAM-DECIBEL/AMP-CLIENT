@@ -1,13 +1,19 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { EmptyView } from '@amp/ads-ui';
 
 import FestivalList from '@widgets/my-events/festival-list';
 
-import { myEventsData } from '@shared/mocks/my-events-data';
+import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
 import * as styles from './my-events.css';
 
 const MyEventsPage = () => {
-  if (myEventsData.festivals.length === 0) {
+  const { data } = useQuery(MY_PAGE_QUERY_OPTIONS.VIEWED_FESTIVALS());
+
+  const festivals = data?.festivals ?? [];
+
+  if (festivals.length === 0) {
     return (
       <section className={styles.page}>
         <div className={styles.empty}>
@@ -20,7 +26,7 @@ const MyEventsPage = () => {
   return (
     <section className={styles.page}>
       <div className={styles.list}>
-        <FestivalList festivals={myEventsData.festivals} />
+        <FestivalList festivals={festivals} />
       </div>
     </section>
   );

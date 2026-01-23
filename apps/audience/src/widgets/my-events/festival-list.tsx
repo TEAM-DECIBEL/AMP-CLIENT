@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 
 import { CardFestival, Chip } from '@amp/ads-ui';
 
-type MyEventsStatus = '관람 중' | '관람 예정';
+type MyEventsStatus = '관람 중' | '관람 예정' | '관람 완료';
 
 interface FestivalItem {
   festivalId: number;
@@ -19,8 +19,13 @@ const STATUS_CHIP: Record<MyEventsStatus, ReactElement> = {
     </Chip>
   ),
   '관람 예정': (
-    <Chip variant='status' status='upcoming'>
+    <Chip variant='status' status='dday'>
       관람 예정
+    </Chip>
+  ),
+  '관람 완료': (
+    <Chip variant='status' status='upcoming'>
+      관람 완료
     </Chip>
   ),
 };
