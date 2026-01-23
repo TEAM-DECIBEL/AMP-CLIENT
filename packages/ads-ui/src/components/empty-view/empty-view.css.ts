@@ -11,8 +11,7 @@ export const empty = style({
 
 export const image = style({
   width: '14rem',
-  height: '14rem',
-  backgroundColor: ampThemeVars.color.gray_200,
+  height: '8.2rem',
 });
 
 export const textGroup = style({
