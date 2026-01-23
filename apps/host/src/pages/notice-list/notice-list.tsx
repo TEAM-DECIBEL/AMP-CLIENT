@@ -26,13 +26,13 @@ const formatDday = (dDay: number) => {
   return dDay > 0 ? `D-${dDay}` : `D+${Math.abs(dDay)}`;
 };
 
-type ActiveCategory = {
+interface ActiveCategory {
   categoryId: number;
   categoryName: string;
   categoryCode: string;
-};
+}
 
-type FestivalBanner = {
+interface FestivalBanner {
   festivalId: number;
   title: string;
   location: string;
@@ -40,7 +40,7 @@ type FestivalBanner = {
   isWishlist: boolean;
   dday: number;
   activeCategories: ActiveCategory[];
-};
+}
 
 const NoticeListPage = () => {
   const navigate = useNavigate();

@@ -31,13 +31,13 @@ import * as styles from './notice-list.css';
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
-type ActiveCategory = {
+interface ActiveCategory {
   categoryId: number;
   categoryName: string;
   categoryCode: string;
-};
+}
 
-type FestivalBanner = {
+interface FestivalBanner {
   festivalId: number;
   title: string;
   location: string;
@@ -45,7 +45,7 @@ type FestivalBanner = {
   isWishlist: boolean;
   dday: number;
   activeCategories: ActiveCategory[];
-};
+}
 
 const NoticeListPage = () => {
   const navigate = useNavigate();
