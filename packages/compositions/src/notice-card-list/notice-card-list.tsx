@@ -6,7 +6,7 @@ import * as styles from './notice-card-list.css';
 
 // TODO: 현재는 목데이터 기준, 추후 type에서 import
 export interface NoticeItem {
-  announcementId: number;
+  noticeId: number;
   imageUrl: string | null;
   title: string;
   content: string;
@@ -34,14 +34,14 @@ const NoticeCardList = ({ notices, onItemClick }: NoticeCardListProps) => {
   return (
     <div className={styles.cardList}>
       {notices.map((notice) => (
-        <div key={notice.announcementId} className={styles.card}>
+        <div key={notice.noticeId} className={styles.card}>
           <CardNotice
             imageUrl={notice.imageUrl || DEFAULT_IMG}
             title={notice.title}
             content={notice.content}
             isPinned={notice.isPinned}
             createdAt={notice.createdAt}
-            onClick={() => onItemClick(notice.announcementId)}
+            onClick={() => onItemClick(notice.noticeId)}
           />
         </div>
       ))}

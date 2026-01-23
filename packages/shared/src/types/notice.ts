@@ -11,7 +11,7 @@ export const CATEGORIES = [
 export type CategoryType = (typeof CATEGORIES)[number];
 
 export interface Notice {
-  announcementId: number;
+  noticeId: number;
   categoryName: string;
   title: string;
   content: string;

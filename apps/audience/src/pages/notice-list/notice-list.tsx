@@ -53,7 +53,7 @@ const NoticeListPage = () => {
     useNoticeList(announcements);
 
   const handleNoticeItemClick = (noticeId: number) => {
-    navigate(`/events/:eventId/notices/${noticeId}`);
+    navigate(`/events/${festivalId}/notices/${noticeId}`);
   };
 
   const {
