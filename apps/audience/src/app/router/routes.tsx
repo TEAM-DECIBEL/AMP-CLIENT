@@ -25,8 +25,6 @@ const subLayoutTitles = {
   savedNotices: '저장한 공지',
 };
 
-const isAuthed = Boolean(localStorage.getItem('accessToken'));
-
 export const globalRoutes = [
   {
     element: <SubLayout />,
