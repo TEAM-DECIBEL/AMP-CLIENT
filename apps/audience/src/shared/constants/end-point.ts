@@ -47,4 +47,7 @@ export const END_POINT = {
   GET_NOTIFICATIONS: '/users/notifications',
   POST_NOTIFICATIONS: (notificationId: number) =>
     `users/notifications/${notificationId}/read`,
+
+  // 마이페이지 관람 공연
+  GET_VIEWED_FESTIVALS: '/users/me/festivals/all',
 } as const;

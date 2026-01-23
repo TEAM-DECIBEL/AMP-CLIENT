@@ -6,19 +6,25 @@ import { Loading } from '@amp/compositions';
 import FestivalList from '@widgets/my-events/festival-list';
 
 import { MY_EVENTS_QUERY_OPTIONS } from '@features/my-events/query';
+import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
 import * as styles from './my-events.css';
 
 const MyEventsPage = () => {
+  const { data: viewedData } = useQuery(
+    MY_PAGE_QUERY_OPTIONS.VIEWED_FESTIVALS(),
+  );
   const { data, isPending } = useQuery(
     MY_EVENTS_QUERY_OPTIONS.LIST({ page: 0, size: 20 }),
   );
+
+  const festivals = viewedData?.festivals ?? [];
 
   if (isPending) {
     return <Loading />;
   }
 
-  if (!data || data.festivals.length === 0) {
+  if (!data || festivals.length === 0) {
     return (
       <section className={styles.page}>
         <div className={styles.empty}>
@@ -31,7 +37,7 @@ const MyEventsPage = () => {
   return (
     <section className={styles.page}>
       <div className={styles.list}>
-        <FestivalList festivals={data.festivals} />
+        <FestivalList festivals={festivals} />
       </div>
     </section>
   );

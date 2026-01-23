@@ -54,4 +54,9 @@ export const USERS_QUERY_KEY = {
   SAVED_NOTICES: () => [...USERS_QUERY_KEY.ALL, 'saved-notices'],
 
   NOTIFICATIONS: () => ['notifications'],
+
+  HOME_FESTIVALS_VIEWED: () => [
+    ...USERS_QUERY_KEY.ALL,
+    'home-festivals-viewed',
+  ],
 } as const;
