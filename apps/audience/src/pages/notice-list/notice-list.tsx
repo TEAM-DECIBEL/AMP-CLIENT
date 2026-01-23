@@ -280,7 +280,7 @@ const NoticeListPage = () => {
       <LiveStatusSheet
         open={isSheetOpen}
         onClose={closeStatusSheet}
-        isAvailableTime={isAvailableTime}
+        isAvailableTime={isAvailableTime ?? false}
         title={sheetTitle}
         selected={status}
         onConfirm={confirmStatus}
