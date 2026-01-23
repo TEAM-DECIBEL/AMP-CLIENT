@@ -1,16 +1,10 @@
-import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router';
 
-import {
-  AddToWatchButton,
-  CircleButton,
-  Modal,
-  RectButton,
-  toast,
-} from '@amp/ads-ui';
+import { AddToWatchButton, Modal, RectButton, toast } from '@amp/ads-ui';
 import { ChatIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
@@ -21,11 +15,13 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
+import { putWishList } from '@features/home/apis/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
+import formatDday from '@shared/libs/format-dday';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
 
@@ -50,8 +46,20 @@ const NoticeListPage = () => {
       size: 20,
     }),
   );
+  const { data: bannerData } = useQuery(
+    NOTICES_QUERY_OPTIONS.BANNER(festivalId),
+  );
 
   const { mutate } = useNotificationsSubscribeMutation();
+  const wishListMutation = useMutation({
+    mutationFn: ({
+      festivalId,
+      wishList,
+    }: {
+      festivalId: number;
+      wishList: boolean;
+    }) => putWishList(festivalId, { wishList }),
+  });
 
   const announcements = data?.announcements ?? [];
 
@@ -59,7 +67,7 @@ const NoticeListPage = () => {
     useNoticeList(announcements);
 
   const handleNoticeItemClick = (noticeId: number) => {
-    navigate(`/events/:eventId/notices/${noticeId}`);
+    navigate(`/events/${festivalId}/notices/${noticeId}`);
   };
 
   const {
@@ -76,8 +84,44 @@ const NoticeListPage = () => {
   const categoryCode = CATEGORY_CODE_BY_LABEL[selectedCategory] ?? 'OTHERS';
 
   const handleWatchToggle = () => {
-    setIsWatched((prev) => !prev);
+    if (!Number.isFinite(festivalId)) {
+      toast.show('공연 정보를 불러오지 못했어요.');
+      return;
+    }
+    const nextSelected = !isWatched;
+    const prevSelected = isWatched;
+
+    setIsWatched(nextSelected);
+    wishListMutation.mutate(
+      { festivalId, wishList: nextSelected },
+      {
+        onError: () => {
+          setIsWatched(prevSelected);
+          toast.show('관람 예정 설정에 실패했어요.');
+        },
+      },
+    );
   };
+
+  useEffect(() => {
+    if (bannerData) {
+      setIsWatched(bannerData.isWishlist);
+    }
+  }, [bannerData]);
+
+  const bannerProps = bannerData
+    ? {
+        dday: formatDday(bannerData.dday),
+        title: bannerData.title,
+        location: bannerData.location,
+        date: bannerData.period,
+      }
+    : {
+        dday: FESTIVAL_MOCK.dday,
+        title: FESTIVAL_MOCK.title,
+        location: FESTIVAL_MOCK.location,
+        date: FESTIVAL_MOCK.date,
+      };
 
   const handleAlertClick = () => {
     overlay.open(({ isOpen, close, unmount }) => {
@@ -153,11 +197,10 @@ const NoticeListPage = () => {
   return (
     <main className={styles.pageContainer}>
       <NoticeBanner
-        // TODO: 관련 공연 정보 데이터 불러와서 Props 전달
-        dday={FESTIVAL_MOCK.dday}
-        title={FESTIVAL_MOCK.title}
-        location={FESTIVAL_MOCK.location}
-        date={FESTIVAL_MOCK.date}
+        dday={bannerProps.dday}
+        title={bannerProps.title}
+        location={bannerProps.location}
+        date={bannerProps.date}
         button={
           <AddToWatchButton selected={isWatched} onChange={handleWatchToggle} />
         }
@@ -189,14 +232,6 @@ const NoticeListPage = () => {
           </div>
         )}
       </div>
-      {activeTab === NOTICE_TAB.NOTICE && (
-        <section className={styles.buttonContainer}>
-          <div className={styles.button}>
-            {/* TODO: 뷰 이동 로직 추가 */}
-            <CircleButton type='write' onClick={() => {}} />
-          </div>
-        </section>
-      )}
 
       <LiveStatusSheet
         open={isSheetOpen}

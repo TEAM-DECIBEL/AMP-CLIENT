@@ -44,6 +44,7 @@ export const toast = style({
   borderRadius: '16px',
   padding: '1rem 1.6rem',
   display: 'flex',
+  alignItems: 'center',
   gap: '1rem',
   background: ampThemeVars.color.gray_800_90,
   width: '31.5rem',

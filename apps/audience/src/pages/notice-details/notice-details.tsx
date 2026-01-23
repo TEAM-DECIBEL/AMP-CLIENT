@@ -51,12 +51,32 @@ const NoticeDetailsPage = () => {
     return null;
   }
 
+  const handleShare = async () => {
+    if (
+      typeof window === 'undefined' ||
+      typeof navigator === 'undefined' ||
+      !navigator.share
+    ) {
+      return;
+    }
+
+    const shareData = {
+      text: `${normalizedData.title}\n${window.location.href}`,
+    };
+
+    try {
+      await navigator.share(shareData);
+    } catch {
+      // 사용자 취소 등은 무시
+    }
+  };
+
   return (
     <NoticeDetailLayout>
       <NoticeDetailLayout.Content data={normalizedData} />
       <NoticeDetailLayout.Actions>
         <div>
-          <CircleButton type='share' onClick={() => {}} />
+          <CircleButton type='share' onClick={handleShare} />
         </div>
         <CtaButton
           type='icon'

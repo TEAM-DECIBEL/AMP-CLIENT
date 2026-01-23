@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { ReactNode } from 'react';
+import { useNavigate } from 'react-router';
 
 import FestivalActionsView from '@widgets/home/festival-actions/festival-actions';
 

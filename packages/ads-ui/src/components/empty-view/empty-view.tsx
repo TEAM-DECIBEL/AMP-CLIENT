@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+import { IMAGES } from '../../assets';
+
 import * as styles from './empty-view.css';
 
 interface EmptyViewProps {
@@ -12,7 +14,7 @@ const EmptyView = ({ title, description }: EmptyViewProps) => {
 
   return (
     <div className={styles.empty}>
-      <span className={styles.image} aria-hidden='true' />
+      <img src={IMAGES.EMPTY_VIEW} className={styles.image} />
       <div className={styles.textGroup}>
         <span
           className={

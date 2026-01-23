@@ -10,11 +10,11 @@ import * as styles from './notice-tab-content.css';
 
 interface NoticeTabContentProps {
   selectedCategory: CategoryType;
-  noticeList: NoticeItem[]; // TODO: Notice 타입으로 교체
+  noticeList: NoticeItem[];
   isSelectedCategory?: boolean;
   onSelectCategory: (category: CategoryType) => void;
   onAlertClick?: () => void;
-  onNoticeItemClick: (id: number) => void; // TODO: 추후 타입 변경
+  onNoticeItemClick: (id: number) => void;
 }
 
 const NoticeTabContent = ({

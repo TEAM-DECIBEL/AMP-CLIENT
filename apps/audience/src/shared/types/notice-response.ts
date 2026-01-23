@@ -28,6 +28,22 @@ export interface FestivalNoticesResponseData {
   paginationResponse: PaginationResponse;
 }
 
+export interface ActiveCategory {
+  categoryId: number;
+  categoryName: string;
+  categoryCode: string;
+}
+
+export interface FestivalNoticeBanner {
+  festivalId: number;
+  title: string;
+  location: string;
+  period: string;
+  isWishlist: boolean;
+  dday: number;
+  activeCategories: ActiveCategory[];
+}
+
 export interface NoticeCategory {
   categoryId: number;
   categoryName: string;
