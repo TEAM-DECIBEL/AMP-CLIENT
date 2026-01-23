@@ -24,7 +24,9 @@ export const useNoticeForm = (
   const initialCategoryId = initialData
     ? getCategoryIdByLabel(initialData.category.categoryName)
     : null;
-  const [isPinned, setIsPinned] = useState(() => initialData?.isPinned ?? false);
+  const [isPinned, setIsPinned] = useState(
+    () => initialData?.isPinned ?? false,
+  );
   const [image, setImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState(() => initialData?.imageUrl ?? '');
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
@@ -92,51 +94,49 @@ export const useNoticeForm = (
     if (noticeId) {
       const shouldUsePreviousImage =
         !image && imageUrl && !imageUrl.startsWith('blob:');
-      updateNotice({
-        festivalId,
-        title,
-        categoryId: selectedCategoryId,
-        newImage: image,
-        content,
-        isPinned,
-        previousImageUrl: shouldUsePreviousImage ? imageUrl : undefined,
-      },
-      {
-        onSuccess: (data) => {
-          navigate(
-            ROUTE_PATH.NOTICE_DETAILS.replace(
-              ':eventId',
-              String(festivalId),
-            ).replace(':noticeId', String(data.noticeId)),
-          );
+      updateNotice(
+        {
+          festivalId,
+          title,
+          categoryId: selectedCategoryId,
+          newImage: image,
+          content,
+          isPinned,
+          previousImageUrl: shouldUsePreviousImage ? imageUrl : undefined,
         },
-        onError: () => {
-          toast.show('공지 수정에 실패했어요.');
+        {
+          onSuccess: () => {
+            navigate(
+              ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)),
+            );
+          },
+          onError: () => {
+            toast.show('공지 수정에 실패했어요.');
+          },
         },
-      });
+      );
       return;
     }
 
-    createNotice({
-      title,
-      categoryId: selectedCategoryId,
-      image,
-      content,
-      isPinned,
-    },
-    {
-      onSuccess: (data) => {
-        navigate(
-          ROUTE_PATH.NOTICE_DETAILS.replace(
-            ':eventId',
-            String(festivalId),
-          ).replace(':noticeId', String(data.noticeId)),
-        );
+    createNotice(
+      {
+        title,
+        categoryId: selectedCategoryId,
+        image,
+        content,
+        isPinned,
       },
-      onError: () => {
-        toast.show('공지 작성에 실패했어요.');
+      {
+        onSuccess: () => {
+          navigate(
+            ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)),
+          );
+        },
+        onError: () => {
+          toast.show('공지 작성에 실패했어요.');
+        },
       },
-    });
+    );
   };
 
   return {
