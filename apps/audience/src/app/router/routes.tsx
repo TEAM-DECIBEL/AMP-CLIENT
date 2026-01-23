@@ -14,7 +14,7 @@ import {
   NoticeListPage,
   NotificationPage,
   OnboardingPage,
-  SavedNoticesPage,
+  SavedNoticesPage, 
 } from './lazy';
 import { SubLayout, SubLayoutWithBack } from './sub-layout';
 

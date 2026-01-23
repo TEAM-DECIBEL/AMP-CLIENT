@@ -48,9 +48,10 @@ const FestivalList = ({ festivals }: FestivalListProps) => {
           />
           <CardFestival.Body title={festival.title} date={festival.period}>
             <CardFestival.Chip>
-              {toMyEventsStatus(festival.status)
-                ? getStatusChip(toMyEventsStatus(festival.status) as MyEventsStatus)
-                : null}
+              {(() => {
+                const mapped = toMyEventsStatus(festival.status);
+                return mapped ? getStatusChip(mapped) : null;
+              })()}
             </CardFestival.Chip>
           </CardFestival.Body>
         </CardFestival>

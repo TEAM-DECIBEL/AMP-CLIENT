@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { get } from '@amp/apis';
+import { del, get } from '@amp/apis';
 import { PageSizeParams } from '@amp/shared/types';
 
 import { END_POINT } from '@shared/constants/end-point';
@@ -9,6 +9,9 @@ import type { HomeResponseData } from '@shared/types/home-response';
 
 export const getHomeFestivals = (params: PageSizeParams = {}) =>
   get<HomeResponseData, PageSizeParams>(END_POINT.GET_HOME_FESTIVALS, params);
+
+export const deleteFestival = (festivalId: number) =>
+  del<void>(END_POINT.DELETE_FESTIVAL(festivalId));
 
 export const HOME_QUERY_OPTIONS = {
   FESTIVALS: (params: PageSizeParams = {}) =>
