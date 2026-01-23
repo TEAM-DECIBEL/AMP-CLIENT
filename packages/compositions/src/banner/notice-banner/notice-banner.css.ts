@@ -11,6 +11,9 @@ export const banner = style({
   height: '24.2rem',
   padding: '2.8rem 2rem 7.2rem 2rem',
   backgroundImage: `url(${IMAGES.NOTICE_BANNER})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
 });
 
 export const content = style({
@@ -47,5 +50,5 @@ export const button = style({
 });
 
 export const chip = style({
-  width: '5.4rem',
+  width: '5.6rem',
 });

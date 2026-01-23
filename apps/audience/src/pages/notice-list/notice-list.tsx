@@ -4,13 +4,7 @@ import { overlay } from 'overlay-kit';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router';
 
-import {
-  AddToWatchButton,
-  CircleButton,
-  Modal,
-  RectButton,
-  toast,
-} from '@amp/ads-ui';
+import { AddToWatchButton, Modal, RectButton, toast } from '@amp/ads-ui';
 import { ChatIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
@@ -189,14 +183,6 @@ const NoticeListPage = () => {
           </div>
         )}
       </div>
-      {activeTab === NOTICE_TAB.NOTICE && (
-        <section className={styles.buttonContainer}>
-          <div className={styles.button}>
-            {/* TODO: 뷰 이동 로직 추가 */}
-            <CircleButton type='write' onClick={() => {}} />
-          </div>
-        </section>
-      )}
 
       <LiveStatusSheet
         open={isSheetOpen}
