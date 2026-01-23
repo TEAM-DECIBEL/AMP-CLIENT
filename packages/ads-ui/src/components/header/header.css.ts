@@ -63,4 +63,5 @@ export const title = style({
 export const logo = style({
   width: '12rem',
   height: '3rem',
+  cursor: 'pointer',
 });
