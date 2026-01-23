@@ -19,6 +19,7 @@ export const cardList = style({
 export const card = style({
   marginBottom: '1.2rem',
   paddingBottom: '1.2rem',
+  cursor: 'pointer',
   borderBottom: `1px solid ${ampThemeVars.color.gray_200}`,
   selectors: {
     '&:last-child': {

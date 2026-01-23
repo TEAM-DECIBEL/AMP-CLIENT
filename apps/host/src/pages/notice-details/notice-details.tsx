@@ -3,10 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
 import { generatePath, useNavigate, useParams } from 'react-router';
 
-import { CtaButton, Modal, RectButton } from '@amp/ads-ui';
+import { CtaButton, Modal, RectButton, toast } from '@amp/ads-ui';
 import { PenIcon, TrashIcon } from '@amp/ads-ui/icons';
 import { NoticeDetailLayout } from '@amp/compositions';
 
+import { useNoticeDeleteMutation } from '@features/notice/use-notice';
 import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-details/query';
 
 import { ROUTE_PATH } from '@shared/constants/path';
@@ -31,6 +32,8 @@ const NoticeDetailsPage = () => {
   };
 
   const noticeIdNumber = Number(noticeId);
+  const { mutate: deleteNotice, isPending: isDeletePending } =
+    useNoticeDeleteMutation(noticeIdNumber);
 
   const { data } = useQuery<
     NoticeDetailResponse,
@@ -81,10 +84,25 @@ const NoticeDetailsPage = () => {
             </RectButton>
             <RectButton
               variant='primary'
-              // TODO: 삭제 API 호출
+              disabled={isDeletePending}
               onClick={() => {
-                close();
-                unmount();
+                deleteNotice(undefined, {
+                  onSuccess: () => {
+                    close();
+                    unmount();
+                    if (eventId) {
+                      navigate(
+                        ROUTE_PATH.NOTICE_LIST.replace(
+                          ':eventId',
+                          String(eventId),
+                        ),
+                      );
+                    }
+                  },
+                  onError: () => {
+                    toast.show('공지 삭제에 실패했어요.');
+                  },
+                });
               }}
             >
               삭제
