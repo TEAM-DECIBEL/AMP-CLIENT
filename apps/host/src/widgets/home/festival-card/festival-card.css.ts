@@ -7,4 +7,8 @@ export const moreButton = style({
 
 export const cardButton = style({
   cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'flex-start',
+  gap: '1.6rem',
+  position: 'relative',
 });
