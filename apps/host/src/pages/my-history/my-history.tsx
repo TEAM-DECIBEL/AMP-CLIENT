@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { EmptyView } from '@amp/ads-ui';
+import { Loading } from '@amp/compositions';
 
 import FestivalList from '@widgets/my-history/festival-list';
 
@@ -9,9 +10,13 @@ import { MY_HISTORY_QUERY_OPTIONS } from '@features/my-history/apis/query';
 import * as styles from './my-history.css';
 
 const MyHistory = () => {
-  const { data: myHistoryData } = useQuery(
+  const { data: myHistoryData, isPending } = useQuery(
     MY_HISTORY_QUERY_OPTIONS.FESTIVALS({ page: 0, size: 20 }),
   );
+
+  if (isPending) {
+    return <Loading />;
+  }
 
   if (!myHistoryData || myHistoryData.festivals.length === 0) {
     return (
@@ -22,7 +27,6 @@ const MyHistory = () => {
       </section>
     );
   }
-
   return (
     <section className={styles.page}>
       <div className={styles.list}>
