@@ -1,10 +1,11 @@
+import ProtectedIndex from '@app/router/protected-index';
+
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
   AuthRequiredPage,
   CallbackPage,
   EventCreatePage,
-  HomePage,
   LoginPage,
   MyHistoryPage,
   MyPage,
@@ -31,7 +32,7 @@ export const globalRoutes = [
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <ProtectedIndex />,
       },
     ],
   },
