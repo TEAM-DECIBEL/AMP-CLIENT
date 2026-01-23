@@ -33,11 +33,14 @@ interface FestivalListProps {
 const FestivalList = ({ festivals }: FestivalListProps) => {
   return (
     <>
-      {festivals.map((festival) => {
+      {festivals.map((festival, index) => {
+        const key = festival.festivalId
+          ? `festival-${festival.festivalId}`
+          : `festival-${festival.title}-${festival.period}-${index}`;
         const imageSrc = festival.mainImageUrl ?? festival.imageUrl;
 
         return (
-          <CardFestival key={festival.festivalId}>
+          <CardFestival key={key}>
             {imageSrc && (
               <CardFestival.Image src={imageSrc} alt={festival.title} />
             )}
