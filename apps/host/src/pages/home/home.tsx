@@ -14,7 +14,7 @@ import Tooltip from '@shared/ui/tooltip/tooltip';
 import * as styles from './home.css';
 
 const ROUTE = {
-  EVENT_CREATE: '/events/create',
+  EVENT_CREATE: '/events/new',
   NOTICE_LIST: '/events/:eventId/notices',
 } as const;
 
