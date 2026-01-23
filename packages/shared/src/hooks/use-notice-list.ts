@@ -1,25 +1,34 @@
 import { useMemo, useState } from 'react';
 
-import { CATEGORIES, type CategoryType, type Notice } from '../types';
+import { ALL_CATEGORY, type CategoryType, type Notice } from '../types/notice';
 
 interface UseNoticeListReturn {
+  categories: CategoryType[];
   selectedCategory: CategoryType;
   handleChipClick: (category: CategoryType) => void;
   noticeList: Notice[];
 }
 
-export const useNoticeList = (notices: Notice[] = []): UseNoticeListReturn => {
+export const useNoticeList = (
+  notices: Notice[] = [],
+  activeCategories: CategoryType[] = [],
+): UseNoticeListReturn => {
+  const categories = useMemo<CategoryType[]>(() => {
+    const uniq = Array.from(new Set(activeCategories));
+    return [ALL_CATEGORY, ...uniq.filter((c) => c !== ALL_CATEGORY)];
+  }, [activeCategories]);
+
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(
-    CATEGORIES[0],
+    () => categories[0] ?? ALL_CATEGORY,
   );
 
   const handleChipClick = (category: CategoryType) => {
     setSelectedCategory(category);
   };
 
-  const sortedList = useMemo(() => {
+  const noticeList = useMemo(() => {
     const filtered =
-      selectedCategory === '전체'
+      selectedCategory === ALL_CATEGORY
         ? notices
         : notices.filter((item) => item.categoryName === selectedCategory);
 
@@ -32,8 +41,9 @@ export const useNoticeList = (notices: Notice[] = []): UseNoticeListReturn => {
   }, [selectedCategory, notices]);
 
   return {
+    categories,
     selectedCategory,
     handleChipClick,
-    noticeList: sortedList,
+    noticeList,
   };
 };

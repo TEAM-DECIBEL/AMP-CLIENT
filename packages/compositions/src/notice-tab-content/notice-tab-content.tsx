@@ -9,6 +9,7 @@ import NoticeCardList from '../notice-card-list/notice-card-list';
 import * as styles from './notice-tab-content.css';
 
 interface NoticeTabContentProps {
+  categories: CategoryType[];
   selectedCategory: CategoryType;
   noticeList: NoticeItem[];
   isSelectedCategory?: boolean;
@@ -21,6 +22,7 @@ const NoticeTabContent = ({
   selectedCategory,
   noticeList,
   isSelectedCategory = false,
+  categories,
   onSelectCategory,
   onAlertClick,
   onNoticeItemClick,
@@ -28,6 +30,7 @@ const NoticeTabContent = ({
   return (
     <section className={styles.container}>
       <CategorySection
+        categories={categories}
         selectedCategory={selectedCategory}
         onSelect={onSelectCategory}
       />

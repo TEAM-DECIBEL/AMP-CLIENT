@@ -2,10 +2,7 @@ export { default as HomeBanner } from './banner/home-banner/home-banner';
 export { default as NoticeBanner } from './banner/notice-banner/notice-banner';
 export { default as ButtonGradientSection } from './button-gradient-section/button-gradient-section';
 export { default as CategorySection } from './category-section/category-section';
-export {
-  CATEGORIES,
-  type CategoryType,
-} from './category-section/category-section';
+export { type CategoryType } from './category-section/category-section';
 export { default as LiveButtonContainer } from './live-button-container/live-button-container';
 export { default as Loading } from './loading/loading';
 export { default as NicknameForm } from './nickname-form/nickname-form';

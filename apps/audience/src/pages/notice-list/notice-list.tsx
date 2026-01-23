@@ -31,6 +31,22 @@ import * as styles from './notice-list.css';
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
+type ActiveCategory = {
+  categoryId: number;
+  categoryName: string;
+  categoryCode: string;
+};
+
+type FestivalBanner = {
+  festivalId: number;
+  title: string;
+  location: string;
+  period: string;
+  isWishlist: boolean;
+  dday: number;
+  activeCategories: ActiveCategory[];
+};
+
 const NoticeListPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
@@ -46,9 +62,21 @@ const NoticeListPage = () => {
       size: 20,
     }),
   );
-  const { data: bannerData } = useQuery(
-    NOTICES_QUERY_OPTIONS.BANNER(festivalId),
-  );
+  const { data: bannerData } = useQuery({
+    ...NOTICES_QUERY_OPTIONS.BANNER(festivalId),
+    select: (res: unknown): FestivalBanner | undefined => {
+      if (typeof res !== 'object' || res === null) {
+        return undefined;
+      }
+
+      if ('data' in res) {
+        const wrapped = res as { data?: FestivalBanner };
+        return wrapped.data;
+      }
+
+      return res as FestivalBanner;
+    },
+  });
 
   const { mutate } = useNotificationsSubscribeMutation();
   const wishListMutation = useMutation({
@@ -63,8 +91,11 @@ const NoticeListPage = () => {
 
   const announcements = data?.announcements ?? [];
 
-  const { selectedCategory, noticeList, handleChipClick } =
-    useNoticeList(announcements);
+  const activeCategoryNames =
+    bannerData?.activeCategories?.map((c) => c.categoryName) ?? [];
+
+  const { categories, selectedCategory, noticeList, handleChipClick } =
+    useNoticeList(announcements, activeCategoryNames);
 
   const handleNoticeItemClick = (noticeId: number) => {
     navigate(`/events/${festivalId}/notices/${noticeId}`);
@@ -81,7 +112,14 @@ const NoticeListPage = () => {
     confirmStatus,
   } = useLiveStatus();
 
-  const categoryCode = CATEGORY_CODE_BY_LABEL[selectedCategory] ?? 'OTHERS';
+  const isCategoryLabel = (
+    value: string,
+  ): value is keyof typeof CATEGORY_CODE_BY_LABEL =>
+    value in CATEGORY_CODE_BY_LABEL;
+
+  const categoryCode = isCategoryLabel(selectedCategory)
+    ? CATEGORY_CODE_BY_LABEL[selectedCategory]
+    : 'OTHERS';
 
   const handleWatchToggle = () => {
     if (!Number.isFinite(festivalId)) {
@@ -211,6 +249,7 @@ const NoticeListPage = () => {
         </nav>
         {activeTab === NOTICE_TAB.NOTICE ? (
           <NoticeTabContent
+            categories={categories}
             selectedCategory={selectedCategory}
             noticeList={noticeList}
             isSelectedCategory={true}

@@ -26,6 +26,22 @@ const formatDday = (dDay: number) => {
   return dDay > 0 ? `D-${dDay}` : `D+${Math.abs(dDay)}`;
 };
 
+type ActiveCategory = {
+  categoryId: number;
+  categoryName: string;
+  categoryCode: string;
+};
+
+type FestivalBanner = {
+  festivalId: number;
+  title: string;
+  location: string;
+  period: string;
+  isWishlist: boolean;
+  dday: number;
+  activeCategories: ActiveCategory[];
+};
+
 const NoticeListPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
@@ -38,14 +54,30 @@ const NoticeListPage = () => {
       size: 20,
     }),
   );
-  const { data: festivalBanner } = useQuery(
-    NOTICES_QUERY_OPTIONS.BANNER(eventId),
-  );
+
+  const { data: festivalBanner } = useQuery({
+    ...NOTICES_QUERY_OPTIONS.BANNER(eventId),
+    select: (res: unknown): FestivalBanner | undefined => {
+      if (typeof res !== 'object' || res === null) {
+        return undefined;
+      }
+
+      if ('data' in res) {
+        const wrapped = res as { data?: FestivalBanner };
+        return wrapped.data;
+      }
+
+      return res as FestivalBanner;
+    },
+  });
 
   const announcements = noticesData?.announcements ?? [];
 
-  const { selectedCategory, noticeList, handleChipClick } =
-    useNoticeList(announcements);
+  const activeCategoryNames =
+    festivalBanner?.activeCategories?.map((c) => c.categoryName) ?? [];
+
+  const { categories, selectedCategory, noticeList, handleChipClick } =
+    useNoticeList(announcements, activeCategoryNames);
 
   const { data: congestionData } = useQuery(
     CONGESTION_QUERY_OPTIONS.STAGES(eventId, { page: 0, size: 10 }),
@@ -80,6 +112,7 @@ const NoticeListPage = () => {
 
         {activeTab === NOTICE_TAB.NOTICE ? (
           <NoticeTabContent
+            categories={categories}
             selectedCategory={selectedCategory}
             noticeList={noticeList}
             onSelectCategory={handleChipClick}

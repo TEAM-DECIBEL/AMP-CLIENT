@@ -1,3 +1,6 @@
+export const ALL_CATEGORY = '전체' as const;
+export type CategoryType = string;
+
 export const CATEGORIES = [
   '전체',
   '운영 시간',
@@ -7,8 +10,6 @@ export const CATEGORIES = [
   '퇴근길',
   '기타',
 ] as const;
-
-export type CategoryType = (typeof CATEGORIES)[number];
 
 export interface Notice {
   noticeId: number;
