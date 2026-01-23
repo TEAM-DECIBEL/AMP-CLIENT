@@ -55,6 +55,8 @@ const FestivalCard = ({
   onMoreClick,
   onCardClick,
 }: FestivalCardProps) => {
+  const imageSrc = festival.mainImageUrl ?? '';
+
   return (
     <CardFestival
       className={styles.cardButton}
@@ -67,13 +69,15 @@ const FestivalCard = ({
         }
       }}
     >
-      <CardFestival.Image src={festival.mainImageUrl} alt={festival.title} />
+      {imageSrc && <CardFestival.Image src={imageSrc} alt={festival.title} />}
+
       <CardFestival.Body title={festival.title} date={festival.period}>
         <CardFestival.Chip>
           {renderDDayChip(festival.dDay)}
           {CHIP_ASSETS[getStatusKey(festival.status)]}
         </CardFestival.Chip>
       </CardFestival.Body>
+
       <CardFestival.Icon>
         <button
           type='button'

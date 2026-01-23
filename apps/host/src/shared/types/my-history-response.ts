@@ -2,7 +2,8 @@ import type { FestivalStatus } from './festival';
 
 export interface MyHistoryFestival {
   festivalId: number;
-  mainImageUrl: string;
+  mainImageUrl?: string;
+  imageUrl?: string;
   title: string;
   period: string;
   status: FestivalStatus;

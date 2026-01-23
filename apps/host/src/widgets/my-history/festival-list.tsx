@@ -33,19 +33,23 @@ interface FestivalListProps {
 const FestivalList = ({ festivals }: FestivalListProps) => {
   return (
     <>
-      {festivals.map((festival) => (
-        <CardFestival key={festival.festivalId}>
-          <CardFestival.Image
-            src={festival.mainImageUrl}
-            alt={festival.title}
-          />
-          <CardFestival.Body title={festival.title} date={festival.period}>
-            <CardFestival.Chip>
-              {getStatusChip(festival.status)}
-            </CardFestival.Chip>
-          </CardFestival.Body>
-        </CardFestival>
-      ))}
+      {festivals.map((festival) => {
+        const imageSrc = festival.mainImageUrl ?? festival.imageUrl;
+
+        return (
+          <CardFestival key={festival.festivalId}>
+            {imageSrc && (
+              <CardFestival.Image src={imageSrc} alt={festival.title} />
+            )}
+
+            <CardFestival.Body title={festival.title} date={festival.period}>
+              <CardFestival.Chip>
+                {getStatusChip(festival.status)}
+              </CardFestival.Chip>
+            </CardFestival.Body>
+          </CardFestival>
+        );
+      })}
     </>
   );
 };
