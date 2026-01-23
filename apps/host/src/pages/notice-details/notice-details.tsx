@@ -5,7 +5,7 @@ import { generatePath, useNavigate, useParams } from 'react-router';
 
 import { CtaButton, Modal, RectButton } from '@amp/ads-ui';
 import { PenIcon, TrashIcon } from '@amp/ads-ui/icons';
-import { NoticeDetailLayout } from '@amp/compositions';
+import { Loading, NoticeDetailLayout } from '@amp/compositions';
 
 import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-details/query';
 
@@ -39,6 +39,9 @@ const NoticeDetailsPage = () => {
     (string | number)[]
   >(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
 
+  const { isPending } = useQuery(
+    NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber),
+  );
   const normalizedData = useMemo(() => {
     if (!data) {
       return null;
@@ -53,6 +56,10 @@ const NoticeDetailsPage = () => {
 
   if (!normalizedData) {
     return null;
+  }
+
+  if (isPending) {
+    return <Loading />;
   }
 
   const handleDeleteClick = () => {

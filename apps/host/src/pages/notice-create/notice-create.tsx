@@ -9,6 +9,7 @@ import {
   Textfield,
 } from '@amp/ads-ui';
 import { PinIcon } from '@amp/ads-ui/icons';
+import { Loading } from '@amp/compositions';
 
 import { NOTICE_QUERY_OPTIONS } from '@features/notice/apis/query';
 
@@ -26,10 +27,14 @@ const NoticeCreatePage = () => {
   const festivalId = Number.isNaN(parsedFestivalId) ? null : parsedFestivalId;
   const parsedNoticeId = noticeId ? Number(noticeId) : NaN;
   const noticeIdValue = Number.isNaN(parsedNoticeId) ? null : parsedNoticeId;
-  const { data: noticeDetail } = useQuery({
+  const { data: noticeDetail, isPending } = useQuery({
     ...NOTICE_QUERY_OPTIONS.DETAIL(noticeIdValue ?? 0),
     enabled: noticeIdValue !== null,
   });
+
+  if (noticeIdValue !== null && isPending) {
+    return <Loading />;
+  }
 
   if (noticeIdValue !== null && !noticeDetail) {
     return null;

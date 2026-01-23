@@ -82,6 +82,7 @@ const NoticeDetailsPage = () => {
           type='icon'
           color='gray'
           onClick={handleBookmark}
+          disabled={bookmarkMutation.isPending}
           className={!normalizedData.isSaved ? styles.unsaved : undefined}
         >
           <div>

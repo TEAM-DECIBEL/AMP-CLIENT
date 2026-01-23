@@ -27,11 +27,13 @@ const EventCreatePage = () => {
       submitText='완료'
       submitDisabled={createMutation.isPending}
       onSubmit={(values) => {
+        if (createMutation.isPending) {
+          return;
+        }
         const formData = serializeCreateFestivalFormData(values);
         if (!formData) {
           return;
         }
-
         createMutation.mutate(formData);
       }}
     />
