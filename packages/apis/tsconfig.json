@@ -1,6 +1,7 @@
 {
   "extends": "@amp/tsconfig/base",
   "compilerOptions": {
+    "noEmit": true,
     "types": ["vite/client"]
   },
   "include": ["src"]

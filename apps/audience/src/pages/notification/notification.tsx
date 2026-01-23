@@ -1,34 +1,36 @@
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 import { EmptyAlertIcon } from '@amp/ads-ui/icons';
 
-import { useAlertStation } from '@shared/hooks/use-alert-station';
+import useNotificationsQuery, {
+  useNotificationReadMutation,
+} from '@shared/hooks/use-notifications';
 import AlertCard from '@shared/ui/card/card-alert/card-alert';
 
 import * as styles from './notification.css';
 
 const NotificationPage = () => {
-  const {
-    alerts,
-    // hasMore,
-    isLoading,
-    initMock,
-    // appendMock,
-    markAsReadLocal,
-    isRead,
-  } = useAlertStation();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    initMock();
-  }, [initMock]);
+  const { mutate } = useNotificationReadMutation();
 
-  const handleAlertClick = (alertId: string) => {
-    markAsReadLocal(alertId);
-
-    // TODO: 상세 페이지 연결
+  const handleAlertClick = (
+    notificationId: number,
+    noticeId: number,
+    festivalId: number,
+  ) => {
+    mutate(notificationId, {
+      onSuccess: () => {
+        navigate(`/events/${festivalId}/notices/${noticeId}`);
+      },
+    });
   };
 
-  const isEmpty = !isLoading && alerts.length === 0;
+  const { data, isLoading } = useNotificationsQuery();
+
+  const list = data?.notificationResponseList ?? [];
+
+  const isEmpty = !isLoading && list.length === 0;
 
   return (
     <main className={styles.pageContainer}>
@@ -45,18 +47,22 @@ const NotificationPage = () => {
       ) : (
         <section aria-label='알림 목록'>
           <ul>
-            {alerts.map((alert, index) => (
-              <li key={alert.id}>
+            {list?.map((data, index) => (
+              <li key={data.notificationId}>
                 <AlertCard
-                  title={`${alert.title} 공지가 업로드 되었어요!`}
-                  description={`${alert.message}`}
-                  time={`${alert.time}분 전`}
-                  isRead={isRead(alert.id)}
-                  onClick={() => handleAlertClick(alert.id)}
+                  title={data.title}
+                  description={data.message}
+                  time={data.createdData}
+                  isRead={data.isRead}
+                  onClick={() =>
+                    handleAlertClick(
+                      data.notificationId,
+                      data.noticeId,
+                      data.festivalId,
+                    )
+                  }
                 />
-                {index < alerts.length - 1 && (
-                  <div className={styles.divider} />
-                )}
+                {index < list.length - 1 && <div className={styles.divider} />}
               </li>
             ))}
           </ul>

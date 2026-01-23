@@ -45,4 +45,6 @@ export const USERS_QUERY_KEY = {
   MY_PAGE: () => [...USERS_QUERY_KEY.ALL, 'my-page'],
 
   SAVED_NOTICES: () => [...USERS_QUERY_KEY.ALL, 'saved-notices'],
+
+  NOTIFICATIONS: () => ['notifications'],
 } as const;

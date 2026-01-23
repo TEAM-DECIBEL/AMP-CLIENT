@@ -1,6 +1,7 @@
 {
   "extends": "@amp/tsconfig/react",
   "compilerOptions": {
+    "noEmit": true,
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
