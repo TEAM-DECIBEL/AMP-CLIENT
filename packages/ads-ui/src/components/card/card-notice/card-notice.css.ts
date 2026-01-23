@@ -8,6 +8,7 @@ export const notice = style({
   position: 'relative',
   padding: '0.5rem 0',
   backgroundColor: ampThemeVars.color.gray_000,
+  cursor: 'pointer',
 });
 
 export const image = style({

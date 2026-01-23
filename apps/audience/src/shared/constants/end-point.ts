@@ -40,7 +40,7 @@ export const END_POINT = {
   GET_MY_PAGE: '/users/mypage',
 
   // 로그아웃
-  POST_LOGOUT: '/api/auth/logout',
+  POST_LOGOUT: '/auth/logout',
 
   // 알림 스테이션
   GET_NOTIFICATIONS: '/users/notifications',

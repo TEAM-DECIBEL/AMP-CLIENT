@@ -1,8 +1,9 @@
 import type { ReactElement } from 'react';
+import { generatePath, useNavigate } from 'react-router';
 
 import { CardFestival, Chip } from '@amp/ads-ui';
-import { IMAGES } from '@amp/compositions/assets';
 
+import { ROUTE_PATH } from '@shared/constants/path';
 import type { FestivalBase, FestivalStatus } from '@shared/types/festival';
 
 const STATUS_CHIP: Record<FestivalStatus, ReactElement> = {
@@ -32,6 +33,19 @@ interface FestivalListProps {
 }
 
 const FestivalList = ({ festivals }: FestivalListProps) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (festivalId?: number) => {
+    if (!festivalId) {
+      return;
+    }
+    navigate(
+      generatePath(ROUTE_PATH.NOTICE_LIST, {
+        eventId: String(festivalId),
+      }),
+    );
+  };
+
   return (
     <>
       {festivals.map((festival, index) => {
@@ -41,7 +55,12 @@ const FestivalList = ({ festivals }: FestivalListProps) => {
         const imageSrc = festival.mainImageUrl ?? festival.imageUrl;
 
         return (
-          <CardFestival key={key}>
+          <CardFestival
+            key={key}
+            role='button'
+            tabIndex={0}
+            onClick={() => handleCardClick(festival.festivalId)}
+          >
             {imageSrc && (
               <CardFestival.Image src={imageSrc} alt={festival.title} />
             )}

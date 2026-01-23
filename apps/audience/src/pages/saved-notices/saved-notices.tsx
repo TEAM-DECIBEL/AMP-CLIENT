@@ -1,13 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
+import { generatePath, useNavigate } from 'react-router';
 
 import { CardNotice, EmptyView } from '@amp/ads-ui';
 import { Loading } from '@amp/compositions';
 
 import { SAVED_NOTICES_QUERY_OPTIONS } from '@features/saved-notice/query';
 
+import { ROUTE_PATH } from '@shared/constants/path';
+
 import * as styles from './saved-notices.css';
 
 const SavedNoticesPage = () => {
+  const navigate = useNavigate();
   const { data: savedNoticesData, isPending } = useQuery(
     SAVED_NOTICES_QUERY_OPTIONS.LIST({ page: 0, size: 20 }),
   );
@@ -35,6 +39,14 @@ const SavedNoticesPage = () => {
               imageUrl={notice.imageUrl}
               title={notice.title}
               content={notice.categoryName}
+              onClick={() => {
+                navigate(
+                  generatePath(ROUTE_PATH.NOTICE_DETAILS, {
+                    eventId: '0',
+                    noticeId: String(notice.noticeId),
+                  }),
+                );
+              }}
             />
             {index < savedNoticesData.notices.length - 1 && (
               <div className={styles.divider} aria-hidden='true' />
