@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router';
+
 import FestivalActions from '@features/home/festival-actions/festival-actions';
 
 import type { Festival } from '@shared/types/home-response';
@@ -21,6 +23,8 @@ const FestivalOverview = ({
   upcomingFestivals,
   onCardClick,
 }: FestivalOverviewProps) => {
+  const navigate = useNavigate();
+
   const sections = [
     {
       title: '진행 중인 공연',
@@ -37,7 +41,11 @@ const FestivalOverview = ({
   ] as const;
 
   return (
-    <FestivalActions>
+    <FestivalActions
+      onEdit={(noticeId) =>
+        navigate(`/events/:eventId/notices/${noticeId}/edit`)
+      }
+    >
       {(handleOpenOptionSheet) => (
         <div className={styles.container}>
           {sections.map((section) => (
