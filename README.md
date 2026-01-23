@@ -1,10 +1,10 @@
 ## 🎸 AMP
 <img width="1920" height="1080" alt="1" src="https://github.com/user-attachments/assets/6da86ecb-bd46-4b2c-9285-78c5ba7a4fe2" />
+<img width="1920" height="1080" alt="36" src="https://github.com/user-attachments/assets/b4b358dc-9311-4750-8ff1-3e576f126ba5" />
 <img width="1920" height="1080" alt="37" src="https://github.com/user-attachments/assets/b1bd8d8e-13e5-48cd-b5ea-14e1a6c0ab57" />
 <img width="1920" height="1080" alt="Portfolio_33" src="https://github.com/user-attachments/assets/2789da13-aa56-4279-8590-4877fff76b66" />
 <img width="1920" height="1080" alt="Portfolio_34" src="https://github.com/user-attachments/assets/dfce4bb5-6cb2-42b0-8ff0-d9706a3b9b32" />
 <img width="1920" height="1080" alt="Portfolio_35" src="https://github.com/user-attachments/assets/3700dea9-1e42-4a2c-9f4a-d60053fe5dc4" />
-<img width="1920" height="1080" alt="36" src="https://github.com/user-attachments/assets/b4b358dc-9311-4750-8ff1-3e576f126ba5" />
 <img width="1920" height="1080" alt="36_66" src="https://github.com/user-attachments/assets/de3d0bce-5b44-4cdc-8972-9307a87dba33" />
 <img width="1920" height="1080" alt="38" src="https://github.com/user-attachments/assets/ebbe9b67-c51b-4ebe-8d42-fd5fe66f924a" />
 <img width="1920" height="1080" alt="160" src="https://github.com/user-attachments/assets/a7e2aff2-69f6-48a8-8264-8df9bbd363a6" />
@@ -15,32 +15,33 @@
 <table>
   <tr>
     <td align="center" style="padding:10px">
-      <img width="180" height="180" alt="image" src="https://github.com/user-attachments/assets/e69fdfee-da5d-4971-bc21-4194fb6830bb" />
+      <img width="180" alt="image" src="https://github.com/user-attachments/assets/46e4ed03-9b3c-468b-879f-818d077a745b" />
 
 <br/>
-      <strong>소현</strong>
+      <strong><a href="https://github.com/Sohyunnnn">소현</a></strong>
     </td>
     <td align="center" style="padding:10px">
-     <img width="180" height="180" alt="image" src="https://github.com/user-attachments/assets/01316a18-9846-4665-bc5f-2ce21757e562" />
+     <img width="180" alt="image" src="https://github.com/user-attachments/assets/738654d7-a59a-4487-b1ee-4525d9f57d2e" />
 
 <br/>
-      <strong>지수</strong>
+      <strong><a href="https://github.com/jisooooooooooo">지수</a></strong>
     </td>
     <td align="center" style="padding:10px">
- <img width="180" height="180" alt="image" src="https://github.com/user-attachments/assets/208c72e2-6549-4e46-90f3-ed6a0f515816" />
+ <img width="180" alt="image" src="https://github.com/user-attachments/assets/28f1b90a-14dd-4fe9-9a11-8be52858b09f" />
 <br/>
-      <strong>진석</strong>
+      <strong><a href="https://github.com/jin-evergreen">진석</a></strong>
     </td>
     <td align="center" style="padding:10px">
-<img width="180" height="180" alt="image" src="https://github.com/user-attachments/assets/5aa13e25-0e8b-4225-938c-c53c0b3d4253" />
+<img width="180" alt="image" src="https://github.com/user-attachments/assets/01e9ab0f-e9a2-4ca8-a3b3-95c749b935b3" />
 
 <br/>
-      <strong>나은</strong>
+      <strong><a href="https://github.com/eunkr82">나은</a></strong>
     </td>
   </tr>
 </table>
 
 <br/>
+
 
 ## 🚀 Tech Stack
 

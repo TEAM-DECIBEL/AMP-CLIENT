@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 
 import FestivalActionsView from '@widgets/home/festival-actions/festival-actions';
 
+import { deleteFestival } from '@features/home/apis/query';
+
+import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
 interface FestivalActionsProps {
   children: (onOpenOptionSheet: (festivalId: number) => void) => ReactNode;
   onEdit?: (festivalId: number) => void;
@@ -14,6 +18,19 @@ const FestivalActions = ({
   onEdit,
   onDelete,
 }: FestivalActionsProps) => {
+  const queryClient = useQueryClient();
+  const deleteMutation = useMutation({
+    mutationKey: ORGANIZERS_QUERY_KEY.FESTIVAL_DELETE(0),
+    mutationFn: (festivalId: number) => deleteFestival(festivalId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ORGANIZERS_QUERY_KEY.HOME_FESTIVALS(),
+      });
+      queryClient.invalidateQueries({
+        queryKey: ORGANIZERS_QUERY_KEY.MY_FESTIVALS_ALL(),
+      });
+    },
+  });
   const [isOptionSheetOpen, setIsOptionSheetOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedFestivalId, setSelectedFestivalId] = useState<number | null>(
@@ -47,7 +64,11 @@ const FestivalActions = ({
 
   const handleConfirmDelete = () => {
     if (selectedFestivalId !== null) {
-      onDelete?.(selectedFestivalId);
+      deleteMutation.mutate(selectedFestivalId, {
+        onSuccess: () => {
+          onDelete?.(selectedFestivalId);
+        },
+      });
     }
     setIsDeleteModalOpen(false);
   };

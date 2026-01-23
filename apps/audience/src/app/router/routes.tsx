@@ -1,11 +1,11 @@
 import AuthGate from '@app/router/auth-gate';
+import ProtectedIndex from '@app/router/protected-index';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
   AuthRequiredPage,
   CallbackPage,
-  HomePage,
   LoginPage,
   MyEventsPage,
   MyPage,
@@ -14,7 +14,7 @@ import {
   NoticeListPage,
   NotificationPage,
   OnboardingPage,
-  SavedNoticesPage,
+  SavedNoticesPage, 
 } from './lazy';
 import { SubLayout, SubLayoutWithBack } from './sub-layout';
 
@@ -32,7 +32,7 @@ export const globalRoutes = [
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <ProtectedIndex />,
       },
     ],
   },
