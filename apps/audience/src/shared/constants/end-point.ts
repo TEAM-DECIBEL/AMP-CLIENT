@@ -15,6 +15,8 @@ export const END_POINT = {
     festivalId: number,
     categoryCode: string,
   ) => `/festivals/${festivalId}/users/notifications/${categoryCode}/subscribe`,
+  GET_FESTIVAL_BANNER: (festivalId: number) =>
+    `/common/festivals/${festivalId}`,
 
   // 홈 화면
   GET_ALL_FESTIVALS: '/users/festivals',

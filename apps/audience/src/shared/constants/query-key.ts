@@ -21,6 +21,11 @@ export const USERS_QUERY_KEY = {
     'festival-notices',
     eventId,
   ],
+  FESTIVAL_BANNER: (festivalId: number) => [
+    ...USERS_QUERY_KEY.ALL,
+    'festival-banner',
+    festivalId,
+  ],
 
   HOME_FESTIVALS_ALL: () => [...USERS_QUERY_KEY.ALL, 'home-festivals-all'],
 

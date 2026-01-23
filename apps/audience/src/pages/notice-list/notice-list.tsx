@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
 import { useParams } from 'react-router';
@@ -26,6 +26,7 @@ import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
+import formatDday from '@shared/libs/format-dday';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
 
@@ -49,6 +50,9 @@ const NoticeListPage = () => {
       page: 0,
       size: 20,
     }),
+  );
+  const { data: bannerData } = useQuery(
+    NOTICES_QUERY_OPTIONS.BANNER(festivalId),
   );
 
   const { mutate } = useNotificationsSubscribeMutation();
@@ -78,6 +82,26 @@ const NoticeListPage = () => {
   const handleWatchToggle = () => {
     setIsWatched((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (bannerData) {
+      setIsWatched(bannerData.isWishlist);
+    }
+  }, [bannerData]);
+
+  const bannerProps = bannerData
+    ? {
+        dday: formatDday(bannerData.dday),
+        title: bannerData.title,
+        location: bannerData.location,
+        date: bannerData.period,
+      }
+    : {
+        dday: FESTIVAL_MOCK.dday,
+        title: FESTIVAL_MOCK.title,
+        location: FESTIVAL_MOCK.location,
+        date: FESTIVAL_MOCK.date,
+      };
 
   const handleAlertClick = () => {
     overlay.open(({ isOpen, close, unmount }) => {
@@ -153,11 +177,10 @@ const NoticeListPage = () => {
   return (
     <main className={styles.pageContainer}>
       <NoticeBanner
-        // TODO: 관련 공연 정보 데이터 불러와서 Props 전달
-        dday={FESTIVAL_MOCK.dday}
-        title={FESTIVAL_MOCK.title}
-        location={FESTIVAL_MOCK.location}
-        date={FESTIVAL_MOCK.date}
+        dday={bannerProps.dday}
+        title={bannerProps.title}
+        location={bannerProps.location}
+        date={bannerProps.date}
         button={
           <AddToWatchButton selected={isWatched} onChange={handleWatchToggle} />
         }
