@@ -1,6 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { postFestivalNotice, putNotice } from '@features/notice/apis/query';
+import {
+  deleteNotice,
+  postFestivalNotice,
+  putNotice,
+} from '@features/notice/apis/query';
 
 import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
 import type { CreateNoticeBody, UpdateNoticeBody } from '@shared/types/notice';
@@ -17,5 +21,12 @@ export const useNoticeUpdateMutation = (noticeId: number) => {
   return useMutation({
     mutationKey: ORGANIZERS_QUERY_KEY.NOTICE_UPDATE(noticeId),
     mutationFn: (body: UpdateNoticeBody) => putNotice(noticeId, body),
+  });
+};
+
+export const useNoticeDeleteMutation = (noticeId: number) => {
+  return useMutation({
+    mutationKey: ORGANIZERS_QUERY_KEY.NOTICE_DELETE(noticeId),
+    mutationFn: () => deleteNotice(noticeId),
   });
 };

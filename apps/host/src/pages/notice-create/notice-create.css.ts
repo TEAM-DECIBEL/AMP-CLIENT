@@ -56,9 +56,9 @@ export const buttonContainer = style({
   width: '100%',
   maxWidth: '430px',
   padding: '2rem',
-  backgroundColor: ampThemeVars.color.gray_000,
   left: '50%',
   transform: 'translateX(-50%)',
+  backgroundColor: ampThemeVars.color.gray_000,
 });
 
 export const chipContainer = style({

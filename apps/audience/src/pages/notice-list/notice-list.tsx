@@ -62,6 +62,7 @@ const NoticeListPage = () => {
       size: 20,
     }),
   );
+
   const { data: bannerData } = useQuery({
     ...NOTICES_QUERY_OPTIONS.BANNER(festivalId),
     select: (res: unknown): FestivalBanner | undefined => {

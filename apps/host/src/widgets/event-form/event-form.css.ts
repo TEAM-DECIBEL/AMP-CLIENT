@@ -19,6 +19,7 @@ export const bottom = style({
   left: 0,
   right: 0,
   padding: '1.7rem 0',
+  backgroundColor: ampThemeVars.color.gray_000,
 });
 
 export const sectionText = recipe({

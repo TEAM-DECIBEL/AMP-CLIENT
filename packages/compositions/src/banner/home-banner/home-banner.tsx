@@ -2,10 +2,6 @@ import { CardHome } from '@amp/ads-ui';
 
 import * as styles from './home-banner.css';
 
-interface HomeBannerBaseProps {
-  nickname: string;
-}
-
 interface HomeBannerCardProps extends HomeBannerBaseProps {
   status: 'card';
   title: string;
@@ -19,13 +15,18 @@ interface HomeBannerNoneProps extends HomeBannerBaseProps {
 }
 
 type HomeBannerProps = HomeBannerCardProps | HomeBannerNoneProps;
+interface HomeBannerBaseProps {
+  nickname?: string;
+}
 
 const HomeBanner = (props: HomeBannerProps) => {
   const { nickname, status } = props;
-  const bannerClassName =
-    status === 'card'
-      ? `${styles.banner} ${styles.bannerAudience}`
-      : `${styles.banner} ${styles.bannerAudienceNone}`;
+
+  const greeting = nickname?.trim() ? (
+    <span className={styles.nickname}>{nickname}님,</span>
+  ) : (
+    <span className={styles.nickname}>관객님,</span>
+  );
 
   const message =
     status === 'card' ? (
@@ -38,13 +39,17 @@ const HomeBanner = (props: HomeBannerProps) => {
       </>
     );
 
+  const bannerClassName =
+    status === 'card'
+      ? `${styles.banner} ${styles.bannerAudience}`
+      : `${styles.banner} ${styles.bannerAudienceNone}`;
+
   if (status === 'card') {
     const { title, location, date, dday } = props;
-
     return (
       <article className={bannerClassName}>
         <p className={styles.text}>
-          <span className={styles.nickname}>{nickname}님,</span> {message}
+          {greeting} {message}
         </p>
         <CardHome title={title} location={location} date={date} dday={dday} />
       </article>
@@ -54,7 +59,7 @@ const HomeBanner = (props: HomeBannerProps) => {
   return (
     <article className={bannerClassName}>
       <p className={styles.text}>
-        <span className={styles.nickname}>{nickname}님,</span> {message}
+        {greeting} {message}
       </p>
     </article>
   );

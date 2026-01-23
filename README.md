@@ -1,6 +1,14 @@
 ## 🎸 AMP
-
-밴드 콘서트·페스티벌에서 흩어져 있는 공식 공지와 팬 나눔 공지를 한 번에 모아 보여주는 실시간 공지 서비스
+<img width="1920" height="1080" alt="1" src="https://github.com/user-attachments/assets/6da86ecb-bd46-4b2c-9285-78c5ba7a4fe2" />
+<img width="1920" height="1080" alt="37" src="https://github.com/user-attachments/assets/b1bd8d8e-13e5-48cd-b5ea-14e1a6c0ab57" />
+<img width="1920" height="1080" alt="Portfolio_33" src="https://github.com/user-attachments/assets/2789da13-aa56-4279-8590-4877fff76b66" />
+<img width="1920" height="1080" alt="Portfolio_34" src="https://github.com/user-attachments/assets/dfce4bb5-6cb2-42b0-8ff0-d9706a3b9b32" />
+<img width="1920" height="1080" alt="Portfolio_35" src="https://github.com/user-attachments/assets/3700dea9-1e42-4a2c-9f4a-d60053fe5dc4" />
+<img width="1920" height="1080" alt="36" src="https://github.com/user-attachments/assets/b4b358dc-9311-4750-8ff1-3e576f126ba5" />
+<img width="1920" height="1080" alt="36_66" src="https://github.com/user-attachments/assets/de3d0bce-5b44-4cdc-8972-9307a87dba33" />
+<img width="1920" height="1080" alt="38" src="https://github.com/user-attachments/assets/ebbe9b67-c51b-4ebe-8d42-fd5fe66f924a" />
+<img width="1920" height="1080" alt="160" src="https://github.com/user-attachments/assets/a7e2aff2-69f6-48a8-8264-8df9bbd363a6" />
+<img width="1920" height="1080" alt="78" src="https://github.com/user-attachments/assets/4875fd10-34d4-4a42-bd99-d83512c56278" />
 
 ## 🎧 TEAM-DECIBEL
 

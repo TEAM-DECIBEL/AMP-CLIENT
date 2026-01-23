@@ -1,3 +1,5 @@
+import AuthGate from '@app/router/auth-gate';
+
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
@@ -34,88 +36,51 @@ export const globalRoutes = [
       },
     ],
   },
+
+  { path: ROUTE_PATH.ONBOARDING, element: <OnboardingPage /> },
+  { path: ROUTE_PATH.LOGIN, element: <LoginPage /> },
+  { path: ROUTE_PATH.AUTH_REQUIRED, element: <AuthRequiredPage /> },
+  { path: ROUTE_PATH.CALLBACK, element: <CallbackPage /> },
+
   {
-    path: ROUTE_PATH.MY_EVENTS,
-    element: <SubLayoutWithBack title={subLayoutTitles.myEvents} />,
+    element: <AuthGate />,
     children: [
       {
-        index: true,
-        element: <MyEventsPage />,
+        path: ROUTE_PATH.MY_EVENTS,
+        element: <SubLayoutWithBack title={subLayoutTitles.myEvents} />,
+        children: [{ index: true, element: <MyEventsPage /> }],
       },
-    ],
-  },
-  {
-    path: ROUTE_PATH.MYPAGE,
-    children: [
       {
-        element: <SubLayoutWithBack title={subLayoutTitles.myPage} />,
+        path: ROUTE_PATH.MYPAGE,
         children: [
           {
-            index: true,
-            element: <MyPage />,
+            element: <SubLayoutWithBack title={subLayoutTitles.myPage} />,
+            children: [{ index: true, element: <MyPage /> }],
           },
         ],
       },
-    ],
-  },
-  {
-    path: ROUTE_PATH.NOTICE_DETAILS,
-    element: <SubLayoutWithBack title={subLayoutTitles.noticeDetails} />,
-    children: [
       {
-        index: true,
-        element: <NoticeDetailsPage />,
+        path: ROUTE_PATH.NOTICE_DETAILS,
+        element: <SubLayoutWithBack title={subLayoutTitles.noticeDetails} />,
+        children: [{ index: true, element: <NoticeDetailsPage /> }],
+      },
+      {
+        path: ROUTE_PATH.NOTICE_LIST,
+        element: <SubLayout />,
+        children: [{ index: true, element: <NoticeListPage /> }],
+      },
+      {
+        path: ROUTE_PATH.NOTIFICATION,
+        element: <SubLayoutWithBack title={subLayoutTitles.notification} />,
+        children: [{ index: true, element: <NotificationPage /> }],
+      },
+      {
+        path: ROUTE_PATH.SAVED_NOTICES,
+        element: <SubLayoutWithBack title={subLayoutTitles.savedNotices} />,
+        children: [{ index: true, element: <SavedNoticesPage /> }],
       },
     ],
   },
-  {
-    path: ROUTE_PATH.NOTICE_LIST,
-    element: <SubLayout />,
-    children: [
-      {
-        index: true,
-        element: <NoticeListPage />,
-      },
-    ],
-  },
-  {
-    path: ROUTE_PATH.NOTIFICATION,
-    element: <SubLayoutWithBack title={subLayoutTitles.notification} />,
-    children: [
-      {
-        index: true,
-        element: <NotificationPage />,
-      },
-    ],
-  },
-  {
-    path: ROUTE_PATH.SAVED_NOTICES,
-    element: <SubLayoutWithBack title={subLayoutTitles.savedNotices} />,
-    children: [
-      {
-        index: true,
-        element: <SavedNoticesPage />,
-      },
-    ],
-  },
-  {
-    path: ROUTE_PATH.ONBOARDING,
-    element: <OnboardingPage />,
-  },
-  {
-    path: ROUTE_PATH.LOGIN,
-    element: <LoginPage />,
-  },
-  {
-    path: ROUTE_PATH.AUTH_REQUIRED,
-    element: <AuthRequiredPage />,
-  },
-  {
-    path: ROUTE_PATH.CALLBACK,
-    element: <CallbackPage />,
-  },
-  {
-    path: '*',
-    element: <NotFoundPage />,
-  },
+
+  { path: '*', element: <NotFoundPage /> },
 ];

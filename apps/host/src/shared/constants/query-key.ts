@@ -26,6 +26,12 @@ export const ORGANIZERS_QUERY_KEY = {
     noticeId,
     'update',
   ],
+  NOTICE_DELETE: (noticeId: number) => [
+    ...ORGANIZERS_QUERY_KEY.ALL,
+    'notice',
+    noticeId,
+    'delete',
+  ],
   NOTICE_CREATE: (festivalId: number) => [
     ...ORGANIZERS_QUERY_KEY.ALL,
     'festival',

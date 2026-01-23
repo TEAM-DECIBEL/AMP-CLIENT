@@ -29,26 +29,27 @@ const NoticeTabContent = ({
 }: NoticeTabContentProps) => {
   return (
     <section className={styles.container}>
-      <CategorySection
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onSelect={onSelectCategory}
-      />
+      <div className={styles.stickySection}>
+        <CategorySection
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onSelect={onSelectCategory}
+        />
 
-      {isSelectedCategory && selectedCategory !== '전체' && (
-        <div className={styles.ctaButtonContainer}>
-          <CtaButton
-            type='icon'
-            color='gray'
-            onClick={onAlertClick ?? (() => {})}
-            className={styles.ctaButton}
-          >
-            <AlertIcon />
-            {selectedCategory} 공지 알림 받기
-          </CtaButton>
-        </div>
-      )}
-
+        {isSelectedCategory && selectedCategory !== '전체' && (
+          <div className={styles.ctaButtonContainer}>
+            <CtaButton
+              type='icon'
+              color='gray'
+              onClick={onAlertClick ?? (() => {})}
+              className={styles.ctaButton}
+            >
+              <AlertIcon />
+              {selectedCategory} 공지 알림 받기
+            </CtaButton>
+          </div>
+        )}
+      </div>
       <NoticeCardList notices={noticeList} onItemClick={onNoticeItemClick} />
     </section>
   );

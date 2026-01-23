@@ -20,9 +20,7 @@ export interface UpdateNoticeBody {
   previousImageUrl?: string;
 }
 
-export interface UpdateNoticeResponse {
-  noticeId: number;
-}
+export type UpdateNoticeResponse = Record<string, never>;
 
 export interface NoticeDetail {
   noticeId: number;
