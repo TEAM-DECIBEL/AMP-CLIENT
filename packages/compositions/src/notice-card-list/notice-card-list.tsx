@@ -36,7 +36,6 @@ const NoticeCardList = ({ notices, onItemClick }: NoticeCardListProps) => {
       {notices.map((notice) => (
         <div key={notice.announcementId} className={styles.card}>
           <CardNotice
-            // TODO: 기본 이미지 처리 로직 적용
             imageUrl={notice.imageUrl || DEFAULT_IMG}
             title={notice.title}
             content={notice.content}

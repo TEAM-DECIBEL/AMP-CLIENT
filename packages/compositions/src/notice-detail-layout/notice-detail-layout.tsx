@@ -30,13 +30,10 @@ const NoticeDetailLayoutRoot = ({ children }: NoticeDetailLayoutProps) => {
 };
 
 const Content = ({ data }: NoticeDetailContentProps) => {
+  const imgSrc = data.imageUrl?.trim() ? data.imageUrl : IMAGES.EMPTY_NOTICE;
   return (
     <div className={styles.noticeDetail}>
-      <img
-        src={data.imageUrl ?? IMAGES.EMPTY_NOTICE}
-        alt={data.title}
-        className={styles.img}
-      />
+      <img src={imgSrc} alt={data.title} className={styles.img} />
       <header className={styles.header}>
         <p className={styles.category}>
           주최 공지 {'>'} {data.category}
