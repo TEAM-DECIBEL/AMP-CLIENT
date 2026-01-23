@@ -117,7 +117,11 @@ const Header = ({
                   }
                 }}
               >
-                {hasNewAlert ? <StatusNewIcon /> : <StatusNoneIcon />}
+                {hasNewAlert ? (
+                  <StatusNewIcon className={styles.headerIcon} />
+                ) : (
+                  <StatusNoneIcon className={styles.headerIcon} />
+                )}
               </button>
             )}
             <button
@@ -130,7 +134,7 @@ const Header = ({
                 }
               }}
             >
-              <MyPageIcon />
+              <MyPageIcon className={styles.headerIcon} />
             </button>
           </div>
         </div>

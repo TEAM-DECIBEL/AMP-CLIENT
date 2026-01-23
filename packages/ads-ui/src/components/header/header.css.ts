@@ -32,6 +32,11 @@ export const iconButton = style({
   padding: '0.5rem',
 });
 
+export const headerIcon = style({
+  width: '26px',
+  height: '26px',
+});
+
 export const subRow = style({
   display: 'flex',
   alignItems: 'center',
