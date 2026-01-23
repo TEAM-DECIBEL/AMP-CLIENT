@@ -5,10 +5,10 @@ import type { PageSizeParams } from '@amp/shared/types';
 
 import { END_POINT } from '@shared/constants/end-point';
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
-import { SavedNoticesResponseData } from '@shared/types/notice-response';
+import type { SavedNoticesResponse } from '@shared/types/saved-notices-response';
 
 export const getSavedNotices = (params: PageSizeParams = {}) =>
-  get<SavedNoticesResponseData, PageSizeParams>(
+  get<SavedNoticesResponse, PageSizeParams>(
     END_POINT.GET_SAVED_NOTICES,
     params,
   );
