@@ -22,6 +22,10 @@ type HomeBannerProps = HomeBannerCardProps | HomeBannerNoneProps;
 
 const HomeBanner = (props: HomeBannerProps) => {
   const { nickname, status } = props;
+  const bannerClassName =
+    status === 'card'
+      ? `${styles.banner} ${styles.bannerAudience}`
+      : `${styles.banner} ${styles.bannerAudienceNone}`;
 
   const message =
     status === 'card' ? (
@@ -38,7 +42,7 @@ const HomeBanner = (props: HomeBannerProps) => {
     const { title, location, date, dday } = props;
 
     return (
-      <article className={styles.banner}>
+      <article className={bannerClassName}>
         <p className={styles.text}>
           <span className={styles.nickname}>{nickname}님,</span> {message}
         </p>
@@ -48,7 +52,7 @@ const HomeBanner = (props: HomeBannerProps) => {
   }
 
   return (
-    <article className={styles.banner}>
+    <article className={bannerClassName}>
       <p className={styles.text}>
         <span className={styles.nickname}>{nickname}님,</span> {message}
       </p>

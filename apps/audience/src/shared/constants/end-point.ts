@@ -26,7 +26,7 @@ export const END_POINT = {
     `/users/me/festivals/${festivalId}/wishList`,
 
   //온보딩
-  POST_ONBOARDING_COMPLETE: '/api/v1/auth/onboarding/complete',
+  POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
 
   // 현장 혼잡도 입력
   POST_STAGE_CONGESTION: (stageId: number) =>

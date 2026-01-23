@@ -55,7 +55,7 @@ const NoticeCreateForm = ({
   festivalId,
   noticeDetail,
 }: NoticeCreateFormProps) => {
-  const { formState, handlers, isValid } = useNoticeForm(
+  const { formState, handlers, isValid, isSubmitting } = useNoticeForm(
     festivalId,
     noticeDetail,
     noticeDetail?.noticeId ?? null,
@@ -129,7 +129,7 @@ const NoticeCreateForm = ({
             type='common'
             htmlType='submit'
             color='gray'
-            disabled={!isValid}
+            disabled={!isValid || isSubmitting}
           >
             완료
           </CtaButton>

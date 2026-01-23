@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
+import { useNavigate } from 'react-router';
 
 import { toast } from '@amp/ads-ui';
 
@@ -9,6 +10,7 @@ import {
 } from '@features/notice/use-notice';
 
 import { getCategoryIdByLabel } from '@shared/constants/category';
+import { ROUTE_PATH } from '@shared/constants/path';
 import type { NoticeDetail } from '@shared/types/notice';
 
 const MOCK_PINNED_COUNT = 0;
@@ -18,10 +20,13 @@ export const useNoticeForm = (
   initialData?: NoticeDetail | null,
   noticeId?: number | null,
 ) => {
+  const navigate = useNavigate();
   const initialCategoryId = initialData
     ? getCategoryIdByLabel(initialData.category.categoryName)
     : null;
-  const [isPinned, setIsPinned] = useState(() => initialData?.isPinned ?? false);
+  const [isPinned, setIsPinned] = useState(
+    () => initialData?.isPinned ?? false,
+  );
   const [image, setImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState(() => initialData?.imageUrl ?? '');
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
@@ -29,8 +34,10 @@ export const useNoticeForm = (
   );
   const [title, setTitle] = useState(() => initialData?.title ?? '');
   const [content, setContent] = useState(() => initialData?.content ?? '');
-  const { mutate: createNotice } = useNoticeCreateMutation(festivalId ?? 0);
-  const { mutate: updateNotice } = useNoticeUpdateMutation(noticeId ?? 0);
+  const { mutate: createNotice, isPending: isCreatePending } =
+    useNoticeCreateMutation(festivalId ?? 0);
+  const { mutate: updateNotice, isPending: isUpdatePending } =
+    useNoticeUpdateMutation(noticeId ?? 0);
 
   const handlePinToggle = () => {
     if (!isPinned && MOCK_PINNED_COUNT >= 3) {
@@ -75,6 +82,9 @@ export const useNoticeForm = (
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isCreatePending || isUpdatePending) {
+      return;
+    }
     if (!isValid) {
       return;
     }
@@ -89,25 +99,49 @@ export const useNoticeForm = (
     if (noticeId) {
       const shouldUsePreviousImage =
         !image && imageUrl && !imageUrl.startsWith('blob:');
-      updateNotice({
-        festivalId,
-        title,
-        categoryId: selectedCategoryId,
-        newImage: image,
-        content,
-        isPinned,
-        previousImageUrl: shouldUsePreviousImage ? imageUrl : undefined,
-      });
+      updateNotice(
+        {
+          festivalId,
+          title,
+          categoryId: selectedCategoryId,
+          newImage: image,
+          content,
+          isPinned,
+          previousImageUrl: shouldUsePreviousImage ? imageUrl : undefined,
+        },
+        {
+          onSuccess: () => {
+            navigate(
+              ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)),
+            );
+          },
+          onError: () => {
+            toast.show('공지 수정에 실패했어요.');
+          },
+        },
+      );
       return;
     }
 
-    createNotice({
-      title,
-      categoryId: selectedCategoryId,
-      image,
-      content,
-      isPinned,
-    });
+    createNotice(
+      {
+        title,
+        categoryId: selectedCategoryId,
+        image,
+        content,
+        isPinned,
+      },
+      {
+        onSuccess: () => {
+          navigate(
+            ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)),
+          );
+        },
+        onError: () => {
+          toast.show('공지 작성에 실패했어요.');
+        },
+      },
+    );
   };
 
   return {
@@ -128,5 +162,6 @@ export const useNoticeForm = (
       handleSubmit,
     },
     isValid,
+    isSubmitting: isCreatePending || isUpdatePending,
   };
 };
