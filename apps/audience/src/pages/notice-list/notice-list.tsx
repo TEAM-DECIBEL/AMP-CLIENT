@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router';
@@ -21,6 +21,7 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
+import { putWishList } from '@features/home/apis/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
@@ -56,6 +57,15 @@ const NoticeListPage = () => {
   );
 
   const { mutate } = useNotificationsSubscribeMutation();
+  const wishListMutation = useMutation({
+    mutationFn: ({
+      festivalId,
+      wishList,
+    }: {
+      festivalId: number;
+      wishList: boolean;
+    }) => putWishList(festivalId, { wishList }),
+  });
 
   const announcements = data?.announcements ?? [];
 
@@ -80,7 +90,23 @@ const NoticeListPage = () => {
   const categoryCode = CATEGORY_CODE_BY_LABEL[selectedCategory] ?? 'OTHERS';
 
   const handleWatchToggle = () => {
-    setIsWatched((prev) => !prev);
+    if (!Number.isFinite(festivalId)) {
+      toast.show('공연 정보를 불러오지 못했어요.');
+      return;
+    }
+    const nextSelected = !isWatched;
+    const prevSelected = isWatched;
+
+    setIsWatched(nextSelected);
+    wishListMutation.mutate(
+      { festivalId, wishList: nextSelected },
+      {
+        onError: () => {
+          setIsWatched(prevSelected);
+          toast.show('관람 예정 설정에 실패했어요.');
+        },
+      },
+    );
   };
 
   useEffect(() => {
