@@ -36,10 +36,6 @@ const MyPage = () => {
     mutationFn: postLogout,
   });
 
-  const isLogoutPending = logoutMutation.isPending;
-
-  const isUiLocked = isLogoutPending;
-
   if (isPending) {
     return <Loading />;
   }
@@ -56,13 +52,7 @@ const MyPage = () => {
   const handleTokenCheck = () => {
     toast.show('현재 준비중인 기능이에요!');
   };
-
-  const setLogoutOpen = (open: boolean) => setIsLogoutOpen(open);
-
   const handleLogoutConfirm = () => {
-    if (isLogoutPending) {
-      return;
-    }
     logoutMutation.mutate(undefined, {
       onSuccess: () => {
         setLogoutOpen(false);
@@ -74,9 +64,6 @@ const MyPage = () => {
     });
   };
   const handleMenuItemClick = (menu: (typeof menuItems)[number]) => {
-    if (isUiLocked) {
-      return;
-    }
     if (menu.id === 'token-check') {
       handleTokenCheck();
       return;
@@ -88,6 +75,7 @@ const MyPage = () => {
       navigate(path);
     }
   };
+  const setLogoutOpen = (open: boolean) => setIsLogoutOpen(open);
 
   return (
     <>

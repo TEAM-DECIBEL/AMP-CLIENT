@@ -10,7 +10,6 @@ import {
   Textfield,
 } from '@amp/ads-ui';
 import { PinIcon } from '@amp/ads-ui/icons';
-import { Loading } from '@amp/compositions';
 
 import { NOTICE_QUERY_OPTIONS } from '@features/notice/apis/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
@@ -30,7 +29,8 @@ const NoticeCreatePage = () => {
 
   const parsedNoticeId = noticeId ? Number(noticeId) : NaN;
   const noticeIdValue = Number.isNaN(parsedNoticeId) ? null : parsedNoticeId;
-  const { data: noticeDetail, isPending } = useQuery({
+
+  const { data: noticeDetail } = useQuery({
     ...NOTICE_QUERY_OPTIONS.DETAIL(noticeIdValue ?? 0),
     enabled: noticeIdValue !== null,
   });
@@ -86,14 +86,6 @@ const NoticeCreatePage = () => {
 
     return [];
   }, [noticeFestival]);
-
-  if (noticeIdValue !== null && isPending) {
-    return <Loading />;
-  }
-
-  if (noticeIdValue !== null && isPending) {
-    return <Loading />;
-  }
 
   const formKey = noticeDetail ? `edit-${noticeDetail.noticeId}` : 'create';
 

@@ -3,7 +3,6 @@ import { generatePath, useNavigate } from 'react-router';
 
 import { CtaButton } from '@amp/ads-ui';
 import { ButtonGradientSection } from '@amp/compositions';
-import { Loading } from '@amp/compositions';
 
 import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
 
@@ -23,21 +22,10 @@ const ROUTE = {
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const { data: homeData, isPending: isHomePending } = useQuery(
-    HOME_QUERY_OPTIONS.FESTIVALS(),
-  );
-
-  const { data: orgData, isPending: isOrgPending } = useQuery(
-    MY_PAGE_QUERY_OPTIONS.MY_PAGE(),
-  );
+  const { data: homeData } = useQuery(HOME_QUERY_OPTIONS.FESTIVALS());
+  const { data: orgData } = useQuery(MY_PAGE_QUERY_OPTIONS.MY_PAGE());
 
   const nickname = orgData?.organizerName;
-
-  const isLoading = isHomePending || isOrgPending;
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   if (!homeData) {
     return null;

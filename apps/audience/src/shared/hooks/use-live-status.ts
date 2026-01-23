@@ -49,7 +49,7 @@ export const useLiveStatus = () => {
     [data],
   );
 
-  const isAvailableTime = data?.isInputAvailable;
+  const isAvailableTime = true;
 
   const congestionMutation = useMutation({
     mutationFn: ({

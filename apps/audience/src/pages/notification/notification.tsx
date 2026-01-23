@@ -12,16 +12,13 @@ import * as styles from './notification.css';
 const NotificationPage = () => {
   const navigate = useNavigate();
 
-  const { mutate, isPending } = useNotificationReadMutation();
+  const { mutate } = useNotificationReadMutation();
 
   const handleAlertClick = (
     notificationId: number,
     noticeId: number,
     festivalId: number,
   ) => {
-    if (isPending) {
-      return;
-    }
     mutate(notificationId, {
       onSuccess: () => {
         navigate(`/events/${festivalId}/notices/${noticeId}`);
