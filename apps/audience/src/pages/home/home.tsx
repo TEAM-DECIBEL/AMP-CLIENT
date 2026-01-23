@@ -17,6 +17,7 @@ const HomePage = () => {
   const {
     allFestivals,
     upcomingFestivals,
+    bannerFestival,
     selectedTab,
     setSelectedTab,
     handleToggleAllFestival,
@@ -25,7 +26,18 @@ const HomePage = () => {
 
   return (
     <div className={page}>
-      <HomeBanner nickname={nickname} status='none' />
+      {bannerFestival ? (
+        <HomeBanner
+          nickname={nickname}
+          status='card'
+          title={bannerFestival.title}
+          location={bannerFestival.location}
+          date={bannerFestival.period}
+          dday={bannerFestival.dDay}
+        />
+      ) : (
+        <HomeBanner nickname={nickname} status='none' />
+      )}
 
       <HomeFestivalSection
         selectedTab={selectedTab}
