@@ -4,7 +4,7 @@ import { ROUTE_PATH } from '@shared/constants/path';
 
 import { HomePage } from './lazy';
 
-function ProtectedIndex() {
+function AuthIndex() {
   const isAuthed = Boolean(localStorage.getItem('accessToken'));
 
   if (!isAuthed) {
@@ -13,4 +13,4 @@ function ProtectedIndex() {
   return <HomePage />;
 }
 
-export default ProtectedIndex;
+export default AuthIndex;

@@ -1,11 +1,11 @@
 import AuthGate from '@app/router/auth-gate';
+import AuthIndex from '@app/router/auth-index';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
   AuthRequiredPage,
   CallbackPage,
-  HomePage,
   LoginPage,
   MyEventsPage,
   MyPage,
@@ -32,7 +32,7 @@ export const globalRoutes = [
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <AuthIndex />,
       },
     ],
   },
