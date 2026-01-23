@@ -95,7 +95,10 @@ const NoticeListPage = () => {
       {activeTab === NOTICE_TAB.NOTICE && (
         <div className={styles.buttonContainer}>
           <div className={styles.button}>
-            <CircleButton type='write' onClick={() => {}} />
+            <CircleButton
+              type='write'
+              onClick={() => navigate(`/events/${eventId}/notices/new`)}
+            />
           </div>
         </div>
       )}
