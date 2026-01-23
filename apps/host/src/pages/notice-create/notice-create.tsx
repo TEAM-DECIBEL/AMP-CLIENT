@@ -40,6 +40,20 @@ const NoticeCreatePage = () => {
     enabled: festivalId !== null,
   });
 
+  const { data: noticeListData, isPending: isNoticeListPending } = useQuery(
+    NOTICES_QUERY_OPTIONS.LIST(festivalId ?? Number.NaN, {
+      page: 0,
+      size: 100,
+    }),
+  );
+
+  const pinnedCount = useMemo(
+    () =>
+      noticeListData?.announcements.filter((notice) => notice.isPinned)
+        .length ?? 0,
+    [noticeListData],
+  );
+
   const activeCategories = useMemo(() => {
     const res = noticeFestival as
       | {
@@ -81,6 +95,8 @@ const NoticeCreatePage = () => {
       festivalId={festivalId}
       noticeDetail={noticeDetail}
       activeCategories={activeCategories}
+      pinnedCount={pinnedCount}
+      pinnedCountReady={!isNoticeListPending}
     />
   );
 };
@@ -89,17 +105,23 @@ interface NoticeCreateFormProps {
   festivalId: number | null;
   noticeDetail?: NoticeDetail;
   activeCategories: Array<{ categoryId: number; categoryName: string }>;
+  pinnedCount: number;
+  pinnedCountReady: boolean;
 }
 
 const NoticeCreateForm = ({
   festivalId,
   noticeDetail,
   activeCategories,
+  pinnedCount,
+  pinnedCountReady,
 }: NoticeCreateFormProps) => {
   const { formState, handlers, isValid, isSubmitting } = useNoticeForm(
     festivalId,
     noticeDetail,
     noticeDetail?.noticeId ?? null,
+    pinnedCount,
+    pinnedCountReady,
   );
 
   const categories = useMemo(
