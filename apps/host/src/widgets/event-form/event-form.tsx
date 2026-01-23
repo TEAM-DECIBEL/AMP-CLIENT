@@ -224,7 +224,7 @@ const EventForm = ({
           <p className={styles.sectionText({ kind: 'subText' })}>
             무대와 부스를 추가하면,
             <br />
-            관객이 현장 복잡도를 직접 입력할 수 있어요.
+            관객이 현장 혼잡도를 직접 입력할 수 있어요.
           </p>
 
           <FormField id='boothTitle'>
