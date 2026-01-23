@@ -15,7 +15,7 @@ const menuItems = [
   {
     id: 'my-events',
     label: '내 관람 공연',
-    path: `/${ROUTE_PATH.MY_EVENTS}`,
+    path: ROUTE_PATH.MY_EVENTS,
   },
   {
     id: 'saved-notices',
