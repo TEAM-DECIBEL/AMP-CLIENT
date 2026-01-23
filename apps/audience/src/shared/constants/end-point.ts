@@ -22,6 +22,7 @@ export const END_POINT = {
   GET_ALL_FESTIVALS: '/users/festivals',
   GET_PLANNED_FESTIVALS: '/users/me/festivals',
   GET_UPCOMING_FESTIVAL: '/users/me/festivals/recent',
+  GET_MY_FESTIVALS_ALL: '/users/me/festivals/all',
   PUT_WISH_LIST: (festivalId: number) =>
     `/users/me/festivals/${festivalId}/wishList`,
 
