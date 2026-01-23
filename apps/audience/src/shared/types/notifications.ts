@@ -5,6 +5,7 @@ export interface NotificationsItem {
   isRead: boolean;
   noticeId: number;
   createdData: string;
+  festivalId: number;
 }
 
 export interface NotificationsResponse {

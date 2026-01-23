@@ -1,34 +1,29 @@
+import { useNavigate } from 'react-router';
+
 import { EmptyAlertIcon } from '@amp/ads-ui/icons';
 
-import { useNotificationsQuery } from '@shared/hooks/use-notifications';
-// import { useAlertStation } from '@shared/hooks/use-alert-station';
+import useNotificationsQuery, {
+  useNotificationReadMutation,
+} from '@shared/hooks/use-notifications';
 import AlertCard from '@shared/ui/card/card-alert/card-alert';
 
 import * as styles from './notification.css';
 
 const NotificationPage = () => {
-  // const {
-  //   alerts,
-  //   // hasMore,
-  //   isLoading,
-  //   initMock,
-  //   // appendMock,
-  //   markAsReadLocal,
-  //   isRead,
-  // } = useAlertStation();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   initMock();
-  // }, [initMock]);
+  const { mutate } = useNotificationReadMutation();
 
-  // const handleAlertClick = (alertId: string) => {
-  //   markAsReadLocal(alertId);
-
-  //   // TODO: 상세 페이지 연결
-  // };
-
-  const handleAlertClick = (notificationId: number) => {
-    //TODO: 알림 읽음 처리. 해당 페이지로 이동
+  const handleAlertClick = (
+    notificationId: number,
+    noticeId: number,
+    festivalId: number,
+  ) => {
+    mutate(notificationId, {
+      onSuccess: () => {
+        navigate(`/events/${festivalId}/notices/${noticeId}`);
+      },
+    });
   };
 
   const { data, isLoading } = useNotificationsQuery();
@@ -57,9 +52,15 @@ const NotificationPage = () => {
                 <AlertCard
                   title={data.title}
                   description={data.message}
-                  time={data.title}
+                  time={data.createdData}
                   isRead={data.isRead}
-                  onClick={() => handleAlertClick(data.notificationId)}
+                  onClick={() =>
+                    handleAlertClick(
+                      data.notificationId,
+                      data.noticeId,
+                      data.festivalId,
+                    )
+                  }
                 />
                 {index < list.length - 1 && <div className={styles.divider} />}
               </li>
