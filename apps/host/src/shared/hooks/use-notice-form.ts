@@ -34,8 +34,10 @@ export const useNoticeForm = (
   );
   const [title, setTitle] = useState(() => initialData?.title ?? '');
   const [content, setContent] = useState(() => initialData?.content ?? '');
-  const { mutate: createNotice } = useNoticeCreateMutation(festivalId ?? 0);
-  const { mutate: updateNotice } = useNoticeUpdateMutation(noticeId ?? 0);
+  const { mutate: createNotice, isPending: isCreatePending } =
+    useNoticeCreateMutation(festivalId ?? 0);
+  const { mutate: updateNotice, isPending: isUpdatePending } =
+    useNoticeUpdateMutation(noticeId ?? 0);
 
   const handlePinToggle = () => {
     if (!isPinned && MOCK_PINNED_COUNT >= 3) {
@@ -80,6 +82,9 @@ export const useNoticeForm = (
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isCreatePending || isUpdatePending) {
+      return;
+    }
     if (!isValid) {
       return;
     }
@@ -157,5 +162,6 @@ export const useNoticeForm = (
       handleSubmit,
     },
     isValid,
+    isSubmitting: isCreatePending || isUpdatePending,
   };
 };
