@@ -7,6 +7,7 @@ import { ButtonGradientSection } from '@amp/compositions';
 import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
 
 import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
+import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
 import CardHomebannerOrg from '@shared/ui/card/card-homebanner-organizer/card-homebanner-org';
 import Tooltip from '@shared/ui/tooltip/tooltip';
@@ -22,8 +23,9 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const { data: homeData } = useQuery(HOME_QUERY_OPTIONS.FESTIVALS());
+  const { data: orgData } = useQuery(MY_PAGE_QUERY_OPTIONS.MY_PAGE());
 
-  const nickname = '';
+  const nickname = orgData?.organizerName;
 
   if (!homeData) {
     return null;
@@ -47,7 +49,7 @@ const HomePage = () => {
 
   return (
     <section className={styles.page}>
-      <CardHomebannerOrg nickname={nickname} />
+      <CardHomebannerOrg nickname={nickname ?? 'SOPT'} />
 
       <div className={styles.content}>
         <FestivalOverview
