@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react';
 
 import { CardFestival, Chip } from '@amp/ads-ui';
+import { IMAGES } from '@amp/compositions/assets';
 
 import type { FestivalBase, FestivalStatus } from '@shared/types/festival';
 
@@ -36,7 +37,7 @@ const FestivalList = ({ festivals }: FestivalListProps) => {
       {festivals.map((festival) => (
         <CardFestival key={festival.festivalId}>
           <CardFestival.Image
-            src={festival.mainImageUrl}
+            src={festival.imageUrl ?? IMAGES.EMPTY_NOTICE}
             alt={festival.title}
           />
           <CardFestival.Body title={festival.title} date={festival.period}>
