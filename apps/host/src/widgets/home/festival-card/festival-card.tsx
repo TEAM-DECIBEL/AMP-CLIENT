@@ -67,7 +67,7 @@ const FestivalCard = ({
         }
       }}
     >
-      <CardFestival.Image src={festival.mainImageUrl} alt={festival.title} />
+      <CardFestival.Image src={festival.imageUrl ?? ''} alt={festival.title} />
       <CardFestival.Body title={festival.title} date={festival.period}>
         <CardFestival.Chip>
           {renderDDayChip(festival.dDay)}
