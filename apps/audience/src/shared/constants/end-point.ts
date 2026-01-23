@@ -39,4 +39,7 @@ export const END_POINT = {
 
   // 로그아웃
   POST_LOGOUT: '/api/auth/logout',
+
+  // 알림 스테이션
+  GET_NOTIFICATIONS: '/users/notifications',
 } as const;
