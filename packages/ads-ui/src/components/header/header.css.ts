@@ -33,8 +33,8 @@ export const iconButton = style({
 });
 
 export const headerIcon = style({
-  width: '26px',
-  height: '26px',
+  width: '2.6rem',
+  height: '2.6rem',
 });
 
 export const subRow = style({
