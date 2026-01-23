@@ -14,7 +14,7 @@ const menuItems = [
   {
     id: 'saved-notices',
     label: '저장한 공지',
-    path: `/${ROUTE_PATH.SAVED_NOTICES}`,
+    path: ROUTE_PATH.SAVED_NOTICES,
   },
 ] as const;
 
