@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { get, post, put } from '@amp/apis';
+import { del, get, post, put } from '@amp/apis';
 
 import { END_POINT } from '@shared/constants/end-point';
 import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
@@ -50,6 +50,9 @@ export const putNotice = (noticeId: number, body: UpdateNoticeBody) => {
     formData,
   );
 };
+
+export const deleteNotice = (noticeId: number) =>
+  del<void>(END_POINT.DELETE_NOTICE(noticeId));
 
 export const getNoticeDetail = (noticeId: number) =>
   get<NoticeDetail>(END_POINT.GET_NOTICE_DETAIL(noticeId));

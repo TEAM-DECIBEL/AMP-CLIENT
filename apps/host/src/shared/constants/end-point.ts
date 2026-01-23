@@ -29,6 +29,9 @@ export const END_POINT = {
   // 공지 수정
   PUT_NOTICE: (noticeId: number) => `/organizer/notices/${noticeId}`,
 
+  // 공지 삭제
+  DELETE_NOTICE: (noticeId: number) => `/organizer/notices/${noticeId}`,
+
   // 주최 공지
   GET_FESTIVAL_NOTICES: (festivalId: number) =>
     `/common/festivals/${festivalId}/notices`,
