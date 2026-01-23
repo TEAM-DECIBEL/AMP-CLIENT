@@ -1,5 +1,5 @@
 import AuthGate from '@app/router/auth-gate';
-import AuthIndex from '@app/router/auth-index';
+import ProtectedIndex from '@app/router/protected-index';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
@@ -32,7 +32,7 @@ export const globalRoutes = [
     children: [
       {
         index: true,
-        element: <AuthIndex />,
+        element: <ProtectedIndex />,
       },
     ],
   },
