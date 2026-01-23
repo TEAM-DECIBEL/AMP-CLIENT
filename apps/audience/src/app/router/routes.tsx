@@ -1,9 +1,10 @@
+import ProtectedIndex from '@app/router/protected-index';
+
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
   AuthRequiredPage,
   CallbackPage,
-  HomePage,
   LoginPage,
   MyEventsPage,
   MyPage,
@@ -24,13 +25,15 @@ const subLayoutTitles = {
   savedNotices: '저장한 공지',
 };
 
+const isAuthed = Boolean(localStorage.getItem('accessToken'));
+
 export const globalRoutes = [
   {
     element: <SubLayout />,
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <ProtectedIndex />,
       },
     ],
   },
