@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
+import { useNavigate } from 'react-router';
 
 import { toast } from '@amp/ads-ui';
 
@@ -9,6 +10,7 @@ import {
 } from '@features/notice/use-notice';
 
 import { getCategoryIdByLabel } from '@shared/constants/category';
+import { ROUTE_PATH } from '@shared/constants/path';
 import type { NoticeDetail } from '@shared/types/notice';
 
 const MOCK_PINNED_COUNT = 0;
@@ -18,6 +20,7 @@ export const useNoticeForm = (
   initialData?: NoticeDetail | null,
   noticeId?: number | null,
 ) => {
+  const navigate = useNavigate();
   const initialCategoryId = initialData
     ? getCategoryIdByLabel(initialData.category.categoryName)
     : null;
@@ -97,6 +100,19 @@ export const useNoticeForm = (
         content,
         isPinned,
         previousImageUrl: shouldUsePreviousImage ? imageUrl : undefined,
+      },
+      {
+        onSuccess: (data) => {
+          navigate(
+            ROUTE_PATH.NOTICE_DETAILS.replace(
+              ':eventId',
+              String(festivalId),
+            ).replace(':noticeId', String(data.noticeId)),
+          );
+        },
+        onError: () => {
+          toast.show('공지 수정에 실패했어요.');
+        },
       });
       return;
     }
@@ -107,6 +123,19 @@ export const useNoticeForm = (
       image,
       content,
       isPinned,
+    },
+    {
+      onSuccess: (data) => {
+        navigate(
+          ROUTE_PATH.NOTICE_DETAILS.replace(
+            ':eventId',
+            String(festivalId),
+          ).replace(':noticeId', String(data.noticeId)),
+        );
+      },
+      onError: () => {
+        toast.show('공지 작성에 실패했어요.');
+      },
     });
   };
 
