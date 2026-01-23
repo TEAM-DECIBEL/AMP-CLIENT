@@ -49,6 +49,8 @@ export const USERS_QUERY_KEY = {
 
   MY_PAGE: () => [...USERS_QUERY_KEY.ALL, 'my-page'],
 
+  MY_FESTIVALS_ALL: () => [...USERS_QUERY_KEY.ALL, 'my-festivals-all'],
+
   SAVED_NOTICES: () => [...USERS_QUERY_KEY.ALL, 'saved-notices'],
 
   NOTIFICATIONS: () => ['notifications'],

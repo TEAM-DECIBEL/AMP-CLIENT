@@ -2,15 +2,9 @@ import type { ReactElement } from 'react';
 
 import { CardFestival, Chip } from '@amp/ads-ui';
 
-type MyEventsStatus = '관람 중' | '관람 예정';
+import type { MyEventsFestival } from '@shared/types/my-events-response';
 
-interface FestivalItem {
-  festivalId: number;
-  title: string;
-  mainImageUrl: string;
-  period: string;
-  status: MyEventsStatus;
-}
+type MyEventsStatus = '관람 중' | '관람 예정';
 
 const STATUS_CHIP: Record<MyEventsStatus, ReactElement> = {
   '관람 중': (
@@ -30,8 +24,18 @@ const getStatusChip = (status: MyEventsStatus) => {
 };
 
 interface FestivalListProps {
-  festivals: FestivalItem[];
+  festivals: MyEventsFestival[];
 }
+
+const toMyEventsStatus = (status: string): MyEventsStatus | null => {
+  if (status === '관람 중' || status === '진행 중') {
+    return '관람 중';
+  }
+  if (status === '관람 예정' || status === '진행 예정') {
+    return '관람 예정';
+  }
+  return null;
+};
 
 const FestivalList = ({ festivals }: FestivalListProps) => {
   return (
@@ -44,7 +48,10 @@ const FestivalList = ({ festivals }: FestivalListProps) => {
           />
           <CardFestival.Body title={festival.title} date={festival.period}>
             <CardFestival.Chip>
-              {getStatusChip(festival.status)}
+              {(() => {
+                const mapped = toMyEventsStatus(festival.status);
+                return mapped ? getStatusChip(mapped) : null;
+              })()}
             </CardFestival.Chip>
           </CardFestival.Body>
         </CardFestival>

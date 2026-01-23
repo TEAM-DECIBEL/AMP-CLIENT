@@ -4,6 +4,8 @@ export const END_POINT = {
 
   // 공연 등록 화면
   POST_FESTIVAL_CREATE: '/organizer/festivals',
+  // 공연 삭제
+  DELETE_FESTIVAL: (festivalId: number) => `/organizer/festivals/${festivalId}`,
   // 공연 혼잡도 조회
   GET_FESTIVAL_CONGESTION: (eventId: number) =>
     `common/festivals/${eventId}/congestion`,
