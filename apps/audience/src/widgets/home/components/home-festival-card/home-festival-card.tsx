@@ -8,7 +8,6 @@ interface HomeFestivalCardProps {
   imageUrl: string;
   wishList: boolean;
   chips: ReactNode;
-  onClick: () => void;
   onToggle: (nextSelected: boolean) => void;
 }
 
@@ -18,26 +17,16 @@ const HomeFestivalCard = ({
   imageUrl,
   wishList,
   chips,
-  onClick,
   onToggle,
 }: HomeFestivalCardProps) => {
   return (
-    <CardFestival onClick={onClick}>
+    <CardFestival>
       <CardFestival.Image src={imageUrl} alt={title} />
       <CardFestival.Body title={title} date={period}>
         <CardFestival.Chip>{chips}</CardFestival.Chip>
       </CardFestival.Body>
       <CardFestival.Button>
-        <span
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          onPointerDown={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <FlagButton selected={wishList} onChange={onToggle} />
-        </span>
+        <FlagButton selected={wishList} onChange={onToggle} />
       </CardFestival.Button>
     </CardFestival>
   );

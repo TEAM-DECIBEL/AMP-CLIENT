@@ -1,13 +1,8 @@
 import { useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { toast } from '@amp/ads-ui';
-import { Loading } from '@amp/compositions';
 import { LogoutModal, MyPageLayout } from '@amp/shared';
-
-import { postLogout } from '@features/auth/apis/query';
-import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 import Dashboard from '@shared/ui/card/card-dashboard/dashboard';
@@ -16,7 +11,7 @@ const menuItems = [
   {
     id: 'ongoing-events',
     label: '진행 공연',
-    path: ROUTE_PATH.MY_HISTORY,
+    path: `/${ROUTE_PATH.MY_HISTORY}`,
   },
   {
     id: 'token-check',
@@ -29,39 +24,13 @@ const MyPage = () => {
   const navigate = useNavigate();
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
-  const { data: myPageData, isPending } = useQuery(
-    MY_PAGE_QUERY_OPTIONS.MY_PAGE(),
-  );
-  const logoutMutation = useMutation({
-    mutationFn: postLogout,
-  });
-
-  if (isPending) {
-    return <Loading />;
-  }
-
-  if (!myPageData) {
-    return null;
-  }
-
   const dashboardCounts = {
-    ongoingCount: myPageData.ongoingFestivalCount,
-    upcomingCount: myPageData.upcomingFestivalCount,
+    ongoingCount: 0,
+    upcomingCount: 0,
   };
 
   const handleTokenCheck = () => {
     toast.show('현재 준비중인 기능이에요!');
-  };
-  const handleLogoutConfirm = () => {
-    logoutMutation.mutate(undefined, {
-      onSuccess: () => {
-        setLogoutOpen(false);
-        navigate(ROUTE_PATH.LOGIN);
-      },
-      onError: () => {
-        toast.show('로그아웃에 실패했어요.');
-      },
-    });
   };
   const handleMenuItemClick = (menu: (typeof menuItems)[number]) => {
     if (menu.id === 'token-check') {
@@ -80,9 +49,8 @@ const MyPage = () => {
   return (
     <>
       <MyPageLayout
-        name={myPageData.organizerName}
+        name='공연주최사 이름'
         roleLabel='주최'
-        profileImageUrl={myPageData.profileImageUrl}
         dashboard={
           <Dashboard
             ongoingCount={dashboardCounts.ongoingCount}
@@ -99,7 +67,7 @@ const MyPage = () => {
       <LogoutModal
         open={isLogoutOpen}
         onClose={() => setLogoutOpen(false)}
-        onConfirm={handleLogoutConfirm}
+        onConfirm={() => setLogoutOpen(false)}
       />
     </>
   );

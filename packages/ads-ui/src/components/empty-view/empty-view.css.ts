@@ -1,6 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-import { IMAGES } from '../../assets';
 import { ampThemeVars } from '../../styles';
 
 export const empty = style({
@@ -13,10 +12,7 @@ export const empty = style({
 export const image = style({
   width: '14rem',
   height: '14rem',
-  backgroundImage: `url(${IMAGES.EMPTY_ALERT})`,
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'center',
-  backgroundSize: 'contain',
+  backgroundColor: ampThemeVars.color.gray_200,
 });
 
 export const textGroup = style({

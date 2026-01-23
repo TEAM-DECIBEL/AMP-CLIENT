@@ -22,7 +22,6 @@ export const profileImage = style({
   height: '9.2rem',
   borderRadius: '50%',
   objectFit: 'cover',
-  border: `1px solid ${ampThemeVars.color.gray_200}`,
 });
 
 export const profilePlaceholder = style({

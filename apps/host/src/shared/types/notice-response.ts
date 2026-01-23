@@ -1,4 +1,4 @@
-import type { Announcement } from './announcement';
+import { Notice } from '@amp/shared/types';
 
 export interface PaginationResponse {
   currentPage: number;
@@ -10,6 +10,6 @@ export interface PaginationResponse {
 }
 
 export interface FestivalNoticesResponseData {
-  announcements: Announcement[];
+  announcements: Notice[];
   paginationResponse: PaginationResponse;
 }

@@ -6,6 +6,7 @@ import type { PageSizeParams } from '@amp/shared/types';
 import { END_POINT } from '@shared/constants/end-point';
 import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
 import type { FestivalCongestionResponseData } from '@shared/types/festival-congestion';
+import type { NoticeDetailResponse } from '@shared/types/notice-details-response';
 
 export const getFestivalCongestion = (
   eventId: number,
@@ -23,5 +24,17 @@ export const CONGESTION_QUERY_OPTIONS = {
       queryKey: [...ORGANIZERS_QUERY_KEY.FESTIVAL_CONGESTION(eventId), params],
       queryFn: () => getFestivalCongestion(eventId, params),
       enabled: Number.isFinite(eventId),
+    }),
+} as const;
+
+export const getFestivalNoticeDetail = (noticeId: number) =>
+  get<NoticeDetailResponse>(END_POINT.GET_FESTIVAL_NOTICE_DETAIL(noticeId));
+
+export const NOTICE_DETAIL_QUERY_OPTIONS = {
+  DETAIL: (noticeId: number) =>
+    queryOptions({
+      queryKey: ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICE_DETAIL(noticeId),
+      queryFn: () => getFestivalNoticeDetail(noticeId),
+      enabled: Number.isFinite(noticeId),
     }),
 } as const;

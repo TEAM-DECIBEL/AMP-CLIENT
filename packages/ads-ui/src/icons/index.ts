@@ -10,7 +10,6 @@ export { default as CheckIcon } from './svgs/icn_check.svg?react';
 export { default as ConfirmIcon } from './svgs/icn_confirm.svg?react';
 export { default as DeleteIcon } from './svgs/icn_delete.svg?react';
 export { default as EmptyAlertIcon } from './svgs/icn_empty_alert.svg?react';
-// export { default as ExLogoIcon } from './svgs/icn_exlogo.svg?react';
 export { default as FlagIcon } from './svgs/icn_flag.svg?react';
 export { default as GoogleIcon } from './svgs/icn_google.svg?react';
 export { default as LocateIcon } from './svgs/icn_locate.svg?react';

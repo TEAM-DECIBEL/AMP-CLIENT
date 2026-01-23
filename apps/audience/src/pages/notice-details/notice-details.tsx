@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router';
 
@@ -6,7 +7,7 @@ import { SaveIcon } from '@amp/ads-ui/icons';
 import { NoticeDetailLayout } from '@amp/compositions';
 
 import { useNoticeBookmark } from '@features/bookmark/query';
-import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-detail/query';
+import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-details/query';
 
 import * as styles from './notice-details.css';
 
@@ -34,13 +35,25 @@ const NoticeDetailsPage = () => {
     });
   };
 
-  if (!data) {
+  const normalizedData = useMemo(() => {
+    if (!data) {
+      return null;
+    }
+
+    return {
+      ...data,
+      imageUrl: data.imageUrl ?? '',
+      category: data.category.categoryName,
+    };
+  }, [data]);
+
+  if (!normalizedData) {
     return null;
   }
 
   return (
     <NoticeDetailLayout>
-      <NoticeDetailLayout.Content data={data} />
+      <NoticeDetailLayout.Content data={normalizedData} />
       <NoticeDetailLayout.Actions>
         <div>
           <CircleButton type='share' onClick={() => {}} />
@@ -49,11 +62,13 @@ const NoticeDetailsPage = () => {
           type='icon'
           color='gray'
           onClick={handleBookmark}
-          className={!data.isSaved ? styles.unsaved : undefined}
+          className={!normalizedData.isSaved ? styles.unsaved : undefined}
         >
           <div>
             <SaveIcon
-              className={!data.isSaved ? styles.unsavedIcon : undefined}
+              className={
+                !normalizedData.isSaved ? styles.unsavedIcon : undefined
+              }
             />
           </div>
           저장하기

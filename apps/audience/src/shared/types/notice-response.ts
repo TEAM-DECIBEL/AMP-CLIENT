@@ -1,4 +1,4 @@
-import { Announcement } from './announcement';
+import { Notice } from '@amp/shared/types';
 
 export interface PaginationResponse {
   currentPage: number;
@@ -24,7 +24,31 @@ export interface SavedNoticesResponseData {
 }
 
 export interface FestivalNoticesResponseData {
-  announcements: Announcement[];
+  announcements: Notice[];
   paginationResponse: PaginationResponse;
 }
 
+export interface NoticeCategory {
+  categoryId: number;
+  categoryName: string;
+  categoryCode: string;
+}
+
+export interface NoticeAuthor {
+  userId: number;
+  nickname: string;
+}
+
+export interface NoticeDetailResponse {
+  noticeId: number;
+  festivalId: number;
+  festivalTitle: string;
+  category: NoticeCategory;
+  title: string;
+  content: string;
+  imageUrl: string | null;
+  isPinned: boolean;
+  isSaved: boolean;
+  author: NoticeAuthor;
+  createdAt: string;
+}

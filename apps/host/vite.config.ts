@@ -15,9 +15,6 @@ export default defineConfig(
     server: {
       port: 5174,
     },
-    resolve: {
-      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
-    },
 
     plugins: [
       VitePWA({

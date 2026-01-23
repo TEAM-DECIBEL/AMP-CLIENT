@@ -1,7 +1,6 @@
-import { type ReactNode, useState } from 'react';
+import type { ReactNode } from 'react';
 
 import { Chip, MyPageMenuContainer, MyPageMenuItem } from '@amp/ads-ui';
-import { IMAGES } from '@amp/ads-ui/assets';
 
 import * as styles from './mypage-layout.css';
 
@@ -26,27 +25,20 @@ const MyPageLayout = ({
   dashboard,
   handleLogout,
 }: MyPageLayoutProps) => {
-  const [profileImageSrc, setProfileImageSrc] = useState(
-    profileImageUrl ?? IMAGES.AVATAR,
-  );
-
-  const handleProfileImageError = () => {
-    if (profileImageSrc !== IMAGES.AVATAR) {
-      setProfileImageSrc(IMAGES.AVATAR);
-    }
-  };
-
   return (
     <section className={styles.container}>
       <div className={styles.profileSection}>
-        <img
-          className={styles.profileImage}
-          src={profileImageSrc}
-          alt={`${name} 프로필`}
-          loading='lazy'
-          decoding='async'
-          onError={handleProfileImageError}
-        />
+        {profileImageUrl ? (
+          <img
+            className={styles.profileImage}
+            src={profileImageUrl}
+            alt={`${name} 프로필`}
+            loading='lazy'
+            decoding='async'
+          />
+        ) : (
+          <div className={styles.profilePlaceholder} aria-hidden />
+        )}
         <p className={styles.name}>{name}</p>
         <Chip variant='mypage'>{roleLabel}</Chip>
       </div>

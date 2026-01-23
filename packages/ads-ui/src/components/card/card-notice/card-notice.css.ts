@@ -50,7 +50,6 @@ export const content = style({
   width: '22rem',
   color: ampThemeVars.color.gray_700,
   ...ampThemeVars.font.body_r_13,
-  whiteSpace: 'pre-line',
 
   display: '-webkit-box',
   WebkitBoxOrient: 'vertical',

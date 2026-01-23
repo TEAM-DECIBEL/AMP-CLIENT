@@ -6,11 +6,9 @@ import ButtonGradientSection from '../button-gradient-section/button-gradient-se
 import * as styles from './notice-detail-layout.css';
 
 interface NoticeData {
-  imageUrl: string | null;
+  imageUrl: string;
   title: string;
-  category: {
-    categoryName: string;
-  };
+  category: string;
   createdAt: string;
   content: string;
 }
@@ -32,14 +30,16 @@ const NoticeDetailLayoutRoot = ({ children }: NoticeDetailLayoutProps) => {
 };
 
 const Content = ({ data }: NoticeDetailContentProps) => {
-  const imageSrc = data.imageUrl ?? IMAGES.EMPTY_NOTICE;
-
   return (
     <div className={styles.noticeDetail}>
-      <img src={imageSrc} alt={data.title} className={styles.img} />
+      <img
+        src={data.imageUrl ?? IMAGES.EMPTY_NOTICE}
+        alt={data.title}
+        className={styles.img}
+      />
       <header className={styles.header}>
         <p className={styles.category}>
-          주최 공지 {'>'} {data.category.categoryName}
+          주최 공지 {'>'} {data.category}
         </p>
         <p className={styles.date}>{data.createdAt}</p>
       </header>
