@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import { CircleButton, CtaButton } from '@amp/ads-ui';
 import { SaveIcon } from '@amp/ads-ui/icons';
@@ -9,9 +9,13 @@ import { NoticeDetailLayout } from '@amp/compositions';
 import { useNoticeBookmark } from '@features/bookmark/query';
 import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-details/query';
 
+import { ROUTE_PATH } from '@shared/constants/path';
+
 import * as styles from './notice-details.css';
 
 const NoticeDetailsPage = () => {
+  const navigate = useNavigate();
+  const isAuthed = Boolean(localStorage.getItem('accessToken'));
   const { noticeId } = useParams<{ noticeId: string }>();
   const noticeIdNumber = Number(noticeId);
 
@@ -19,6 +23,10 @@ const NoticeDetailsPage = () => {
   const bookmarkMutation = useNoticeBookmark();
 
   const handleBookmark = () => {
+    if (!isAuthed) {
+      navigate(ROUTE_PATH.AUTH_REQUIRED);
+      return;
+    }
     if (bookmarkMutation.isPending) {
       return;
     }
@@ -82,7 +90,7 @@ const NoticeDetailsPage = () => {
           type='icon'
           color='gray'
           onClick={handleBookmark}
-          disabled={bookmarkMutation.isPending}
+          disabled={!isAuthed || bookmarkMutation.isPending}
           className={!normalizedData.isSaved ? styles.unsaved : undefined}
         >
           <div>

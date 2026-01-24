@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router';
 
 import {
   TAB_ALL,
@@ -9,12 +10,14 @@ import {
 
 import { HOME_QUERY_OPTIONS, putWishList } from '@features/home/apis/query';
 
+import { ROUTE_PATH } from '@shared/constants/path';
 import type {
   AllFestivalItem,
   UpcomingFestivalItem,
 } from '@shared/types/home-response';
 
-const useHomeFestivals = () => {
+const useHomeFestivals = (isAuthed: boolean) => {
+  const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState<TabValue>(TAB_ALL);
   const [allFestivals, setAllFestivals] = useState<AllFestivalItem[]>([]);
   const [upcomingFestivals, setUpcomingFestivals] = useState<
@@ -26,10 +29,11 @@ const useHomeFestivals = () => {
   });
   const { data: plannedFestivalsData } = useQuery({
     ...HOME_QUERY_OPTIONS.PLANNED_FESTIVALS({ page: 0, size: 20 }),
-    enabled: selectedTab === TAB_UPCOMING,
+    enabled: selectedTab === TAB_UPCOMING && isAuthed,
   });
   const { data: upcomingFestivalData } = useQuery({
     ...HOME_QUERY_OPTIONS.UPCOMING_FESTIVAL(),
+    enabled: isAuthed,
   });
 
   useEffect(() => {
@@ -91,6 +95,10 @@ const useHomeFestivals = () => {
     festivalId: number,
     nextSelected: boolean,
   ) => {
+    if (!isAuthed) {
+      navigate(ROUTE_PATH.AUTH_REQUIRED);
+      return;
+    }
     const prevAll = allFestivals;
     const prevUpcoming = upcomingFestivals;
 
@@ -121,6 +129,10 @@ const useHomeFestivals = () => {
     festivalId: number,
     nextSelected: boolean,
   ) => {
+    if (!isAuthed) {
+      navigate(ROUTE_PATH.AUTH_REQUIRED);
+      return;
+    }
     const prevAll = allFestivals;
     const prevUpcoming = upcomingFestivals;
 

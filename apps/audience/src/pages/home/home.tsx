@@ -11,7 +11,11 @@ import useHomeFestivals from './model/use-home-festivals';
 import { page } from './home.css';
 
 const HomePage = () => {
-  const { data: myPageData } = useQuery(MY_PAGE_QUERY_OPTIONS.MY_PAGE());
+  const isAuthed = Boolean(localStorage.getItem('accessToken'));
+  const { data: myPageData } = useQuery({
+    ...MY_PAGE_QUERY_OPTIONS.MY_PAGE(),
+    enabled: isAuthed,
+  });
   const nickname = myPageData?.nickname ?? '';
 
   const {
@@ -22,7 +26,7 @@ const HomePage = () => {
     setSelectedTab,
     handleToggleAllFestival,
     handleToggleUpcomingFestival,
-  } = useHomeFestivals();
+  } = useHomeFestivals(isAuthed);
 
   return (
     <div className={page}>

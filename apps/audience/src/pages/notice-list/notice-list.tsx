@@ -19,6 +19,7 @@ import { putWishList } from '@features/home/apis/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
+import { ROUTE_PATH } from '@shared/constants/path';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
 import formatDday from '@shared/libs/format-dday';
@@ -49,6 +50,7 @@ interface FestivalBanner {
 
 const NoticeListPage = () => {
   const navigate = useNavigate();
+  const isAuthed = Boolean(localStorage.getItem('accessToken'));
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
 
   const [isWatched, setIsWatched] = useState(false);
@@ -123,6 +125,10 @@ const NoticeListPage = () => {
     : 'OTHERS';
 
   const handleWatchToggle = () => {
+    if (!isAuthed) {
+      navigate(ROUTE_PATH.AUTH_REQUIRED);
+      return;
+    }
     if (!Number.isFinite(festivalId)) {
       toast.show('공연 정보를 불러오지 못했어요.');
       return;
@@ -167,6 +173,10 @@ const NoticeListPage = () => {
       };
 
   const handleAlertClick = () => {
+    if (!isAuthed) {
+      navigate(ROUTE_PATH.AUTH_REQUIRED);
+      return;
+    }
     overlay.open(({ isOpen, close, unmount }) => {
       const handleConfirmAlert = async () => {
         try {

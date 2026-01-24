@@ -1,11 +1,11 @@
 import AuthGate from '@app/router/auth-gate';
-import ProtectedIndex from '@app/router/protected-index';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
   AuthRequiredPage,
   CallbackPage,
+  HomePage,
   LoginPage,
   MyEventsPage,
   MyPage,
@@ -14,7 +14,7 @@ import {
   NoticeListPage,
   NotificationPage,
   OnboardingPage,
-  SavedNoticesPage, 
+  SavedNoticesPage,
 } from './lazy';
 import { SubLayout, SubLayoutWithBack } from './sub-layout';
 
@@ -32,7 +32,11 @@ export const globalRoutes = [
     children: [
       {
         index: true,
-        element: <ProtectedIndex />,
+        element: <HomePage />,
+      },
+      {
+        path: ROUTE_PATH.NOTICE_LIST,
+        element: <NoticeListPage />,
       },
     ],
   },
@@ -41,6 +45,11 @@ export const globalRoutes = [
   { path: ROUTE_PATH.LOGIN, element: <LoginPage /> },
   { path: ROUTE_PATH.AUTH_REQUIRED, element: <AuthRequiredPage /> },
   { path: ROUTE_PATH.CALLBACK, element: <CallbackPage /> },
+  {
+    path: ROUTE_PATH.NOTICE_DETAILS,
+    element: <SubLayoutWithBack title={subLayoutTitles.noticeDetails} />,
+    children: [{ index: true, element: <NoticeDetailsPage /> }],
+  },
 
   {
     element: <AuthGate />,
@@ -58,16 +67,6 @@ export const globalRoutes = [
             children: [{ index: true, element: <MyPage /> }],
           },
         ],
-      },
-      {
-        path: ROUTE_PATH.NOTICE_DETAILS,
-        element: <SubLayoutWithBack title={subLayoutTitles.noticeDetails} />,
-        children: [{ index: true, element: <NoticeDetailsPage /> }],
-      },
-      {
-        path: ROUTE_PATH.NOTICE_LIST,
-        element: <SubLayout />,
-        children: [{ index: true, element: <NoticeListPage /> }],
       },
       {
         path: ROUTE_PATH.NOTIFICATION,
