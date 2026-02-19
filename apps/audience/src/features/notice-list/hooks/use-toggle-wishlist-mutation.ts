@@ -56,6 +56,10 @@ export const useToggleWishListMutation = (
   });
 
   const handleWatchToggle = () => {
+    /**
+     * TODO: 인증 및 라우팅 정책 분리
+     * 추후 전역 인증 로직이 구축되면 아래 로직(accessToken 체크 및 navigate)을 제거하고, 해당 레퍼 함수도 제거하는 방향으로 리팩토링
+     */
     const isAuthed = Boolean(localStorage.getItem('accessToken'));
 
     if (!isAuthed) {
