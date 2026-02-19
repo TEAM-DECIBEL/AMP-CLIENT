@@ -189,6 +189,7 @@ const NoticeListPage = () => {
           <AddToWatchButton
             selected={bannerData?.isWishlist ?? false}
             onChange={handleWatchToggle}
+            disabled={!bannerData}
           />
         }
       />
