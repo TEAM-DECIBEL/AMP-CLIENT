@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router';
 
 import { toast } from '@amp/ads-ui';
 
-import { putWishList } from '@features/home/apis/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 
+import { putWishList } from '@shared/apis/festival';
 import { ROUTE_PATH } from '@shared/constants/path';
 import type { FestivalNoticeBanner } from '@shared/types/notice-response';
 

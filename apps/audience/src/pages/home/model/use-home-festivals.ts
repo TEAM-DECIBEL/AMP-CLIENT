@@ -8,8 +8,9 @@ import {
   type TabValue,
 } from '@widgets/home/constants/home-tabs';
 
-import { HOME_QUERY_OPTIONS, putWishList } from '@features/home/apis/query';
+import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
 
+import { putWishList } from '@shared/apis/festival';
 import { ROUTE_PATH } from '@shared/constants/path';
 import type {
   AllFestivalItem,

@@ -47,12 +47,3 @@ export interface UpcomingFestivalResponseData {
   endDate: string;
   dday: number;
 }
-
-export interface WishListRequest {
-  wishList: boolean;
-}
-
-export interface WishListResponseData {
-  festivalId: number;
-  wishList: boolean;
-}
