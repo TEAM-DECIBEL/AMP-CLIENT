@@ -15,7 +15,7 @@ import {
 import { useNoticeList } from '@amp/shared/hooks';
 
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
-import { useWatchStatus } from '@features/notice-list/hooks/use-watch-status';
+import { useToggleWishListMutation } from '@features/notice-list/hooks/use-toggle-wishlist-mutation';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
 import { ROUTE_PATH } from '@shared/constants/path';
@@ -75,7 +75,7 @@ const NoticeListPage = () => {
     confirmStatus,
   } = useLiveStatus();
 
-  const { handleWatchToggle } = useWatchStatus(
+  const { handleWatchToggle } = useToggleWishListMutation(
     festivalId,
     bannerData?.isWishlist ?? false,
   );

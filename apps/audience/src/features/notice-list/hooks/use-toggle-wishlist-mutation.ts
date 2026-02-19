@@ -9,17 +9,20 @@ import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 import { ROUTE_PATH } from '@shared/constants/path';
 import type { FestivalNoticeBanner } from '@shared/types/notice-response';
 
-export const useWatchStatus = (festivalId: number, isWishlist: boolean) => {
+export const useToggleWishListMutation = (
+  festivalId: number,
+  isWishlist: boolean,
+) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  const queryKey = NOTICES_QUERY_OPTIONS.BANNER(festivalId).queryKey;
 
   const wishListMutation = useMutation({
     mutationFn: (newWishList: boolean) =>
       putWishList(festivalId, { wishList: newWishList }),
 
     onMutate: async (newWishList) => {
-      const queryKey = NOTICES_QUERY_OPTIONS.BANNER(festivalId).queryKey;
-
       await queryClient.cancelQueries({ queryKey });
 
       const previousData = queryClient.getQueryData(queryKey);
@@ -39,12 +42,16 @@ export const useWatchStatus = (festivalId: number, isWishlist: boolean) => {
     },
 
     onError: (_err, _newWishList, context) => {
-      const queryKey = NOTICES_QUERY_OPTIONS.BANNER(festivalId).queryKey;
-
       if (context?.previousData) {
         queryClient.setQueryData(queryKey, context.previousData);
       }
       toast.show('관람 예정 설정에 실패했어요.');
+    },
+
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey,
+      });
     },
   });
 
