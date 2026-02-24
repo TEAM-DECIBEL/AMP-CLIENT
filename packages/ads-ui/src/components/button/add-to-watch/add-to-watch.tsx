@@ -4,16 +4,22 @@ import * as styles from './add-to-watch.css';
 
 interface AddToWatchButtonProps {
   selected: boolean;
-  onChange: (nextSelected: boolean) => void;
+  onChange: () => void;
+  disabled?: boolean;
 }
 
-const AddToWatchButton = ({ selected, onChange }: AddToWatchButtonProps) => {
+const AddToWatchButton = ({
+  selected,
+  onChange,
+  disabled,
+}: AddToWatchButtonProps) => {
   return (
     <button
       type='button'
       className={styles.addToWatch}
       aria-pressed={selected}
-      onClick={() => onChange(!selected)}
+      disabled={disabled}
+      onClick={onChange}
     >
       <AmpFlagIcon className={styles.icon} />
       관람 예정
