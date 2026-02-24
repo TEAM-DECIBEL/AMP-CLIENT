@@ -75,7 +75,7 @@ const NoticeListPage = () => {
     confirmStatus,
   } = useLiveStatus();
 
-  const { handleWatchToggle } = useToggleWishListMutation(
+  const { toggleWishList, isTogglePending } = useToggleWishListMutation(
     festivalId,
     bannerData?.isWishlist ?? false,
   );
@@ -188,8 +188,8 @@ const NoticeListPage = () => {
         button={
           <AddToWatchButton
             selected={bannerData?.isWishlist ?? false}
-            onChange={handleWatchToggle}
-            disabled={!bannerData}
+            onChange={toggleWishList}
+            disabled={!bannerData || isTogglePending}
           />
         }
       />
