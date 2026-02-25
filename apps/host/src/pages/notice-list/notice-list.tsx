@@ -15,16 +15,11 @@ import { useNoticeList } from '@amp/shared/hooks';
 import { CONGESTION_QUERY_OPTIONS } from '@features/notice-details/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 
+import formatDday from '@shared/libs/format-dday';
+
 import * as styles from './notice-list.css';
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
-
-const formatDday = (dDay: number) => {
-  if (dDay === 0) {
-    return 'D-Day';
-  }
-  return dDay > 0 ? `D-${dDay}` : `D+${Math.abs(dDay)}`;
-};
 
 interface ActiveCategory {
   categoryId: number;
