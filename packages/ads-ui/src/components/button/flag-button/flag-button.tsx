@@ -8,7 +8,7 @@ interface FlagButtonProps {
   disabled?: boolean;
 }
 
-const FlagButton = ({ selected, onChange }: FlagButtonProps) => {
+const FlagButton = ({ selected, onChange, disabled }: FlagButtonProps) => {
   return (
     <button
       type='button'
@@ -19,6 +19,7 @@ const FlagButton = ({ selected, onChange }: FlagButtonProps) => {
         e.stopPropagation();
         onChange();
       }}
+      disabled={disabled}
     >
       {selected ? (
         <AmpFlagGradientIcon className={styles.icon} />
