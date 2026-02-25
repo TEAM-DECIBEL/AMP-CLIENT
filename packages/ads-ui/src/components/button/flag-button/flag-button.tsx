@@ -4,7 +4,8 @@ import * as styles from './flag-button.css';
 
 interface FlagButtonProps {
   selected: boolean;
-  onChange: (nextSelected: boolean) => void;
+  onChange: () => void;
+  disabled?: boolean;
 }
 
 const FlagButton = ({ selected, onChange }: FlagButtonProps) => {
@@ -14,7 +15,10 @@ const FlagButton = ({ selected, onChange }: FlagButtonProps) => {
       className={styles.flagButton}
       aria-label='관람 예정 공연 선택'
       aria-pressed={selected}
-      onClick={() => onChange(!selected)}
+      onClick={(e) => {
+        e.stopPropagation();
+        onChange();
+      }}
     >
       {selected ? (
         <AmpFlagGradientIcon className={styles.icon} />

@@ -1,43 +1,40 @@
-import type { ReactNode } from 'react';
-
 import { CardFestival, FlagButton } from '@amp/ads-ui';
+import { FestivalStatusGroup } from '@amp/compositions';
+
+import { useToggleWishListMutation } from '@features/notice-list/hooks/use-toggle-wishlist-mutation';
+
+import formatDday from '@shared/libs/format-dday';
+import {
+  AllFestivalItem,
+  UpcomingFestivalItem,
+} from '@shared/types/home-response';
 
 interface HomeFestivalCardProps {
-  title: string;
-  period: string;
-  imageUrl: string;
-  wishList: boolean;
-  chips: ReactNode;
+  festival: AllFestivalItem | UpcomingFestivalItem;
   onClick: () => void;
-  onToggle: (nextSelected: boolean) => void;
 }
 
-const HomeFestivalCard = ({
-  title,
-  period,
-  imageUrl,
-  wishList,
-  chips,
-  onClick,
-  onToggle,
-}: HomeFestivalCardProps) => {
+const HomeFestivalCard = ({ festival, onClick }: HomeFestivalCardProps) => {
+  const { festivalId, title, period, mainImageUrl, wishList, dDay } = festival;
+  const { toggleWishList, isTogglePending } = useToggleWishListMutation(
+    festivalId,
+    wishList,
+  );
+
   return (
     <CardFestival onClick={onClick}>
-      <CardFestival.Image src={imageUrl} alt={title} />
+      <CardFestival.Image src={mainImageUrl ?? ''} alt={title} />
       <CardFestival.Body title={title} date={period}>
-        <CardFestival.Chip>{chips}</CardFestival.Chip>
+        <CardFestival.Chip>
+          <FestivalStatusGroup dDay={formatDday(dDay)} isWishlist={wishList} />
+        </CardFestival.Chip>
       </CardFestival.Body>
       <CardFestival.Button>
-        <span
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          onPointerDown={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <FlagButton selected={wishList} onChange={onToggle} />
-        </span>
+        <FlagButton
+          selected={wishList}
+          onChange={toggleWishList}
+          disabled={isTogglePending}
+        />
       </CardFestival.Button>
     </CardFestival>
   );
