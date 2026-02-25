@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from '@amp/ads-ui';
 
+import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 
 import { putWishList } from '@shared/apis/festival';
@@ -48,6 +49,14 @@ export const useToggleWishListMutation = (
     onSettled: async () => {
       await queryClient.invalidateQueries({
         queryKey,
+      });
+      await queryClient.invalidateQueries({
+        queryKey: HOME_QUERY_OPTIONS.ALL_FESTIVALS({ page: 0, size: 20 })
+          .queryKey,
+      });
+      await queryClient.invalidateQueries({
+        queryKey: HOME_QUERY_OPTIONS.PLANNED_FESTIVALS({ page: 0, size: 20 })
+          .queryKey,
       });
     },
   });

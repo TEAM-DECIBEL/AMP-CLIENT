@@ -24,8 +24,6 @@ const HomePage = () => {
     bannerFestival,
     selectedTab,
     setSelectedTab,
-    handleToggleAllFestival,
-    handleToggleUpcomingFestival,
   } = useHomeFestivals(isAuthed);
 
   return (
@@ -48,8 +46,6 @@ const HomePage = () => {
         onTabChange={setSelectedTab}
         allFestivals={allFestivals}
         upcomingFestivals={upcomingFestivals}
-        onToggleAllFestival={handleToggleAllFestival}
-        onToggleUpcomingFestival={handleToggleUpcomingFestival}
       />
     </div>
   );
