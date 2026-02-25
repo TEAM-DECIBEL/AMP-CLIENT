@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { EmptyView } from '@amp/ads-ui';
 import { Loading } from '@amp/compositions';
 
-import FestivalList from '@widgets/my-history/festival-list';
+import FestivalList from '@widgets/festival-history-list/festival-history-list';
 
 import { MY_HISTORY_QUERY_OPTIONS } from '@features/my-history/apis/query';
 

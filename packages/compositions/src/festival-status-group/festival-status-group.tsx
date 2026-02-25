@@ -1,7 +1,7 @@
 import { Chip } from '@amp/ads-ui';
 
 interface FestivalStatusGroupProps {
-  dDay: string;
+  dDay?: string;
   statusText?: string;
   isWishlist?: boolean;
 }
@@ -11,17 +11,25 @@ const FestivalStatusGroup = ({
   statusText,
   isWishlist,
 }: FestivalStatusGroupProps) => {
+  const getChipStatus = (text: string) => {
+    if (text === '진행 중') {
+      return 'current';
+    }
+    if (text === '진행 완료') {
+      return 'completed';
+    }
+    return 'upcoming';
+  };
   return (
     <>
-      <Chip variant='status' status='dday'>
-        {dDay}
-      </Chip>
+      {dDay && (
+        <Chip variant='status' status='dday'>
+          {dDay}
+        </Chip>
+      )}
 
       {statusText && (
-        <Chip
-          variant='status'
-          status={statusText === '진행 중' ? 'current' : 'upcoming'}
-        >
+        <Chip variant='status' status={getChipStatus(statusText)}>
           {statusText}
         </Chip>
       )}
