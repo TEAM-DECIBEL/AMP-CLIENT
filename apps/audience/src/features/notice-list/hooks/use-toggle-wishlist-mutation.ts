@@ -51,12 +51,10 @@ export const useToggleWishListMutation = (
         queryKey,
       });
       await queryClient.invalidateQueries({
-        queryKey: HOME_QUERY_OPTIONS.ALL_FESTIVALS({ page: 0, size: 20 })
-          .queryKey,
+        queryKey: HOME_QUERY_OPTIONS.ALL_FESTIVALS().queryKey,
       });
       await queryClient.invalidateQueries({
-        queryKey: HOME_QUERY_OPTIONS.PLANNED_FESTIVALS({ page: 0, size: 20 })
-          .queryKey,
+        queryKey: HOME_QUERY_OPTIONS.PLANNED_FESTIVALS().queryKey,
       });
     },
   });
