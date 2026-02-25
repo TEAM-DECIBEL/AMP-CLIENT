@@ -7,7 +7,7 @@ import {
   type TabValue,
 } from '@widgets/home/constants/home-tabs';
 
-import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
+import { HOME_QUERY_OPTIONS } from '@shared/apis/festival';
 
 const useHomeFestivals = (isAuthed: boolean) => {
   const [selectedTab, setSelectedTab] = useState<TabValue>(TAB_ALL);

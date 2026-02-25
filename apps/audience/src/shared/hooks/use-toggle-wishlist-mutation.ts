@@ -2,10 +2,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from '@amp/ads-ui';
 
-import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
-import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
-
+import { HOME_QUERY_OPTIONS } from '@shared/apis/festival';
 import { putWishList } from '@shared/apis/festival';
+import { NOTICES_QUERY_OPTIONS } from '@shared/apis/notice';
 import type { FestivalNoticeBanner } from '@shared/types/notice-response';
 
 export const useToggleWishListMutation = (
