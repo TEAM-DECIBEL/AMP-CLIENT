@@ -1,4 +1,4 @@
-import Chip from '../../../ads-ui/src/components/chip/chip';
+import { Chip } from '@amp/ads-ui';
 
 interface FestivalStatusGroupProps {
   dDay: string;
