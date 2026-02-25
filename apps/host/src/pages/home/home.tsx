@@ -2,8 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { CtaButton } from '@amp/ads-ui';
-import { ButtonGradientSection } from '@amp/compositions';
-import { Loading } from '@amp/compositions';
+import { ButtonGradientSection, Loading } from '@amp/compositions';
 
 import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
 
