@@ -15,7 +15,7 @@ export const content = style({
   padding: '2rem',
 });
 
-export const emptyWrapper = style({
+export const emptyContainer = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

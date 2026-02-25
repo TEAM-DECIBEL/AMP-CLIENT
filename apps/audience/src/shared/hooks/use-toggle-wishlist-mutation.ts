@@ -2,8 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from '@amp/ads-ui';
 
-import { HOME_QUERY_OPTIONS } from '@shared/apis/festival';
-import { putWishList } from '@shared/apis/festival';
+import { HOME_QUERY_OPTIONS, putWishList } from '@shared/apis/festival';
 import { NOTICES_QUERY_OPTIONS } from '@shared/apis/notice';
 import type { FestivalNoticeBanner } from '@shared/types/notice-response';
 

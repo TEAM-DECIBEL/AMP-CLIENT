@@ -58,7 +58,7 @@ const HomeFestivalSection = ({
 
       <div className={styles.content}>
         {emptyConfig[selectedTab].isEmpty ? (
-          <div className={styles.emptyWrapper}>
+          <div className={styles.emptyContainer}>
             <EmptyView title={emptyConfig[selectedTab].text} />
           </div>
         ) : (
