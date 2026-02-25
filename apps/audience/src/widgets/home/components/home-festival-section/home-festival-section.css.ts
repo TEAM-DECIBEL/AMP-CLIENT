@@ -8,11 +8,11 @@ export const section = style({
 });
 
 export const content = style({
-  padding: '2rem',
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
   minHeight: 0,
+  padding: '2rem',
 });
 
 export const emptyWrapper = style({
