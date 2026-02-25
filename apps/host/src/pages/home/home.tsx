@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { generatePath, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { CtaButton } from '@amp/ads-ui';
 import { ButtonGradientSection } from '@amp/compositions';
@@ -10,15 +10,11 @@ import FestivalOverview from '@widgets/home/festival-overview/festival-overview'
 import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
 import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
+import { ROUTE_PATH } from '@shared/constants/path';
 import CardHomebannerOrg from '@shared/ui/card/card-homebanner-organizer/card-homebanner-org';
 import Tooltip from '@shared/ui/tooltip/tooltip';
 
 import * as styles from './home.css';
-
-const ROUTE = {
-  EVENT_CREATE: '/events/new',
-  NOTICE_LIST: '/events/:eventId/notices',
-} as const;
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -48,15 +44,7 @@ const HomePage = () => {
   const showTooltip = summary.ongoingCount === 0 && summary.upcomingCount === 0;
 
   const handleCreateClick = () => {
-    navigate(ROUTE.EVENT_CREATE);
-  };
-
-  const handleCardClick = (festivalId: number) => {
-    navigate(
-      generatePath(ROUTE.NOTICE_LIST, {
-        eventId: String(festivalId),
-      }),
-    );
+    navigate(ROUTE_PATH.EVENT_CREATE);
   };
 
   return (
@@ -69,7 +57,6 @@ const HomePage = () => {
           upcomingCount={summary.upcomingCount}
           ongoingFestivals={ongoingFestivals}
           upcomingFestivals={upcomingFestivals}
-          onCardClick={handleCardClick}
         />
       </div>
 
