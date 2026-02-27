@@ -35,7 +35,7 @@ export const contents = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1.2rem',
-  padding: '2rem',
+  padding: '2rem 2rem 13.5rem',
 });
 
 export const category = style({
