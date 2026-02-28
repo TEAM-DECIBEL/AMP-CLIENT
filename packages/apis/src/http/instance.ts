@@ -11,23 +11,45 @@ export const instance = axios.create({
 
 const isBrowser = typeof window !== 'undefined';
 
-const REDIRECT_LOCK_KEY = 'redirectLock';
-const getRedirectLock = () =>
-  isBrowser ? sessionStorage.getItem(REDIRECT_LOCK_KEY) === '1' : false;
+const REDIRECT_LOCK_KEY = 'redirectLockTs';
+const REDIRECT_LOCK_TTL_MS = 5000;
 
-const setRedirectLock = (value: boolean) => {
+const getRedirectLock = () => {
+  if (!isBrowser) {
+    return false;
+  }
+
+  const raw = sessionStorage.getItem(REDIRECT_LOCK_KEY);
+  if (!raw) {
+    return false;
+  }
+
+  const ts = Number(raw);
+  if (Number.isNaN(ts)) {
+    sessionStorage.removeItem(REDIRECT_LOCK_KEY);
+    return false;
+  }
+
+  const expired = Date.now() - ts > REDIRECT_LOCK_TTL_MS;
+  if (expired) {
+    sessionStorage.removeItem(REDIRECT_LOCK_KEY);
+    return false;
+  }
+
+  return true;
+};
+
+const setRedirectLock = () => {
   if (!isBrowser) {
     return;
   }
-  if (value) {
-    sessionStorage.setItem(REDIRECT_LOCK_KEY, '1');
-  } else {
-    sessionStorage.removeItem(REDIRECT_LOCK_KEY);
-  }
+  sessionStorage.setItem(REDIRECT_LOCK_KEY, String(Date.now()));
 };
 
 instance.interceptors.response.use(
-  (response: AxiosResponse) => response,
+  (response: AxiosResponse) => {
+    return response;
+  },
   (error: AxiosError<ApiErrorResponse | string>) => {
     const status = error.response?.status;
 
@@ -42,7 +64,7 @@ instance.interceptors.response.use(
         window.location.pathname.startsWith('/auth/required');
 
       if (!isOnAuthRequired && !locked) {
-        setRedirectLock(true);
+        setRedirectLock();
 
         const next = encodeURIComponent(
           window.location.pathname + window.location.search,
@@ -56,7 +78,7 @@ instance.interceptors.response.use(
       const isOnNotFound = window.location.pathname.startsWith('/not-found');
 
       if (!isOnNotFound && !locked) {
-        setRedirectLock(true);
+        setRedirectLock();
 
         const next = encodeURIComponent(
           window.location.pathname + window.location.search,
