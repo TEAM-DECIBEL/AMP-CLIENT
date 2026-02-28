@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactElement } from 'react';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
@@ -26,17 +26,13 @@ const subLayoutTitles = {
 } as const;
 
 const withSubLayout = (
-  routes: Array<{ path: string; element: React.ReactElement }>,
+  routes: Array<{ path: string; element: ReactElement }>,
 ) => ({
   element: <SubLayout />,
   children: routes,
 });
 
-const withBackLayout = (
-  path: string,
-  title: string,
-  page: React.ReactElement,
-) => ({
+const withBackLayout = (path: string, title: string, page: ReactElement) => ({
   path,
   element: <SubLayoutWithBack title={title} />,
   children: [{ index: true, element: page }],

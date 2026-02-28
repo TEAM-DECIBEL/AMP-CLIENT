@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
@@ -24,12 +26,12 @@ const subLayoutTitles = {
   myHistory: '진행 공연',
 } as const;
 
-const withLayoutIndex = (page: React.ReactElement) => ({
+const withLayoutIndex = (page: ReactElement) => ({
   element: <SubLayout />,
   children: [{ index: true, element: page }],
 });
 
-const withLayoutPath = (path: string, page: React.ReactElement) => ({
+const withLayoutPath = (path: string, page: ReactElement) => ({
   path,
   element: <SubLayout />,
   children: [{ index: true, element: page }],
