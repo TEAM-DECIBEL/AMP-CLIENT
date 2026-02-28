@@ -71,6 +71,7 @@ instance.interceptors.response.use(
         );
 
         window.location.replace(`/auth/required?next=${next}`);
+        return new Promise(() => {});
       }
     }
 
@@ -85,6 +86,7 @@ instance.interceptors.response.use(
         );
 
         window.location.replace(`/not-found?next=${next}`);
+        return new Promise(() => {});
       }
     }
 
