@@ -37,7 +37,7 @@ const withLayoutPath = (path: string, page: ReactElement) => ({
   children: [{ index: true, element: page }],
 });
 
-const withBackLayout = (title: string, page: React.ReactElement) => ({
+const withBackLayout = (title: string, page: ReactElement) => ({
   element: <SubLayoutWithBack title={title} />,
   children: [{ index: true, element: page }],
 });
