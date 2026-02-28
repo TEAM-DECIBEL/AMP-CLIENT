@@ -1,16 +1,39 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 import { ENV } from '../constants/env';
-import { handleApiError } from './error-handler';
-
-const baseURL = ENV.API_BASE_URL;
+import { HTTP_STATUS_CODE } from '../constants/http-status';
+import { type ApiErrorResponse, handleApiError } from './error-handler';
 
 export const instance = axios.create({
-  baseURL,
+  baseURL: ENV.API_BASE_URL,
   withCredentials: true,
 });
 
+let redirectLock = false;
+
 instance.interceptors.response.use(
   (response: AxiosResponse) => response,
-  (error) => handleApiError(error),
+  (error: AxiosError<ApiErrorResponse | string>) => {
+    const status = error.response?.status;
+
+    if (
+      typeof window !== 'undefined' &&
+      status === HTTP_STATUS_CODE.UNAUTHORIZED
+    ) {
+      const isOnAuthRequired =
+        window.location.pathname.startsWith('/auth/required');
+
+      if (!isOnAuthRequired && !redirectLock) {
+        redirectLock = true;
+
+        const next = encodeURIComponent(
+          window.location.pathname + window.location.search,
+        );
+
+        window.location.replace(`/auth/required?next=${next}`);
+      }
+    }
+
+    return handleApiError(error);
+  },
 );

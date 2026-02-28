@@ -2,7 +2,7 @@ import type { AxiosError } from 'axios';
 
 import { HTTPError } from '../errors/http-error';
 
-interface ApiErrorResponse {
+export interface ApiErrorResponse {
   message?: string;
   msg?: string;
   code?: number;
