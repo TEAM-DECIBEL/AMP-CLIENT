@@ -34,6 +34,20 @@ instance.interceptors.response.use(
       }
     }
 
+    if (status === HTTP_STATUS_CODE.NOT_FOUND) {
+      const isOnNotFound = window.location.pathname.startsWith('/not-found');
+
+      if (!isOnNotFound && !redirectLock) {
+        redirectLock = true;
+
+        const next = encodeURIComponent(
+          window.location.pathname + window.location.search,
+        );
+
+        window.location.replace(`/not-found?next=${next}`);
+      }
+    }
+
     return handleApiError(error);
   },
 );
