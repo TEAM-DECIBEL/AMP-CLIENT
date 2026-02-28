@@ -1,6 +1,3 @@
-import AuthGate from '@app/router/auth-gate';
-import ProtectedIndex from '@app/router/protected-index';
-
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
@@ -30,13 +27,13 @@ export const globalRoutes = [
   {
     element: <SubLayout />,
     children: [
-      // {
-      //   index: true,
-      //   element: <ProtectedIndex />,
-      // },
       {
         path: ROUTE_PATH.NOTICE_LIST,
         element: <NoticeListPage />,
+      },
+      {
+        path: ROUTE_PATH.HOME,
+        element: <HomePage />,
       },
     ],
   },
@@ -44,7 +41,6 @@ export const globalRoutes = [
   { path: ROUTE_PATH.ONBOARDING, element: <OnboardingPage /> },
   { path: ROUTE_PATH.LOGIN, element: <LoginPage /> },
   { path: ROUTE_PATH.AUTH_REQUIRED, element: <AuthRequiredPage /> },
-  { path: ROUTE_PATH.HOME, element: <HomePage /> },
   {
     path: ROUTE_PATH.NOTICE_DETAILS,
     element: <SubLayoutWithBack title={subLayoutTitles.noticeDetails} />,
@@ -52,33 +48,28 @@ export const globalRoutes = [
   },
 
   {
-    element: <AuthGate />,
+    path: ROUTE_PATH.MY_EVENTS,
+    element: <SubLayoutWithBack title={subLayoutTitles.myEvents} />,
+    children: [{ index: true, element: <MyEventsPage /> }],
+  },
+  {
+    path: ROUTE_PATH.MYPAGE,
     children: [
       {
-        path: ROUTE_PATH.MY_EVENTS,
-        element: <SubLayoutWithBack title={subLayoutTitles.myEvents} />,
-        children: [{ index: true, element: <MyEventsPage /> }],
-      },
-      {
-        path: ROUTE_PATH.MYPAGE,
-        children: [
-          {
-            element: <SubLayoutWithBack title={subLayoutTitles.myPage} />,
-            children: [{ index: true, element: <MyPage /> }],
-          },
-        ],
-      },
-      {
-        path: ROUTE_PATH.NOTIFICATION,
-        element: <SubLayoutWithBack title={subLayoutTitles.notification} />,
-        children: [{ index: true, element: <NotificationPage /> }],
-      },
-      {
-        path: ROUTE_PATH.SAVED_NOTICES,
-        element: <SubLayoutWithBack title={subLayoutTitles.savedNotices} />,
-        children: [{ index: true, element: <SavedNoticesPage /> }],
+        element: <SubLayoutWithBack title={subLayoutTitles.myPage} />,
+        children: [{ index: true, element: <MyPage /> }],
       },
     ],
+  },
+  {
+    path: ROUTE_PATH.NOTIFICATION,
+    element: <SubLayoutWithBack title={subLayoutTitles.notification} />,
+    children: [{ index: true, element: <NotificationPage /> }],
+  },
+  {
+    path: ROUTE_PATH.SAVED_NOTICES,
+    element: <SubLayoutWithBack title={subLayoutTitles.savedNotices} />,
+    children: [{ index: true, element: <SavedNoticesPage /> }],
   },
 
   { path: '*', element: <NotFoundPage /> },
