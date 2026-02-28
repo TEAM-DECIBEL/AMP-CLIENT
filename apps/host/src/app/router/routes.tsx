@@ -1,10 +1,9 @@
-import ProtectedIndex from '@app/router/protected-index';
-
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
   AuthRequiredPage,
   EventCreatePage,
+  HomePage,
   LoginPage,
   MyHistoryPage,
   MyPage,
@@ -31,7 +30,7 @@ export const globalRoutes = [
     children: [
       {
         index: true,
-        element: <ProtectedIndex />,
+        element: <HomePage />,
       },
     ],
   },
@@ -124,6 +123,7 @@ export const globalRoutes = [
     path: ROUTE_PATH.AUTH_REQUIRED,
     element: <AuthRequiredPage />,
   },
+  { path: '/not-found', element: <NotFoundPage /> },
   {
     path: '*',
     element: <NotFoundPage />,
