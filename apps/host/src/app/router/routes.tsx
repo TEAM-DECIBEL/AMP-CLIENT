@@ -22,110 +22,59 @@ const subLayoutTitles = {
   noticeDetails: '주최 공지',
   myPage: '마이페이지',
   myHistory: '진행 공연',
-};
+} as const;
+
+const withLayoutIndex = (page: React.ReactElement) => ({
+  element: <SubLayout />,
+  children: [{ index: true, element: page }],
+});
+
+const withLayoutPath = (path: string, page: React.ReactElement) => ({
+  path,
+  element: <SubLayout />,
+  children: [{ index: true, element: page }],
+});
+
+const withBackLayout = (title: string, page: React.ReactElement) => ({
+  element: <SubLayoutWithBack title={title} />,
+  children: [{ index: true, element: page }],
+});
 
 export const globalRoutes = [
-  {
-    element: <SubLayout />,
-    children: [
-      {
-        index: true,
-        element: <HomePage />,
-      },
-    ],
-  },
+  withLayoutIndex(<HomePage />),
+  withLayoutPath(ROUTE_PATH.NOTICE_LIST, <NoticeListPage />),
   {
     path: ROUTE_PATH.EVENT_CREATE,
-    element: <SubLayoutWithBack title={subLayoutTitles.eventCreate} />,
-    children: [
-      {
-        index: true,
-        element: <EventCreatePage />,
-      },
-    ],
+    ...withBackLayout(subLayoutTitles.eventCreate, <EventCreatePage />),
   },
+
   {
     path: ROUTE_PATH.NOTICE_CREATE,
-    element: <SubLayoutWithBack title={subLayoutTitles.noticeCreate} />,
-    children: [
-      {
-        index: true,
-        element: <NoticeCreatePage />,
-      },
-    ],
+    ...withBackLayout(subLayoutTitles.noticeCreate, <NoticeCreatePage />),
   },
   {
     path: ROUTE_PATH.NOTICE_EDIT,
-    element: <SubLayoutWithBack title={subLayoutTitles.noticeEdit} />,
-    children: [
-      {
-        index: true,
-        element: <NoticeCreatePage />,
-      },
-    ],
+    ...withBackLayout(subLayoutTitles.noticeEdit, <NoticeCreatePage />),
   },
   {
     path: ROUTE_PATH.NOTICE_DETAILS,
-    element: <SubLayoutWithBack title={subLayoutTitles.noticeDetails} />,
-    children: [
-      {
-        index: true,
-        element: <NoticeDetailsPage />,
-      },
-    ],
+    ...withBackLayout(subLayoutTitles.noticeDetails, <NoticeDetailsPage />),
   },
   {
     path: ROUTE_PATH.MYPAGE,
     children: [
-      {
-        element: <SubLayoutWithBack title={subLayoutTitles.myPage} />,
-        children: [
-          {
-            index: true,
-            element: <MyPage />,
-          },
-        ],
-      },
+      withBackLayout(subLayoutTitles.myPage, <MyPage />),
       {
         path: 'history',
-        element: <SubLayoutWithBack title={subLayoutTitles.myHistory} />,
-        children: [
-          {
-            index: true,
-            element: <MyHistoryPage />,
-          },
-        ],
+        ...withBackLayout(subLayoutTitles.myHistory, <MyHistoryPage />),
       },
     ],
   },
-  {
-    element: <SubLayout />,
-    children: [
-      {
-        path: ROUTE_PATH.NOTICE_LIST,
-        element: <NoticeListPage />,
-      },
-    ],
-  },
-  {
-    path: ROUTE_PATH.ONBOARDING,
-    element: <OnboardingPage />,
-  },
-  {
-    path: ROUTE_PATH.ONBOARDING,
-    element: <OnboardingPage />,
-  },
-  {
-    path: ROUTE_PATH.LOGIN,
-    element: <LoginPage />,
-  },
-  {
-    path: ROUTE_PATH.AUTH_REQUIRED,
-    element: <AuthRequiredPage />,
-  },
-  { path: ROUTE_PATH.NOT_FOUBND, element: <NotFoundPage /> },
-  {
-    path: '*',
-    element: <NotFoundPage />,
-  },
+
+  { path: ROUTE_PATH.ONBOARDING, element: <OnboardingPage /> },
+  { path: ROUTE_PATH.LOGIN, element: <LoginPage /> },
+  { path: ROUTE_PATH.AUTH_REQUIRED, element: <AuthRequiredPage /> },
+
+  { path: ROUTE_PATH.NOT_FOUND, element: <NotFoundPage /> },
+  { path: '*', element: <NotFoundPage /> },
 ];
