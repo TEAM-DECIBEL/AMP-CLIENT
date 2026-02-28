@@ -24,14 +24,6 @@ export const profileImage = style({
   objectFit: 'cover',
 });
 
-export const profilePlaceholder = style({
-  width: '9.2rem',
-  height: '9.2rem',
-  borderRadius: '50%',
-  backgroundColor: ampThemeVars.color.gray_100,
-  border: `1px solid ${ampThemeVars.color.gray_200}`,
-});
-
 export const name = style({
   ...ampThemeVars.font.title_sb_18,
   margin: '1.6rem 0 0.6rem',
