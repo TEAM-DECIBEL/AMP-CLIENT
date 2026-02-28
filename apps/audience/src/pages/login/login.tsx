@@ -15,7 +15,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    window.location.assign(`${ENV.API_BASE_URL}${OAUTH_PATH.GOOGLE}`);
+    window.location.assign(`${ENV.GOOGLE_BASE_URL}${OAUTH_PATH.GOOGLE}`);
   };
 
   const handleSkipLogin = () => {
