@@ -11,15 +11,14 @@ export const instance = axios.create({
 
 let redirectLock = false;
 
+const isBrowser = typeof window !== 'undefined';
+
 instance.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError<ApiErrorResponse | string>) => {
     const status = error.response?.status;
 
-    if (
-      typeof window !== 'undefined' &&
-      status === HTTP_STATUS_CODE.UNAUTHORIZED
-    ) {
+    if (isBrowser && status === HTTP_STATUS_CODE.UNAUTHORIZED) {
       const isOnAuthRequired =
         window.location.pathname.startsWith('/auth/required');
 
@@ -34,7 +33,7 @@ instance.interceptors.response.use(
       }
     }
 
-    if (status === HTTP_STATUS_CODE.NOT_FOUND) {
+    if (isBrowser && status === HTTP_STATUS_CODE.NOT_FOUND) {
       const isOnNotFound = window.location.pathname.startsWith('/not-found');
 
       if (!isOnNotFound && !redirectLock) {
