@@ -10,5 +10,5 @@ export const ROUTE_PATH = {
   LOGIN: '/login',
   HOME: '/',
   AUTH_REQUIRED: '/auth/required',
-  CALLBACK: '/callback',
+  NOT_FOUND: '/not-found',
 } as const;
