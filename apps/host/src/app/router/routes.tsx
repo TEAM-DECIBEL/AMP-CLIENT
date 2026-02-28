@@ -123,7 +123,7 @@ export const globalRoutes = [
     path: ROUTE_PATH.AUTH_REQUIRED,
     element: <AuthRequiredPage />,
   },
-  { path: '/not-found', element: <NotFoundPage /> },
+  { path: ROUTE_PATH.NOT_FOUBND, element: <NotFoundPage /> },
   {
     path: '*',
     element: <NotFoundPage />,

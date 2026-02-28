@@ -10,4 +10,5 @@ export const ROUTE_PATH = {
   HOME: '/',
   AUTH_REQUIRED: '/auth/required',
   NOTICE_EDIT: '/events/:eventId/notices/:noticeId/edit',
+  NOT_FOUND: '/not-found',
 } as const;

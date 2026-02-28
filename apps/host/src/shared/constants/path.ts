@@ -10,4 +10,5 @@ export const ROUTE_PATH = {
   LOGIN: '/login',
   HOME: '/',
   AUTH_REQUIRED: '/auth/required',
+  NOT_FOUBND: '/not-found'
 } as const;

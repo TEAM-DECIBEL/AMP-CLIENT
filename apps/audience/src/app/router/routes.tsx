@@ -71,6 +71,6 @@ export const globalRoutes = [
     element: <SubLayoutWithBack title={subLayoutTitles.savedNotices} />,
     children: [{ index: true, element: <SavedNoticesPage /> }],
   },
-  { path: '/not-found', element: <NotFoundPage /> },
+  { path: ROUTE_PATH.NOT_FOUND, element: <NotFoundPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
