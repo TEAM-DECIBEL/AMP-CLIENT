@@ -1,3 +1,4 @@
+import { IMAGES } from '../../../assets';
 import { PinIcon } from '../../../icons';
 
 import * as styles from './card-notice.css';
@@ -19,12 +20,18 @@ const CardNotice = ({
   createdAt,
   onClick,
 }: CardNoticeProps) => {
+  const displayImage = imageUrl || IMAGES.EMPTY_NOTICE_IMAGE;
+
   return (
     <article className={styles.notice} onClick={onClick}>
       <img
-        src={imageUrl}
+        src={displayImage}
         alt={`${title} 공지 이미지`}
         className={styles.image}
+        onError={(e) => {
+          e.currentTarget.onerror = null;
+          e.currentTarget.src = IMAGES.EMPTY_NOTICE_IMAGE;
+        }}
       />
 
       <div className={styles.textContainer}>
