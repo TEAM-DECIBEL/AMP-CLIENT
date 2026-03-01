@@ -12,7 +12,7 @@ import { page } from './home.css';
 
 const HomePage = () => {
   const { data } = useQuery({
-    ...HOME_QUERY_OPTIONS.Nickname(),
+    ...HOME_QUERY_OPTIONS.NICKNAME(),
   });
   const nickname = data?.nickname;
 

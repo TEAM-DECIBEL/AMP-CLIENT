@@ -49,7 +49,7 @@ export const HOME_QUERY_OPTIONS = {
       queryKey: [...USERS_QUERY_KEY.HOME_FESTIVAL_UPCOMING(), params],
       queryFn: () => getUpcomingFestival(params),
     }),
-  Nickname: () =>
+  NICKNAME: () =>
     queryOptions({
       queryKey: [...USERS_QUERY_KEY.NICKNAME()],
       queryFn: () => getUserNickname(),
