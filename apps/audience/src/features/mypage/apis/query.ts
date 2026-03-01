@@ -5,7 +5,7 @@ import { get } from '@amp/apis';
 import { END_POINT } from '@shared/constants/end-point';
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
 import type { MyPageResponse } from '@shared/types/mypage-response';
-import { ViewedFestivals } from '@shared/types/viewed-festival';
+import type { ViewedFestivals } from '@shared/types/viewed-festival';
 
 export const getMyPage = () => get<MyPageResponse>(END_POINT.GET_MY_PAGE);
 

@@ -56,6 +56,9 @@ export const useToggleWishListMutation = (
       await queryClient.invalidateQueries({
         queryKey: FESTIVAL_QUERY_OPTIONS.PLANNED_FESTIVALS().queryKey,
       });
+      await queryClient.invalidateQueries({
+        queryKey: FESTIVAL_QUERY_OPTIONS.UPCOMING_FESTIVAL().queryKey,
+      });
     },
   });
 

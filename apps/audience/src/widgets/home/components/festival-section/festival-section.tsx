@@ -53,7 +53,7 @@ const FestivalSection = ({
   } as const;
 
   return (
-    <div className={styles.section}>
+    <section className={styles.section}>
       <HomeFestivalTabs selectedTab={selectedTab} onTabChange={onTabChange} />
 
       <div className={styles.content}>
@@ -74,7 +74,7 @@ const FestivalSection = ({
           </ul>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 
