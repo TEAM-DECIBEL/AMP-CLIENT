@@ -10,25 +10,25 @@ import type {
   WishListResponseData,
 } from '@shared/types/festival';
 import type {
-  AllFestivalsResponseData,
-  UpcomingFestivalResponseData,
-  UpcomingFestivalsResponseData,
+  AllFestivalsResponse,
+  UpcomingFestivalResponse,
+  UpcomingFestivalsResponse,
 } from '@shared/types/home-response';
 
 export const getAllFestivals = (params: PageSizeParams = {}) =>
-  get<AllFestivalsResponseData, PageSizeParams>(
+  get<AllFestivalsResponse, PageSizeParams>(
     END_POINT.GET_ALL_FESTIVALS,
     params,
   );
 
 export const getPlannedFestivals = (params: PageSizeParams = {}) =>
-  get<UpcomingFestivalsResponseData, PageSizeParams>(
+  get<UpcomingFestivalsResponse, PageSizeParams>(
     END_POINT.GET_PLANNED_FESTIVALS,
     params,
   );
 
 export const getUpcomingFestival = (params: PageSizeParams = {}) =>
-  get<UpcomingFestivalResponseData, PageSizeParams>(
+  get<UpcomingFestivalResponse, PageSizeParams>(
     END_POINT.GET_UPCOMING_FESTIVAL,
     params,
   );

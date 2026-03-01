@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { ampThemeVars } from '../../../styles';
+import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const flagButton = style({
   display: 'flex',

@@ -1,4 +1,4 @@
-import { AmpFlagGradientIcon, AmpFlagIcon } from '../../../icons';
+import { AmpFlagGradientIcon, AmpFlagIcon } from '@amp/ads-ui/icons';
 
 import * as styles from './flag-button.css';
 

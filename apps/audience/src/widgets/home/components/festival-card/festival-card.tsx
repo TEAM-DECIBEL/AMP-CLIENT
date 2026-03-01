@@ -1,4 +1,4 @@
-import { CardFestival, FlagButton } from '@amp/ads-ui';
+import { CardFestival } from '@amp/ads-ui';
 import { FestivalStatusGroup } from '@amp/compositions';
 
 import { useToggleWishListMutation } from '@shared/hooks/use-toggle-wishlist-mutation';
@@ -8,12 +8,14 @@ import type {
   UpcomingFestivalItem,
 } from '@shared/types/home-response';
 
-interface HomeFestivalCardProps {
+import FlagButton from '../flag-button/flag-button';
+
+interface FestivalCardProps {
   festival: AllFestivalItem | UpcomingFestivalItem;
   onClick: () => void;
 }
 
-const HomeFestivalCard = ({ festival, onClick }: HomeFestivalCardProps) => {
+const FestivalCard = ({ festival, onClick }: FestivalCardProps) => {
   const { festivalId, title, period, mainImageUrl, wishList, dDay } = festival;
   const { toggleWishList, isTogglePending } = useToggleWishListMutation(
     festivalId,
@@ -39,4 +41,4 @@ const HomeFestivalCard = ({ festival, onClick }: HomeFestivalCardProps) => {
   );
 };
 
-export default HomeFestivalCard;
+export default FestivalCard;

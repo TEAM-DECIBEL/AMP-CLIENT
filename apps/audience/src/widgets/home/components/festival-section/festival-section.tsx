@@ -14,24 +14,24 @@ import type {
   UpcomingFestivalItem,
 } from '@shared/types/home-response';
 
-import HomeFestivalCard from '../home-festival-card/home-festival-card';
+import FestivalCard from '../festival-card/festival-card';
 import HomeFestivalTabs from '../home-festival-tabs/home-festival-tabs';
 
-import * as styles from './home-festival-section.css';
+import * as styles from './festival-section.css';
 
-interface HomeFestivalSectionProps {
+interface FestivalSectionProps {
   selectedTab: TabValue;
   onTabChange: (value: TabValue) => void;
   allFestivals: AllFestivalItem[];
   upcomingFestivals: UpcomingFestivalItem[];
 }
 
-const HomeFestivalSection = ({
+const FestivalSection = ({
   selectedTab,
   onTabChange,
   allFestivals,
   upcomingFestivals,
-}: HomeFestivalSectionProps) => {
+}: FestivalSectionProps) => {
   const navigate = useNavigate();
 
   const handleMoveToFestival = (festivalId: number) => {
@@ -64,7 +64,7 @@ const HomeFestivalSection = ({
         ) : (
           <div className={styles.cardList}>
             {targetFestivals.map((festival) => (
-              <HomeFestivalCard
+              <FestivalCard
                 key={festival.festivalId}
                 festival={festival}
                 onClick={() => handleMoveToFestival(festival.festivalId)}
@@ -77,4 +77,4 @@ const HomeFestivalSection = ({
   );
 };
 
-export default HomeFestivalSection;
+export default FestivalSection;

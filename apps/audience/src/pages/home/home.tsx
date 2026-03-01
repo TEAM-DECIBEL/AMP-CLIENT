@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { HomeBanner } from '@amp/compositions';
 
-import HomeFestivalSection from '@widgets/home/components/home-festival-section/home-festival-section';
+import FestivalSection from '@widgets/home/components/festival-section/festival-section';
 
 import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
@@ -39,7 +39,7 @@ const HomePage = () => {
         <HomeBanner nickname={nickname} status='none' />
       )}
 
-      <HomeFestivalSection
+      <FestivalSection
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}
         allFestivals={allFestivals}

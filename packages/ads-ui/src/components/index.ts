@@ -9,7 +9,6 @@ export { default as CheckButton } from './button/check-button/check-button';
 export { default as CircleButton } from './button/circle-button/circle-button';
 export { default as CrowdLevelButton } from './button/crowd-level-button/crowd-level-button';
 export { default as CtaButton } from './button/cta-button/cta-button';
-export { default as FlagButton } from './button/flag-button/flag-button';
 export { default as LiveButton } from './button/live-button/live-button';
 export { default as MyPageMenuContainer } from './button/navigation-list-button/navigation-list-container';
 export { default as NavigationListContainer } from './button/navigation-list-button/navigation-list-container';
