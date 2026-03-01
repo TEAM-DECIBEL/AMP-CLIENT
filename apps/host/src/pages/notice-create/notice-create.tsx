@@ -55,36 +55,7 @@ const NoticeCreatePage = () => {
   );
 
   const activeCategories = useMemo(() => {
-    const res = noticeFestival as
-      | {
-          data?: {
-            activeCategories?: Array<{
-              categoryId: number;
-              categoryName: string;
-            }>;
-          };
-        }
-      | {
-          activeCategories?: Array<{
-            categoryId: number;
-            categoryName: string;
-          }>;
-        }
-      | undefined;
-
-    if (!res) {
-      return [];
-    }
-
-    if ('data' in res) {
-      return res.data?.activeCategories ?? [];
-    }
-
-    if ('activeCategories' in res) {
-      return res.activeCategories ?? [];
-    }
-
-    return [];
+    return noticeFestival?.activeCategories ?? [];
   }, [noticeFestival]);
 
   if (noticeIdValue !== null && isPending) {
