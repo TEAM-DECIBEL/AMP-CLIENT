@@ -1,20 +1,25 @@
-import { AmpFlagGradientIcon, AmpFlagIcon } from '../../../icons';
+import { AmpFlagGradientIcon, AmpFlagIcon } from '@amp/ads-ui/icons';
 
 import * as styles from './flag-button.css';
 
 interface FlagButtonProps {
   selected: boolean;
-  onChange: (nextSelected: boolean) => void;
+  onChange: () => void;
+  disabled?: boolean;
 }
 
-const FlagButton = ({ selected, onChange }: FlagButtonProps) => {
+const FlagButton = ({ selected, onChange, disabled }: FlagButtonProps) => {
   return (
     <button
       type='button'
       className={styles.flagButton}
       aria-label='관람 예정 공연 선택'
       aria-pressed={selected}
-      onClick={() => onChange(!selected)}
+      onClick={(e) => {
+        e.stopPropagation();
+        onChange();
+      }}
+      disabled={disabled}
     >
       {selected ? (
         <AmpFlagGradientIcon className={styles.icon} />

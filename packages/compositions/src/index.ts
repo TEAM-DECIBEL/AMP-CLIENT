@@ -3,6 +3,7 @@ export { default as NoticeBanner } from './banner/notice-banner/notice-banner';
 export { default as ButtonGradientSection } from './button-gradient-section/button-gradient-section';
 export { default as CategorySection } from './category-section/category-section';
 export { type CategoryType } from './category-section/category-section';
+export { default as FestivalStatusGroup } from './festival-status-group/festival-status-group';
 export { default as LiveButtonContainer } from './live-button-container/live-button-container';
 export { default as Loading } from './loading/loading';
 export { default as LogoutModal } from './logout-modal/logout-modal';

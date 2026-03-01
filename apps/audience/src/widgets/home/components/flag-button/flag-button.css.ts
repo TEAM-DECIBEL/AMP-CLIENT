@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { ampThemeVars } from '../../../styles';
+import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const flagButton = style({
   display: 'flex',
@@ -17,6 +17,9 @@ export const flagButton = style({
     '&[aria-pressed="true"]': {
       backgroundColor: ampThemeVars.color.primary_light,
       border: `1px solid ${ampThemeVars.color.primary_light2}`,
+    },
+    '&:disabled': {
+      cursor: 'not-allowed',
     },
   },
 });
