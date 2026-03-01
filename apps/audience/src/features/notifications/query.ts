@@ -15,7 +15,7 @@ export const patchNotificationsRead = (notificationId: number) =>
 export const NOTIFICATIONS_QUERY_OPTIONS = {
   NOTIFICATIONS: () =>
     queryOptions({
-      queryKey: [USERS_QUERY_KEY.NOTIFICATIONS],
+      queryKey: USERS_QUERY_KEY.NOTIFICATIONS(),
       queryFn: () => getNotifications(),
     }),
 } as const;
