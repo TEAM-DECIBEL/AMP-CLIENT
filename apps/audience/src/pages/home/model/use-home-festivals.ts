@@ -9,7 +9,7 @@ import {
 
 import { HOME_QUERY_OPTIONS } from '@shared/apis/festival';
 
-const useHomeFestivals = (isAuthed: boolean) => {
+const useHomeFestivals = () => {
   const [selectedTab, setSelectedTab] = useState<TabValue>(TAB_ALL);
 
   const { data: allFestivalsData } = useQuery({
@@ -19,12 +19,11 @@ const useHomeFestivals = (isAuthed: boolean) => {
 
   const { data: plannedFestivalsData } = useQuery({
     ...HOME_QUERY_OPTIONS.PLANNED_FESTIVALS({ page: 0, size: 20 }),
-    enabled: selectedTab === TAB_UPCOMING && isAuthed,
+    enabled: selectedTab === TAB_UPCOMING,
   });
 
   const { data: upcomingFestivalData } = useQuery({
     ...HOME_QUERY_OPTIONS.UPCOMING_FESTIVAL(),
-    enabled: isAuthed,
   });
 
   return {

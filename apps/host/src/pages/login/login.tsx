@@ -10,7 +10,7 @@ import * as styles from './login.css';
 
 const Login = () => {
   const handleLoginClick = () => {
-    window.location.href = `${ENV.HOST_BASE_URL}${OAUTH_PATH.GOOGLE}?userType=ORGANIZER`;
+    window.location.href = `${ENV.GOOGLE_BASE_URL}${OAUTH_PATH.GOOGLE}`;
   };
 
   return (
