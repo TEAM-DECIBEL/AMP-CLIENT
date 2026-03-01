@@ -34,7 +34,7 @@ const FestivalSection = ({
 }: FestivalSectionProps) => {
   const navigate = useNavigate();
 
-  const handleMoveToFestival = (festivalId: number) => {
+  const handleMoveToFestival = (festivalId: number) => () => {
     navigate(ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)));
   };
 
@@ -67,7 +67,7 @@ const FestivalSection = ({
               <li key={festival.festivalId}>
                 <FestivalCard
                   festival={festival}
-                  onClick={() => handleMoveToFestival(festival.festivalId)}
+                  onClick={handleMoveToFestival(festival.festivalId)}
                 />
               </li>
             ))}
