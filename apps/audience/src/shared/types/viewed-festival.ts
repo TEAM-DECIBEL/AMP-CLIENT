@@ -16,7 +16,7 @@ export interface Pagination {
   hasPrevious: boolean;
 }
 
-export interface ViewedFestivalsData {
+export interface ViewedFestivals {
   festivals: ViewedFestival[];
   pagination: Pagination;
 }
@@ -24,5 +24,5 @@ export interface ViewedFestivalsData {
 export interface ViewedFestivalsResponse {
   status: number;
   msg: string;
-  data: ViewedFestivalsData;
+  data: ViewedFestivals;
 }

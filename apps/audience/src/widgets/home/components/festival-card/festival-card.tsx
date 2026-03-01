@@ -1,7 +1,8 @@
 import { CardFestival } from '@amp/ads-ui';
 import { FestivalStatusGroup } from '@amp/compositions';
 
-import { useToggleWishListMutation } from '@shared/hooks/use-toggle-wishlist-mutation';
+import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use-toggle-wishlist-mutation';
+
 import formatDday from '@shared/libs/format-dday';
 import type {
   AllFestivalItem,

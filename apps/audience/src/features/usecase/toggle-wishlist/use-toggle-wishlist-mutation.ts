@@ -2,8 +2,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from '@amp/ads-ui';
 
-import { HOME_QUERY_OPTIONS, putWishList } from '@shared/apis/festival';
-import { NOTICES_QUERY_OPTIONS } from '@shared/apis/notice';
+import { putWishList } from '@entities/festival/api/festival';
+import { FESTIVAL_QUERY_OPTIONS } from '@entities/festival/model/query-options';
+import { NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
+
 import type { FestivalNoticeBanner } from '@shared/types/notice-response';
 
 export const useToggleWishListMutation = (
@@ -49,10 +51,10 @@ export const useToggleWishListMutation = (
         queryKey,
       });
       await queryClient.invalidateQueries({
-        queryKey: HOME_QUERY_OPTIONS.ALL_FESTIVALS().queryKey,
+        queryKey: FESTIVAL_QUERY_OPTIONS.ALL_FESTIVALS().queryKey,
       });
       await queryClient.invalidateQueries({
-        queryKey: HOME_QUERY_OPTIONS.PLANNED_FESTIVALS().queryKey,
+        queryKey: FESTIVAL_QUERY_OPTIONS.PLANNED_FESTIVALS().queryKey,
       });
     },
   });

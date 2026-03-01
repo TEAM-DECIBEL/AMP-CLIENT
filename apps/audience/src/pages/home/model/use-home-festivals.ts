@@ -7,23 +7,23 @@ import {
   type TabValue,
 } from '@widgets/home/constants/home-tabs';
 
-import { HOME_QUERY_OPTIONS } from '@shared/apis/festival';
+import { FESTIVAL_QUERY_OPTIONS } from '@entities/festival/model/query-options';
 
 const useHomeFestivals = () => {
   const [selectedTab, setSelectedTab] = useState<TabValue>(TAB_ALL);
 
   const { data: allFestivalsData } = useQuery({
-    ...HOME_QUERY_OPTIONS.ALL_FESTIVALS({ page: 0, size: 20 }),
+    ...FESTIVAL_QUERY_OPTIONS.ALL_FESTIVALS({ page: 0, size: 20 }),
     enabled: selectedTab === TAB_ALL,
   });
 
   const { data: plannedFestivalsData } = useQuery({
-    ...HOME_QUERY_OPTIONS.PLANNED_FESTIVALS({ page: 0, size: 20 }),
+    ...FESTIVAL_QUERY_OPTIONS.PLANNED_FESTIVALS({ page: 0, size: 20 }),
     enabled: selectedTab === TAB_UPCOMING,
   });
 
   const { data: upcomingFestivalData } = useQuery({
-    ...HOME_QUERY_OPTIONS.UPCOMING_FESTIVAL(),
+    ...FESTIVAL_QUERY_OPTIONS.UPCOMING_FESTIVAL(),
   });
 
   return {

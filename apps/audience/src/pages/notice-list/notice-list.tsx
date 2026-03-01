@@ -14,12 +14,14 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
-import { NOTICES_QUERY_OPTIONS } from '@shared/apis/notice';
+import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use-toggle-wishlist-mutation';
+
+import { NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
+
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
 import { ROUTE_PATH } from '@shared/constants/path';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
-import { useToggleWishListMutation } from '@shared/hooks/use-toggle-wishlist-mutation';
 import formatDday from '@shared/libs/format-dday';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
