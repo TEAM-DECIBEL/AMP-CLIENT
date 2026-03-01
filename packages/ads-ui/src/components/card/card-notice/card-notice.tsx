@@ -1,3 +1,5 @@
+import type { KeyboardEvent, SyntheticEvent } from 'react';
+
 import { IMAGES } from '../../../assets';
 import { PinIcon } from '../../../icons';
 
@@ -22,16 +24,32 @@ const CardNotice = ({
 }: CardNoticeProps) => {
   const displayImage = imageUrl || IMAGES.EMPTY_NOTICE_IMAGE;
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLElement>) => {
+    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
+  const handleImageError = (event: SyntheticEvent<HTMLImageElement>) => {
+    event.currentTarget.onerror = null;
+    event.currentTarget.src = IMAGES.EMPTY_NOTICE_IMAGE;
+  };
+
   return (
-    <article className={styles.notice} onClick={onClick}>
+    <article
+      className={styles.notice}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role='button'
+      aria-label={`${title} 상세 보기`}
+    >
       <img
         src={displayImage}
         alt={`${title} 공지 이미지`}
         className={styles.image}
-        onError={(e) => {
-          e.currentTarget.onerror = null;
-          e.currentTarget.src = IMAGES.EMPTY_NOTICE_IMAGE;
-        }}
+        onError={handleImageError}
       />
 
       <div className={styles.textContainer}>
