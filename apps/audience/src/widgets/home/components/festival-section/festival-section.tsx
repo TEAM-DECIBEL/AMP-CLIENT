@@ -62,15 +62,16 @@ const FestivalSection = ({
             <EmptyView title={emptyConfig[selectedTab].text} />
           </div>
         ) : (
-          <div className={styles.cardList}>
+          <ul className={styles.cardList}>
             {targetFestivals.map((festival) => (
-              <FestivalCard
-                key={festival.festivalId}
-                festival={festival}
-                onClick={() => handleMoveToFestival(festival.festivalId)}
-              />
+              <li key={festival.festivalId}>
+                <FestivalCard
+                  festival={festival}
+                  onClick={() => handleMoveToFestival(festival.festivalId)}
+                />
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </div>
     </div>

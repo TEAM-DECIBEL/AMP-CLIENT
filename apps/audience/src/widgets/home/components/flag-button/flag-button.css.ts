@@ -18,6 +18,9 @@ export const flagButton = style({
       backgroundColor: ampThemeVars.color.primary_light,
       border: `1px solid ${ampThemeVars.color.primary_light2}`,
     },
+    '&:disabled': {
+      cursor: 'not-allowed',
+    },
   },
 });
 
