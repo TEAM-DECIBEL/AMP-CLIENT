@@ -4,17 +4,17 @@ import { HomeBanner } from '@amp/compositions';
 
 import HomeFestivalSection from '@widgets/home/components/home-festival-section/home-festival-section';
 
-import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
+import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
 
 import useHomeFestivals from './model/use-home-festivals';
 
 import { page } from './home.css';
 
 const HomePage = () => {
-  const { data: myPageData } = useQuery({
-    ...MY_PAGE_QUERY_OPTIONS.MY_PAGE(),
+  const { data } = useQuery({
+    ...HOME_QUERY_OPTIONS.Nickname(),
   });
-  const nickname = myPageData?.nickname ?? '';
+  const nickname = data?.nickname;
 
   const {
     allFestivals,

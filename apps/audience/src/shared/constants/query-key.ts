@@ -59,4 +59,6 @@ export const USERS_QUERY_KEY = {
     ...USERS_QUERY_KEY.ALL,
     'home-festivals-viewed',
   ],
+
+  NICKNAME: () => [...USERS_QUERY_KEY.ALL, 'nickname'],
 } as const;

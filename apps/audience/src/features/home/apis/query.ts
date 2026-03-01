@@ -7,6 +7,7 @@ import { END_POINT } from '@shared/constants/end-point';
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
 import type {
   AllFestivalsResponseData,
+  NicknameResponse,
   UpcomingFestivalResponseData,
   UpcomingFestivalsResponseData,
 } from '@shared/types/home-response';
@@ -29,6 +30,9 @@ export const getUpcomingFestival = (params: PageSizeParams = {}) =>
     params,
   );
 
+export const getUserNickname = () =>
+  get<NicknameResponse>(END_POINT.GET_NICKNAME);
+
 export const HOME_QUERY_OPTIONS = {
   ALL_FESTIVALS: (params: PageSizeParams = {}) =>
     queryOptions({
@@ -44,5 +48,10 @@ export const HOME_QUERY_OPTIONS = {
     queryOptions({
       queryKey: [...USERS_QUERY_KEY.HOME_FESTIVAL_UPCOMING(), params],
       queryFn: () => getUpcomingFestival(params),
+    }),
+  Nickname: () =>
+    queryOptions({
+      queryKey: [...USERS_QUERY_KEY.NICKNAME()],
+      queryFn: () => getUserNickname(),
     }),
 } as const;
