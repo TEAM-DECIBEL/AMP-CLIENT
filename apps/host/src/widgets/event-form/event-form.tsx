@@ -93,16 +93,18 @@ const EventForm = ({
 
   const canAddSchedule =
     isFilled(form.scheduleDate) && isFilled(form.scheduleTime);
+
   const canAddBooth = isFilled(form.boothTitle);
 
   const hasImage = Boolean(image.url);
   const hasCategory = activeCategoryIds.length > 0;
+  const hasBooth = booths.items.length > 0;
 
   const canSubmit =
     isFilled(form.eventTitle) &&
     isFilled(form.eventLocation) &&
-    isFilled(form.boothTitle) &&
     schedules.items.length > 0 &&
+    hasBooth &&
     hasImage &&
     hasCategory;
 
