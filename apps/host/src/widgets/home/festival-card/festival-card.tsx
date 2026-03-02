@@ -30,6 +30,10 @@ const FestivalCard = ({
   const chipStatus =
     STATUS_BY_TEXT[status as keyof typeof STATUS_BY_TEXT] ?? 'completed';
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.currentTarget !== event.target) {
+      return;
+    }
+
     if (event.key === 'Enter' || event.key === ' ') {
       if (event.key === ' ') {
         event.preventDefault();
