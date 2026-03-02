@@ -288,7 +288,7 @@ const EventForm = ({
           />
         </section>
 
-        <ButtonGradientSection className={styles.bottom}>
+        <ButtonGradientSection className={styles.bottomContainer}>
           <CtaButton
             type='common'
             htmlType='submit'

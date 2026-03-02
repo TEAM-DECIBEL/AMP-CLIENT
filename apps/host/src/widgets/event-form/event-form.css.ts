@@ -14,7 +14,7 @@ export const scrollArea = style({
   paddingBottom: '10rem',
 });
 
-export const bottom = style({
+export const bottomContainer = style({
   padding: '1.7rem 2rem',
 });
 
