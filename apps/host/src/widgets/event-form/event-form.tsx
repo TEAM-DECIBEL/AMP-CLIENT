@@ -101,6 +101,7 @@ const EventForm = ({
   const canSubmit =
     isFilled(form.eventTitle) &&
     isFilled(form.eventLocation) &&
+    isFilled(form.boothTitle) &&
     schedules.items.length > 0 &&
     hasImage &&
     hasCategory;
