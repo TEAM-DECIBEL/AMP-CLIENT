@@ -8,6 +8,7 @@ import {
   PlusIcon,
   TimeIcon,
 } from '@amp/ads-ui/icons';
+import { ButtonGradientSection } from '@amp/compositions';
 
 import useItemList from '@shared/hooks/use-item-list/use-item-list';
 import useObjectUrl from '@shared/hooks/use-object-url/use-object-url';
@@ -287,7 +288,7 @@ const EventForm = ({
           />
         </section>
 
-        <section className={styles.bottom}>
+        <ButtonGradientSection className={styles.bottom}>
           <CtaButton
             type='common'
             htmlType='submit'
@@ -296,7 +297,7 @@ const EventForm = ({
           >
             {submitText}
           </CtaButton>
-        </section>
+        </ButtonGradientSection>
       </form>
     </section>
   );
