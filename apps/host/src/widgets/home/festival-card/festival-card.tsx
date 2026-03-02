@@ -19,6 +19,7 @@ const FestivalCard = ({
   onCardClick,
 }: FestivalCardProps) => {
   const { festivalId, title, period, mainImageUrl, dDay, status } = festival;
+  const chipStatus = status === '진행 중' ? 'current' : 'upcoming';
 
   return (
     <CardFestival
@@ -34,7 +35,11 @@ const FestivalCard = ({
       <CardFestival.Image src={mainImageUrl ?? ''} alt={title} />
       <CardFestival.Body title={title} date={period}>
         <CardFestival.Chip>
-          <FestivalStatusGroup dDay={formatDday(dDay)} statusText={status} />
+          <FestivalStatusGroup
+            dDay={formatDday(dDay)}
+            status={chipStatus}
+            statusText={status}
+          />
         </CardFestival.Chip>
       </CardFestival.Body>
 

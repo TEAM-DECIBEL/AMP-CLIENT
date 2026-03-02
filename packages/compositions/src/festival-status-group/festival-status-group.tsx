@@ -2,7 +2,7 @@ import { Chip } from '@amp/ads-ui';
 
 type FestivalStatus = 'current' | 'upcoming';
 interface FestivalStatusGroupProps {
-  dDay: string;
+  dDay?: string;
   status?: FestivalStatus;
   statusText?: string;
   isWishlist?: boolean;
@@ -16,9 +16,11 @@ const FestivalStatusGroup = ({
 }: FestivalStatusGroupProps) => {
   return (
     <>
-      <Chip variant='status' status='dday'>
-        {dDay}
-      </Chip>
+      {dDay && (
+        <Chip variant='status' status='dday'>
+          {dDay}
+        </Chip>
+      )}
 
       {statusText && (
         <Chip variant='status' status={status}>
