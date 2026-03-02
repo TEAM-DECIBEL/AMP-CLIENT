@@ -7,10 +7,7 @@ export interface FestivalBase {
   title: string;
   period: string;
   status: FestivalStatus;
-}
-
-export interface FestivalWithDDay extends FestivalBase {
-  dDay: number;
+  dDay?: number;
 }
 
 export interface ActiveCategory {
