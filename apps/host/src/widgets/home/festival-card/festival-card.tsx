@@ -21,16 +21,21 @@ const FestivalCard = ({
   const { festivalId, title, period, mainImageUrl, dDay, status } = festival;
   const chipStatus = status === '진행 중' ? 'current' : 'upcoming';
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      if (event.key === ' ') {
+        event.preventDefault();
+      }
+      onCardClick(festivalId);
+    }
+  };
+
   return (
     <CardFestival
       role='button'
       tabIndex={0}
       onClick={() => onCardClick(festivalId)}
-      onKeyDown={(event: KeyboardEvent<HTMLElement>) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          onCardClick(festivalId);
-        }
-      }}
+      onKeyDown={handleKeyDown}
     >
       <CardFestival.Image src={mainImageUrl ?? ''} alt={title} />
       <CardFestival.Body title={title} date={period}>
