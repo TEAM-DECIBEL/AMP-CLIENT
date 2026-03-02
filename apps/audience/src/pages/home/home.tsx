@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 
 import { HomeBanner } from '@amp/compositions';
 
-import HomeFestivalSection from '@widgets/home/components/home-festival-section/home-festival-section';
+import FestivalSection from '@widgets/home/components/festival-section/festival-section';
 
-import { HOME_QUERY_OPTIONS } from '@features/home/apis/query';
+import { FESTIVAL_QUERY_OPTIONS } from '@entities/festival/model/query-options';
 
 import useHomeFestivals from './model/use-home-festivals';
 
@@ -12,7 +12,7 @@ import { page } from './home.css';
 
 const HomePage = () => {
   const { data } = useQuery({
-    ...HOME_QUERY_OPTIONS.NICKNAME(),
+    ...FESTIVAL_QUERY_OPTIONS.NICKNAME(),
   });
   const nickname = data?.nickname;
 
@@ -22,8 +22,6 @@ const HomePage = () => {
     bannerFestival,
     selectedTab,
     setSelectedTab,
-    handleToggleAllFestival,
-    handleToggleUpcomingFestival,
   } = useHomeFestivals();
 
   return (
@@ -41,13 +39,11 @@ const HomePage = () => {
         <HomeBanner nickname={nickname} status='none' />
       )}
 
-      <HomeFestivalSection
+      <FestivalSection
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}
         allFestivals={allFestivals}
         upcomingFestivals={upcomingFestivals}
-        onToggleAllFestival={handleToggleAllFestival}
-        onToggleUpcomingFestival={handleToggleUpcomingFestival}
       />
     </div>
   );

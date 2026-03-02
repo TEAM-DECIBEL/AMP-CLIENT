@@ -1,0 +1,38 @@
+import { Chip } from '@amp/ads-ui';
+
+type FestivalStatus = 'current' | 'upcoming';
+interface FestivalStatusGroupProps {
+  dDay: string;
+  status?: FestivalStatus;
+  statusText?: string;
+  isWishlist?: boolean;
+}
+
+const FestivalStatusGroup = ({
+  dDay,
+  status = 'upcoming',
+  statusText,
+  isWishlist,
+}: FestivalStatusGroupProps) => {
+  return (
+    <>
+      <Chip variant='status' status='dday'>
+        {dDay}
+      </Chip>
+
+      {statusText && (
+        <Chip variant='status' status={status}>
+          {statusText}
+        </Chip>
+      )}
+
+      {isWishlist && (
+        <Chip variant='status' status='current'>
+          관람 예정
+        </Chip>
+      )}
+    </>
+  );
+};
+
+export default FestivalStatusGroup;

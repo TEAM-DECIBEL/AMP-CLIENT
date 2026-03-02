@@ -14,8 +14,9 @@ import {
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
 
-import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
-import { useToggleWishListMutation } from '@features/notice-list/hooks/use-toggle-wishlist-mutation';
+import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use-toggle-wishlist-mutation';
+
+import { NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
 import { ROUTE_PATH } from '@shared/constants/path';

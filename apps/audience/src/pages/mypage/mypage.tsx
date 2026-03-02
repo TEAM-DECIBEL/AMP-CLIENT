@@ -3,8 +3,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { toast } from '@amp/ads-ui';
-import { Loading } from '@amp/compositions';
-import { LogoutModal, MyPageLayout } from '@amp/shared';
+import { Loading, LogoutModal, MyPageLayout } from '@amp/compositions';
 
 import { postLogout } from '@features/auth/apis/query';
 import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
