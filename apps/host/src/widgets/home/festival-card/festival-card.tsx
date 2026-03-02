@@ -29,6 +29,11 @@ const FestivalCard = ({
 
   const chipStatus =
     STATUS_BY_TEXT[status as keyof typeof STATUS_BY_TEXT] ?? 'completed';
+
+  const handleCardClick = () => {
+    onCardClick(festivalId);
+  };
+
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.currentTarget !== event.target) {
       return;
@@ -38,15 +43,22 @@ const FestivalCard = ({
       if (event.key === ' ') {
         event.preventDefault();
       }
-      onCardClick(festivalId);
+      handleCardClick();
     }
+  };
+
+  const handleMoreButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.stopPropagation();
+    onMoreClick?.(festivalId);
   };
 
   return (
     <CardFestival
       role='button'
       tabIndex={0}
-      onClick={() => onCardClick(festivalId)}
+      onClick={handleCardClick}
       onKeyDown={handleKeyDown}
     >
       <CardFestival.Image src={mainImageUrl ?? imageUrl ?? ''} alt={title} />
@@ -64,10 +76,8 @@ const FestivalCard = ({
         <CardFestival.Icon>
           <button
             type='button'
-            onClick={(e) => {
-              e.stopPropagation();
-              onMoreClick(festivalId);
-            }}
+            aria-label='더보기'
+            onClick={handleMoreButtonClick}
           >
             <MoreIcon />
           </button>
