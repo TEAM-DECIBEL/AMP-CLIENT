@@ -13,6 +13,7 @@ export const textarea = style({
   borderRadius: '16px',
   caretColor: ampThemeVars.color.primary,
   ...ampThemeVars.font.body_m_14,
+  whiteSpace: 'pre-wrap',
 
   selectors: {
     '&:focus': {
