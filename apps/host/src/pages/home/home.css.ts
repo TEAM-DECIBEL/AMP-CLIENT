@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 export const page = style({
   minHeight: '100dvh',
-  paddingBottom: '11rem',
+  paddingBottom: 'calc(11rem + env(safe-area-inset-bottom))',
 });
 
 export const content = style({

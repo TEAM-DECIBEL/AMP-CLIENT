@@ -7,7 +7,7 @@ export const container = style({
   flexDirection: 'column',
   gap: '2rem',
   margin: '3.1rem 2rem 0 2rem',
-  paddingBottom: '14rem',
+  paddingBottom: 'calc(14rem + env(safe-area-inset-bottom))',
 });
 
 export const titleContainer = style({
@@ -51,7 +51,7 @@ export const divider = style({
 });
 
 export const buttonContainer = style({
-  padding: '2rem',
+  padding: '2rem 2rem calc(2rem + env(safe-area-inset-bottom))',
 });
 
 export const chipContainer = style({

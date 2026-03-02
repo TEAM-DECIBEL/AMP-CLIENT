@@ -11,11 +11,11 @@ export const pageContainer = style({
 export const scrollArea = style({
   display: 'flex',
   flexDirection: 'column',
-  paddingBottom: '10rem',
+  paddingBottom: 'calc(10rem + env(safe-area-inset-bottom))',
 });
 
 export const bottomContainer = style({
-  padding: '1.7rem 2rem',
+  padding: '1.7rem 2rem calc(1.7rem + env(safe-area-inset-bottom))',
 });
 
 export const sectionText = recipe({

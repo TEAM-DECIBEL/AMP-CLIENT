@@ -35,7 +35,7 @@ export const contents = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1.2rem',
-  padding: '2rem 2rem 13.5rem',
+  padding: '2rem 2rem calc(13.5rem + env(safe-area-inset-bottom))',
 });
 
 export const category = style({
@@ -63,5 +63,5 @@ export const text = style({
 export const button = style({
   display: 'flex',
   gap: '1rem',
-  padding: '1.7rem 2rem',
+  padding: '1.7rem 2rem calc(1.7rem + env(safe-area-inset-bottom))',
 });
