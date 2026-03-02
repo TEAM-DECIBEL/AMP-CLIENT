@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { postNotificationsSubscribe } from '@features/notice-list/apis/query';
+import { postNotificationsSubscribe } from '@entities/notice/api/notice';
 
 import { NotificationSubscribeBody } from '@shared/types/notice';
 

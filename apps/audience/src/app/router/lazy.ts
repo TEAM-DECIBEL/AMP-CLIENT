@@ -33,5 +33,3 @@ export const AuthRequiredPage = lazy(
 );
 
 export const NotFoundPage = lazy(() => import('@pages/not-found/not-found'));
-
-export const CallbackPage = lazy(() => import('@pages/callback/callback'));

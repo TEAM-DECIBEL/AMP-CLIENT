@@ -1,11 +1,10 @@
-import AuthGate from '@app/router/auth-gate';
-import ProtectedIndex from '@app/router/protected-index';
+import type { ReactElement } from 'react';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
 import {
   AuthRequiredPage,
-  CallbackPage,
+  HomePage,
   LoginPage,
   MyEventsPage,
   MyPage,
@@ -14,7 +13,7 @@ import {
   NoticeListPage,
   NotificationPage,
   OnboardingPage,
-  SavedNoticesPage, 
+  SavedNoticesPage,
 } from './lazy';
 import { SubLayout, SubLayoutWithBack } from './sub-layout';
 
@@ -24,62 +23,53 @@ const subLayoutTitles = {
   noticeDetails: '주최 공지',
   notification: '알림',
   savedNotices: '저장한 공지',
-};
+} as const;
+
+const withSubLayout = (
+  routes: Array<{ path: string; element: ReactElement }>,
+) => ({
+  element: <SubLayout />,
+  children: routes,
+});
+
+const withBackLayout = (path: string, title: string, page: ReactElement) => ({
+  path,
+  element: <SubLayoutWithBack title={title} />,
+  children: [{ index: true, element: page }],
+});
 
 export const globalRoutes = [
-  {
-    element: <SubLayout />,
-    children: [
-      {
-        index: true,
-        element: <ProtectedIndex />,
-      },
-      {
-        path: ROUTE_PATH.NOTICE_LIST,
-        element: <NoticeListPage />,
-      },
-    ],
-  },
+  withSubLayout([
+    { path: ROUTE_PATH.NOTICE_LIST, element: <NoticeListPage /> },
+    { path: ROUTE_PATH.HOME, element: <HomePage /> },
+  ]),
 
   { path: ROUTE_PATH.ONBOARDING, element: <OnboardingPage /> },
   { path: ROUTE_PATH.LOGIN, element: <LoginPage /> },
   { path: ROUTE_PATH.AUTH_REQUIRED, element: <AuthRequiredPage /> },
-  { path: ROUTE_PATH.CALLBACK, element: <CallbackPage /> },
-  {
-    path: ROUTE_PATH.NOTICE_DETAILS,
-    element: <SubLayoutWithBack title={subLayoutTitles.noticeDetails} />,
-    children: [{ index: true, element: <NoticeDetailsPage /> }],
-  },
 
-  {
-    element: <AuthGate />,
-    children: [
-      {
-        path: ROUTE_PATH.MY_EVENTS,
-        element: <SubLayoutWithBack title={subLayoutTitles.myEvents} />,
-        children: [{ index: true, element: <MyEventsPage /> }],
-      },
-      {
-        path: ROUTE_PATH.MYPAGE,
-        children: [
-          {
-            element: <SubLayoutWithBack title={subLayoutTitles.myPage} />,
-            children: [{ index: true, element: <MyPage /> }],
-          },
-        ],
-      },
-      {
-        path: ROUTE_PATH.NOTIFICATION,
-        element: <SubLayoutWithBack title={subLayoutTitles.notification} />,
-        children: [{ index: true, element: <NotificationPage /> }],
-      },
-      {
-        path: ROUTE_PATH.SAVED_NOTICES,
-        element: <SubLayoutWithBack title={subLayoutTitles.savedNotices} />,
-        children: [{ index: true, element: <SavedNoticesPage /> }],
-      },
-    ],
-  },
+  withBackLayout(
+    ROUTE_PATH.NOTICE_DETAILS,
+    subLayoutTitles.noticeDetails,
+    <NoticeDetailsPage />,
+  ),
+  withBackLayout(
+    ROUTE_PATH.MY_EVENTS,
+    subLayoutTitles.myEvents,
+    <MyEventsPage />,
+  ),
+  withBackLayout(ROUTE_PATH.MYPAGE, subLayoutTitles.myPage, <MyPage />),
+  withBackLayout(
+    ROUTE_PATH.NOTIFICATION,
+    subLayoutTitles.notification,
+    <NotificationPage />,
+  ),
+  withBackLayout(
+    ROUTE_PATH.SAVED_NOTICES,
+    subLayoutTitles.savedNotices,
+    <SavedNoticesPage />,
+  ),
 
+  { path: ROUTE_PATH.NOT_FOUND, element: <NotFoundPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
