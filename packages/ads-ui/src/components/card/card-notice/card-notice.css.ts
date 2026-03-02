@@ -6,9 +6,11 @@ export const notice = style({
   display: 'flex',
   gap: '2rem',
   position: 'relative',
+  width: '100%',
   padding: '0.5rem 0',
   backgroundColor: ampThemeVars.color.gray_000,
   cursor: 'pointer',
+  textAlign: 'left',
 });
 
 export const image = style({

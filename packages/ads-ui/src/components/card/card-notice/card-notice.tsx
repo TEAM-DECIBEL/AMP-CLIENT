@@ -1,4 +1,4 @@
-import type { KeyboardEvent, SyntheticEvent } from 'react';
+import type { SyntheticEvent } from 'react';
 
 import { IMAGES } from '../../../assets';
 import { PinIcon } from '../../../icons';
@@ -24,26 +24,17 @@ const CardNotice = ({
 }: CardNoticeProps) => {
   const displayImage = imageUrl || IMAGES.EMPTY_NOTICE_IMAGE;
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLElement>) => {
-    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
-      e.preventDefault();
-      onClick();
-    }
-  };
-
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>) => {
     event.currentTarget.onerror = null;
     event.currentTarget.src = IMAGES.EMPTY_NOTICE_IMAGE;
   };
 
   return (
-    <article
+    <button
       className={styles.notice}
       onClick={onClick}
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-      role='button'
       aria-label={`${title} 상세 보기`}
+      type='button'
     >
       <img
         src={displayImage}
@@ -65,7 +56,7 @@ const CardNotice = ({
 
         <div className={styles.content}>{content}</div>
       </div>
-    </article>
+    </button>
   );
 };
 
