@@ -7,6 +7,12 @@ import { FestivalStatusGroup } from '@amp/compositions';
 import { ROUTE_PATH } from '@shared/constants/path';
 import type { FestivalBase } from '@shared/types/festival';
 
+const STATUS_BY_TEXT = {
+  '진행 중': 'current',
+  '진행 완료': 'completed',
+  '진행 예정': 'upcoming',
+} as const;
+
 interface FestivalHistoryListProps {
   festivals: FestivalBase[];
 }
@@ -32,11 +38,15 @@ const FestivalHistoryList = ({ festivals }: FestivalHistoryListProps) => {
     }
   };
 
+  const getChipStatus = (text: string) => {
+    const status = STATUS_BY_TEXT[text as keyof typeof STATUS_BY_TEXT];
+    return status ?? 'completed';
+  };
+
   return (
     <>
       {festivals.map((festival) => {
         const { festivalId, title, period, status, imageUrl } = festival;
-        const chipStatus = status === '진행 중' ? 'current' : 'upcoming';
 
         const key = festivalId ?? `${title}-${period}`;
 
@@ -51,7 +61,10 @@ const FestivalHistoryList = ({ festivals }: FestivalHistoryListProps) => {
             <CardFestival.Image src={imageUrl ?? ''} alt={title} />
             <CardFestival.Body title={title} date={period}>
               <CardFestival.Chip>
-                <FestivalStatusGroup statusText={status} status={chipStatus} />
+                <FestivalStatusGroup
+                  statusText={status}
+                  status={getChipStatus(status)}
+                />
               </CardFestival.Chip>
             </CardFestival.Body>
           </CardFestival>

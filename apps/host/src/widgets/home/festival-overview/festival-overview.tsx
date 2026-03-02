@@ -49,32 +49,33 @@ const FestivalOverview = ({
 
   return (
     <FestivalActions
-      onEdit={(noticeId) =>
+      onEdit={() =>
         // TODO : 공연 수정 뷰로 변경
-        navigate(`/events/:eventId/notices/${noticeId}/edit`)
+        navigate(`/`)
       }
     >
       {(handleOpenOptionSheet) => (
         <div className={styles.container}>
           {sections.map(({ title, count, festivals, emptyText }) => (
-            <div key={title} className={styles.section}>
+            <section key={title} className={styles.sectionContainer}>
               <StatusChip title={title} count={count} />
 
               {festivals.length === 0 ? (
                 <EmptyCard>{emptyText}</EmptyCard>
               ) : (
-                <div className={styles.list}>
+                <ul className={styles.listContainer}>
                   {festivals.map((festival) => (
-                    <FestivalCard
-                      key={festival.festivalId}
-                      festival={festival}
-                      onMoreClick={handleOpenOptionSheet}
-                      onCardClick={handleCardClick}
-                    />
+                    <li key={festival.festivalId}>
+                      <FestivalCard
+                        festival={festival}
+                        onMoreClick={handleOpenOptionSheet}
+                        onCardClick={handleCardClick}
+                      />
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
-            </div>
+            </section>
           ))}
         </div>
       )}
