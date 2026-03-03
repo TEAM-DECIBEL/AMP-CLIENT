@@ -5,7 +5,6 @@ import { postFcmToken } from '@entities/user/api/user';
 import { firebaseApp } from '@shared/configs/firebase';
 
 const LS_PUSH_PERMISSION_REQUESTED = 'push:permissionRequested';
-const LS_LAST_SENT_FCM_TOKEN = 'push:lastSentFcmToken';
 
 async function canUseFcm() {
   const supported = await isSupported();
@@ -65,14 +64,12 @@ export const getFcmTokenSilently = async () => {
 };
 
 export async function postFcmTokenIfChanged(token: string) {
-  const lastSent = localStorage.getItem(LS_LAST_SENT_FCM_TOKEN);
-  if (lastSent === token) {
+  if (!token) {
     return;
   }
 
   try {
     await postFcmToken(token);
-    localStorage.setItem(LS_LAST_SENT_FCM_TOKEN, token);
   } catch (e) {
     console.warn('[push] postFcmToken failed', e);
   }

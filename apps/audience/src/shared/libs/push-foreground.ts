@@ -5,7 +5,7 @@ import {
   onMessage,
 } from 'firebase/messaging';
 
-import { firebaseApp } from '../configs/firebase';
+import { firebaseApp } from '@shared/configs/firebase';
 
 export async function listenForegroundMessages(
   onReceive: (payload: MessagePayload) => void,
