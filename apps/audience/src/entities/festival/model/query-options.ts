@@ -8,6 +8,7 @@ import {
   getAllFestivals,
   getPlannedFestivals,
   getUpcomingFestival,
+  getUserNickname,
 } from '../api/festival';
 
 export const FESTIVAL_QUERY_OPTIONS = {
@@ -25,5 +26,10 @@ export const FESTIVAL_QUERY_OPTIONS = {
     queryOptions({
       queryKey: [...USERS_QUERY_KEY.HOME_FESTIVAL_UPCOMING(), params],
       queryFn: () => getUpcomingFestival(params),
+    }),
+  NICKNAME: () =>
+    queryOptions({
+      queryKey: [...USERS_QUERY_KEY.NICKNAME()],
+      queryFn: () => getUserNickname(),
     }),
 } as const;

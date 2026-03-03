@@ -1,3 +1,6 @@
+import type { SyntheticEvent } from 'react';
+
+import { IMAGES } from '../../../assets';
 import { PinIcon } from '../../../icons';
 
 import * as styles from './card-notice.css';
@@ -19,12 +22,25 @@ const CardNotice = ({
   createdAt,
   onClick,
 }: CardNoticeProps) => {
+  const displayImage = imageUrl || IMAGES.EMPTY_NOTICE_IMAGE;
+
+  const handleImageError = (event: SyntheticEvent<HTMLImageElement>) => {
+    event.currentTarget.onerror = null;
+    event.currentTarget.src = IMAGES.EMPTY_NOTICE_IMAGE;
+  };
+
   return (
-    <article className={styles.notice} onClick={onClick}>
+    <button
+      className={styles.notice}
+      onClick={onClick}
+      aria-label={`${title} 상세 보기`}
+      type='button'
+    >
       <img
-        src={imageUrl}
+        src={displayImage}
         alt={`${title} 공지 이미지`}
         className={styles.image}
+        onError={handleImageError}
       />
 
       <div className={styles.textContainer}>
@@ -40,7 +56,7 @@ const CardNotice = ({
 
         <div className={styles.content}>{content}</div>
       </div>
-    </article>
+    </button>
   );
 };
 
