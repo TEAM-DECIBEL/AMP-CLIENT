@@ -47,3 +47,7 @@ export interface UpcomingFestivalResponse {
   endDate: string;
   dday: number;
 }
+
+export interface NicknameResponse {
+  nickname: string;
+}
