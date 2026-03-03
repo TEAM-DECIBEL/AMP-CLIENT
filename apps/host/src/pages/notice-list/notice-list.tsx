@@ -11,11 +11,10 @@ import {
   NoticeTabContent,
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
+import { formatDday } from '@amp/shared/utils';
 
 import { CONGESTION_QUERY_OPTIONS } from '@features/notice-details/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
-
-import formatDday from '@shared/libs/format-dday';
 
 import * as styles from './notice-list.css';
 

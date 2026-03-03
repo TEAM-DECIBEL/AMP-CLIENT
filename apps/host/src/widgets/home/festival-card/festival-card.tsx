@@ -3,8 +3,8 @@ import type { KeyboardEvent } from 'react';
 import { CardFestival } from '@amp/ads-ui';
 import { MoreIcon } from '@amp/ads-ui/icons';
 import { FestivalStatusGroup } from '@amp/compositions';
+import { formatDday } from '@amp/shared/utils';
 
-import formatDday from '@shared/libs/format-dday';
 import type { Festival } from '@shared/types/home-response';
 
 const STATUS_BY_TEXT = {
