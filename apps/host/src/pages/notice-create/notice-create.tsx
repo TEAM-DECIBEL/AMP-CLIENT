@@ -10,7 +10,7 @@ import {
   Textfield,
 } from '@amp/ads-ui';
 import { PinIcon } from '@amp/ads-ui/icons';
-import { Loading } from '@amp/compositions';
+import { ButtonGradientSection, Loading } from '@amp/compositions';
 
 import { NOTICE_QUERY_OPTIONS } from '@features/notice/apis/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
@@ -214,7 +214,7 @@ const NoticeCreateForm = ({
           />
         </InputLayout>
 
-        <div className={styles.buttonContainer}>
+        <ButtonGradientSection className={styles.buttonContainer}>
           <CtaButton
             type='common'
             htmlType='submit'
@@ -223,7 +223,7 @@ const NoticeCreateForm = ({
           >
             완료
           </CtaButton>
-        </div>
+        </ButtonGradientSection>
       </form>
     </>
   );
