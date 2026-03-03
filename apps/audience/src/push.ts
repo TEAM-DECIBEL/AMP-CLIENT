@@ -20,7 +20,7 @@ async function canUseFcm() {
   return true;
 }
 
-async function getFcmTokenInternal() {
+const getFcmTokenInternal = async () => {
   if (!(await canUseFcm())) {
     return null;
   }
@@ -37,9 +37,9 @@ async function getFcmTokenInternal() {
     console.warn('[push] getToken failed', e);
     return null;
   }
-}
+};
 
-export async function enablePushAndGetToken() {
+export const enablePushAndGetToken = async () => {
   localStorage.setItem(LS_PUSH_PERMISSION_REQUESTED, 'true');
 
   const permission = await Notification.requestPermission();
@@ -55,14 +55,14 @@ export async function enablePushAndGetToken() {
   await postFcmTokenIfChanged(token);
 
   return token;
-}
+};
 
-export async function getFcmTokenSilently() {
+export const getFcmTokenSilently = async () => {
   if (Notification.permission !== 'granted') {
     return null;
   }
   return await getFcmTokenInternal();
-}
+};
 
 export async function postFcmTokenIfChanged(token: string) {
   const lastSent = localStorage.getItem(LS_LAST_SENT_FCM_TOKEN);

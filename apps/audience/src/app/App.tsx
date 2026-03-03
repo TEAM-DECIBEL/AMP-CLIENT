@@ -4,8 +4,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider } from 'react-router';
 
 import { queryClient } from '@shared/apis/query-client';
+import { listenForegroundMessages } from '@shared/libs/push-foreground';
 
-import { listenForegroundMessages } from '../shared/libs/push-foreground';
 import { router } from './router/router';
 
 function App() {
