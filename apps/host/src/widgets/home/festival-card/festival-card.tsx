@@ -24,8 +24,7 @@ const FestivalCard = ({
   onMoreClick,
   onCardClick,
 }: FestivalCardProps) => {
-  const { festivalId, title, period, mainImageUrl, dDay, status, imageUrl } =
-    festival;
+  const { festivalId, title, period, mainImageUrl, dDay, status } = festival;
 
   const chipStatus =
     STATUS_BY_TEXT[status as keyof typeof STATUS_BY_TEXT] ?? 'completed';
@@ -61,7 +60,7 @@ const FestivalCard = ({
       onClick={handleCardClick}
       onKeyDown={handleKeyDown}
     >
-      <CardFestival.Image src={mainImageUrl ?? imageUrl ?? ''} alt={title} />
+      <CardFestival.Image src={mainImageUrl ?? ''} alt={title} />
       <CardFestival.Body title={title} date={period}>
         <CardFestival.Chip>
           <FestivalStatusGroup

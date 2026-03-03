@@ -13,9 +13,6 @@ const FestivalHistoryList = ({ festivals }: FestivalHistoryListProps) => {
   const navigate = useNavigate();
 
   const handleCardClick = (festivalId?: number) => {
-    if (festivalId === null || festivalId === undefined) {
-      return;
-    }
     navigate(
       generatePath(ROUTE_PATH.NOTICE_LIST, {
         eventId: String(festivalId),

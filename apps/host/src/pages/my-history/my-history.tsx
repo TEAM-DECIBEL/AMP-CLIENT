@@ -29,9 +29,7 @@ const MyHistory = () => {
   }
   return (
     <section className={styles.page}>
-      <div className={styles.list}>
-        <FestivalHistoryList festivals={myHistoryData.festivals} />
-      </div>
+      <FestivalHistoryList festivals={myHistoryData.festivals} />
     </section>
   );
 };
