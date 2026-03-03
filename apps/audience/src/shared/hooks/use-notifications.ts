@@ -20,7 +20,7 @@ export const useNotificationReadMutation = () => {
       patchNotificationsRead(notificationId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [USERS_QUERY_KEY.NOTIFICATIONS],
+        queryKey: USERS_QUERY_KEY.NOTIFICATIONS(),
       });
     },
   });

@@ -6,7 +6,7 @@ import { CircleButton, CtaButton } from '@amp/ads-ui';
 import { SaveIcon } from '@amp/ads-ui/icons';
 import { NoticeDetailLayout } from '@amp/compositions';
 
-import { useNoticeBookmark } from '@features/bookmark/query';
+import { useNoticeBookmark } from '@features/bookmark/hooks/use-notice-bookmark';
 import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-details/query';
 
 import { ROUTE_PATH } from '@shared/constants/path';

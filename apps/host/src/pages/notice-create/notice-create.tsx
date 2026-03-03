@@ -30,15 +30,13 @@ const NoticeCreatePage = () => {
 
   const parsedNoticeId = noticeId ? Number(noticeId) : NaN;
   const noticeIdValue = Number.isNaN(parsedNoticeId) ? null : parsedNoticeId;
-  const { data: noticeDetail, isPending } = useQuery({
-    ...NOTICE_QUERY_OPTIONS.DETAIL(noticeIdValue ?? 0),
-    enabled: noticeIdValue !== null,
-  });
+  const { data: noticeDetail, isPending } = useQuery(
+    NOTICE_QUERY_OPTIONS.DETAIL(noticeIdValue),
+  );
 
-  const { data: noticeFestival } = useQuery({
-    ...NOTICES_QUERY_OPTIONS.BANNER(festivalId ?? 0),
-    enabled: festivalId !== null,
-  });
+  const { data: noticeFestival } = useQuery(
+    NOTICES_QUERY_OPTIONS.BANNER(festivalId ?? Number.NaN),
+  );
 
   const { data: noticeListData, isPending: isNoticeListPending } = useQuery(
     NOTICES_QUERY_OPTIONS.LIST(festivalId ?? Number.NaN, {
@@ -55,36 +53,7 @@ const NoticeCreatePage = () => {
   );
 
   const activeCategories = useMemo(() => {
-    const res = noticeFestival as
-      | {
-          data?: {
-            activeCategories?: Array<{
-              categoryId: number;
-              categoryName: string;
-            }>;
-          };
-        }
-      | {
-          activeCategories?: Array<{
-            categoryId: number;
-            categoryName: string;
-          }>;
-        }
-      | undefined;
-
-    if (!res) {
-      return [];
-    }
-
-    if ('data' in res) {
-      return res.data?.activeCategories ?? [];
-    }
-
-    if ('activeCategories' in res) {
-      return res.activeCategories ?? [];
-    }
-
-    return [];
+    return noticeFestival?.activeCategories ?? [];
   }, [noticeFestival]);
 
   if (noticeIdValue !== null && isPending) {
