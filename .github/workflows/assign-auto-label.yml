@@ -33,7 +33,7 @@ jobs:
             const labelsToAdd = [];
 
             const labelPatterns = {
-              '🐛 Fix': /\b(fix|Fix|FIX|bug|Bug|BUG|hotfix|Hotfix|HOTFIX|HotFix)\b/i,
+              '🐛 Fix': /\b(fix|Fix|FIX)\b/i,
               '✨ Feature': /\b(feat|Feat|FEAT)\b/i,
               '📝 Docs': /\b(docs|Docs|DOCS)\b/i,
               '⚙️ Init': /\b(init|Init|INIT)\b/i,
