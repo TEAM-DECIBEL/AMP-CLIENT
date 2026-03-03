@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@amp/ads-ui": "workspace:*",
+    "@amp/shared": "workspace:*",
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
     "clsx": "^2.1.1",
