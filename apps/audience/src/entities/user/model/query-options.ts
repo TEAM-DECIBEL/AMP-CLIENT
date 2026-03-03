@@ -7,7 +7,7 @@ import { getUserNickname } from '../api/user';
 export const USER_QUERY_OPTIONS = {
   NICKNAME: () =>
     queryOptions({
-      queryKey: [...USERS_QUERY_KEY.NICKNAME()],
+      queryKey: USERS_QUERY_KEY.NICKNAME(),
       queryFn: () => getUserNickname(),
     }),
 } as const;
