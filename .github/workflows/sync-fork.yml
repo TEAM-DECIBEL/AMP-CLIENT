@@ -25,7 +25,7 @@ jobs:
 
       - name: Add fork remote
         run: |
-          git remote add forked-repo https://x-access-token:${{ secrets.FORKED_REPO_TOKEN }}@github.com/${{ secrets.FORKED_REPO_OWNER }}/${{ secrets.FORKED_REPO_NAME }}.git
+          git remote add forked-repo https://x-access-token:${{ secrets.FORKED_REPO_TOKEN }}@github.com/eunkr82/AMP-CLIENT.git
 
       - name: Push to fork (mirror main)
         run: |
