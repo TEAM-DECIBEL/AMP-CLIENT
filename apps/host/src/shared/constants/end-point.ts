@@ -6,7 +6,7 @@ export const END_POINT = {
   GET_HOME_FESTIVALS: '/festivals/me/active', // 홈 화면
   GET_FESTIVAL_BANNER: (festivalId: number) => `/festivals/${festivalId}`, // 공연 정보 조회
   GET_FESTIVAL_CONGESTION: (eventId: number) =>
-    `common/festivals/${eventId}/congestion`, // 공연 별 무대 혼잡도 조회
+    `/festivals/${eventId}/congestion`, // 공연 별 무대 혼잡도 조회
 
   // Notice
   POST_FESTIVAL_NOTICE: (festivalId: number) =>
