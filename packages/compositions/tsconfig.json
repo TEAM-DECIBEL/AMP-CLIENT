@@ -1,8 +1,14 @@
 {
   "extends": "@amp/tsconfig/react-library",
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@amp/shared/types": ["../shared/src/types/index.ts"],
+      "@amp/shared/utils": ["../shared/src/utils/index.ts"],
+      "@amp/shared/constants": ["../shared/src/constants/index.ts"],
+      "@amp/shared/hooks": ["../shared/src/hooks/index.ts"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

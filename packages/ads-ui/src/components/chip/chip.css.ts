@@ -35,7 +35,7 @@ export const chip = recipe({
         backgroundColor: ampThemeVars.color.primary_light,
         color: ampThemeVars.color.primary_deep,
       },
-      upcoming: {
+      completed: {
         backgroundColor: ampThemeVars.color.gray_100,
         color: ampThemeVars.color.gray_500,
       },
@@ -44,7 +44,7 @@ export const chip = recipe({
         backgroundColor: ampThemeVars.color.gray_000,
         color: ampThemeVars.color.gray_500,
       },
-      completed: {
+      upcoming: {
         border: `1px solid ${ampThemeVars.color.gray_200}`,
         backgroundColor: ampThemeVars.color.gray_000,
         color: ampThemeVars.color.gray_500,

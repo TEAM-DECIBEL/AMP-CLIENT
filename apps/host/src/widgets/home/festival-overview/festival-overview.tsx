@@ -1,10 +1,13 @@
-import { useNavigate } from 'react-router';
+import { generatePath, useNavigate } from 'react-router';
 
 import FestivalActions from '@features/home/festival-actions/festival-actions';
 
+import { ROUTE_PATH } from '@shared/constants/path';
 import type { Festival } from '@shared/types/home-response';
+import EmptyCard from '@shared/ui/card/empty-card/empty-card';
+import StatusChip from '@shared/ui/chip/status-chip/status-chip';
 
-import FestivalSection from '../festival-section/festival-section';
+import FestivalCard from '../festival-card/festival-card';
 
 import * as styles from './festival-overview.css';
 
@@ -13,7 +16,6 @@ interface FestivalOverviewProps {
   upcomingCount: number;
   ongoingFestivals: Festival[];
   upcomingFestivals: Festival[];
-  onCardClick: (festivalId: number) => void;
 }
 
 const FestivalOverview = ({
@@ -21,9 +23,14 @@ const FestivalOverview = ({
   upcomingCount,
   ongoingFestivals,
   upcomingFestivals,
-  onCardClick,
 }: FestivalOverviewProps) => {
   const navigate = useNavigate();
+
+  const handleCardClick = (festivalId: number) => {
+    navigate(
+      generatePath(ROUTE_PATH.NOTICE_LIST, { eventId: String(festivalId) }),
+    );
+  };
 
   const sections = [
     {
@@ -38,23 +45,37 @@ const FestivalOverview = ({
       festivals: upcomingFestivals,
       emptyText: '진행 예정인 공연이 없어요!',
     },
-  ] as const;
+  ];
 
   return (
     <FestivalActions
-      onEdit={(noticeId) =>
-        navigate(`/events/:eventId/notices/${noticeId}/edit`)
+      onEdit={() =>
+        // TODO : 공연 수정 뷰로 변경
+        navigate(`/`)
       }
     >
       {(handleOpenOptionSheet) => (
         <div className={styles.container}>
-          {sections.map((section) => (
-            <FestivalSection
-              key={section.title}
-              {...section}
-              onMoreClick={handleOpenOptionSheet}
-              onCardClick={onCardClick}
-            />
+          {sections.map(({ title, count, festivals, emptyText }) => (
+            <section key={title} className={styles.sectionContainer}>
+              <StatusChip title={title} count={count} />
+
+              {festivals.length === 0 ? (
+                <EmptyCard>{emptyText}</EmptyCard>
+              ) : (
+                <ul className={styles.listContainer}>
+                  {festivals.map((festival) => (
+                    <li key={festival.festivalId}>
+                      <FestivalCard
+                        festival={festival}
+                        onMoreClick={handleOpenOptionSheet}
+                        onCardClick={handleCardClick}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
           ))}
         </div>
       )}
