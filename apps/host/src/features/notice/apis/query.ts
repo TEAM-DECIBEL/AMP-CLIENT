@@ -58,9 +58,13 @@ export const getNoticeDetail = (noticeId: number) =>
   get<NoticeDetail>(END_POINT.GET_NOTICE_DETAIL(noticeId));
 
 export const NOTICE_QUERY_OPTIONS = {
-  DETAIL: (noticeId: number) =>
-    queryOptions({
-      queryKey: ORGANIZERS_QUERY_KEY.NOTICE_DETAIL(noticeId),
-      queryFn: () => getNoticeDetail(noticeId),
-    }),
+  DETAIL: (noticeId: number | null) => {
+    const normalizedNoticeId = noticeId ?? Number.NaN;
+
+    return queryOptions({
+      queryKey: ORGANIZERS_QUERY_KEY.NOTICE_DETAIL(normalizedNoticeId),
+      queryFn: () => getNoticeDetail(normalizedNoticeId),
+      enabled: Number.isFinite(normalizedNoticeId),
+    });
+  },
 } as const;

@@ -10,12 +10,12 @@ export const getNotifications = () =>
   get<NotificationsResponse>(END_POINT.GET_NOTIFICATIONS);
 
 export const patchNotificationsRead = (notificationId: number) =>
-  patch(END_POINT.POST_NOTIFICATIONS(notificationId));
+  patch<void>(END_POINT.PATCH_NOTIFICATIONS(notificationId));
 
 export const NOTIFICATIONS_QUERY_OPTIONS = {
   NOTIFICATIONS: () =>
     queryOptions({
-      queryKey: [USERS_QUERY_KEY.NOTIFICATIONS],
+      queryKey: USERS_QUERY_KEY.NOTIFICATIONS(),
       queryFn: () => getNotifications(),
     }),
 } as const;

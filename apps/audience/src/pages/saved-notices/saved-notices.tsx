@@ -38,7 +38,7 @@ const SavedNoticesPage = () => {
             <CardNotice
               imageUrl={notice.imageUrl}
               title={notice.title}
-              content={notice.categoryName}
+              content={notice.content}
               onClick={() => {
                 navigate(
                   generatePath(ROUTE_PATH.NOTICE_DETAILS, {

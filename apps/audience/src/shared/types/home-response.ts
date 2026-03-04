@@ -28,17 +28,17 @@ export interface PaginationResponse {
   hasPrevious: boolean;
 }
 
-export interface AllFestivalsResponseData {
+export interface AllFestivalsResponse {
   festivals: AllFestivalItem[];
   pagination: PaginationResponse;
 }
 
-export interface UpcomingFestivalsResponseData {
+export interface UpcomingFestivalsResponse {
   festivals: UpcomingFestivalItem[];
   pagination: PaginationResponse;
 }
 
-export interface UpcomingFestivalResponseData {
+export interface UpcomingFestivalResponse {
   festivalId: number;
   title: string;
   mainImageUrl: string;
@@ -48,11 +48,6 @@ export interface UpcomingFestivalResponseData {
   dday: number;
 }
 
-export interface WishListRequest {
-  wishList: boolean;
-}
-
-export interface WishListResponseData {
-  festivalId: number;
-  wishList: boolean;
+export interface NicknameResponse {
+  nickname: string;
 }

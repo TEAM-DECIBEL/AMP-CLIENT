@@ -379,6 +379,9 @@ importers:
       '@amp/ads-ui':
         specifier: workspace:*
         version: link:../ads-ui
+      '@amp/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@vanilla-extract/css':
         specifier: 'catalog:'
         version: 1.18.0

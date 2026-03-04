@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
-import { useParams } from 'react-router';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import { AddToWatchButton, Modal, RectButton, toast } from '@amp/ads-ui';
 import { ChatIcon } from '@amp/ads-ui/icons';
@@ -14,16 +13,15 @@ import {
   NoticeTabContent,
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
+import { formatDday } from '@amp/shared/utils';
 
-import { putWishList } from '@features/home/apis/query';
-import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
+import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use-toggle-wishlist-mutation';
+
+import { NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
-import { ROUTE_PATH } from '@shared/constants/path';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
-import formatDday from '@shared/libs/format-dday';
-import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
 
 import { enablePushAndGetToken } from '../../push';
@@ -32,31 +30,16 @@ import * as styles from './notice-list.css';
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
-interface ActiveCategory {
-  categoryId: number;
-  categoryName: string;
-  categoryCode: string;
-}
-
-interface FestivalBanner {
-  festivalId: number;
-  title: string;
-  location: string;
-  period: string;
-  isWishlist: boolean;
-  dday: number;
-  activeCategories: ActiveCategory[];
-}
-
 const NoticeListPage = () => {
   const navigate = useNavigate();
-  const isAuthed = Boolean(localStorage.getItem('accessToken'));
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
-
-  const [isWatched, setIsWatched] = useState(false);
 
   const { eventId } = useParams<{ eventId: string }>();
   const festivalId = Number(eventId);
+
+  const { data: bannerData } = useQuery(
+    NOTICES_QUERY_OPTIONS.BANNER(festivalId),
+  );
 
   const { data } = useQuery(
     NOTICES_QUERY_OPTIONS.LIST(festivalId, {
@@ -65,32 +48,7 @@ const NoticeListPage = () => {
     }),
   );
 
-  const { data: bannerData } = useQuery({
-    ...NOTICES_QUERY_OPTIONS.BANNER(festivalId),
-    select: (res: unknown): FestivalBanner | undefined => {
-      if (typeof res !== 'object' || res === null) {
-        return undefined;
-      }
-
-      if ('data' in res) {
-        const wrapped = res as { data?: FestivalBanner };
-        return wrapped.data;
-      }
-
-      return res as FestivalBanner;
-    },
-  });
-
   const { mutate } = useNotificationsSubscribeMutation();
-  const wishListMutation = useMutation({
-    mutationFn: ({
-      festivalId,
-      wishList,
-    }: {
-      festivalId: number;
-      wishList: boolean;
-    }) => putWishList(festivalId, { wishList }),
-  });
 
   const announcements = data?.announcements ?? [];
 
@@ -115,6 +73,11 @@ const NoticeListPage = () => {
     confirmStatus,
   } = useLiveStatus();
 
+  const { toggleWishList, isTogglePending } = useToggleWishListMutation(
+    festivalId,
+    bannerData?.isWishlist ?? false,
+  );
+
   const isCategoryLabel = (
     value: string,
   ): value is keyof typeof CATEGORY_CODE_BY_LABEL =>
@@ -124,40 +87,6 @@ const NoticeListPage = () => {
     ? CATEGORY_CODE_BY_LABEL[selectedCategory]
     : 'OTHERS';
 
-  const handleWatchToggle = () => {
-    if (!isAuthed) {
-      navigate(ROUTE_PATH.AUTH_REQUIRED);
-      return;
-    }
-    if (!Number.isFinite(festivalId)) {
-      toast.show('공연 정보를 불러오지 못했어요.');
-      return;
-    }
-
-    if (wishListMutation.isPending) {
-      return;
-    }
-    const nextSelected = !isWatched;
-    const prevSelected = isWatched;
-
-    setIsWatched(nextSelected);
-    wishListMutation.mutate(
-      { festivalId, wishList: nextSelected },
-      {
-        onError: () => {
-          setIsWatched(prevSelected);
-          toast.show('관람 예정 설정에 실패했어요.');
-        },
-      },
-    );
-  };
-
-  useEffect(() => {
-    if (bannerData) {
-      setIsWatched(bannerData.isWishlist);
-    }
-  }, [bannerData]);
-
   const bannerProps = bannerData
     ? {
         dday: formatDday(bannerData.dday),
@@ -165,18 +94,9 @@ const NoticeListPage = () => {
         location: bannerData.location,
         date: bannerData.period,
       }
-    : {
-        dday: FESTIVAL_MOCK.dday,
-        title: FESTIVAL_MOCK.title,
-        location: FESTIVAL_MOCK.location,
-        date: FESTIVAL_MOCK.date,
-      };
+    : null;
 
   const handleAlertClick = () => {
-    if (!isAuthed) {
-      navigate(ROUTE_PATH.AUTH_REQUIRED);
-      return;
-    }
     overlay.open(({ isOpen, close, unmount }) => {
       const handleConfirmAlert = async () => {
         try {
@@ -249,15 +169,21 @@ const NoticeListPage = () => {
 
   return (
     <main className={styles.pageContainer}>
-      <NoticeBanner
-        dday={bannerProps.dday}
-        title={bannerProps.title}
-        location={bannerProps.location}
-        date={bannerProps.date}
-        button={
-          <AddToWatchButton selected={isWatched} onChange={handleWatchToggle} />
-        }
-      />
+      {bannerProps && (
+        <NoticeBanner
+          dday={bannerProps.dday}
+          title={bannerProps.title}
+          location={bannerProps.location}
+          date={bannerProps.date}
+          button={
+            <AddToWatchButton
+              selected={bannerData?.isWishlist ?? false}
+              onChange={toggleWishList}
+              disabled={!bannerData || isTogglePending}
+            />
+          }
+        />
+      )}
       <div className={styles.mainContent}>
         <nav className={styles.contentHeader}>
           <NoticeListTab onChange={setActiveTab} />

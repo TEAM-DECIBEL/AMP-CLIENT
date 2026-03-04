@@ -1,11 +1,11 @@
-import type { FestivalWithDDay } from './festival';
+import type { FestivalBase } from './festival';
 
 export interface HomeSummary {
   ongoingCount: number;
   upcomingCount: number;
 }
 
-export type Festival = FestivalWithDDay;
+export type Festival = FestivalBase;
 
 export interface PaginationResponse {
   currentPage: number;

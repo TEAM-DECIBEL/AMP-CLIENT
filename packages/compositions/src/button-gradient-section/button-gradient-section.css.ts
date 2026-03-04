@@ -9,7 +9,7 @@ export const ctaButtonArea = style({
   transform: 'translateX(-50%)',
   width: '100%',
   maxWidth: '43rem',
-  padding: '2rem',
+  padding: '2rem 2rem calc(2rem + env(safe-area-inset-bottom))',
   backgroundColor: ampThemeVars.color.gray_000,
   selectors: {
     '&::before': {

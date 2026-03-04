@@ -7,7 +7,7 @@ export const container = style({
   flexDirection: 'column',
   gap: '2rem',
   margin: '3.1rem 2rem 0 2rem',
-  paddingBottom: '9rem',
+  paddingBottom: 'calc(14rem + env(safe-area-inset-bottom))',
 });
 
 export const titleContainer = style({
@@ -51,14 +51,7 @@ export const divider = style({
 });
 
 export const buttonContainer = style({
-  position: 'fixed',
-  bottom: 0,
-  width: '100%',
-  maxWidth: '430px',
-  padding: '2rem',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  backgroundColor: ampThemeVars.color.gray_000,
+  padding: '2rem 2rem calc(2rem + env(safe-area-inset-bottom))',
 });
 
 export const chipContainer = style({

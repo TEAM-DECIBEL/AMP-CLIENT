@@ -1,0 +1,86 @@
+name: Auto Labeler
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened, reopened]
+    branches: [develop]
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Auto Labeling based on title
+        if: github.event_name == 'pull_request_target' || github.event_name == 'issues'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const payload = context.payload;
+            const isPR = !!payload.pull_request;
+            const target = isPR ? payload.pull_request : payload.issue;
+
+            const title = target.title;
+            const author = target.user.login;
+            const issueNumber = target.number;
+
+            const labelsToAdd = [];
+
+            const labelPatterns = {
+              '🐛 Fix': /\b(fix|Fix|FIX)\b/i,
+              '✨ Feature': /\b(feat|Feat|FEAT)\b/i,
+              '📝 Docs': /\b(docs|Docs|DOCS)\b/i,
+              '⚙️ Init': /\b(init|Init|INIT)\b/i,
+              '🎨 Design': /\b(design|Design|DESIGN)\b/i,
+              '🔧 Chore': /\b(chore|Chore|CHORE)\b/i,
+              '♻️ Refactor': /\b(refactor|Refactor|REFACTOR)\b/i,
+              '🔥 Hotfix': /\b(hotfix|Hotfix|HOTFIX)\b/i,
+              '🚀 Deploy': /\b(deploy|Deploy|DEPLOY)\b/i
+            };
+
+            for (const [label, pattern] of Object.entries(labelPatterns)) {
+              if (pattern.test(title)) {
+                labelsToAdd.push(label);
+              }
+            }
+
+            const userLabels = {
+              "Sohyunnnn": "🐰 소현", 
+              "jisooooooooooo": "🐵 지수",
+              "jin-evergreen": "🐻‍❄️ 진석",
+              "eunkr82": "🐱 나은"
+            };
+
+            if (userLabels[author]) {
+              labelsToAdd.push(userLabels[author]);
+            }
+
+            const uniqueLabels = [...new Set(labelsToAdd)];
+
+            if (uniqueLabels.length > 0) {
+              try {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  labels: uniqueLabels
+                });
+              } catch (error) {
+              }
+            }
+
+            try {
+              await github.rest.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                assignees: [author] 
+              });
+            } catch (error) {
+            }

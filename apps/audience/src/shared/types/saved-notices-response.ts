@@ -3,6 +3,7 @@ export interface SavedNoticeItem {
   noticeId: number;
   festivalTitle: string;
   categoryName: string;
+  content: string;
   title: string;
   imageUrl: string;
 }

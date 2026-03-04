@@ -11,6 +11,7 @@ import {
   NoticeTabContent,
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
+import { formatDday } from '@amp/shared/utils';
 
 import { CONGESTION_QUERY_OPTIONS } from '@features/notice-details/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
@@ -18,29 +19,6 @@ import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 import * as styles from './notice-list.css';
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
-
-const formatDday = (dDay: number) => {
-  if (dDay === 0) {
-    return 'D-Day';
-  }
-  return dDay > 0 ? `D-${dDay}` : `D+${Math.abs(dDay)}`;
-};
-
-interface ActiveCategory {
-  categoryId: number;
-  categoryName: string;
-  categoryCode: string;
-}
-
-interface FestivalBanner {
-  festivalId: number;
-  title: string;
-  location: string;
-  period: string;
-  isWishlist: boolean;
-  dday: number;
-  activeCategories: ActiveCategory[];
-}
 
 const NoticeListPage = () => {
   const navigate = useNavigate();
@@ -55,21 +33,9 @@ const NoticeListPage = () => {
     }),
   );
 
-  const { data: festivalBanner } = useQuery({
-    ...NOTICES_QUERY_OPTIONS.BANNER(eventId),
-    select: (res: unknown): FestivalBanner | undefined => {
-      if (typeof res !== 'object' || res === null) {
-        return undefined;
-      }
-
-      if ('data' in res) {
-        const wrapped = res as { data?: FestivalBanner };
-        return wrapped.data;
-      }
-
-      return res as FestivalBanner;
-    },
-  });
+  const { data: festivalBanner } = useQuery(
+    NOTICES_QUERY_OPTIONS.BANNER(eventId),
+  );
 
   const announcements = noticesData?.announcements ?? [];
 

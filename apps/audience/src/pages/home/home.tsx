@@ -2,21 +2,19 @@ import { useQuery } from '@tanstack/react-query';
 
 import { HomeBanner } from '@amp/compositions';
 
-import HomeFestivalSection from '@widgets/home/components/home-festival-section/home-festival-section';
+import FestivalSection from '@widgets/home/components/festival-section/festival-section';
 
-import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
+import { FESTIVAL_QUERY_OPTIONS } from '@entities/festival/model/query-options';
 
 import useHomeFestivals from './model/use-home-festivals';
 
 import { page } from './home.css';
 
 const HomePage = () => {
-  const isAuthed = Boolean(localStorage.getItem('accessToken'));
-  const { data: myPageData } = useQuery({
-    ...MY_PAGE_QUERY_OPTIONS.MY_PAGE(),
-    enabled: isAuthed,
+  const { data } = useQuery({
+    ...FESTIVAL_QUERY_OPTIONS.NICKNAME(),
   });
-  const nickname = myPageData?.nickname ?? '';
+  const nickname = data?.nickname;
 
   const {
     allFestivals,
@@ -24,9 +22,7 @@ const HomePage = () => {
     bannerFestival,
     selectedTab,
     setSelectedTab,
-    handleToggleAllFestival,
-    handleToggleUpcomingFestival,
-  } = useHomeFestivals(isAuthed);
+  } = useHomeFestivals();
 
   return (
     <div className={page}>
@@ -43,13 +39,11 @@ const HomePage = () => {
         <HomeBanner nickname={nickname} status='none' />
       )}
 
-      <HomeFestivalSection
+      <FestivalSection
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}
         allFestivals={allFestivals}
         upcomingFestivals={upcomingFestivals}
-        onToggleAllFestival={handleToggleAllFestival}
-        onToggleUpcomingFestival={handleToggleUpcomingFestival}
       />
     </div>
   );
