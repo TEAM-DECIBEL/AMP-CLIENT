@@ -14,7 +14,6 @@ export const END_POINT = {
   GET_NOTIFICATIONS: '/notifications', // 알림 스테이션
   PATCH_NOTIFICATIONS: (notificationId: number) =>
     `/festivals/notifications/${notificationId}/read`, // 알림 읽음 처리
-  GET_SAVED_NOTICES: '/bookmark', // 저장한 공지
   POST_FESTIVAL_NOTIFICATIONS_SUBSCRIBE: (
     festivalId: number,
     categoryCode: string,
@@ -35,6 +34,7 @@ export const END_POINT = {
   // User
   GET_NICKNAME: '/users/nickname',
   GET_MY_PAGE: '/users/mypage', // 마이페이지
+  GET_SAVED_NOTICES: '/users/bookmarks', // 저장한 공지
 
   // Auth
   POST_LOGOUT: '/auth/logout',
