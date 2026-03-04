@@ -72,7 +72,7 @@ export const chip = recipe({
     {
       variants: {
         variant: 'status',
-        status: 'completed',
+        status: 'upcoming',
       },
       style: {
         padding: '0.3rem 1.2rem',
