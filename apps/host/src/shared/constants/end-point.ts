@@ -11,6 +11,7 @@ export const END_POINT = {
   // Notice
   POST_FESTIVAL_NOTICE: (festivalId: number) =>
     `/festivals/${festivalId}/notices`, // 공지 생성
+  // TODO: 수정, 삭제 하나로 합치기
   PUT_NOTICE: (noticeId: number) => `/notices/${noticeId}`, // 공지 수정
   DELETE_NOTICE: (noticeId: number) => `/notices/${noticeId}`, // 공지 삭제
   GET_FESTIVAL_NOTICES: (festivalId: number) =>
