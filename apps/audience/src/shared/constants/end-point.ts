@@ -26,6 +26,7 @@ export const END_POINT = {
   PUT_WISH_LIST: (festivalId: number) =>
     `/users/me/festivals/${festivalId}/wishList`,
   GET_NICKNAME: '/users/nickname',
+  POST_FCM_TOKEN: '/audience/notifications/fcm-token',
 
   //온보딩
   POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
