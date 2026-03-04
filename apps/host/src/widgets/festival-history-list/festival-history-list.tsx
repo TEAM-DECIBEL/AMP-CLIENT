@@ -12,7 +12,7 @@ interface FestivalHistoryListProps {
 const FestivalHistoryList = ({ festivals }: FestivalHistoryListProps) => {
   const navigate = useNavigate();
 
-  const handleCardClick = (festivalId?: number) => {
+  const handleCardClick = (festivalId: number) => {
     navigate(
       generatePath(ROUTE_PATH.NOTICE_LIST, {
         eventId: String(festivalId),
@@ -23,13 +23,9 @@ const FestivalHistoryList = ({ festivals }: FestivalHistoryListProps) => {
   return (
     <>
       {festivals.map((festival) => {
-        const { festivalId, title, period } = festival;
-
-        const key = festivalId ?? `${title}-${period}`;
-
         return (
           <FestivalCard
-            key={key}
+            key={festival.festivalId}
             festival={festival}
             onCardClick={handleCardClick}
           />
