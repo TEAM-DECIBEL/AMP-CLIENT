@@ -1,55 +1,41 @@
 export const END_POINT = {
-  // 공연 혼잡도 조회
+  // Festival
+  GET_ALL_FESTIVALS: '/festivals',
+  GET_FESTIVAL_BANNER: (festivalId: number) => `/festivals/${festivalId}`,
   GET_FESTIVAL_CONGESTION: (eventId: number) =>
-    `common/festivals/${eventId}/congestion`,
+    `/festivals/${eventId}/congestion`,
 
-  // 저장한 공지
-  GET_SAVED_NOTICES: '/users/me/bookmark',
+  // Notice
+  POST_NOTICE_BOOKMARK: (noticeId: number) => `/notices/${noticeId}/bookmark`,
+  GET_FESTIVAL_NOTICE_DETAIL: (noticeId: number) => `/notices/${noticeId}`,
+  GET_FESTIVAL_NOTICES: (eventId: number) => `/festivals/${eventId}/notices`,
 
-  // 공지 상세
-  GET_FESTIVAL_NOTICE_DETAIL: (noticeId: number | string) =>
-    `/common/notices/${noticeId}`,
-  GET_FESTIVAL_NOTICES: (eventId: number) =>
-    `/common/festivals/${eventId}/notices`,
+  // Notification
+  GET_NOTIFICATIONS: '/notifications', // 알림 스테이션
+  PATCH_NOTIFICATIONS: (notificationId: number) =>
+    `festivals/notifications/${notificationId}/read`, // 알림 읽음 처리
+  GET_SAVED_NOTICES: '/bookmark', // 저장한 공지
   POST_FESTIVAL_NOTIFICATIONS_SUBSCRIBE: (
     festivalId: number,
     categoryCode: string,
-  ) => `/festivals/${festivalId}/users/notifications/${categoryCode}/subscribe`,
-  GET_FESTIVAL_BANNER: (festivalId: number) =>
-    `/common/festivals/${festivalId}`,
+  ) => `/festivals/${festivalId}/notifications/${categoryCode}/subscriptions`, // 카테고리 구독
+  POST_FCM_TOKEN: '/audience/notifications/fcm-token', // FCM 토큰 기기 동기화
 
-  // 홈 화면
-  GET_ALL_FESTIVALS: '/users/festivals',
-  GET_PLANNED_FESTIVALS: '/users/me/festivals',
-  GET_UPCOMING_FESTIVAL: '/users/me/festivals/recent',
-  GET_MY_FESTIVALS_ALL: '/users/me/festivals/all',
-  PUT_WISH_LIST: (festivalId: number) =>
-    `/users/me/festivals/${festivalId}/wishList`,
+  // WishList
+  GET_MY_FESTIVALS_ALL: '/wishlists', // 홈 화면 관람 예정 공연 리스트
+  GET_VIEWED_FESTIVALS: '/wishlists/all', // 마이페이지 관람 공연 전체 조회
+  GET_PLANNED_FESTIVALS: '/wishlists', // 홈 화면 관람 예정 공연 리스트
+  GET_UPCOMING_FESTIVAL: '/wishlists/recent', // 가장 임박한 관람 예정 공연 조회
+  PUT_WISH_LIST: (festivalId: number) => `/wishList/festivals/${festivalId}`, // 관람 예정 공연 등록 / 해제
+
+  // Stage
+  POST_STAGE_CONGESTION: (stageId: number) => `/stages/${stageId}/congestion`,
+
+  // User
   GET_NICKNAME: '/users/nickname',
-  POST_FCM_TOKEN: '/audience/notifications/fcm-token',
+  GET_MY_PAGE: '/users/mypage', // 마이페이지
 
-  //온보딩
-  POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
-
-  // 현장 혼잡도 입력
-  POST_STAGE_CONGESTION: (stageId: number) =>
-    `/users/stages/${stageId}/congestion`,
-
-  // 북마크
-  POST_NOTICE_BOOKMARK: (noticeId: number) =>
-    `/users/notices/${noticeId}/bookmark`,
-
-  // 마이페이지
-  GET_MY_PAGE: '/users/mypage',
-
-  // 로그아웃
+  // Auth
   POST_LOGOUT: '/auth/logout',
-
-  // 알림 스테이션
-  GET_NOTIFICATIONS: '/users/notifications',
-  POST_NOTIFICATIONS: (notificationId: number) =>
-    `users/notifications/${notificationId}/read`,
-
-  // 마이페이지 관람 공연
-  GET_VIEWED_FESTIVALS: '/users/me/festivals/all',
+  POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
 } as const;
