@@ -20,7 +20,6 @@ import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use
 import { NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
-import { ROUTE_PATH } from '@shared/constants/path';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
@@ -34,21 +33,20 @@ type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
 const NoticeListPage = () => {
   const navigate = useNavigate();
-  const isAuthed = Boolean(localStorage.getItem('accessToken'));
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
 
   const { eventId } = useParams<{ eventId: string }>();
   const festivalId = Number(eventId);
+
+  const { data: bannerData } = useQuery(
+    NOTICES_QUERY_OPTIONS.BANNER(festivalId),
+  );
 
   const { data } = useQuery(
     NOTICES_QUERY_OPTIONS.LIST(festivalId, {
       page: 0,
       size: 20,
     }),
-  );
-
-  const { data: bannerData } = useQuery(
-    NOTICES_QUERY_OPTIONS.BANNER(festivalId),
   );
 
   const { mutate } = useNotificationsSubscribeMutation();
@@ -105,10 +103,6 @@ const NoticeListPage = () => {
       };
 
   const handleAlertClick = () => {
-    if (!isAuthed) {
-      navigate(ROUTE_PATH.AUTH_REQUIRED);
-      return;
-    }
     overlay.open(({ isOpen, close, unmount }) => {
       const handleConfirmAlert = async () => {
         try {
