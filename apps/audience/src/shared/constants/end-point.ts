@@ -27,7 +27,7 @@ export const END_POINT = {
   GET_PLANNED_FESTIVALS: '/wishlists', // 홈 화면 관람 예정 공연 리스트
   GET_VIEWED_FESTIVALS: '/wishlists/all', // 마이페이지 관람 공연 전체 조회
   GET_UPCOMING_FESTIVAL: '/wishlists/recent', // 가장 임박한 관람 예정 공연 조회
-  PUT_WISH_LIST: (festivalId: number) => `/wishList/festivals/${festivalId}`, // 관람 예정 공연 등록 / 해제
+  PUT_WISH_LIST: (festivalId: number) => `/wishlists/festivals/${festivalId}`, // 관람 예정 공연 등록 / 해제
 
   // Stage
   POST_STAGE_CONGESTION: (stageId: number) => `/stages/${stageId}/congestion`,
