@@ -20,10 +20,8 @@ import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use
 import { NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
-import { ROUTE_PATH } from '@shared/constants/path';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
-import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
 
 import { enablePushAndGetToken } from '../../push';
@@ -34,21 +32,20 @@ type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
 
 const NoticeListPage = () => {
   const navigate = useNavigate();
-  const isAuthed = Boolean(localStorage.getItem('accessToken'));
   const [activeTab, setActiveTab] = useState<NoticeTab>(NOTICE_TAB.NOTICE);
 
   const { eventId } = useParams<{ eventId: string }>();
   const festivalId = Number(eventId);
+
+  const { data: bannerData } = useQuery(
+    NOTICES_QUERY_OPTIONS.BANNER(festivalId),
+  );
 
   const { data } = useQuery(
     NOTICES_QUERY_OPTIONS.LIST(festivalId, {
       page: 0,
       size: 20,
     }),
-  );
-
-  const { data: bannerData } = useQuery(
-    NOTICES_QUERY_OPTIONS.BANNER(festivalId),
   );
 
   const { mutate } = useNotificationsSubscribeMutation();
@@ -97,18 +94,9 @@ const NoticeListPage = () => {
         location: bannerData.location,
         date: bannerData.period,
       }
-    : {
-        dday: FESTIVAL_MOCK.dday,
-        title: FESTIVAL_MOCK.title,
-        location: FESTIVAL_MOCK.location,
-        date: FESTIVAL_MOCK.date,
-      };
+    : null;
 
   const handleAlertClick = () => {
-    if (!isAuthed) {
-      navigate(ROUTE_PATH.AUTH_REQUIRED);
-      return;
-    }
     overlay.open(({ isOpen, close, unmount }) => {
       const handleConfirmAlert = async () => {
         try {
@@ -181,19 +169,21 @@ const NoticeListPage = () => {
 
   return (
     <main className={styles.pageContainer}>
-      <NoticeBanner
-        dday={bannerProps.dday}
-        title={bannerProps.title}
-        location={bannerProps.location}
-        date={bannerProps.date}
-        button={
-          <AddToWatchButton
-            selected={bannerData?.isWishlist ?? false}
-            onChange={toggleWishList}
-            disabled={!bannerData || isTogglePending}
-          />
-        }
-      />
+      {bannerProps && (
+        <NoticeBanner
+          dday={bannerProps.dday}
+          title={bannerProps.title}
+          location={bannerProps.location}
+          date={bannerProps.date}
+          button={
+            <AddToWatchButton
+              selected={bannerData?.isWishlist ?? false}
+              onChange={toggleWishList}
+              disabled={!bannerData || isTogglePending}
+            />
+          }
+        />
+      )}
       <div className={styles.mainContent}>
         <nav className={styles.contentHeader}>
           <NoticeListTab onChange={setActiveTab} />
