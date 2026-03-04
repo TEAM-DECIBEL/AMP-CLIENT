@@ -22,9 +22,10 @@ export const END_POINT = {
   POST_FCM_TOKEN: '/audience/notifications/fcm-token', // FCM 토큰 기기 동기화
 
   // WishList
+  //TODO: 하나로 합치기
   GET_MY_FESTIVALS_ALL: '/wishlists', // 홈 화면 관람 예정 공연 리스트
-  GET_VIEWED_FESTIVALS: '/wishlists/all', // 마이페이지 관람 공연 전체 조회
   GET_PLANNED_FESTIVALS: '/wishlists', // 홈 화면 관람 예정 공연 리스트
+  GET_VIEWED_FESTIVALS: '/wishlists/all', // 마이페이지 관람 공연 전체 조회
   GET_UPCOMING_FESTIVAL: '/wishlists/recent', // 가장 임박한 관람 예정 공연 조회
   PUT_WISH_LIST: (festivalId: number) => `/wishList/festivals/${festivalId}`, // 관람 예정 공연 등록 / 해제
 
