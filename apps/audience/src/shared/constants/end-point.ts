@@ -31,10 +31,10 @@ export const END_POINT = {
   // Stage
   POST_STAGE_CONGESTION: (stageId: number) => `/stages/${stageId}/congestion`,
 
-  // User
-  GET_NICKNAME: '/users/nickname',
-  GET_MY_PAGE: '/users/mypage', // 마이페이지
-  GET_SAVED_NOTICES: '/users/bookmarks', // 저장한 공지
+  // Audience
+  GET_NICKNAME: '/audience/nickname',
+  GET_MY_PAGE: '/audience/mypage', // 마이페이지
+  GET_SAVED_NOTICES: '/audience/bookmarks', // 저장한 공지
 
   // Auth
   POST_LOGOUT: '/auth/logout',

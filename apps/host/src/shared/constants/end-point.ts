@@ -2,8 +2,6 @@ export const END_POINT = {
   // Festival
   POST_FESTIVAL_CREATE: '/festivals', // 공연 등록 화면
   DELETE_FESTIVAL: (festivalId: number) => `/organizer/festivals/${festivalId}`, // 공연 삭제
-  GET_MY_FESTIVALS_ALL: '/festivals/me/all', // 진행 공연
-  GET_HOME_FESTIVALS: '/festivals/me/active', // 홈 화면
   GET_FESTIVAL_BANNER: (festivalId: number) => `/festivals/${festivalId}`, // 공연 정보 조회
   GET_FESTIVAL_CONGESTION: (eventId: number) =>
     `/festivals/${eventId}/congestion`, // 공연 별 무대 혼잡도 조회
@@ -20,8 +18,10 @@ export const END_POINT = {
   GET_NOTICE_DETAIL: (noticeId: number) => `/notices/${noticeId}`, // 공지 상세 조회
   GET_FESTIVAL_NOTICE_DETAIL: (noticeId: number) => `/notices/${noticeId}`, // 공지 상세 조회
 
-  // User
+  // Organizer
   GET_MY_PAGE: '/organizer/mypage', // 마이페이지
+  GET_MY_FESTIVALS_ALL: '/festivals/organizer/all', // 주최사 마이페이지 전체 공연 조회
+  GET_HOME_FESTIVALS: '/festivals/organizer/active', // 주최사 진행중 / 예정 공연 조회
 
   // Auth
   POST_LOGOUT: '/auth/logout', // 로그아웃
