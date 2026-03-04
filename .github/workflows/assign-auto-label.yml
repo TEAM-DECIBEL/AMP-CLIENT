@@ -74,3 +74,13 @@ jobs:
               } catch (error) {
               }
             }
+
+            try {
+              await github.rest.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                assignees: [author] 
+              });
+            } catch (error) {
+            }
