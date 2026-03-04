@@ -13,6 +13,7 @@ import {
   NoticeTabContent,
 } from '@amp/compositions';
 import { useNoticeList } from '@amp/shared/hooks';
+import { formatDday } from '@amp/shared/utils';
 
 import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use-toggle-wishlist-mutation';
 
@@ -22,7 +23,6 @@ import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
 import { ROUTE_PATH } from '@shared/constants/path';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
-import formatDday from '@shared/libs/format-dday';
 import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
 

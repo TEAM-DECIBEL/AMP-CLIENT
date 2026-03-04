@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { EmptyView } from '@amp/ads-ui';
 import { Loading } from '@amp/compositions';
 
-import FestivalList from '@widgets/my-history/festival-list';
+import FestivalHistoryList from '@widgets/festival-history-list/festival-history-list';
 
 import { MY_HISTORY_QUERY_OPTIONS } from '@features/my-history/apis/query';
 
@@ -29,9 +29,7 @@ const MyHistory = () => {
   }
   return (
     <section className={styles.page}>
-      <div className={styles.list}>
-        <FestivalList festivals={myHistoryData.festivals} />
-      </div>
+      <FestivalHistoryList festivals={myHistoryData.festivals} />
     </section>
   );
 };
