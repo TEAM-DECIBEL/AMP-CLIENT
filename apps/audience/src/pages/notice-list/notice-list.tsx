@@ -22,7 +22,6 @@ import { NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
-import { FESTIVAL_MOCK } from '@shared/mocks/notice-list';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
 
 import { enablePushAndGetToken } from '../../push';
@@ -95,12 +94,7 @@ const NoticeListPage = () => {
         location: bannerData.location,
         date: bannerData.period,
       }
-    : {
-        dday: FESTIVAL_MOCK.dday,
-        title: FESTIVAL_MOCK.title,
-        location: FESTIVAL_MOCK.location,
-        date: FESTIVAL_MOCK.date,
-      };
+    : null;
 
   const handleAlertClick = () => {
     overlay.open(({ isOpen, close, unmount }) => {
@@ -175,19 +169,21 @@ const NoticeListPage = () => {
 
   return (
     <main className={styles.pageContainer}>
-      <NoticeBanner
-        dday={bannerProps.dday}
-        title={bannerProps.title}
-        location={bannerProps.location}
-        date={bannerProps.date}
-        button={
-          <AddToWatchButton
-            selected={bannerData?.isWishlist ?? false}
-            onChange={toggleWishList}
-            disabled={!bannerData || isTogglePending}
-          />
-        }
-      />
+      {bannerProps && (
+        <NoticeBanner
+          dday={bannerProps.dday}
+          title={bannerProps.title}
+          location={bannerProps.location}
+          date={bannerProps.date}
+          button={
+            <AddToWatchButton
+              selected={bannerData?.isWishlist ?? false}
+              onChange={toggleWishList}
+              disabled={!bannerData || isTogglePending}
+            />
+          }
+        />
+      )}
       <div className={styles.mainContent}>
         <nav className={styles.contentHeader}>
           <NoticeListTab onChange={setActiveTab} />
