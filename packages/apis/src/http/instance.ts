@@ -75,6 +75,11 @@ instance.interceptors.response.use(
       }
     }
 
+    if (status === HTTP_STATUS_CODE.FORBIDDEN) {
+      window.location.replace(`/login`);
+      return new Promise(() => {});
+    }
+
     if (status === HTTP_STATUS_CODE.NOT_FOUND) {
       const isOnNotFound = window.location.pathname.startsWith('/not-found');
 
