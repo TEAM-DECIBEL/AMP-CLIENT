@@ -53,7 +53,7 @@ onBackgroundMessage(messaging, (payload) => {
   console.log('[SW] onBackgroundMessage:', payload);
 
   const title = payload.data?.title ?? '알림';
-  const body = payload.data?.body ?? '';
+  const body = payload.data?.message ?? '';
 
   const festivalId = payload.data?.festivalId;
   const noticeId = payload.data?.noticeId;
