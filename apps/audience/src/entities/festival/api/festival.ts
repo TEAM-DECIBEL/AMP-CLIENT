@@ -9,6 +9,7 @@ import type {
 import type {
   FestivalsResponse,
   NicknameResponse,
+  UpcomingFestivalsResponse,
 } from '@shared/types/home-response';
 
 export const getAllFestivals = (params: PageSizeParams = {}) =>
@@ -21,7 +22,7 @@ export const getPlannedFestivals = (params: PageSizeParams = {}) =>
   );
 
 export const getUpcomingFestival = (params: PageSizeParams = {}) =>
-  get<FestivalsResponse, PageSizeParams>(
+  get<UpcomingFestivalsResponse, PageSizeParams>(
     END_POINT.GET_UPCOMING_FESTIVAL,
     params,
   );
