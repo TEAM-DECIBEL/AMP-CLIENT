@@ -1,22 +1,6 @@
-export interface MyEventsFestival {
-  festivalId: number;
-  title: string;
-  mainImageUrl: string;
-  period: string;
-  status: string;
-  wishList: boolean;
-}
-
-export interface MyEventsPagination {
-  currentPage: number;
-  totalPages: number;
-  totalElements: number;
-  size: number;
-  hasNext: boolean;
-  hasPrevious: boolean;
-}
+import { Festival, PaginationResponse } from './festival';
 
 export interface MyEventsResponse {
-  festivals: MyEventsFestival[];
-  pagination: MyEventsPagination;
+  festivals: Festival[];
+  pagination: PaginationResponse;
 }

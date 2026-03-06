@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router';
+import { generatePath, useNavigate } from 'react-router';
 
 import { EmptyView } from '@amp/ads-ui';
 
@@ -9,10 +9,7 @@ import {
 } from '@widgets/home/constants/home-tabs';
 
 import { ROUTE_PATH } from '@shared/constants/path';
-import type {
-  AllFestivalItem,
-  UpcomingFestivalItem,
-} from '@shared/types/home-response';
+import { Festival } from '@shared/types/festival';
 
 import FestivalCard from '../festival-card/festival-card';
 import HomeFestivalTabs from '../home-festival-tabs/home-festival-tabs';
@@ -22,8 +19,8 @@ import * as styles from './festival-section.css';
 interface FestivalSectionProps {
   selectedTab: TabValue;
   onTabChange: (value: TabValue) => void;
-  allFestivals: AllFestivalItem[];
-  upcomingFestivals: UpcomingFestivalItem[];
+  allFestivals: Festival[];
+  upcomingFestivals: Festival[];
 }
 
 const FestivalSection = ({
@@ -34,8 +31,12 @@ const FestivalSection = ({
 }: FestivalSectionProps) => {
   const navigate = useNavigate();
 
-  const handleMoveToFestival = (festivalId: number) => () => {
-    navigate(ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)));
+  const handleCardClick = (festivalId: number) => {
+    navigate(
+      generatePath(ROUTE_PATH.NOTICE_LIST, {
+        eventId: String(festivalId),
+      }),
+    );
   };
 
   const targetFestivals =
@@ -67,7 +68,8 @@ const FestivalSection = ({
               <li key={festival.festivalId}>
                 <FestivalCard
                   festival={festival}
-                  onClick={handleMoveToFestival(festival.festivalId)}
+                  showStatus={false}
+                  onCardClick={handleCardClick}
                 />
               </li>
             ))}

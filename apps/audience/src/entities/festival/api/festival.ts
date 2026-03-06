@@ -7,26 +7,21 @@ import type {
   WishListResponseData,
 } from '@shared/types/festival';
 import type {
-  AllFestivalsResponse,
+  FestivalsResponse,
   NicknameResponse,
-  UpcomingFestivalResponse,
-  UpcomingFestivalsResponse,
 } from '@shared/types/home-response';
 
 export const getAllFestivals = (params: PageSizeParams = {}) =>
-  get<AllFestivalsResponse, PageSizeParams>(
-    END_POINT.GET_ALL_FESTIVALS,
-    params,
-  );
+  get<FestivalsResponse, PageSizeParams>(END_POINT.GET_ALL_FESTIVALS, params);
 
 export const getPlannedFestivals = (params: PageSizeParams = {}) =>
-  get<UpcomingFestivalsResponse, PageSizeParams>(
+  get<FestivalsResponse, PageSizeParams>(
     END_POINT.GET_PLANNED_FESTIVALS,
     params,
   );
 
 export const getUpcomingFestival = (params: PageSizeParams = {}) =>
-  get<UpcomingFestivalResponse, PageSizeParams>(
+  get<FestivalsResponse, PageSizeParams>(
     END_POINT.GET_UPCOMING_FESTIVAL,
     params,
   );
