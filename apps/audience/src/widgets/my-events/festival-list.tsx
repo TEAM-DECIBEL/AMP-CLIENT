@@ -3,7 +3,7 @@ import { generatePath, useNavigate } from 'react-router';
 import FestivalCard from '@widgets/home/components/festival-card/festival-card';
 
 import { ROUTE_PATH } from '@shared/constants/path';
-import { Festival } from '@shared/types/festival';
+import type { Festival } from '@shared/types/festival';
 
 interface FestivalListProps {
   festivals: Festival[];

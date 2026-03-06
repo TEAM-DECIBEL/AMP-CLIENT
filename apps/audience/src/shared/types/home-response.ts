@@ -1,4 +1,4 @@
-import { Festival, PaginationResponse } from './festival';
+import type { Festival, PaginationResponse } from './festival';
 
 export interface UpcomingFestivalItem {
   festivalId: number;

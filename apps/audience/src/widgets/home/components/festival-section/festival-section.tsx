@@ -9,7 +9,7 @@ import {
 } from '@widgets/home/constants/home-tabs';
 
 import { ROUTE_PATH } from '@shared/constants/path';
-import { Festival } from '@shared/types/festival';
+import type { Festival } from '@shared/types/festival';
 
 import FestivalCard from '../festival-card/festival-card';
 import HomeFestivalTabs from '../home-festival-tabs/home-festival-tabs';

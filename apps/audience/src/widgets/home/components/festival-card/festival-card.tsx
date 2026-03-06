@@ -6,7 +6,7 @@ import { formatDday } from '@amp/shared/utils';
 
 import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use-toggle-wishlist-mutation';
 
-import { Festival } from '@shared/types/festival';
+import type { Festival } from '@shared/types/festival';
 
 import FlagButton from '../flag-button/flag-button';
 
