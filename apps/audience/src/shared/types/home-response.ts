@@ -15,11 +15,6 @@ export interface FestivalsResponse {
   pagination: PaginationResponse;
 }
 
-export interface UpcomingFestivalsResponse {
-  festivals: UpcomingFestivalItem[];
-  pagination: PaginationResponse;
-}
-
 export interface NicknameResponse {
   nickname: string;
 }
