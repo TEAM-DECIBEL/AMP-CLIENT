@@ -28,7 +28,7 @@ const useHomeFestivals = () => {
 
   return {
     allFestivals: allFestivalsData?.festivals ?? [],
-    upcomingFestivals: plannedFestivalsData?.festivals ?? [],
+    plannedFestivals: plannedFestivalsData?.festivals ?? [],
     bannerFestival: upcomingFestivalData
       ? {
           festivalId: upcomingFestivalData.festivalId,

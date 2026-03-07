@@ -20,14 +20,14 @@ interface FestivalSectionProps {
   selectedTab: TabValue;
   onTabChange: (value: TabValue) => void;
   allFestivals: Festival[];
-  upcomingFestivals: Festival[];
+  plannedFestivals: Festival[];
 }
 
 const FestivalSection = ({
   selectedTab,
   onTabChange,
   allFestivals,
-  upcomingFestivals,
+  plannedFestivals,
 }: FestivalSectionProps) => {
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ const FestivalSection = ({
   };
 
   const targetFestivals =
-    selectedTab === TAB_ALL ? allFestivals : upcomingFestivals;
+    selectedTab === TAB_ALL ? allFestivals : plannedFestivals;
 
   const emptyConfig = {
     [TAB_ALL]: {
@@ -48,7 +48,7 @@ const FestivalSection = ({
       text: '등록한 공연이 아직 없어요.',
     },
     [TAB_UPCOMING]: {
-      isEmpty: upcomingFestivals.length === 0,
+      isEmpty: plannedFestivals.length === 0,
       text: '관람 예정인 공연이 없어요.',
     },
   } as const;

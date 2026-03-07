@@ -18,7 +18,7 @@ const HomePage = () => {
 
   const {
     allFestivals,
-    upcomingFestivals,
+    plannedFestivals,
     bannerFestival,
     selectedTab,
     setSelectedTab,
@@ -43,7 +43,7 @@ const HomePage = () => {
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}
         allFestivals={allFestivals}
-        upcomingFestivals={upcomingFestivals}
+        plannedFestivals={plannedFestivals}
       />
     </div>
   );

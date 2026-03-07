@@ -1,6 +1,11 @@
 import type { Festival, PaginationResponse } from './festival';
 
-export interface UpcomingFestivalItem {
+export interface FestivalsResponse {
+  festivals: Festival[];
+  pagination: PaginationResponse;
+}
+
+export interface UpcomingFestivalResponse {
   festivalId: number;
   title: string;
   mainImageUrl: string;
@@ -8,11 +13,6 @@ export interface UpcomingFestivalItem {
   startDate: string;
   endDate: string;
   dday: number;
-}
-
-export interface FestivalsResponse {
-  festivals: Festival[];
-  pagination: PaginationResponse;
 }
 
 export interface NicknameResponse {
