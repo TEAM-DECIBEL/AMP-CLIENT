@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router';
 
 import { HomeBanner } from '@amp/compositions';
 
@@ -6,11 +7,15 @@ import FestivalSection from '@widgets/home/components/festival-section/festival-
 
 import { USER_QUERY_OPTIONS } from '@entities/user/model/query-options';
 
+import { ROUTE } from '@shared/constants/path';
+
 import useHomeFestivals from './model/use-home-festivals';
 
 import { page } from './home.css';
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   const { data } = useQuery({
     ...USER_QUERY_OPTIONS.NICKNAME(),
   });
@@ -23,6 +28,10 @@ const HomePage = () => {
     selectedTab,
     setSelectedTab,
   } = useHomeFestivals();
+
+  const handleCardClick = (festivalId: number) => {
+    navigate(ROUTE.noticeList(festivalId));
+  };
 
   return (
     <div className={page}>
@@ -44,6 +53,7 @@ const HomePage = () => {
         onTabChange={setSelectedTab}
         allFestivals={allFestivals}
         plannedFestivals={plannedFestivals}
+        onCardClick={handleCardClick}
       />
     </div>
   );

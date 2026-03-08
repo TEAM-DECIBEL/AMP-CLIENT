@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router';
-
 import { EmptyView } from '@amp/ads-ui';
 
 import {
@@ -8,7 +6,6 @@ import {
   type TabValue,
 } from '@widgets/home/constants/home-tabs';
 
-import { ROUTE } from '@shared/constants/path';
 import type { Festival } from '@shared/types/festival';
 
 import FestivalCard from '../festival-card/festival-card';
@@ -21,6 +18,7 @@ interface FestivalSectionProps {
   onTabChange: (value: TabValue) => void;
   allFestivals: Festival[];
   plannedFestivals: Festival[];
+  onCardClick: (festivalId: number) => void;
 }
 
 const FestivalSection = ({
@@ -28,13 +26,8 @@ const FestivalSection = ({
   onTabChange,
   allFestivals,
   plannedFestivals,
+  onCardClick,
 }: FestivalSectionProps) => {
-  const navigate = useNavigate();
-
-  const handleCardClick = (festivalId: number) => {
-    navigate(ROUTE.noticeList(festivalId));
-  };
-
   const targetFestivals =
     selectedTab === TAB_ALL ? allFestivals : plannedFestivals;
 
@@ -65,7 +58,7 @@ const FestivalSection = ({
                 <FestivalCard
                   festival={festival}
                   showStatus={false}
-                  onCardClick={handleCardClick}
+                  onCardClick={onCardClick}
                 />
               </li>
             ))}
