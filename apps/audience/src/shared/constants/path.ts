@@ -15,4 +15,8 @@ export const ROUTE_PATH = {
 
 export const ROUTE = {
   noticeList: (eventId: number) => `/events/${eventId}/notices`,
+  noticeDetails: (eventId: number, noticeId: number) =>
+    `/events/${eventId}/notices/${noticeId}`,
+  noticeEdit: (eventId: number, noticeId: number) =>
+    `/events/${eventId}/notices/${noticeId}/edit`,
 };
