@@ -1,9 +1,11 @@
+export type FestivalStatus = '관람 중' | '관람 예정' | '관람 완료';
+
 export interface Festival {
   festivalId: number;
   title: string;
   mainImageUrl: string;
   period: string;
-  status: '관람 중' | '관람 예정' | '관람 완료';
+  status: FestivalStatus;
   wishList: boolean;
   dDay?: number;
 }
