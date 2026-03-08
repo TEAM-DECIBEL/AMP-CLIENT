@@ -12,7 +12,7 @@ export interface UpcomingFestivalResponse {
   location: string;
   startDate: string;
   endDate: string;
-  dday: number;
+  dDay: number;
 }
 
 export interface NicknameResponse {
