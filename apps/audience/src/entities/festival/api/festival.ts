@@ -14,11 +14,8 @@ import type {
 export const getAllFestivals = (params: PageSizeParams = {}) =>
   get<FestivalsResponse, PageSizeParams>(END_POINT.GET_ALL_FESTIVALS, params);
 
-export const getPlannedFestivals = (params: PageSizeParams = {}) =>
-  get<FestivalsResponse, PageSizeParams>(
-    END_POINT.GET_PLANNED_FESTIVALS,
-    params,
-  );
+export const getWishlists = (params: PageSizeParams = {}) =>
+  get<FestivalsResponse, PageSizeParams>(END_POINT.GET_WISHLISTS, params);
 
 export const getUpcomingFestival = (params: PageSizeParams = {}) =>
   get<UpcomingFestivalResponse, PageSizeParams>(

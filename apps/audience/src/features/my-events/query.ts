@@ -8,7 +8,7 @@ import { USERS_QUERY_KEY } from '@shared/constants/query-key';
 import type { MyEventsResponse } from '@shared/types/my-events-response';
 
 export const getMyEvents = (params: PageSizeParams = {}) =>
-  get<MyEventsResponse, PageSizeParams>(END_POINT.GET_MY_FESTIVALS_ALL, params);
+  get<MyEventsResponse, PageSizeParams>(END_POINT.GET_WISHLISTS, params);
 
 export const MY_EVENTS_QUERY_OPTIONS = {
   LIST: (params: PageSizeParams = {}) =>

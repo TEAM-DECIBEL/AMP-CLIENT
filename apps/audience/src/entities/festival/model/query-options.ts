@@ -6,8 +6,8 @@ import { USERS_QUERY_KEY } from '@shared/constants/query-key';
 
 import {
   getAllFestivals,
-  getPlannedFestivals,
   getUpcomingFestival,
+  getWishlists,
 } from '../api/festival';
 
 export const FESTIVAL_QUERY_OPTIONS = {
@@ -19,7 +19,7 @@ export const FESTIVAL_QUERY_OPTIONS = {
   PLANNED_FESTIVALS: (params: PageSizeParams = { page: 0, size: 20 }) =>
     queryOptions({
       queryKey: [...USERS_QUERY_KEY.HOME_FESTIVALS_PLANNED(), params],
-      queryFn: () => getPlannedFestivals(params),
+      queryFn: () => getWishlists(params),
     }),
   UPCOMING_FESTIVAL: (params: PageSizeParams = {}) =>
     queryOptions({
