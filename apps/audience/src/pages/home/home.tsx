@@ -4,7 +4,7 @@ import { HomeBanner } from '@amp/compositions';
 
 import FestivalSection from '@widgets/home/components/festival-section/festival-section';
 
-import { FESTIVAL_QUERY_OPTIONS } from '@entities/festival/model/query-options';
+import { USER_QUERY_OPTIONS } from '@entities/user/model/query-options';
 
 import useHomeFestivals from './model/use-home-festivals';
 
@@ -12,7 +12,7 @@ import { page } from './home.css';
 
 const HomePage = () => {
   const { data } = useQuery({
-    ...FESTIVAL_QUERY_OPTIONS.NICKNAME(),
+    ...USER_QUERY_OPTIONS.NICKNAME(),
   });
   const nickname = data?.nickname;
 

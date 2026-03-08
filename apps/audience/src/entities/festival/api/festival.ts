@@ -8,7 +8,6 @@ import type {
 } from '@shared/types/festival';
 import type {
   FestivalsResponse,
-  NicknameResponse,
   UpcomingFestivalResponse,
 } from '@shared/types/home-response';
 
@@ -32,6 +31,3 @@ export const putWishList = (festivalId: number, body: WishListRequest) =>
     END_POINT.PUT_WISH_LIST(festivalId),
     body,
   );
-
-export const getUserNickname = () =>
-  get<NicknameResponse>(END_POINT.GET_NICKNAME);
