@@ -12,3 +12,7 @@ export const ROUTE_PATH = {
   NOTICE_EDIT: '/events/:eventId/notices/:noticeId/edit',
   NOT_FOUND: '/not-found',
 } as const;
+
+export const ROUTE = {
+  noticeList: (eventId: number) => `/events/${eventId}/notices`,
+};

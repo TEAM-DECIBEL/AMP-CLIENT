@@ -1,8 +1,8 @@
-import { generatePath, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import FestivalCard from '@widgets/home/components/festival-card/festival-card';
 
-import { ROUTE_PATH } from '@shared/constants/path';
+import { ROUTE } from '@shared/constants/path';
 import type { Festival } from '@shared/types/festival';
 
 interface FestivalListProps {
@@ -13,11 +13,7 @@ const FestivalList = ({ festivals }: FestivalListProps) => {
   const navigate = useNavigate();
 
   const handleCardClick = (festivalId: number) => {
-    navigate(
-      generatePath(ROUTE_PATH.NOTICE_LIST, {
-        eventId: String(festivalId),
-      }),
-    );
+    navigate(ROUTE.noticeList(festivalId));
   };
 
   return (

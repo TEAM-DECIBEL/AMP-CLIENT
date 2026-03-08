@@ -1,4 +1,4 @@
-import { generatePath, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { EmptyView } from '@amp/ads-ui';
 
@@ -8,7 +8,7 @@ import {
   type TabValue,
 } from '@widgets/home/constants/home-tabs';
 
-import { ROUTE_PATH } from '@shared/constants/path';
+import { ROUTE } from '@shared/constants/path';
 import type { Festival } from '@shared/types/festival';
 
 import FestivalCard from '../festival-card/festival-card';
@@ -32,11 +32,7 @@ const FestivalSection = ({
   const navigate = useNavigate();
 
   const handleCardClick = (festivalId: number) => {
-    navigate(
-      generatePath(ROUTE_PATH.NOTICE_LIST, {
-        eventId: String(festivalId),
-      }),
-    );
+    navigate(ROUTE.noticeList(festivalId));
   };
 
   const targetFestivals =
