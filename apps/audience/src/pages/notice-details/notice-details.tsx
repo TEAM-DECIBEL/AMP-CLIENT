@@ -16,20 +16,14 @@ const NoticeDetailsPage = () => {
   const noticeIdNumber = Number(noticeId);
 
   const { data } = useQuery(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
-  const bookmarkMutation = useNoticeBookmark();
+  const { toggleNoticeBookmark, isBookmarkPending } = useNoticeBookmark();
 
   const handleBookmark = () => {
-    if (bookmarkMutation.isPending) {
-      return;
-    }
-    if (!Number.isFinite(noticeIdNumber)) {
-      return;
-    }
-    if (!data) {
+    if (isBookmarkPending || !data || !Number.isFinite(noticeIdNumber)) {
       return;
     }
 
-    bookmarkMutation.mutate({
+    toggleNoticeBookmark({
       noticeId: noticeIdNumber,
       isBookmarked: !data.isSaved,
     });
@@ -52,11 +46,7 @@ const NoticeDetailsPage = () => {
   }
 
   const handleShare = async () => {
-    if (
-      typeof window === 'undefined' ||
-      typeof navigator === 'undefined' ||
-      !navigator.share
-    ) {
+    if (!navigator.share) {
       return;
     }
 
@@ -82,7 +72,6 @@ const NoticeDetailsPage = () => {
           type='icon'
           color='gray'
           onClick={handleBookmark}
-          disabled={bookmarkMutation.isPending}
           className={!normalizedData.isSaved ? styles.unsaved : undefined}
         >
           <div>
