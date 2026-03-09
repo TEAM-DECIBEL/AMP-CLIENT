@@ -36,3 +36,13 @@ export const postNotificationsSubscribe = (
     body,
   );
 };
+
+interface PostNoticeBookmarkRequest {
+  isBookmarked: boolean;
+}
+
+export const postNoticeBookmark = (noticeId: number, isBookmarked: boolean) =>
+  post<void, PostNoticeBookmarkRequest>(
+    END_POINT.POST_NOTICE_BOOKMARK(noticeId),
+    { isBookmarked },
+  );

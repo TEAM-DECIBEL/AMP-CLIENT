@@ -1,10 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { postNoticeBookmark } from '@features/bookmark/apis/query';
-import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-details/query';
+import { postNoticeBookmark } from '@entities/notice/api/notice';
 
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
-import { NoticeDetailResponse } from '@shared/types/notice-response';
+import type { NoticeDetailResponse } from '@shared/types/notice-response';
 
 interface NoticeBookmarkVariables {
   noticeId: number;
@@ -20,45 +19,38 @@ export const useNoticeBookmark = () => {
         postNoticeBookmark(noticeId, isBookmarked),
 
       onMutate: async ({ noticeId, isBookmarked }) => {
-        const { queryKey: detailQueryKey } =
-          NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeId);
+        const queryKey = USERS_QUERY_KEY.FESTIVAL_NOTICE_DETAIL(noticeId);
 
-        await queryClient.cancelQueries({ queryKey: detailQueryKey });
+        await queryClient.cancelQueries({ queryKey });
 
         const previousDetail =
-          queryClient.getQueryData<NoticeDetailResponse>(detailQueryKey);
+          queryClient.getQueryData<NoticeDetailResponse>(queryKey);
 
         if (previousDetail) {
-          queryClient.setQueryData<NoticeDetailResponse>(
-            detailQueryKey,
-            (old) => {
-              if (!old) {
-                return previousDetail;
-              }
-              return {
-                ...old,
-                isSaved: isBookmarked,
-              };
-            },
-          );
+          queryClient.setQueryData<NoticeDetailResponse>(queryKey, (old) => {
+            if (!old) {
+              return previousDetail;
+            }
+            return {
+              ...old,
+              isSaved: isBookmarked,
+            };
+          });
         }
 
-        return { previousDetail, detailQueryKey };
+        return { previousDetail, queryKey };
       },
 
       onError: (_err, _variables, context) => {
-        if (context?.previousDetail && context?.detailQueryKey) {
-          queryClient.setQueryData(
-            context.detailQueryKey,
-            context.previousDetail,
-          );
+        if (context?.previousDetail && context?.queryKey) {
+          queryClient.setQueryData(context.queryKey, context.previousDetail);
         }
       },
 
       onSettled: (_data, _err, _variables, context) => {
-        if (context?.detailQueryKey) {
+        if (context?.queryKey) {
           queryClient.invalidateQueries({
-            queryKey: context.detailQueryKey,
+            queryKey: context.queryKey,
           });
         }
 
