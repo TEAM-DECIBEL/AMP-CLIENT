@@ -1,24 +1,41 @@
 import { useCallback, useState } from 'react';
 
-interface WithId {
-  id: string;
+type ItemId = string | number;
+
+interface WithOptionalId {
+  id?: ItemId;
 }
 
-interface UseItemListReturn<T extends WithId> {
-  items: T[];
+type WithRequiredId<T extends WithOptionalId> = Omit<T, 'id'> & {
+  id: ItemId;
+};
+
+interface UseItemListReturn<T extends WithOptionalId> {
+  items: WithRequiredId<T>[];
   add: (item: Omit<T, 'id'>) => void;
-  remove: (id: string) => void;
+  remove: (id: string | number) => void;
   clear: () => void;
 }
 
-const useItemList = <T extends WithId>(): UseItemListReturn<T> => {
-  const [items, setItems] = useState<T[]>([]);
+const ensureItemId = <T extends WithOptionalId>(item: T): WithRequiredId<T> => {
+  return {
+    ...item,
+    id: item.id ?? crypto.randomUUID(),
+  } as WithRequiredId<T>;
+};
+
+const useItemList = <T extends WithOptionalId>(
+  initialItems: T[] = [],
+): UseItemListReturn<T> => {
+  const [items, setItems] = useState<WithRequiredId<T>[]>(() =>
+    initialItems.map(ensureItemId),
+  );
 
   const add = useCallback((item: Omit<T, 'id'>) => {
-    setItems((prev) => [...prev, { id: crypto.randomUUID(), ...item } as T]);
+    setItems((prev) => [...prev, ensureItemId(item as T)]);
   }, []);
 
-  const remove = useCallback((id: string) => {
+  const remove = useCallback((id: ItemId) => {
     setItems((prev) => prev.filter((x) => x.id !== id));
   }, []);
 

@@ -1,11 +1,13 @@
+type ItemId = string | number;
+
 export interface EventScheduleValue {
-  id: string;
+  id?: ItemId;
   date: string;
   time: string;
 }
 
 export interface EventStageValue {
-  id: string;
+  id?: ItemId;
   title: string;
   location?: string;
 }

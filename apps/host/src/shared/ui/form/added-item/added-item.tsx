@@ -6,8 +6,10 @@ import * as styles from './added-item.css';
 
 type SecondVariant = 'default' | 'location';
 
+type ItemId = string | number;
+
 interface AddedItemModel {
-  id: string;
+  id: ItemId;
   first: string;
   second?: string;
   firstIcon: ReactNode;
@@ -17,7 +19,7 @@ interface AddedItemModel {
 
 interface AddedItemProps<T> {
   items: T[];
-  onRemove: (id: string) => void;
+  onRemove: (id: ItemId) => void;
   getItem: (item: T) => AddedItemModel;
 }
 
