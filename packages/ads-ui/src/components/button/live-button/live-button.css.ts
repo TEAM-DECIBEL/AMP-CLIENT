@@ -28,6 +28,11 @@ export const contentContainer = style({
   gap: '0.3rem',
 });
 
+export const imageContainer = style({
+  position: 'relative',
+  width: '100%',
+});
+
 export const textContainer = style({
   display: 'flex',
   flexDirection: 'column',
@@ -65,6 +70,12 @@ export const img = style({
   aspectRatio: '1.95 / 1',
   borderRadius: '8px',
   objectFit: 'cover',
+});
+
+export const statusChip = style({
+  position: 'absolute',
+  top: '0.5rem',
+  left: '0.5rem',
 });
 
 export const disabled = style({
