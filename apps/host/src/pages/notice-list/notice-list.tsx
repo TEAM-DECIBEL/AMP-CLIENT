@@ -83,6 +83,7 @@ const NoticeListPage = () => {
             noticeList={noticeList}
             onSelectCategory={handleChipClick}
             onNoticeItemClick={handleNoticeItemClick}
+            emptyTitle='작성한 공지가 없어요.'
           />
         ) : (
           <section className={styles.currentContainer}>

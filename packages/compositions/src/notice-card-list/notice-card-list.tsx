@@ -17,15 +17,20 @@ export interface NoticeItem {
 interface NoticeCardListProps {
   notices: NoticeItem[];
   onItemClick: (id: number) => void;
+  emptyTitle: string;
 }
 
 const DEFAULT_IMG = IMAGES.EMPTY_NOTICE;
 
-const NoticeCardList = ({ notices, onItemClick }: NoticeCardListProps) => {
+const NoticeCardList = ({
+  notices,
+  onItemClick,
+  emptyTitle,
+}: NoticeCardListProps) => {
   if (notices.length === 0) {
     return (
       <div className={styles.emptyContainer}>
-        <EmptyView imageType='alert' title='작성한 공지가 없어요.' />
+        <EmptyView imageType='alert' title={emptyTitle} />
       </div>
     );
   }
