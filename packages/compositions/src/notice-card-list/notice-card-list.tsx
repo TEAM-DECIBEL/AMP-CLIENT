@@ -4,7 +4,6 @@ import { IMAGES } from '../assets/index';
 
 import * as styles from './notice-card-list.css';
 
-// TODO: 현재는 목데이터 기준, 추후 type에서 import
 export interface NoticeItem {
   noticeId: number;
   imageUrl: string | null;
@@ -26,7 +25,7 @@ const NoticeCardList = ({ notices, onItemClick }: NoticeCardListProps) => {
   if (notices.length === 0) {
     return (
       <div className={styles.emptyContainer}>
-        <EmptyView title='작성된 공지가 없어요.' />
+        <EmptyView imageType='alert' title='작성한 공지가 없어요.' />
       </div>
     );
   }

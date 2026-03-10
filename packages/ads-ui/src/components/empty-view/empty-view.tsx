@@ -7,14 +7,29 @@ import * as styles from './empty-view.css';
 interface EmptyViewProps {
   title: ReactNode;
   description?: ReactNode;
+  imageType?: 'ticket' | 'alert';
 }
 
-const EmptyView = ({ title, description }: EmptyViewProps) => {
+const IMAGE_SRC = {
+  ticket: IMAGES.EMPTY_VIEW_TICKET,
+  alert: IMAGES.EMPTY_VIEW_ALERT,
+} as const;
+
+const EmptyView = ({
+  title,
+  description,
+  imageType = 'ticket',
+}: EmptyViewProps) => {
   const hasDescription = Boolean(description);
 
   return (
     <div className={styles.empty}>
-      <img src={IMAGES.EMPTY_VIEW} className={styles.image} />
+      <img
+        src={IMAGE_SRC[imageType]}
+        className={styles.image}
+        alt=''
+        aria-hidden='true'
+      />
       <div className={styles.textGroup}>
         <span
           className={
