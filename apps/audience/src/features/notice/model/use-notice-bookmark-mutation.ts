@@ -5,17 +5,17 @@ import { postNoticeBookmark } from '@entities/notice/api/notice';
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
 import type { NoticeDetailResponse } from '@shared/types/notice-response';
 
-interface NoticeBookmarkVariables {
+interface NoticeBookmarkMutationVariables {
   noticeId: number;
   isSaved: boolean;
 }
 
-export const useNoticeBookmark = () => {
+export const useNoticeBookmarkMutation = () => {
   const queryClient = useQueryClient();
 
   const { mutate: toggleNoticeBookmark, isPending: isBookmarkPending } =
     useMutation({
-      mutationFn: ({ noticeId, isSaved }: NoticeBookmarkVariables) =>
+      mutationFn: ({ noticeId, isSaved }: NoticeBookmarkMutationVariables) =>
         postNoticeBookmark(noticeId, isSaved),
 
       onMutate: async ({ noticeId, isSaved }) => {

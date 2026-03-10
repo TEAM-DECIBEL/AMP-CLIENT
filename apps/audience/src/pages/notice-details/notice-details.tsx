@@ -6,7 +6,7 @@ import { CircleButton, CtaButton } from '@amp/ads-ui';
 import { SaveIcon } from '@amp/ads-ui/icons';
 import { NoticeDetailLayout } from '@amp/compositions';
 
-import { useNoticeBookmark } from '@features/bookmark/hooks/use-notice-bookmark';
+import { useNoticeBookmarkMutation } from '@features/notice/model/use-notice-bookmark-mutation';
 import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-details/query';
 
 import * as styles from './notice-details.css';
@@ -16,18 +16,8 @@ const NoticeDetailsPage = () => {
   const noticeIdNumber = Number(noticeId);
 
   const { data } = useQuery(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
-  const { toggleNoticeBookmark, isBookmarkPending } = useNoticeBookmark();
-
-  const handleBookmark = () => {
-    if (isBookmarkPending || !data || !Number.isFinite(noticeIdNumber)) {
-      return;
-    }
-
-    toggleNoticeBookmark({
-      noticeId: noticeIdNumber,
-      isSaved: !data.isSaved,
-    });
-  };
+  const { toggleNoticeBookmark, isBookmarkPending } =
+    useNoticeBookmarkMutation();
 
   const normalizedData = useMemo(() => {
     if (!data) {
@@ -59,6 +49,17 @@ const NoticeDetailsPage = () => {
     } catch {
       // 사용자 취소 등은 무시
     }
+  };
+
+  const handleBookmark = () => {
+    if (isBookmarkPending) {
+      return;
+    }
+
+    toggleNoticeBookmark({
+      noticeId: noticeIdNumber,
+      isSaved: !normalizedData.isSaved,
+    });
   };
 
   return (
