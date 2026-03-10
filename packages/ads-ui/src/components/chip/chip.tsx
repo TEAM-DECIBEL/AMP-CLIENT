@@ -23,7 +23,16 @@ interface ChipMyPageProps extends ChipBaseProps {
   status?: never;
 }
 
-type ChipProps = ChipStatusProps | ChipDayProps | ChipMyPageProps;
+interface ChipCongestionProps extends ChipBaseProps {
+  variant: 'congestion';
+  status: 'smooth' | 'normal' | 'crowded' | 'none';
+}
+
+type ChipProps =
+  | ChipStatusProps
+  | ChipDayProps
+  | ChipMyPageProps
+  | ChipCongestionProps;
 
 const Chip = (props: ChipProps) => {
   const { className, children, variant } = props;
