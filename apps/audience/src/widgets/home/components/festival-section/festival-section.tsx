@@ -44,7 +44,7 @@ const FestivalSection = ({
   const emptyConfig = {
     [TAB_ALL]: {
       isEmpty: allFestivals.length === 0,
-      text: '등록한 공연이 아직 없어요.',
+      text: '등록된 공연이 아직 없어요.',
     },
     [TAB_UPCOMING]: {
       isEmpty: upcomingFestivals.length === 0,
