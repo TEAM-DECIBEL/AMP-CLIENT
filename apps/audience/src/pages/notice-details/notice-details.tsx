@@ -25,7 +25,7 @@ const NoticeDetailsPage = () => {
 
     toggleNoticeBookmark({
       noticeId: noticeIdNumber,
-      isBookmarked: !data.isSaved,
+      isSaved: !data.isSaved,
     });
   };
 
