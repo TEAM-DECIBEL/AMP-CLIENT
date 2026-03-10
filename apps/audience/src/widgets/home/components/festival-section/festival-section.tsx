@@ -59,7 +59,10 @@ const FestivalSection = ({
       <div className={styles.content}>
         {emptyConfig[selectedTab].isEmpty ? (
           <div className={styles.emptyContainer}>
-            <EmptyView title={emptyConfig[selectedTab].text} />
+            <EmptyView
+              imageType='ticket'
+              title={emptyConfig[selectedTab].text}
+            />
           </div>
         ) : (
           <ul className={styles.cardList}>

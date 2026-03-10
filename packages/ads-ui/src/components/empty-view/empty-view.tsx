@@ -7,7 +7,7 @@ import * as styles from './empty-view.css';
 interface EmptyViewProps {
   title: ReactNode;
   description?: ReactNode;
-  imageType?: 'ticket' | 'alert';
+  imageType: 'ticket' | 'alert';
 }
 
 const IMAGE_SRC = {
@@ -15,11 +15,7 @@ const IMAGE_SRC = {
   alert: IMAGES.EMPTY_VIEW_ALERT,
 } as const;
 
-const EmptyView = ({
-  title,
-  description,
-  imageType = 'ticket',
-}: EmptyViewProps) => {
+const EmptyView = ({ title, description, imageType }: EmptyViewProps) => {
   const hasDescription = Boolean(description);
 
   return (
