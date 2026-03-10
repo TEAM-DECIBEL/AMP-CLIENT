@@ -41,12 +41,10 @@ export const useNoticeBookmark = () => {
         }
       },
 
-      onSettled: (_data, _err, _variables, context) => {
-        if (context?.queryKey) {
-          queryClient.invalidateQueries({
-            queryKey: context.queryKey,
-          });
-        }
+      onSettled: (_data, _err, variables) => {
+        queryClient.invalidateQueries({
+          queryKey: USERS_QUERY_KEY.FESTIVAL_NOTICE_DETAIL(variables.noticeId),
+        });
 
         queryClient.invalidateQueries({
           queryKey: USERS_QUERY_KEY.BOOKMARKS.NOTICES(),
