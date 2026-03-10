@@ -8,8 +8,6 @@ import { Loading, LogoutModal, MyPageLayout } from '@amp/compositions';
 import { postLogout } from '@features/auth/apis/query';
 import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
-import { USER_QUERY_OPTIONS } from '@entities/user/model/query-options';
-
 import { ROUTE_PATH } from '@shared/constants/path';
 
 const menuItems = [
@@ -31,7 +29,6 @@ const MyPage = () => {
   const { data: myPageData, isPending } = useQuery(
     MY_PAGE_QUERY_OPTIONS.MY_PAGE(),
   );
-  const { data: nicknameData } = useQuery(USER_QUERY_OPTIONS.NICKNAME());
   const logoutMutation = useMutation({
     mutationFn: postLogout,
   });
@@ -61,13 +58,10 @@ const MyPage = () => {
     return null;
   }
 
-  const userName =
-    myPageData.nickname?.trim() || nicknameData?.nickname?.trim() || '';
-
   return (
     <>
       <MyPageLayout
-        name={userName}
+        name={myPageData.nickname}
         roleLabel='관객'
         profileImageUrl={myPageData.profileImageUrl}
         menuItems={menuItems.map((menu) => ({
