@@ -1,5 +1,7 @@
 import { Chip } from '@amp/ads-ui';
-import type { FestivalStatus } from '@amp/shared/types';
+
+type FestivalStatus = 'current' | 'upcoming' | 'completed';
+
 interface FestivalStatusGroupProps {
   dDay?: string;
   status?: FestivalStatus;
