@@ -1,6 +1,6 @@
 export interface MyPageResponse {
   userId: number;
-  nickname: string;
+  nickname?: string;
   profileImageUrl: string;
   userType: 'AUDIENCE';
 }
