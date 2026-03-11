@@ -25,10 +25,10 @@ const CardHome = ({ title, location, date, dDay }: CardHomeProps) => {
             </div>
             <p>{date}</p>
           </div>
-          <div className={styles.dday}>
-            <p className={styles.ddayText}>D</p>
+          <div className={styles.dDay}>
+            <p className={styles.dDayText}>D</p>
             <span>-</span>
-            <p className={styles.ddayText}>
+            <p className={styles.dDayText}>
               {dDay === 0 ? 'Day' : Math.abs(dDay)}
             </p>
           </div>

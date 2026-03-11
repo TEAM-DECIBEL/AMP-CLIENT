@@ -13,7 +13,7 @@ const STATUS_CHIP: Record<MyEventsStatus, ReactElement> = {
     </Chip>
   ),
   '관람 예정': (
-    <Chip variant='status' status='dday'>
+    <Chip variant='status' status='dDay'>
       관람 예정
     </Chip>
   ),
