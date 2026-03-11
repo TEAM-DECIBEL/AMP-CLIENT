@@ -6,7 +6,7 @@ import { CircleButton, CtaButton } from '@amp/ads-ui';
 import { SaveIcon } from '@amp/ads-ui/icons';
 import { NoticeDetailLayout } from '@amp/compositions';
 
-import { useNoticeBookmarkMutation } from '@features/notice/model/use-notice-bookmark-mutation';
+import { useToggleNoticeBookmarkMutation } from '@features/notice/model/use-toggle-notice-bookmark-mutation';
 import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-details/query';
 
 import * as styles from './notice-details.css';
@@ -17,7 +17,7 @@ const NoticeDetailsPage = () => {
 
   const { data } = useQuery(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
   const { toggleNoticeBookmark, isBookmarkPending } =
-    useNoticeBookmarkMutation();
+    useToggleNoticeBookmarkMutation();
 
   const normalizedData = useMemo(() => {
     if (!data) {
