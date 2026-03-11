@@ -7,7 +7,7 @@ import { ampThemeVars } from '../../styles';
 export const iconColorVar = createVar();
 
 const iconPadding = {
-  padding: '1.3rem 1.6rem',
+  padding: '1.2rem 1.5rem',
 } as const;
 
 export const textfield = recipe({
@@ -44,6 +44,7 @@ export const textfield = recipe({
 });
 
 export const icon = style({
+  flexShrink: 0,
   color: iconColorVar,
 });
 
@@ -53,6 +54,7 @@ export const input = style({
       color: ampThemeVars.color.gray_400,
     },
   },
+  padding: 0,
   color: ampThemeVars.color.gray_900,
   border: 'none',
   outline: 'none',
