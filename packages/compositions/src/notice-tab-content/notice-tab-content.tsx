@@ -13,6 +13,7 @@ interface NoticeTabContentProps {
   selectedCategory: CategoryType;
   noticeList: NoticeItem[];
   isSelectedCategory?: boolean;
+  emptyTitle: string;
   onSelectCategory: (category: CategoryType) => void;
   onAlertClick?: () => void;
   onNoticeItemClick: (id: number) => void;
@@ -23,6 +24,7 @@ const NoticeTabContent = ({
   noticeList,
   isSelectedCategory = false,
   categories,
+  emptyTitle,
   onSelectCategory,
   onAlertClick,
   onNoticeItemClick,
@@ -50,7 +52,11 @@ const NoticeTabContent = ({
           </div>
         )}
       </div>
-      <NoticeCardList notices={noticeList} onItemClick={onNoticeItemClick} />
+      <NoticeCardList
+        notices={noticeList}
+        onItemClick={onNoticeItemClick}
+        emptyTitle={emptyTitle}
+      />
     </section>
   );
 };

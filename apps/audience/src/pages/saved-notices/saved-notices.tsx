@@ -24,7 +24,7 @@ const SavedNoticesPage = () => {
     return (
       <section className={styles.page}>
         <div className={styles.empty}>
-          <EmptyView title='저장한 공지가 없어요!' />
+          <EmptyView imageType='ticket' title='저장한 공지가 없어요!' />
         </div>
       </section>
     );
