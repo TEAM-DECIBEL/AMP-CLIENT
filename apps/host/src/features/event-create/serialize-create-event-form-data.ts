@@ -1,7 +1,9 @@
 import { toFormData } from '@shared/libs/to-form-data';
 import type { EventFormSubmitValues } from '@shared/types/event-form';
 
-export const serializeCreateFestivalFormData = (v: EventFormSubmitValues): FormData | null => {
+export const serializeCreateEventFormData = (
+  v: EventFormSubmitValues,
+): FormData | null => {
   if (!v.mainImageFile) {
     return null;
   }
@@ -10,6 +12,7 @@ export const serializeCreateFestivalFormData = (v: EventFormSubmitValues): FormD
     festivalDate: date,
     festivalTime: time,
   }));
+
   const stagesPayload = v.stages.map(({ title, location }) => ({
     title,
     location,

@@ -10,6 +10,7 @@ export const ORGANIZERS_QUERY_KEY = {
   ],
   MY_PAGE: () => [...ORGANIZERS_QUERY_KEY.ALL, 'my-page'],
   MY_FESTIVALS_ALL: () => [...ORGANIZERS_QUERY_KEY.ALL, 'my-festivals-all'],
+  FESTIVAL_CREATE: () => [...ORGANIZERS_QUERY_KEY.ALL, 'festival', 'create'],
   FESTIVAL_DELETE: (festivalId: number) => [
     ...ORGANIZERS_QUERY_KEY.ALL,
     'festival',
