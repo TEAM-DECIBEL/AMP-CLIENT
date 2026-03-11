@@ -33,17 +33,24 @@ export const postFestivalNotice = (
 
 export const putNotice = (noticeId: number, body: UpdateNoticeBody) => {
   const formData = new FormData();
-  formData.append('festivalId', String(body.festivalId));
-  formData.append('title', body.title);
-  formData.append('categoryId', String(body.categoryId));
-  formData.append('content', body.content);
-  formData.append('isPinned', String(body.isPinned));
-  if (body.newImage) {
-    formData.append('newImage', body.newImage);
-  }
-  if (body.previousImageUrl) {
-    formData.append('previousImageUrl', body.previousImageUrl);
-  }
+  const noticeUpdateRequest = {
+    festivalId: body.festivalId,
+    title: body.title,
+    categoryId: body.categoryId,
+    content: body.content,
+    isPinned: body.isPinned,
+    ...(body.keepImageUrls && body.keepImageUrls.length > 0
+      ? { keepImageUrls: body.keepImageUrls }
+      : {}),
+  };
+
+  formData.append(
+    'noticeUpdateRequest',
+    JSON.stringify(noticeUpdateRequest),
+  );
+  body.newImages?.forEach((image) => {
+    formData.append('newImages', image);
+  });
 
   return put<UpdateNoticeResponse, FormData>(
     END_POINT.PUT_NOTICE(noticeId),

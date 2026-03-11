@@ -121,10 +121,10 @@ export const useNoticeForm = (
           festivalId,
           title,
           categoryId: selectedCategoryId,
-          newImage: image,
+          newImages: image ? [image] : undefined,
+          keepImageUrls: shouldUsePreviousImage ? [imageUrl] : undefined,
           content,
           isPinned,
-          previousImageUrl: shouldUsePreviousImage ? imageUrl : undefined,
         },
         {
           onSuccess: () => {
