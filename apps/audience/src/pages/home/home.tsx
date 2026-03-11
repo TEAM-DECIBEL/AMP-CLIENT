@@ -33,7 +33,7 @@ const HomePage = () => {
           title={bannerFestival.title}
           location={bannerFestival.location}
           date={bannerFestival.period}
-          dday={bannerFestival.dDay}
+          dDay={bannerFestival.dDay}
         />
       ) : (
         <HomeBanner nickname={nickname} status='none' />

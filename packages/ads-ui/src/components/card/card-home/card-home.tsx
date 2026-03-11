@@ -6,10 +6,10 @@ interface CardHomeProps {
   title: string;
   location: string;
   date: string;
-  dday: number;
+  dDay: number;
 }
 
-const CardHome = ({ title, location, date, dday }: CardHomeProps) => {
+const CardHome = ({ title, location, date, dDay }: CardHomeProps) => {
   return (
     <article className={styles.background}>
       <div className={styles.contentContainer}>
@@ -29,7 +29,7 @@ const CardHome = ({ title, location, date, dday }: CardHomeProps) => {
             <p className={styles.ddayText}>D</p>
             <span>-</span>
             <p className={styles.ddayText}>
-              {dday === 0 ? 'Day' : Math.abs(dday)}
+              {dDay === 0 ? 'Day' : Math.abs(dDay)}
             </p>
           </div>
         </div>
