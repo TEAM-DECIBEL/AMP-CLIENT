@@ -1,6 +1,7 @@
 export const END_POINT = {
   // Festival
   POST_FESTIVAL_CREATE: '/festivals', // 공연 등록 화면
+  PATCH_FESTIVAL: (festivalId: number) => `/festivals/${festivalId}`, // 공연 수정 화면
   DELETE_FESTIVAL: (festivalId: number) => `/festivals/${festivalId}`, // 공연 삭제
   GET_FESTIVAL_BANNER: (festivalId: number) => `/festivals/${festivalId}`, // 공연 정보 조회
   GET_FESTIVAL_CONGESTION: (eventId: number) =>
