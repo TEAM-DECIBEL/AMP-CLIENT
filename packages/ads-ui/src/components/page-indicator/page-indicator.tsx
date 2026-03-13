@@ -7,11 +7,9 @@ interface PageIndicatorProps {
 
 const PageIndicator = ({ currentPage, totalPages }: PageIndicatorProps) => {
   return (
-    <div className={styles.container}>
-      <span>{currentPage}</span>
-      <span className={styles.slash}>/</span>
-      <span>{totalPages}</span>
-    </div>
+    <span className={styles.container}>
+      {currentPage} <span className={styles.slash}>/</span> {totalPages}
+    </span>
   );
 };
 
