@@ -56,9 +56,9 @@ const Content = ({ data }: NoticeDetailContentProps) => {
     <div className={styles.noticeDetail}>
       <div className={styles.imageSection}>
         <div className={styles.imageTrack} onScroll={handleScroll}>
-          {displayImages.map((imageUrl, index) => (
+          {displayImages.map((imageUrl) => (
             <img
-              key={`${imageUrl}-${index}`}
+              key={imageUrl}
               src={imageUrl}
               alt={data.title}
               className={styles.img}
