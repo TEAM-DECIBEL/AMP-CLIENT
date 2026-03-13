@@ -9,9 +9,10 @@ import {
   useNoticeUpdateMutation,
 } from '@features/notice/use-notice';
 
+import type { NoticeDetail } from '@entities/notice/types/notice';
+
 import { getCategoryIdByLabel } from '@shared/constants/category';
 import { ROUTE_PATH } from '@shared/constants/path';
-import type { NoticeDetail } from '@shared/types/notice';
 
 export const useNoticeForm = (
   festivalId: number | null,
@@ -101,7 +102,10 @@ export const useNoticeForm = (
     }
     if (isPinned && !initialData?.isPinned) {
       if (!pinnedCountReady) {
-        toast.show('공지 목록을 불러오는 중이에요.', '잠시 후 다시 시도해주세요.');
+        toast.show(
+          '공지 목록을 불러오는 중이에요.',
+          '잠시 후 다시 시도해주세요.',
+        );
         return;
       }
       if (pinnedCount >= 3) {

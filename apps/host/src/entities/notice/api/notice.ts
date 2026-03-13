@@ -1,13 +1,14 @@
 import { del, get, post, put } from '@amp/apis';
 
-import { END_POINT } from '@shared/constants/end-point';
 import type {
   CreateNoticeBody,
   CreateNoticeResponse,
   NoticeDetail,
   UpdateNoticeBody,
   UpdateNoticeResponse,
-} from '@shared/types/notice';
+} from '@entities/notice/types/notice';
+
+import { END_POINT } from '@shared/constants/end-point';
 
 export const postFestivalNotice = (
   festivalId: number,
