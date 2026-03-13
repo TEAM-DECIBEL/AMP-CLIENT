@@ -2,8 +2,9 @@ import { style } from '@vanilla-extract/css';
 
 import { ampThemeVars } from '../../../styles';
 
-export const addToWatch = style({
+export const button = style({
   display: 'inline-flex',
+  alignItems: 'center',
   padding: '0.6rem 1.2rem',
   gap: '0.8rem',
   borderRadius: '8px',
@@ -12,7 +13,7 @@ export const addToWatch = style({
   ...ampThemeVars.font.body_sb_13,
 
   selectors: {
-    '&[aria-pressed="true"]': {
+    '&[aria-pressed="true"], &[data-emphasized="true"]': {
       backgroundColor: ampThemeVars.color.primary_deep,
       color: ampThemeVars.color.sub_1,
     },

@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router';
 
-import { CircleButton } from '@amp/ads-ui';
+import { AddToWatchButton, CircleButton } from '@amp/ads-ui';
+import { CopyIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
   NOTICE_TAB,
@@ -61,6 +62,10 @@ const NoticeListPage = () => {
     navigate(`/events/${eventId}/notices/${noticeId}`);
   };
 
+  const handleCopyLink = () => {
+    return;
+  };
+
   return (
     <main className={styles.pageContainer}>
       {festivalBanner && (
@@ -69,6 +74,16 @@ const NoticeListPage = () => {
           title={festivalBanner.title}
           location={festivalBanner.location}
           date={festivalBanner.period}
+          button={
+            <AddToWatchButton
+              selected={false}
+              onChange={handleCopyLink}
+              icon={<CopyIcon />}
+              emphasized
+            >
+              링크 복사
+            </AddToWatchButton>
+          }
         />
       )}
       <div className={styles.mainContent}>

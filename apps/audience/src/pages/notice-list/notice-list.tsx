@@ -180,7 +180,9 @@ const NoticeListPage = () => {
               selected={bannerData?.isWishlist ?? false}
               onChange={toggleWishList}
               disabled={!bannerData || isTogglePending}
-            />
+            >
+              관람 예정
+            </AddToWatchButton>
           }
         />
       )}

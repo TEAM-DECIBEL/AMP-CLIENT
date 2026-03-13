@@ -8,6 +8,7 @@ export { default as CameraIcon } from './svgs/icn_camera.svg?react';
 export { default as ChatIcon } from './svgs/icn_chat.svg?react';
 export { default as CheckIcon } from './svgs/icn_check.svg?react';
 export { default as ConfirmIcon } from './svgs/icn_confirm.svg?react';
+export { default as CopyIcon } from './svgs/icn_copy.svg?react';
 export { default as DeleteIcon } from './svgs/icn_delete.svg?react';
 export { default as EmptyAlertIcon } from './svgs/icn_empty_alert.svg?react';
 export { default as FlagIcon } from './svgs/icn_flag.svg?react';
