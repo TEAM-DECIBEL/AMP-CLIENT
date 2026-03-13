@@ -36,7 +36,7 @@ const useHomeFestivals = () => {
           mainImageUrl: upcomingFestivalData.mainImageUrl,
           location: upcomingFestivalData.location,
           period: `${upcomingFestivalData.startDate} ~ ${upcomingFestivalData.endDate}`,
-          dDay: upcomingFestivalData.dday,
+          dDay: upcomingFestivalData.dDay,
         }
       : undefined,
     selectedTab,

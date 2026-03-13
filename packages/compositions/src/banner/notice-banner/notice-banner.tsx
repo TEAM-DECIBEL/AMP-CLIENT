@@ -8,7 +8,7 @@ interface NoticeBannerProps {
   title: string;
   location: string;
   date: string;
-  dday: string;
+  dDay: string;
   button?: ReactNode;
 }
 
@@ -16,14 +16,14 @@ const NoticeBanner = ({
   title,
   location,
   date,
-  dday,
+  dDay,
   button,
 }: NoticeBannerProps) => {
   return (
     <section className={styles.banner}>
       <div className={styles.content}>
         <Chip variant='day' status='color' className={styles.chip}>
-          {dday}
+          {dDay}
         </Chip>
 
         <div className={styles.text}>

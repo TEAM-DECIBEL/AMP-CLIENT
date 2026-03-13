@@ -40,7 +40,7 @@ export interface FestivalNoticeBanner {
   location: string;
   period: string;
   isWishlist: boolean;
-  dday: number;
+  dDay: number;
   activeCategories: ActiveCategory[];
 }
 
