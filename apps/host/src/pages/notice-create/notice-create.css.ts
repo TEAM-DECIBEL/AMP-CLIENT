@@ -65,12 +65,21 @@ export const chipContainer = style({
 export const imageListContainer = style({
   display: 'flex',
   gap: '1rem',
+  paddingTop: '1rem',
+  marginTop: '-1rem',
   overflowX: 'auto',
   msOverflowStyle: 'none',
   scrollbarWidth: 'none',
-  paddingTop: '1rem',
-  marginTop: '-1rem',
-  '::-webkit-scrollbar': {
-    display: 'none',
+  userSelect: 'none',
+  WebkitOverflowScrolling: 'touch',
+  cursor: 'grab',
+
+  selectors: {
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+    '&:active': {
+      cursor: 'grabbing',
+    },
   },
 });

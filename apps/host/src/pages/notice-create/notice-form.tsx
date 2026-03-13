@@ -14,6 +14,7 @@ import MultiImageButton from '@widgets/multi-image-add-button/multi-image-add-bu
 
 import { useNoticeForm } from '@features/notice/use-notice-form';
 
+import { useDragScroll } from '@shared/libs/use-drag-scroll';
 import type { NoticeDetail } from '@shared/types/notice';
 import InputLayout from '@shared/ui/input/input-layout';
 import Textarea from '@shared/ui/textarea/textarea';
@@ -35,6 +36,7 @@ const NoticeForm = ({
   activeCategories,
   pinnedCount,
 }: NoticeFormProps) => {
+  const { scrollRef, onDragStart, onDragEnd, onDragMove } = useDragScroll();
   const { formState, handlers, isValid, isSubmitting } = useNoticeForm(
     festivalId,
     noticeDetail,
@@ -80,7 +82,14 @@ const NoticeForm = ({
         </div>
 
         <InputLayout label='공지 이미지' isEssential={false}>
-          <div className={styles.imageListContainer}>
+          <div
+            ref={scrollRef}
+            className={styles.imageListContainer}
+            onMouseDown={onDragStart}
+            onMouseMove={onDragMove}
+            onMouseUp={onDragEnd}
+            onMouseLeave={onDragEnd}
+          >
             <MultiImageButton
               currentCount={images.length}
               maxCount={MAX_IMAGES}
