@@ -54,7 +54,9 @@ export const putNotice = (noticeId: number, body: UpdateNoticeBody) => {
 
   formData.append(
     'noticeUpdateRequest',
-    JSON.stringify(noticeUpdateRequest),
+    new Blob([JSON.stringify(noticeUpdateRequest)], {
+      type: 'application/json',
+    }),
   );
   body.newImages?.forEach((image) => {
     formData.append('newImages', image);
