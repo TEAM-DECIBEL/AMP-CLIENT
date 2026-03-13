@@ -1,13 +1,11 @@
 import { CardNotice, EmptyView } from '@amp/ads-ui';
 
-import { IMAGES } from '../assets/index';
-
 import * as styles from './notice-card-list.css';
 
 // TODO: 현재는 목데이터 기준, 추후 type에서 import
 export interface NoticeItem {
   noticeId: number;
-  imageUrl: string | null;
+  imageUrls: string[];
   title: string;
   content: string;
   isPinned: boolean;
@@ -19,8 +17,6 @@ interface NoticeCardListProps {
   notices: NoticeItem[];
   onItemClick: (id: number) => void;
 }
-
-const DEFAULT_IMG = IMAGES.EMPTY_NOTICE;
 
 const NoticeCardList = ({ notices, onItemClick }: NoticeCardListProps) => {
   if (notices.length === 0) {
@@ -36,7 +32,7 @@ const NoticeCardList = ({ notices, onItemClick }: NoticeCardListProps) => {
       {notices.map((notice) => (
         <div key={notice.noticeId} className={styles.card}>
           <CardNotice
-            imageUrl={notice.imageUrl || DEFAULT_IMG}
+            imageUrls={notice.imageUrls}
             title={notice.title}
             content={notice.content}
             isPinned={notice.isPinned}

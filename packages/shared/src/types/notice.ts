@@ -16,7 +16,7 @@ export interface Notice {
   categoryName: string;
   title: string;
   content: string;
-  imageUrl: string;
+  imageUrls: string[];
   isPinned: boolean;
   isSaved: boolean; // 북마크 여부
   createdAt: string;
