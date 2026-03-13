@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router';
 
-import { AddToWatchButton, CircleButton } from '@amp/ads-ui';
+import { AddToWatchButton, CircleButton, toast } from '@amp/ads-ui';
 import { CopyIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
@@ -65,6 +65,7 @@ const NoticeListPage = () => {
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
+      toast.show('링크가 복사되었어요.');
     } catch {
       return;
     }
