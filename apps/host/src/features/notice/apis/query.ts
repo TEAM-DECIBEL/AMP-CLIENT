@@ -17,12 +17,23 @@ export const postFestivalNotice = (
   body: CreateNoticeBody,
 ) => {
   const formData = new FormData();
-  formData.append('title', body.title);
-  formData.append('categoryId', String(body.categoryId));
-  formData.append('content', body.content);
-  formData.append('isPinned', String(body.isPinned));
+
+  const noticeCreateRequest = {
+    title: body.title,
+    categoryId: body.categoryId,
+    content: body.content,
+    isPinned: body.isPinned,
+  };
+
+  formData.append(
+    'noticeCreateRequest',
+    new Blob([JSON.stringify(noticeCreateRequest)], {
+      type: 'application/json',
+    }),
+  );
+
   if (body.image) {
-    formData.append('image', body.image);
+    formData.append('images', body.image);
   }
 
   return post<CreateNoticeResponse, FormData>(
