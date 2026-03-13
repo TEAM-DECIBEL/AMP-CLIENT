@@ -15,6 +15,29 @@ export const img = style({
   height: '36.6rem',
   flexShrink: 0,
   objectFit: 'cover',
+  scrollSnapAlign: 'start',
+});
+
+export const imageSection = style({
+  position: 'relative',
+});
+
+export const imageTrack = style({
+  display: 'flex',
+  overflowX: 'auto',
+  scrollSnapType: 'x mandatory',
+  scrollbarWidth: 'none',
+  selectors: {
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+  },
+});
+
+export const indicator = style({
+  position: 'absolute',
+  top: '2rem',
+  right: '2rem',
 });
 
 export const noticeDetail = style({

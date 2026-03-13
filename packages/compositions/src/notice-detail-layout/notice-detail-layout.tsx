@@ -1,4 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
+import type { SyntheticEvent, UIEvent } from 'react';
+
+import { PageIndicator } from '@amp/ads-ui';
 
 import { IMAGES } from '../assets/index';
 import ButtonGradientSection from '../button-gradient-section/button-gradient-section';
@@ -6,7 +9,7 @@ import ButtonGradientSection from '../button-gradient-section/button-gradient-se
 import * as styles from './notice-detail-layout.css';
 
 interface NoticeData {
-  imageUrl: string;
+  imageUrls: string[];
   title: string;
   category: string;
   createdAt: string;
@@ -30,10 +33,48 @@ const NoticeDetailLayoutRoot = ({ children }: NoticeDetailLayoutProps) => {
 };
 
 const Content = ({ data }: NoticeDetailContentProps) => {
-  const imgSrc = data.imageUrl?.trim() ? data.imageUrl : IMAGES.EMPTY_NOTICE;
+  const [currentPage, setCurrentPage] = useState(1);
+  const displayImages =
+    data.imageUrls.length > 0 ? data.imageUrls : [IMAGES.EMPTY_NOTICE];
+  const shouldShowIndicator = data.imageUrls.length > 1;
+
+  const handleScroll = (event: UIEvent<HTMLDivElement>) => {
+    const { scrollLeft, clientWidth } = event.currentTarget;
+    if (clientWidth === 0) {
+      return;
+    }
+
+    setCurrentPage(Math.round(scrollLeft / clientWidth) + 1);
+  };
+
+  const handleImageError = (event: SyntheticEvent<HTMLImageElement>) => {
+    event.currentTarget.onerror = null;
+    event.currentTarget.src = IMAGES.EMPTY_NOTICE;
+  };
+
   return (
     <div className={styles.noticeDetail}>
-      <img src={imgSrc} alt={data.title} className={styles.img} />
+      <div className={styles.imageSection}>
+        <div className={styles.imageTrack} onScroll={handleScroll}>
+          {displayImages.map((imageUrl, index) => (
+            <img
+              key={`${imageUrl}-${index}`}
+              src={imageUrl}
+              alt={data.title}
+              className={styles.img}
+              onError={handleImageError}
+            />
+          ))}
+        </div>
+        {shouldShowIndicator && (
+          <div className={styles.indicator}>
+            <PageIndicator
+              currentPage={currentPage}
+              totalPages={displayImages.length}
+            />
+          </div>
+        )}
+      </div>
       <header className={styles.header}>
         <p className={styles.category}>
           주최 공지 {'>'} {data.category}
