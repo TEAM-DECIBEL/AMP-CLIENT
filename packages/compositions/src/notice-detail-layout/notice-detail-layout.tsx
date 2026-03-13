@@ -40,7 +40,7 @@ const INITIAL_DRAG_STATE: DragState = {
   startScrollLeft: 0,
 };
 
-const getSnapScrollLeft = (element: HTMLDivElement) => {
+const getSnapScrollLeft = (element: HTMLElement) => {
   if (element.clientWidth === 0) {
     return 0;
   }
@@ -55,13 +55,13 @@ const NoticeDetailLayoutRoot = ({ children }: NoticeDetailLayoutProps) => {
 const Content = ({ data }: NoticeDetailContentProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isDragging, setIsDragging] = useState(false);
-  const trackRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLUListElement | null>(null);
   const dragStateRef = useRef<DragState>(INITIAL_DRAG_STATE);
   const displayImages =
     data.imageUrls.length > 0 ? data.imageUrls : [IMAGES.EMPTY_NOTICE];
   const shouldShowIndicator = data.imageUrls.length > 1;
 
-  const handleScroll = (event: UIEvent<HTMLDivElement>) => {
+  const handleScroll = (event: UIEvent<HTMLUListElement>) => {
     const { scrollLeft, clientWidth } = event.currentTarget;
     if (clientWidth === 0) {
       return;
@@ -75,7 +75,7 @@ const Content = ({ data }: NoticeDetailContentProps) => {
     event.currentTarget.src = IMAGES.EMPTY_NOTICE;
   };
 
-  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+  const handleMouseDown = (event: MouseEvent<HTMLUListElement>) => {
     dragStateRef.current = {
       isMouseDown: true,
       startX: event.clientX,
@@ -84,7 +84,7 @@ const Content = ({ data }: NoticeDetailContentProps) => {
     setIsDragging(true);
   };
 
-  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (event: MouseEvent<HTMLUListElement>) => {
     if (!dragStateRef.current.isMouseDown) {
       return;
     }
@@ -109,7 +109,7 @@ const Content = ({ data }: NoticeDetailContentProps) => {
   return (
     <div className={styles.noticeDetail}>
       <div className={styles.imageSection}>
-        <div
+        <ul
           ref={trackRef}
           className={styles.imageTrack}
           data-dragging={isDragging}
@@ -119,17 +119,22 @@ const Content = ({ data }: NoticeDetailContentProps) => {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
         >
-          {displayImages.map((imageUrl) => (
-            <img
-              key={imageUrl}
-              src={imageUrl}
-              alt={data.title}
-              draggable={false}
-              className={styles.img}
-              onError={handleImageError}
-            />
+          {displayImages.map((imageUrl, index) => (
+            <li key={`${imageUrl}-${index}`} className={styles.imageItem}>
+              <img
+                src={imageUrl}
+                alt={
+                  displayImages.length > 1
+                    ? `${data.title} ${index + 1}번째 이미지`
+                    : data.title
+                }
+                draggable={false}
+                className={styles.img}
+                onError={handleImageError}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
         {shouldShowIndicator && (
           <div className={styles.indicator}>
             <PageIndicator

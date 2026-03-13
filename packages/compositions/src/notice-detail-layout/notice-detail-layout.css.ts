@@ -23,9 +23,17 @@ export const imageSection = style({
   position: 'relative',
 });
 
+export const imageItem = style({
+  flexShrink: 0,
+  width: '100%',
+  listStyle: 'none',
+});
+
 export const imageTrack = style({
   display: 'flex',
   overflowX: 'auto',
+  padding: 0,
+  margin: 0,
   scrollSnapType: 'x mandatory',
   scrollBehavior: 'smooth',
   scrollbarWidth: 'none',
