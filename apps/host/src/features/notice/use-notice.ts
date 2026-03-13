@@ -4,7 +4,7 @@ import {
   deleteNotice,
   postFestivalNotice,
   putNotice,
-} from '@features/notice/apis/query';
+} from '@entities/notice/api/notice';
 
 import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
 import type { CreateNoticeBody, UpdateNoticeBody } from '@shared/types/notice';

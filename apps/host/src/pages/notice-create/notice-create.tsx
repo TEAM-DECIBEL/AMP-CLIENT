@@ -12,8 +12,9 @@ import {
 import { PinIcon } from '@amp/ads-ui/icons';
 import { ButtonGradientSection, Loading } from '@amp/compositions';
 
-import { NOTICE_QUERY_OPTIONS } from '@features/notice/apis/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
+
+import { NOTICE_QUERY_OPTIONS } from '@entities/notice/model/query-options';
 
 import { CATEGORIES } from '@shared/constants/category';
 import { useNoticeForm } from '@shared/hooks/use-notice-form';
