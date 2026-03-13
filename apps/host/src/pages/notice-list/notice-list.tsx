@@ -62,8 +62,12 @@ const NoticeListPage = () => {
     navigate(`/events/${eventId}/notices/${noticeId}`);
   };
 
-  const handleCopyLink = () => {
-    return;
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+    } catch {
+      return;
+    }
   };
 
   return (
