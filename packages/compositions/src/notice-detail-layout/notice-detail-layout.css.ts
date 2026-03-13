@@ -16,6 +16,7 @@ export const img = style({
   flexShrink: 0,
   objectFit: 'cover',
   scrollSnapAlign: 'start',
+  userSelect: 'none',
 });
 
 export const imageSection = style({
@@ -26,10 +27,15 @@ export const imageTrack = style({
   display: 'flex',
   overflowX: 'auto',
   scrollSnapType: 'x mandatory',
+  scrollBehavior: 'smooth',
   scrollbarWidth: 'none',
   selectors: {
     '&::-webkit-scrollbar': {
       display: 'none',
+    },
+    '&[data-dragging="true"]': {
+      scrollSnapType: 'none',
+      scrollBehavior: 'auto',
     },
   },
 });
