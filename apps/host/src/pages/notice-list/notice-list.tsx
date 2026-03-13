@@ -20,6 +20,7 @@ import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 import * as styles from './notice-list.css';
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
+const AUDIENCE_BASE_URL = import.meta.env.VITE_AUDIENCE_BASE_URL;
 
 const NoticeListPage = () => {
   const navigate = useNavigate();
@@ -64,7 +65,9 @@ const NoticeListPage = () => {
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(
+        `${AUDIENCE_BASE_URL}/events/${eventId}/notices`,
+      );
       toast.show('링크가 복사되었어요.');
     } catch {
       return;
