@@ -20,7 +20,8 @@ import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 import * as styles from './notice-list.css';
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
-const AUDIENCE_BASE_URL = import.meta.env.VITE_AUDIENCE_BASE_URL;
+const AUDIENCE_BASE_URL =
+  import.meta.env.VITE_AUDIENCE_BASE_URL || 'https://ampnotice.kr';
 
 const NoticeListPage = () => {
   const navigate = useNavigate();
