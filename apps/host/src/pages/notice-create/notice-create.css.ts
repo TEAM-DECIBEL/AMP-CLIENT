@@ -61,3 +61,16 @@ export const chipContainer = style({
   rowGap: '1rem',
   width: '100%',
 });
+
+export const imageListContainer = style({
+  display: 'flex',
+  gap: '1rem',
+  overflowX: 'auto',
+  msOverflowStyle: 'none',
+  scrollbarWidth: 'none',
+  paddingTop: '1rem',
+  marginTop: '-1rem',
+  '::-webkit-scrollbar': {
+    display: 'none',
+  },
+});

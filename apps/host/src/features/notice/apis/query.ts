@@ -17,12 +17,25 @@ export const postFestivalNotice = (
   body: CreateNoticeBody,
 ) => {
   const formData = new FormData();
-  formData.append('title', body.title);
-  formData.append('categoryId', String(body.categoryId));
-  formData.append('content', body.content);
-  formData.append('isPinned', String(body.isPinned));
-  if (body.image) {
-    formData.append('image', body.image);
+
+  const noticeCreateRequest = {
+    title: body.title,
+    categoryId: body.categoryId,
+    content: body.content,
+    isPinned: body.isPinned,
+  };
+
+  formData.append(
+    'noticeCreateRequest',
+    new Blob([JSON.stringify(noticeCreateRequest)], {
+      type: 'application/json',
+    }),
+  );
+
+  if (body.images && body.images.length > 0) {
+    body.images.forEach((file) => {
+      formData.append('images', file);
+    });
   }
 
   return post<CreateNoticeResponse, FormData>(
@@ -33,17 +46,27 @@ export const postFestivalNotice = (
 
 export const putNotice = (noticeId: number, body: UpdateNoticeBody) => {
   const formData = new FormData();
-  formData.append('festivalId', String(body.festivalId));
-  formData.append('title', body.title);
-  formData.append('categoryId', String(body.categoryId));
-  formData.append('content', body.content);
-  formData.append('isPinned', String(body.isPinned));
-  if (body.newImage) {
-    formData.append('newImage', body.newImage);
-  }
-  if (body.previousImageUrl) {
-    formData.append('previousImageUrl', body.previousImageUrl);
-  }
+  const noticeUpdateRequest = {
+    festivalId: body.festivalId,
+    title: body.title,
+    categoryId: body.categoryId,
+    content: body.content,
+    isPinned: body.isPinned,
+    ...(body.keepImageUrls && body.keepImageUrls.length > 0
+      ? { keepImageUrls: body.keepImageUrls }
+      : {}),
+  };
+
+  formData.append(
+    'noticeUpdateRequest',
+    new Blob([JSON.stringify(noticeUpdateRequest)], {
+      type: 'application/json',
+    }),
+  );
+
+  body.newImages?.forEach((image) => {
+    formData.append('newImages', image);
+  });
 
   return put<UpdateNoticeResponse, FormData>(
     END_POINT.PUT_NOTICE(noticeId),

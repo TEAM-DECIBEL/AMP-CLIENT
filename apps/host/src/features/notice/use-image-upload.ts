@@ -1,0 +1,93 @@
+import { useEffect, useRef, useState } from 'react';
+
+import { toast } from '@amp/ads-ui';
+
+const MAX_COUNT = 20;
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
+export interface ExistingImage {
+  type: 'existing';
+  url: string;
+}
+export interface NewImage {
+  type: 'new';
+  id: string;
+  file: File;
+  previewUrl: string;
+}
+export type NoticeImageItem = ExistingImage | NewImage;
+
+export const useImageUpload = (initialUrls: string[] = []) => {
+  const [images, setImages] = useState<NoticeImageItem[]>(() =>
+    initialUrls.map((url) => ({ type: 'existing', url })),
+  );
+
+  const blobUrlsRef = useRef<Set<string>>(new Set());
+
+  const handleImagesAdd = (files: File[]) => {
+    const currentCount = images.length;
+    const availableSpace = MAX_COUNT - currentCount;
+    let hasLargeFile = false;
+
+    if (availableSpace <= 0) {
+      toast.show('이미지 첨부는 최대 20장까지 가능해요.');
+      return;
+    }
+
+    if (files.length > availableSpace) {
+      toast.show(`이미지 첨부는 최대 20장까지 가능해요`);
+    }
+
+    const validFiles = files.filter((file) => {
+      if (file.size > MAX_FILE_SIZE) {
+        hasLargeFile = true;
+        return false;
+      }
+      return true;
+    });
+
+    if (hasLargeFile) {
+      toast.show('이미지 파일은 최대 5MB까지 첨부할 수 있어요.');
+    }
+
+    if (validFiles.length === 0) {
+      return;
+    }
+
+    const filesToAdd = validFiles.slice(0, availableSpace);
+
+    const newItems: NoticeImageItem[] = filesToAdd.map((file) => {
+      const previewUrl = URL.createObjectURL(file);
+      blobUrlsRef.current.add(previewUrl);
+      return {
+        type: 'new',
+        id: crypto.randomUUID(),
+        file,
+        previewUrl,
+      };
+    });
+
+    setImages((prev) => [...prev, ...newItems]);
+  };
+
+  const handleImageRemove = (indexToRemove: number) => {
+    const target = images[indexToRemove];
+
+    if (target?.type === 'new') {
+      URL.revokeObjectURL(target.previewUrl);
+      blobUrlsRef.current.delete(target.previewUrl);
+    }
+
+    setImages((prev) => prev.filter((_, idx) => idx !== indexToRemove));
+  };
+
+  useEffect(() => {
+    const currentBlobUrls = blobUrlsRef.current;
+
+    return () => {
+      currentBlobUrls.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, []);
+
+  return { images, handleImagesAdd, handleImageRemove };
+};
