@@ -6,7 +6,7 @@ import { CircleButton, CtaButton } from '@amp/ads-ui';
 import { SaveIcon } from '@amp/ads-ui/icons';
 import { NoticeDetailLayout } from '@amp/compositions';
 
-import { useNoticeBookmark } from '@features/bookmark/hooks/use-notice-bookmark';
+import { useToggleNoticeBookmarkMutation } from '@features/notice/model/use-toggle-notice-bookmark-mutation';
 import { NOTICE_DETAIL_QUERY_OPTIONS } from '@features/notice-details/query';
 
 import * as styles from './notice-details.css';
@@ -16,24 +16,8 @@ const NoticeDetailsPage = () => {
   const noticeIdNumber = Number(noticeId);
 
   const { data } = useQuery(NOTICE_DETAIL_QUERY_OPTIONS.DETAIL(noticeIdNumber));
-  const bookmarkMutation = useNoticeBookmark();
-
-  const handleBookmark = () => {
-    if (bookmarkMutation.isPending) {
-      return;
-    }
-    if (!Number.isFinite(noticeIdNumber)) {
-      return;
-    }
-    if (!data) {
-      return;
-    }
-
-    bookmarkMutation.mutate({
-      noticeId: noticeIdNumber,
-      isBookmarked: !data.isSaved,
-    });
-  };
+  const { toggleNoticeBookmark, isBookmarkPending } =
+    useToggleNoticeBookmarkMutation();
 
   const normalizedData = useMemo(() => {
     if (!data) {
@@ -52,11 +36,7 @@ const NoticeDetailsPage = () => {
   }
 
   const handleShare = async () => {
-    if (
-      typeof window === 'undefined' ||
-      typeof navigator === 'undefined' ||
-      !navigator.share
-    ) {
+    if (!navigator.share) {
       return;
     }
 
@@ -71,6 +51,17 @@ const NoticeDetailsPage = () => {
     }
   };
 
+  const handleBookmark = () => {
+    if (isBookmarkPending) {
+      return;
+    }
+
+    toggleNoticeBookmark({
+      noticeId: noticeIdNumber,
+      isSaved: !normalizedData.isSaved,
+    });
+  };
+
   return (
     <NoticeDetailLayout>
       <NoticeDetailLayout.Content data={normalizedData} />
@@ -82,7 +73,6 @@ const NoticeDetailsPage = () => {
           type='icon'
           color='gray'
           onClick={handleBookmark}
-          disabled={bookmarkMutation.isPending}
           className={!normalizedData.isSaved ? styles.unsaved : undefined}
         >
           <div>

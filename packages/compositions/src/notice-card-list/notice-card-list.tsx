@@ -2,7 +2,6 @@ import { CardNotice, EmptyView } from '@amp/ads-ui';
 
 import * as styles from './notice-card-list.css';
 
-// TODO: 현재는 목데이터 기준, 추후 type에서 import
 export interface NoticeItem {
   noticeId: number;
   imageUrls: string[];
@@ -16,13 +15,18 @@ export interface NoticeItem {
 interface NoticeCardListProps {
   notices: NoticeItem[];
   onItemClick: (id: number) => void;
+  emptyTitle: string;
 }
 
-const NoticeCardList = ({ notices, onItemClick }: NoticeCardListProps) => {
+const NoticeCardList = ({
+  notices,
+  onItemClick,
+  emptyTitle,
+}: NoticeCardListProps) => {
   if (notices.length === 0) {
     return (
       <div className={styles.emptyContainer}>
-        <EmptyView title='작성된 공지가 없어요.' />
+        <EmptyView imageType='alert' title={emptyTitle} />
       </div>
     );
   }

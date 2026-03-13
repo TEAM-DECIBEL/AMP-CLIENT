@@ -197,6 +197,7 @@ const NoticeListPage = () => {
             onSelectCategory={handleChipClick}
             onAlertClick={handleAlertClick}
             onNoticeItemClick={handleNoticeItemClick}
+            emptyTitle='작성된 공지가 없어요.'
           />
         ) : (
           <div className={styles.noticeContainer}>

@@ -22,7 +22,7 @@ const MyHistory = () => {
     return (
       <section className={styles.page}>
         <div className={styles.empty}>
-          <EmptyView title='진행한 공연이 없어요!' />
+          <EmptyView imageType='ticket' title='진행한 공연이 없어요!' />
         </div>
       </section>
     );
