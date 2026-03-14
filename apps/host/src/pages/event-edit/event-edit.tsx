@@ -5,10 +5,10 @@ import EventForm from '@widgets/event-form/event-form';
 
 import { EVENT_EDIT_QUERY_OPTIONS } from '@features/event-edit/apis/query';
 import { serializeUpdateFestivalFormData } from '@features/event-edit/serialize-update-event-form-data';
+import { toEventEditInitialValues } from '@features/event-edit/to-event-edit-initial-values';
 import { useFestivalUpdateMutation } from '@features/event-edit/use-event-edit';
 
 import { ROUTE_PATH } from '@shared/constants/path';
-import { EventFormInitialValues } from '@shared/types/event-form';
 
 const EventEditPage = () => {
   const navigate = useNavigate();
@@ -32,22 +32,7 @@ const EventEditPage = () => {
     return null;
   }
 
-  const initialValues: EventFormInitialValues = {
-    imageUrl: data.mainImageUrl,
-    eventTitle: data.title,
-    eventLocation: data.location,
-    activeCategoryIds: data.activeCategoryIds,
-    schedules: data.schedules.map((schedule) => ({
-      id: schedule.id,
-      date: schedule.festivalDate,
-      time: schedule.festivalTime,
-    })),
-    stages: data.stages.map((stage) => ({
-      id: stage.id,
-      title: stage.title,
-      location: stage.location,
-    })),
-  };
+  const initialValues = toEventEditInitialValues(data);
 
   return (
     <EventForm
