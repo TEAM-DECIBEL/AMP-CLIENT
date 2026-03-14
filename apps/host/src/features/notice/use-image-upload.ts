@@ -34,10 +34,6 @@ export const useImageUpload = (initialUrls: string[] = []) => {
       return;
     }
 
-    if (files.length > availableSpace) {
-      toast.show(`이미지 첨부는 최대 20장까지 가능해요`);
-    }
-
     const validFiles = files.filter((file) => {
       if (file.size > MAX_FILE_SIZE) {
         hasLargeFile = true;
@@ -50,11 +46,14 @@ export const useImageUpload = (initialUrls: string[] = []) => {
       toast.show('이미지 파일은 최대 5MB까지 첨부할 수 있어요.');
     }
 
-    if (validFiles.length === 0) {
-      return;
+    if (files.length > availableSpace) {
+      toast.show(`이미지 첨부는 최대 20장까지 가능해요`);
     }
 
     const filesToAdd = validFiles.slice(0, availableSpace);
+    if (filesToAdd.length === 0) {
+      return;
+    }
 
     const newItems: NoticeImageItem[] = filesToAdd.map((file) => {
       const previewUrl = URL.createObjectURL(file);
@@ -86,6 +85,7 @@ export const useImageUpload = (initialUrls: string[] = []) => {
 
     return () => {
       currentBlobUrls.forEach((url) => URL.revokeObjectURL(url));
+      currentBlobUrls.clear();
     };
   }, []);
 

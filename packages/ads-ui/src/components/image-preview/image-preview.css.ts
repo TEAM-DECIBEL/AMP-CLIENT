@@ -7,10 +7,11 @@ export const previewContainer = style({
   width: '9rem',
   height: '9rem',
   flexShrink: 0,
-  overflow: 'visible',
 });
 
 export const previewImg = style({
+  width: '100%',
+  height: '100%',
   borderRadius: '16px',
   objectFit: 'cover',
 });

@@ -92,6 +92,7 @@ export const useNoticeForm = (
 
     const { title, content, isPinned, categoryId } = form;
 
+    // TODO: 빌더 사용하도록 수정
     const navigateToList = () =>
       navigate(ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)));
 

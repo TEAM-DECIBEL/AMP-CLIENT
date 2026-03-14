@@ -27,7 +27,7 @@ const NoticeCreatePage = () => {
   });
 
   const { data: noticeListData, isPending: isListPending } = useQuery({
-    ...NOTICES_QUERY_OPTIONS.LIST(festivalId ?? 0, { page: 0, size: 100 }),
+    ...NOTICES_QUERY_OPTIONS.LIST(festivalId ?? 0, { page: 0, size: 20 }),
     enabled: festivalId !== null,
   });
 
