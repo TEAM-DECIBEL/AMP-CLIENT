@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { putFestival } from '@features/event-edit/apis/query';
-
 import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
+
+import { putFestival } from './apis/query';
 
 export const useFestivalUpdateMutation = (festivalId: number) => {
   return useMutation({
