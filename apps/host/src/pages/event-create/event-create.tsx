@@ -5,13 +5,10 @@ import EventForm from '@widgets/event-form/event-form';
 import { serializeCreateEventFormData } from '@features/event-create/serialize-create-event-form-data';
 import { useEventCreateMutation } from '@features/event-create/use-event-create';
 
-import { ROUTE_PATH } from '@shared/constants/path';
+import { NAV_PATH } from '@shared/constants/path';
 
 const EventCreatePage = () => {
   const navigate = useNavigate();
-
-  const toNoticeList = (eventId: string | number) =>
-    ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(eventId));
 
   const createMutation = useEventCreateMutation();
 
@@ -29,7 +26,7 @@ const EventCreatePage = () => {
         }
         createMutation.mutate(formData, {
           onSuccess: (data) => {
-            navigate(toNoticeList(data.festivalId));
+            navigate(NAV_PATH.noticeList(data.festivalId));
           },
         });
       }}
