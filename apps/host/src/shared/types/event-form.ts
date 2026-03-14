@@ -20,3 +20,12 @@ export interface EventFormSubmitValues {
   activeCategoryIds: number[];
   mainImageFile: File | null;
 }
+
+export interface EventFormInitialValues {
+  imageUrl: string;
+  eventTitle: string;
+  eventLocation: string;
+  activeCategoryIds: number[];
+  schedules: EventScheduleValue[];
+  stages: EventStageValue[];
+}
