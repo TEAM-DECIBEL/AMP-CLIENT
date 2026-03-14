@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 
 import { AddToWatchButton, CircleButton, toast } from '@amp/ads-ui';
 import { CopyIcon } from '@amp/ads-ui/icons';
+import { ENV } from '@amp/apis';
 import {
   LiveButtonContainer,
   NOTICE_TAB,
@@ -17,11 +18,11 @@ import { formatDday } from '@amp/shared/utils';
 import { CONGESTION_QUERY_OPTIONS } from '@features/notice-details/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
 
+import { ROUTE_PATH } from '@shared/constants/path';
+
 import * as styles from './notice-list.css';
 
 type NoticeTab = (typeof NOTICE_TAB)[keyof typeof NOTICE_TAB];
-const AUDIENCE_BASE_URL =
-  import.meta.env.VITE_AUDIENCE_BASE_URL || 'https://ampnotice.kr';
 
 const NoticeListPage = () => {
   const navigate = useNavigate();
@@ -61,13 +62,18 @@ const NoticeListPage = () => {
     })) ?? [];
 
   const handleNoticeItemClick = (noticeId: number) => {
-    navigate(`/events/${eventId}/notices/${noticeId}`);
+    navigate(
+      ROUTE_PATH.NOTICE_DETAILS.replace(':eventId', String(eventId)).replace(
+        ':noticeId',
+        String(noticeId),
+      ),
+    );
   };
 
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(
-        `${AUDIENCE_BASE_URL}/events/${eventId}/notices`,
+        `${ENV.AUDIENCE_BASE_URL}/events/${eventId}/notices`,
       );
       toast.show('링크가 복사되었어요.');
     } catch {
@@ -120,7 +126,11 @@ const NoticeListPage = () => {
           <div className={styles.button}>
             <CircleButton
               type='write'
-              onClick={() => navigate(`/events/${eventId}/notices/new`)}
+              onClick={() =>
+                navigate(
+                  ROUTE_PATH.NOTICE_CREATE.replace(':eventId', String(eventId)),
+                )
+              }
             />
           </div>
         </div>
