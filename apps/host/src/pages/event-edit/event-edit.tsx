@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router';
 
+import { Loading } from '@amp/compositions';
+
 import EventForm from '@widgets/event-form/event-form';
 
 import { EVENT_EDIT_QUERY_OPTIONS } from '@features/event-edit/apis/query';
@@ -25,7 +27,7 @@ const EventEditPage = () => {
   const updateMutation = useFestivalUpdateMutation(festivalId);
 
   if (isLoading) {
-    return null;
+    return <Loading />;
   }
 
   if (!data) {
