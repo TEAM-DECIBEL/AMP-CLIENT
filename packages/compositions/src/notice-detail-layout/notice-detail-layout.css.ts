@@ -10,13 +10,6 @@ export const container = style({
   overflow: 'hidden',
 });
 
-export const img = style({
-  width: '100%',
-  height: '36.6rem',
-  flexShrink: 0,
-  objectFit: 'cover',
-});
-
 export const noticeDetail = style({
   flex: 1,
   display: 'flex',

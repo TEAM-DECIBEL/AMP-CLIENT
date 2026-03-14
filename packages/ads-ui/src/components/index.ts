@@ -3,7 +3,7 @@ export { default as OptionSheet } from './bottom-sheet/option-sheet/option-sheet
 export { default as StatusSheet } from './bottom-sheet/status-sheet/status-sheet';
 export type { StatusSheetValue } from './bottom-sheet/status-sheet/status-sheet.constants';
 export { default as AddImageButton } from './button/add-image-button/add-image-button';
-export { default as AddToWatchButton } from './button/add-to-watch/add-to-watch';
+export { default as ActionButton } from './button/add-to-watch/action-button';
 export { default as CategoryButton } from './button/category-button/category-button';
 export { default as CheckButton } from './button/check-button/check-button';
 export { default as CircleButton } from './button/circle-button/circle-button';
@@ -22,6 +22,7 @@ export { default as EmptyView } from './empty-view/empty-view';
 export { default as Header } from './header/header';
 export { default as Modal } from './modal/modal';
 export { default as RectButton } from './modal/rect-button/rect-button';
+export { default as PageIndicator } from './page-indicator/page-indicator';
 export { default as Tabs } from './tabs/tabs';
 export { default as Textfield } from './textfield/textfield';
 export { default as Toast } from './toast/toast';

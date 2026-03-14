@@ -1,43 +1,96 @@
+import type { KeyboardEvent } from 'react';
+
 import { CardFestival } from '@amp/ads-ui';
 import { FestivalStatusGroup } from '@amp/compositions';
 import { formatDday } from '@amp/shared/utils';
 
 import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use-toggle-wishlist-mutation';
 
-import type {
-  AllFestivalItem,
-  UpcomingFestivalItem,
-} from '@shared/types/home-response';
+import type { Festival } from '@shared/types/festival';
 
 import FlagButton from '../flag-button/flag-button';
 
 interface FestivalCardProps {
-  festival: AllFestivalItem | UpcomingFestivalItem;
-  onClick: () => void;
+  festival: Festival;
+  onCardClick: (festivalId: number) => void;
+  showWishList?: boolean;
+  showStatus?: boolean;
 }
 
-const FestivalCard = ({ festival, onClick }: FestivalCardProps) => {
-  const { festivalId, title, period, mainImageUrl, wishList, dDay } = festival;
+const STATUS_BY_TEXT = {
+  '관람 중': 'current',
+  '관람 완료': 'completed',
+  '관람 예정': 'upcoming',
+} as const;
+
+const FestivalCard = ({
+  festival,
+  showWishList = true,
+  showStatus = true,
+  onCardClick,
+}: FestivalCardProps) => {
+  const {
+    festivalId,
+    title,
+    period,
+    mainImageUrl,
+    wishList = false,
+    status,
+    dDay,
+  } = festival;
+
   const { toggleWishList, isTogglePending } = useToggleWishListMutation(
     festivalId,
     wishList,
   );
 
+  const chipStatus =
+    STATUS_BY_TEXT[status as keyof typeof STATUS_BY_TEXT] ?? 'completed';
+
+  const handleCardClick = () => {
+    onCardClick(festivalId);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.currentTarget !== event.target) {
+      return;
+    }
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      if (event.key === ' ') {
+        event.preventDefault();
+      }
+      handleCardClick();
+    }
+  };
+
   return (
-    <CardFestival onClick={onClick}>
+    <CardFestival
+      role='button'
+      tabIndex={0}
+      onClick={handleCardClick}
+      onKeyDown={handleKeyDown}
+    >
       <CardFestival.Image src={mainImageUrl} alt={title} />
       <CardFestival.Body title={title} date={period}>
         <CardFestival.Chip>
-          <FestivalStatusGroup dDay={formatDday(dDay)} isWishlist={wishList} />
+          <FestivalStatusGroup
+            dDay={typeof dDay === 'number' ? formatDday(dDay) : undefined}
+            status={chipStatus}
+            statusText={showStatus ? status : ''}
+            isWishlist={showWishList ? wishList : false}
+          />
         </CardFestival.Chip>
       </CardFestival.Body>
-      <CardFestival.Button>
-        <FlagButton
-          selected={wishList}
-          onChange={toggleWishList}
-          disabled={isTogglePending}
-        />
-      </CardFestival.Button>
+      {showWishList && (
+        <CardFestival.Button>
+          <FlagButton
+            selected={wishList}
+            onChange={toggleWishList}
+            disabled={isTogglePending}
+          />
+        </CardFestival.Button>
+      )}
     </CardFestival>
   );
 };

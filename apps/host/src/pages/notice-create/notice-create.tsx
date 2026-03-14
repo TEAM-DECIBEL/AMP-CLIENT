@@ -12,12 +12,13 @@ import {
 import { PinIcon } from '@amp/ads-ui/icons';
 import { ButtonGradientSection, Loading } from '@amp/compositions';
 
-import { NOTICE_QUERY_OPTIONS } from '@features/notice/apis/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
+
+import { NOTICE_QUERY_OPTIONS } from '@entities/notice/model/query-options';
+import type { NoticeDetail } from '@entities/notice/types/notice';
 
 import { CATEGORIES } from '@shared/constants/category';
 import { useNoticeForm } from '@shared/hooks/use-notice-form';
-import type { NoticeDetail } from '@shared/types/notice';
 import InputLayout from '@shared/ui/input/input-layout';
 import Textarea from '@shared/ui/textarea/textarea';
 
