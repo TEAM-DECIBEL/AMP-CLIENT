@@ -85,7 +85,6 @@ const NoticeListPage = () => {
           date={festivalBanner.period}
           button={
             <AddToWatchButton
-              selected={false}
               onChange={handleCopyLink}
               icon={<CopyIcon />}
               emphasized

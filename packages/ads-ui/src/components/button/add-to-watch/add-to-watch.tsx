@@ -5,7 +5,7 @@ import { AmpFlagIcon } from '../../../icons';
 import * as styles from './add-to-watch.css';
 
 interface AddToWatchButtonProps {
-  selected: boolean;
+  selected?: boolean;
   onChange: () => void;
   disabled?: boolean;
   icon?: ReactNode;
@@ -25,7 +25,8 @@ const AddToWatchButton = ({
     <button
       type='button'
       className={styles.button}
-      aria-pressed={selected}
+      aria-pressed={selected === undefined ? undefined : selected}
+      data-selected={selected}
       data-emphasized={emphasized}
       disabled={disabled}
       onClick={onChange}

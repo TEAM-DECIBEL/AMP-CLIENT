@@ -13,7 +13,7 @@ export const button = style({
   ...ampThemeVars.font.body_sb_13,
 
   selectors: {
-    '&[aria-pressed="true"], &[data-emphasized="true"]': {
+    '&[data-selected="true"], &[data-emphasized="true"]': {
       backgroundColor: ampThemeVars.color.primary_deep,
       color: ampThemeVars.color.sub_1,
     },
