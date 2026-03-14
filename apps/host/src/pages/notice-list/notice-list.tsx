@@ -71,7 +71,7 @@ const NoticeListPage = () => {
       );
       toast.show('링크가 복사되었어요.');
     } catch {
-      return;
+      toast.show('링크 복사에 실패했어요.', '다시 시도해 주세요.');
     }
   };
 
