@@ -7,12 +7,12 @@ import { Loading } from '@amp/compositions';
 
 import EventForm from '@widgets/event-form/event-form';
 
-import { EVENT_EDIT_QUERY_OPTIONS } from '@features/event-edit/apis/query';
-import { serializeUpdateFestivalFormData } from '@features/event-edit/serialize-update-event-form-data';
-import { toEventEditInitialValues } from '@features/event-edit/to-event-edit-initial-values';
-import { useFestivalUpdateMutation } from '@features/event-edit/use-event-edit';
+import { EVENT_EDIT_QUERY_OPTIONS } from '@entities/event-edit/apis/query';
+import { serializeUpdateFestivalFormData } from '@entities/event-edit/serialize-update-event-form-data';
+import { toEventEditInitialValues } from '@entities/event-edit/to-event-edit-initial-values';
+import { useFestivalUpdateMutation } from '@entities/event-edit/use-event-edit';
 
-import { ROUTE_PATH } from '@shared/constants/path';
+import { NAV_PATH } from '@shared/constants/path';
 import type { EventFormSubmitValues } from '@shared/types/event-form';
 
 const areSameCategoryIds = (prev: number[], next: number[]) => {
@@ -55,9 +55,7 @@ const EventEditPage = () => {
 
     updateMutation.mutate(formData, {
       onSuccess: () => {
-        navigate(
-          ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)),
-        );
+        navigate(NAV_PATH.noticeList(festivalId));
       },
     });
   };
