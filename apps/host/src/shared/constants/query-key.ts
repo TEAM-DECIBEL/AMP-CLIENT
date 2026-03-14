@@ -17,6 +17,12 @@ export const ORGANIZERS_QUERY_KEY = {
     festivalId,
     'detail',
   ],
+  FESTIVAL_UPDATE: (festivalId: number) => [
+    ...ORGANIZERS_QUERY_KEY.ALL,
+    'festival',
+    festivalId,
+    'update',
+  ],
   FESTIVAL_DELETE: (festivalId: number) => [
     ...ORGANIZERS_QUERY_KEY.ALL,
     'festival',
