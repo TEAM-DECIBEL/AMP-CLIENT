@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
 import { useNavigate, useParams } from 'react-router';
 
-import { AddToWatchButton, Modal, RectButton, toast } from '@amp/ads-ui';
+import { ActionButton, Modal, RectButton, toast } from '@amp/ads-ui';
 import { ChatIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
@@ -176,13 +176,13 @@ const NoticeListPage = () => {
           location={bannerProps.location}
           date={bannerProps.date}
           button={
-            <AddToWatchButton
+            <ActionButton
               selected={bannerData?.isWishlist ?? false}
               onChange={toggleWishList}
               disabled={!bannerData || isTogglePending}
             >
               관람 예정
-            </AddToWatchButton>
+            </ActionButton>
           }
         />
       )}

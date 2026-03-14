@@ -3,7 +3,7 @@ export { default as OptionSheet } from './bottom-sheet/option-sheet/option-sheet
 export { default as StatusSheet } from './bottom-sheet/status-sheet/status-sheet';
 export type { StatusSheetValue } from './bottom-sheet/status-sheet/status-sheet.constants';
 export { default as AddImageButton } from './button/add-image-button/add-image-button';
-export { default as AddToWatchButton } from './button/add-to-watch/add-to-watch';
+export { default as ActionButton } from './button/add-to-watch/action-button';
 export { default as CategoryButton } from './button/category-button/category-button';
 export { default as CheckButton } from './button/check-button/check-button';
 export { default as CircleButton } from './button/circle-button/circle-button';

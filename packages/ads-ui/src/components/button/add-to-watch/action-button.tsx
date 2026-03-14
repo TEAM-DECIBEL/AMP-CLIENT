@@ -2,9 +2,9 @@ import type { ReactNode } from 'react';
 
 import { AmpFlagIcon } from '../../../icons';
 
-import * as styles from './add-to-watch.css';
+import * as styles from './action-button.css';
 
-interface AddToWatchButtonProps {
+interface ActionButtonProps {
   selected?: boolean;
   onChange: () => void;
   disabled?: boolean;
@@ -13,14 +13,14 @@ interface AddToWatchButtonProps {
   emphasized?: boolean;
 }
 
-const AddToWatchButton = ({
+const ActionButton = ({
   selected,
   onChange,
   disabled,
   icon = <AmpFlagIcon />,
   children = '관람 예정',
   emphasized = false,
-}: AddToWatchButtonProps) => {
+}: ActionButtonProps) => {
   return (
     <button
       type='button'
@@ -41,4 +41,4 @@ const AddToWatchButton = ({
   );
 };
 
-export default AddToWatchButton;
+export default ActionButton;

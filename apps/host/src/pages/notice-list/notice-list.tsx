@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router';
 
-import { AddToWatchButton, CircleButton, toast } from '@amp/ads-ui';
+import { ActionButton, CircleButton, toast } from '@amp/ads-ui';
 import { CopyIcon } from '@amp/ads-ui/icons';
 import { ENV } from '@amp/apis';
 import {
@@ -90,13 +90,13 @@ const NoticeListPage = () => {
           location={festivalBanner.location}
           date={festivalBanner.period}
           button={
-            <AddToWatchButton
+            <ActionButton
               onChange={handleCopyLink}
               icon={<CopyIcon />}
               emphasized
             >
               링크 복사
-            </AddToWatchButton>
+            </ActionButton>
           }
         />
       )}
