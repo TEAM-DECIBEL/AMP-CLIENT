@@ -1,14 +1,11 @@
 import type { ReactNode } from 'react';
 
-import { AmpFlagIcon } from '../../../icons';
-
 import * as styles from './action-button.css';
 
 interface ActionButtonProps {
   selected?: boolean;
   onChange: () => void;
   disabled?: boolean;
-  icon?: ReactNode;
   children?: ReactNode;
   emphasized?: boolean;
 }
@@ -17,8 +14,7 @@ const ActionButton = ({
   selected,
   onChange,
   disabled,
-  icon = <AmpFlagIcon />,
-  children = '관람 예정',
+  children,
   emphasized = false,
 }: ActionButtonProps) => {
   return (
@@ -31,11 +27,6 @@ const ActionButton = ({
       disabled={disabled}
       onClick={onChange}
     >
-      {icon ? (
-        <span className={styles.icon} aria-hidden='true'>
-          {icon}
-        </span>
-      ) : null}
       {children}
     </button>
   );

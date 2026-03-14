@@ -92,9 +92,9 @@ const NoticeListPage = () => {
           button={
             <ActionButton
               onChange={handleCopyLink}
-              icon={<CopyIcon />}
               emphasized
             >
+              <CopyIcon />
               링크 복사
             </ActionButton>
           }

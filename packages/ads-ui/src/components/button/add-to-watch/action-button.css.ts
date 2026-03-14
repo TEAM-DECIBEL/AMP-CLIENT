@@ -19,9 +19,3 @@ export const button = style({
     },
   },
 });
-
-export const icon = style({
-  marginTop: '0.2rem',
-  width: '1.4rem',
-  height: '1.4rem',
-});
