@@ -8,7 +8,7 @@ import FestivalCard from '@widgets/home/components/festival-card/festival-card';
 
 import { MY_PAGE_QUERY_OPTIONS } from '@features/mypage/apis/query';
 
-import { ROUTE } from '@shared/constants/path';
+import { NAV_PATH } from '@shared/constants/path';
 
 import * as styles from './my-events.css';
 
@@ -21,7 +21,7 @@ const MyEventsPage = () => {
   const festivals = viewedData?.festivals ?? [];
 
   const handleCardClick = (festivalId: number) => {
-    navigate(ROUTE.noticeList(festivalId));
+    navigate(NAV_PATH.noticeList(festivalId));
   };
 
   if (isPending) {

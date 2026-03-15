@@ -7,7 +7,7 @@ import FestivalSection from '@widgets/home/components/festival-section/festival-
 
 import { USER_QUERY_OPTIONS } from '@entities/user/model/query-options';
 
-import { ROUTE } from '@shared/constants/path';
+import { NAV_PATH } from '@shared/constants/path';
 
 import useHomeFestivals from './model/use-home-festivals';
 
@@ -30,7 +30,7 @@ const HomePage = () => {
   } = useHomeFestivals();
 
   const handleCardClick = (festivalId: number) => {
-    navigate(ROUTE.noticeList(festivalId));
+    navigate(NAV_PATH.noticeList(festivalId));
   };
 
   return (
