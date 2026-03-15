@@ -10,6 +10,13 @@ import {
 } from '@amp/ads-ui/icons';
 import { ButtonGradientSection } from '@amp/compositions';
 
+import type {
+  EventFormInitialValues,
+  EventFormSubmitValues,
+  EventScheduleValue as ScheduleItem,
+  EventStageValue as BoothItem,
+} from '@entities/event/event-form';
+
 import useItemList from '@shared/hooks/use-item-list/use-item-list';
 import useObjectUrl from '@shared/hooks/use-object-url/use-object-url';
 import CategoryChipGroup from '@shared/ui/button/category-chip-group/category-chip-group';
@@ -29,22 +36,7 @@ interface FormState {
   boothLocation: string;
 }
 
-import type {
-  EventFormSubmitValues,
-  EventScheduleValue as ScheduleItem,
-  EventStageValue as BoothItem,
-} from '@shared/types/event-form';
-
 const isFilled = (value: string) => value.trim() !== '';
-
-interface EventFormInitialValues {
-  imageUrl: string;
-  eventTitle: string;
-  eventLocation: string;
-  activeCategoryIds: number[];
-  schedules: ScheduleItem[];
-  stages: BoothItem[];
-}
 
 const INITIAL_FORM_STATE: FormState = {
   imageUrl: '',
