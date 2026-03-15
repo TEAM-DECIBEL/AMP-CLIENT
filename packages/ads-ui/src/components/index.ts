@@ -23,6 +23,7 @@ export { default as Header } from './header/header';
 export { default as ImagePreview } from './image-preview/image-preview';
 export { default as Modal } from './modal/modal';
 export { default as RectButton } from './modal/rect-button/rect-button';
+export { default as PageIndicator } from './page-indicator/page-indicator';
 export { default as Tabs } from './tabs/tabs';
 export { default as Textfield } from './textfield/textfield';
 export { default as Toast } from './toast/toast';

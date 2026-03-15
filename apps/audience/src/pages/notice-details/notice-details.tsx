@@ -26,7 +26,7 @@ const NoticeDetailsPage = () => {
 
     return {
       ...data,
-      imageUrl: data.imageUrl ?? '',
+      imageUrls: data.imageUrls ?? [],
       category: data.category.categoryName,
     };
   }, [data]);

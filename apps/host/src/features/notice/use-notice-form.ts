@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router';
 
 import { toast } from '@amp/ads-ui';
 
+import type { NoticeDetail } from '@entities/notice/types/notice';
+
 import { getCategoryIdByLabel } from '@shared/constants/category';
 import { ROUTE_PATH } from '@shared/constants/path';
 import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
-import type { NoticeDetail } from '@shared/types/notice';
 
 import { useImageUpload } from './use-image-upload';
 import { useNoticeCreateMutation, useNoticeUpdateMutation } from './use-notice';

@@ -1,16 +1,14 @@
-import { queryOptions } from '@tanstack/react-query';
-
 import { del, get, post, put } from '@amp/apis';
 
-import { END_POINT } from '@shared/constants/end-point';
-import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
 import type {
   CreateNoticeBody,
   CreateNoticeResponse,
   NoticeDetail,
   UpdateNoticeBody,
   UpdateNoticeResponse,
-} from '@shared/types/notice';
+} from '@entities/notice/types/notice';
+
+import { END_POINT } from '@shared/constants/end-point';
 
 export const postFestivalNotice = (
   festivalId: number,
@@ -63,7 +61,6 @@ export const putNotice = (noticeId: number, body: UpdateNoticeBody) => {
       type: 'application/json',
     }),
   );
-
   body.newImages?.forEach((image) => {
     formData.append('newImages', image);
   });
@@ -79,15 +76,3 @@ export const deleteNotice = (noticeId: number) =>
 
 export const getNoticeDetail = (noticeId: number) =>
   get<NoticeDetail>(END_POINT.GET_NOTICE_DETAIL(noticeId));
-
-export const NOTICE_QUERY_OPTIONS = {
-  DETAIL: (noticeId: number | null) => {
-    const normalizedNoticeId = noticeId ?? Number.NaN;
-
-    return queryOptions({
-      queryKey: ORGANIZERS_QUERY_KEY.NOTICE_DETAIL(normalizedNoticeId),
-      queryFn: () => getNoticeDetail(normalizedNoticeId),
-      enabled: Number.isFinite(normalizedNoticeId),
-    });
-  },
-} as const;

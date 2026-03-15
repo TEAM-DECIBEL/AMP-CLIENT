@@ -3,8 +3,9 @@ import { useParams } from 'react-router';
 
 import { Loading } from '@amp/compositions';
 
-import { NOTICE_QUERY_OPTIONS } from '@features/notice/apis/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
+
+import { NOTICE_QUERY_OPTIONS } from '@entities/notice/model/query-options';
 
 import NoticeForm from './notice-form';
 

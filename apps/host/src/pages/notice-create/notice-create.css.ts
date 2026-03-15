@@ -73,6 +73,7 @@ export const imageList = style({
   gap: '1rem',
   padding: '0.8rem 0',
   margin: '-0.8rem 0',
+  width: '100%',
   overflowX: 'auto',
   msOverflowStyle: 'none',
   scrollbarWidth: 'none',

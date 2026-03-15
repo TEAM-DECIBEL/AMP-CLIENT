@@ -14,8 +14,9 @@ import MultiImageButton from '@widgets/multi-image-add-button/multi-image-add-bu
 
 import { useNoticeForm } from '@features/notice/use-notice-form';
 
+import type { NoticeDetail } from '@entities/notice/types/notice';
+
 import { useDragScroll } from '@shared/libs/use-drag-scroll';
-import type { NoticeDetail } from '@shared/types/notice';
 import InputLayout from '@shared/ui/input/input-layout';
 import Textarea from '@shared/ui/textarea/textarea';
 

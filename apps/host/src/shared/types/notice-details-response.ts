@@ -16,7 +16,7 @@ export interface NoticeDetailResponse {
   category: NoticeCategory;
   title: string;
   content: string;
-  imageUrl: string | null;
+  imageUrls: string[];
   isPinned: boolean;
   isSaved: boolean;
   author: NoticeAuthor;
