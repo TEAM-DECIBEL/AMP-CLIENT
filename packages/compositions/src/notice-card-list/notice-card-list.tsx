@@ -1,12 +1,10 @@
 import { CardNotice, EmptyView } from '@amp/ads-ui';
 
-import { IMAGES } from '../assets/index';
-
 import * as styles from './notice-card-list.css';
 
 export interface NoticeItem {
   noticeId: number;
-  imageUrl: string | null;
+  imageUrls: string[];
   title: string;
   content: string;
   isPinned: boolean;
@@ -19,8 +17,6 @@ interface NoticeCardListProps {
   onItemClick: (id: number) => void;
   emptyTitle: string;
 }
-
-const DEFAULT_IMG = IMAGES.EMPTY_NOTICE;
 
 const NoticeCardList = ({
   notices,
@@ -40,7 +36,7 @@ const NoticeCardList = ({
       {notices.map((notice) => (
         <div key={notice.noticeId} className={styles.card}>
           <CardNotice
-            imageUrl={notice.imageUrl || DEFAULT_IMG}
+            imageUrls={notice.imageUrls}
             title={notice.title}
             content={notice.content}
             isPinned={notice.isPinned}
