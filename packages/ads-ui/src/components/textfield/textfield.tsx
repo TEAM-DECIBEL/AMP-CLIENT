@@ -9,6 +9,7 @@ interface TextfieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   variant: 'default' | 'flag' | 'date' | 'time' | 'location';
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  isError?: boolean;
 }
 
 type FormatVariant = 'date' | 'time';
@@ -33,6 +34,7 @@ const Textfield = ({
   value,
   onChange,
   type,
+  isError = false,
   ...props
 }: TextfieldProps) => {
   const isDate = variant === 'date';
@@ -105,7 +107,7 @@ const Textfield = ({
       : null;
 
   return (
-    <div className={styles.textfield({ variant })}>
+    <div className={styles.textfield({ variant, isError })}>
       {IconComponent && <IconComponent className={styles.icon} />}
       <input
         className={styles.input}

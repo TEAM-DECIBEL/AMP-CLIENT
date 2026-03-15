@@ -40,6 +40,17 @@ export const textfield = recipe({
       date: iconPadding,
       time: iconPadding,
     },
+    isError: {
+      false: {},
+      true: {
+        border: `1px solid ${ampThemeVars.color.error}`,
+        selectors: {
+          '&:focus-within': {
+            borderColor: ampThemeVars.color.error,
+          },
+        },
+      },
+    },
   },
 });
 

@@ -1,6 +1,7 @@
 import { type ReactNode, useId } from 'react';
 
 import { Textfield } from '@amp/ads-ui';
+import { NoticeIcon } from '@amp/ads-ui/icons';
 
 import * as styles from './onboarding-form.css';
 
@@ -12,6 +13,7 @@ interface OnboardingFormProps {
   onChange: (value: string) => void;
   supportingText: ReactNode;
   maxLength?: number;
+  isError?: boolean;
 }
 
 const OnboardingForm = ({
@@ -22,6 +24,7 @@ const OnboardingForm = ({
   onChange,
   supportingText,
   maxLength,
+  isError = false,
 }: OnboardingFormProps) => {
   const inputId = useId();
 
@@ -42,7 +45,10 @@ const OnboardingForm = ({
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
-        <p className={styles.supportingText}>{supportingText}</p>
+        <span className={styles.supportingTextContainer}>
+          {isError && <NoticeIcon className={styles.icon} />}
+          <p className={styles.supportingText({ isError })}>{supportingText}</p>
+        </span>
       </div>
     </div>
   );
