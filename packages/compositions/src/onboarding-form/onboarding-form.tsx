@@ -43,6 +43,7 @@ const OnboardingForm = ({
           placeholder={placeholder}
           maxLength={maxLength}
           value={value}
+          isError={isError}
           onChange={(e) => onChange(e.target.value)}
         />
         <div className={styles.supportingTextContainer}>
