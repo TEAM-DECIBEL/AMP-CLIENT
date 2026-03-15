@@ -19,9 +19,9 @@ export const label = style({
 });
 
 export const field = style({
-  padding: '2rem',
   display: 'flex',
   flexDirection: 'column',
+  padding: '2rem',
 });
 
 export const supportingTextContainer = style({
