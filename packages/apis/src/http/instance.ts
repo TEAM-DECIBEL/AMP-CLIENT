@@ -75,15 +75,6 @@ instance.interceptors.response.use(
       }
     }
 
-    if (status === HTTP_STATUS_CODE.FORBIDDEN) {
-      const isOnLogin = window.location.pathname.startsWith('/login');
-      if (!isOnLogin && !locked) {
-        setRedirectLock();
-        window.location.replace('/login');
-      }
-      return handleApiError(error);
-    }
-
     if (status === HTTP_STATUS_CODE.NOT_FOUND) {
       const isOnNotFound = window.location.pathname.startsWith('/not-found');
 
