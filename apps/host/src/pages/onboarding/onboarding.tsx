@@ -23,7 +23,7 @@ interface OnboardingFormValues {
 const Onboarding = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState<Step>(1);
-  const [onboardingError, setOnboardingError] = useState(false);
+  const [isOnboardingError, setIsOnboardingError] = useState(false);
 
   const { mutate, isPending } = usePostRegistrationVerifyMutation();
 
@@ -49,7 +49,7 @@ const Onboarding = () => {
 
   const disabledByStep: Record<Step, boolean> = {
     1: organizerName.trim().length === 0,
-    2: registrationCode.trim().length === 0 || onboardingError,
+    2: registrationCode.trim().length === 0 || isOnboardingError,
     3: false,
   };
 
@@ -74,7 +74,7 @@ const Onboarding = () => {
       },
       onError: (error) => {
         if (error instanceof HTTPError && error.code === 'REG_400_001') {
-          setOnboardingError(true);
+          setIsOnboardingError(true);
           return;
         }
       },
@@ -113,17 +113,17 @@ const Onboarding = () => {
               placeholder='가입코드를 입력해주세요.'
               value={field.value}
               onChange={(value) => {
-                if (onboardingError) {
-                  setOnboardingError(false);
+                if (isOnboardingError) {
+                  setIsOnboardingError(false);
                 }
                 field.onChange(value);
               }}
               supportingText={
-                onboardingError
+                isOnboardingError
                   ? '올바르지 않은 가입코드입니다.'
                   : '가입코드는 AMP 가입안내 문자메시지에 명시되어 있어요.'
               }
-              isError={onboardingError}
+              isError={isOnboardingError}
             />
           )}
         />
