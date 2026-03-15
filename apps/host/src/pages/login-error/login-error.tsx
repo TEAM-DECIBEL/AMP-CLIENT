@@ -10,7 +10,7 @@ import * as styles from './login-error.css';
 const LoginError = () => {
   const navigate = useNavigate();
 
-  const handleButtonClick = () => {
+  const handleBackClick = () => {
     navigate(-1);
   };
   return (
@@ -21,7 +21,7 @@ const LoginError = () => {
         image={<img src={IMAGES.LOGIN_ERROR} alt='' />}
       />
       <div className={styles.ctaButtonContainer}>
-        <CtaButton type='common' color='gray' onClick={handleButtonClick}>
+        <CtaButton type='common' color='gray' onClick={handleBackClick}>
           돌아가기
         </CtaButton>
       </div>
