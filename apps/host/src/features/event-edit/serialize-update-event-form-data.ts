@@ -1,4 +1,4 @@
-import { EventFormSubmitValues } from '@entities/event/event-form';
+import type { EventFormSubmitValues } from '@entities/event/event-form';
 
 import { toFormData } from '@shared/libs/to-form-data';
 
