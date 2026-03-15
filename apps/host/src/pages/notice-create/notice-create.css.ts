@@ -65,6 +65,12 @@ export const chipContainer = style({
 export const imageListContainer = style({
   display: 'flex',
   gap: '1rem',
+  marginRight: '-2rem',
+});
+
+export const imageList = style({
+  display: 'flex',
+  gap: '1rem',
   padding: '0.8rem 0',
   margin: '-0.8rem 0',
   overflowX: 'auto',
@@ -73,7 +79,6 @@ export const imageListContainer = style({
   userSelect: 'none',
   WebkitOverflowScrolling: 'touch',
   cursor: 'grab',
-
   selectors: {
     '&::-webkit-scrollbar': {
       display: 'none',

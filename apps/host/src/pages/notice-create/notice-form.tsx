@@ -82,26 +82,28 @@ const NoticeForm = ({
         </div>
 
         <InputLayout label='공지 이미지' isEssential={false}>
-          <div
-            ref={scrollRef}
-            className={styles.imageListContainer}
-            onMouseDown={onDragStart}
-            onMouseMove={onDragMove}
-            onMouseUp={onDragEnd}
-            onMouseLeave={onDragEnd}
-          >
+          <div className={styles.imageListContainer}>
             <MultiImageButton
               currentCount={images.length}
               maxCount={MAX_IMAGES}
               onFilesChange={handleImagesAdd}
             />
-            {images.map((image, index) => (
-              <ImagePreview
-                key={image.type === 'new' ? image.id : image.url}
-                src={image.type === 'new' ? image.previewUrl : image.url}
-                onRemove={() => handleImageRemove(index)}
-              />
-            ))}
+            <div
+              ref={scrollRef}
+              className={styles.imageList}
+              onMouseDown={onDragStart}
+              onMouseMove={onDragMove}
+              onMouseUp={onDragEnd}
+              onMouseLeave={onDragEnd}
+            >
+              {images.map((image, index) => (
+                <ImagePreview
+                  key={image.type === 'new' ? image.id : image.url}
+                  src={image.type === 'new' ? image.previewUrl : image.url}
+                  onRemove={() => handleImageRemove(index)}
+                />
+              ))}
+            </div>
           </div>
         </InputLayout>
 
