@@ -20,6 +20,7 @@ import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use
 import { NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
+import { NAV_PATH } from '@shared/constants/path';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
@@ -59,7 +60,7 @@ const NoticeListPage = () => {
     useNoticeList(announcements, activeCategoryNames);
 
   const handleNoticeItemClick = (noticeId: number) => {
-    navigate(`/events/${festivalId}/notices/${noticeId}`);
+    navigate(NAV_PATH.noticeDetails(festivalId, noticeId));
   };
 
   const {
