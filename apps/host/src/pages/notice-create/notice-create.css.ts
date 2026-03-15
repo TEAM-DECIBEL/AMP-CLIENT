@@ -65,15 +65,9 @@ export const chipContainer = style({
 export const imageListContainer = style({
   display: 'flex',
   gap: '1rem',
-  marginRight: '-2rem',
-});
-
-export const imageList = style({
-  display: 'flex',
-  gap: '1rem',
   padding: '0.8rem 0',
   margin: '-0.8rem 0',
-  width: '100%',
+  marginRight: '-2rem',
   overflowX: 'auto',
   msOverflowStyle: 'none',
   scrollbarWidth: 'none',
