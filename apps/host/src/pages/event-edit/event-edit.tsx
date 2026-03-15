@@ -11,10 +11,20 @@ import { serializeUpdateFestivalFormData } from '@features/event-edit/serialize-
 import { toEventEditInitialValues } from '@features/event-edit/to-event-edit-initial-values';
 import { useFestivalUpdateMutation } from '@features/event-edit/use-event-edit';
 
-import { EventFormSubmitValues } from '@entities/event/event-form';
+import type { EventFormSubmitValues } from '@entities/event/event-form';
 import { EVENT_EDIT_QUERY_OPTIONS } from '@entities/event-edit/model/query-options';
 
 import { NAV_PATH } from '@shared/constants/path';
+
+interface ConfirmModalProps {
+  title: string;
+  description?: string;
+  onConfirm: () => void;
+}
+
+interface EventEditPageContentProps {
+  festivalId: number;
+}
 
 const areSameCategoryIds = (prev: number[], next: number[]) => {
   if (prev.length !== next.length) {
@@ -27,19 +37,18 @@ const areSameCategoryIds = (prev: number[], next: number[]) => {
   return sortedPrev.every((id, index) => id === sortedNext[index]);
 };
 
-const EventEditPage = () => {
-  const navigate = useNavigate();
-  const { eventId } = useParams();
-
-  const festivalId = Number(eventId);
+const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
+  const updateMutation = useFestivalUpdateMutation(festivalId);
 
   const { data, isLoading } = useQuery(
-    EVENT_EDIT_QUERY_OPTIONS.DETAIL(
-      Number.isFinite(festivalId) ? festivalId : null,
-    ),
+    EVENT_EDIT_QUERY_OPTIONS.DETAIL(festivalId),
   );
 
-  const updateMutation = useFestivalUpdateMutation(festivalId);
+  const navigate = useNavigate();
+
+  if (!Number.isFinite(festivalId)) {
+    return null;
+  }
 
   if (isLoading) {
     return <Loading />;
@@ -65,11 +74,7 @@ const EventEditPage = () => {
     title,
     description,
     onConfirm,
-  }: {
-    title: string;
-    description?: string;
-    onConfirm: () => void;
-  }) => {
+  }: ConfirmModalProps) => {
     overlay.open(({ isOpen, close, unmount }) => (
       <Modal
         open={isOpen}
@@ -141,6 +146,17 @@ const EventEditPage = () => {
       }}
     />
   );
+};
+
+const EventEditPage = () => {
+  const { eventId } = useParams();
+  const festivalId = Number(eventId);
+
+  if (!Number.isFinite(festivalId)) {
+    return null;
+  }
+
+  return <EventEditPageContent festivalId={festivalId} />;
 };
 
 export default EventEditPage;

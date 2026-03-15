@@ -1,4 +1,4 @@
-import { EventFormInitialValues } from '@entities/event/event-form';
+import type { EventFormInitialValues } from '@entities/event/event-form';
 import type { FestivalDetail } from '@entities/event-edit/types/event-edit';
 
 export const toEventEditInitialValues = (
