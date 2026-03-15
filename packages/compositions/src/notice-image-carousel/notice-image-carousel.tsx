@@ -24,8 +24,8 @@ const NoticeImageCarousel = ({
     handleMouseMove,
     handleMouseUp,
     handleScroll,
+    isIndicatorVisible,
     isDragging,
-    shouldShowIndicator,
     trackRef,
   } = useDraggableCarousel({
     itemCount: displayImages.length,
@@ -64,7 +64,7 @@ const NoticeImageCarousel = ({
           </li>
         ))}
       </ul>
-      {shouldShowIndicator && (
+      {isIndicatorVisible && (
         <div className={styles.indicator}>
           <PageIndicator
             currentPage={currentPage}

@@ -34,7 +34,7 @@ export const useDraggableCarousel = ({
   const [isDragging, setIsDragging] = useState(false);
   const trackRef = useRef<HTMLUListElement | null>(null);
   const dragStateRef = useRef<DragState>(INITIAL_DRAG_STATE);
-  const shouldShowIndicator = itemCount > 1;
+  const isIndicatorVisible = itemCount > 1;
 
   const handleScroll = (event: UIEvent<HTMLUListElement>) => {
     const { scrollLeft, clientWidth } = event.currentTarget;
@@ -65,6 +65,10 @@ export const useDraggableCarousel = ({
   };
 
   const handleMouseUp = () => {
+    if (!dragStateRef.current.isMouseDown) {
+      return;
+    }
+
     if (trackRef.current) {
       trackRef.current.scrollTo({
         left: getSnapScrollLeft(trackRef.current),
@@ -83,7 +87,7 @@ export const useDraggableCarousel = ({
     handleMouseUp,
     handleScroll,
     isDragging,
-    shouldShowIndicator,
+    isIndicatorVisible,
     trackRef,
   };
 };
