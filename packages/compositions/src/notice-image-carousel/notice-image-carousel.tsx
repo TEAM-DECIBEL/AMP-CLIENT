@@ -24,6 +24,9 @@ const NoticeImageCarousel = ({
     handleMouseMove,
     handleMouseUp,
     handleScroll,
+    handleTouchEnd,
+    handleTouchMove,
+    handleTouchStart,
     isIndicatorVisible,
     isDragging,
     trackRef,
@@ -47,6 +50,10 @@ const NoticeImageCarousel = ({
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchMove}
+        onTouchStart={handleTouchStart}
+        onTouchCancel={handleTouchEnd}
       >
         {displayImages.map((imageUrl, index) => (
           <li key={`${imageUrl}-${index}`} className={styles.imageItem}>

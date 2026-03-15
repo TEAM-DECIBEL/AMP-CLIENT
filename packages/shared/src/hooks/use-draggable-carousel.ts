@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
-import type { MouseEvent, UIEvent } from 'react';
+import type { MouseEvent, TouchEvent, UIEvent } from 'react';
 
 interface DragState {
-  isMouseDown: boolean;
+  isPointerDown: boolean;
   startX: number;
   startScrollLeft: number;
 }
@@ -12,7 +12,7 @@ interface UseDraggableCarouselParams {
 }
 
 const INITIAL_DRAG_STATE: DragState = {
-  isMouseDown: false,
+  isPointerDown: false,
   startX: 0,
   startScrollLeft: 0,
 };
@@ -45,27 +45,52 @@ export const useDraggableCarousel = ({
     setCurrentPage(Math.round(scrollLeft / clientWidth) + 1);
   };
 
-  const handleMouseDown = (event: MouseEvent<HTMLUListElement>) => {
+  const startDrag = (startX: number, startScrollLeft: number) => {
     dragStateRef.current = {
-      isMouseDown: true,
-      startX: event.clientX,
-      startScrollLeft: event.currentTarget.scrollLeft,
+      isPointerDown: true,
+      startX,
+      startScrollLeft,
     };
     setIsDragging(true);
   };
 
-  const handleMouseMove = (event: MouseEvent<HTMLUListElement>) => {
-    if (!dragStateRef.current.isMouseDown) {
+  const updateDrag = (currentX: number, element: HTMLUListElement) => {
+    if (!dragStateRef.current.isPointerDown) {
       return;
     }
 
-    const deltaX = event.clientX - dragStateRef.current.startX;
-    event.currentTarget.scrollLeft =
-      dragStateRef.current.startScrollLeft - deltaX;
+    const deltaX = currentX - dragStateRef.current.startX;
+    element.scrollLeft = dragStateRef.current.startScrollLeft - deltaX;
   };
 
-  const handleMouseUp = () => {
-    if (!dragStateRef.current.isMouseDown) {
+  const handleMouseDown = (event: MouseEvent<HTMLUListElement>) => {
+    startDrag(event.clientX, event.currentTarget.scrollLeft);
+  };
+
+  const handleMouseMove = (event: MouseEvent<HTMLUListElement>) => {
+    updateDrag(event.clientX, event.currentTarget);
+  };
+
+  const handleTouchStart = (event: TouchEvent<HTMLUListElement>) => {
+    const touch = event.touches[0];
+    if (!touch) {
+      return;
+    }
+
+    startDrag(touch.clientX, event.currentTarget.scrollLeft);
+  };
+
+  const handleTouchMove = (event: TouchEvent<HTMLUListElement>) => {
+    const touch = event.touches[0];
+    if (!touch) {
+      return;
+    }
+
+    updateDrag(touch.clientX, event.currentTarget);
+  };
+
+  const endDrag = () => {
+    if (!dragStateRef.current.isPointerDown) {
       return;
     }
 
@@ -80,12 +105,23 @@ export const useDraggableCarousel = ({
     setIsDragging(false);
   };
 
+  const handleMouseUp = () => {
+    endDrag();
+  };
+
+  const handleTouchEnd = () => {
+    endDrag();
+  };
+
   return {
     currentPage,
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
     handleScroll,
+    handleTouchEnd,
+    handleTouchMove,
+    handleTouchStart,
     isDragging,
     isIndicatorVisible,
     trackRef,
