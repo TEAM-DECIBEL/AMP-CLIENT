@@ -46,7 +46,7 @@ export const useImageUpload = (initialUrls: string[] = []) => {
       toast.show('이미지 파일은 최대 5MB까지 첨부할 수 있어요.');
     }
 
-    if (files.length > availableSpace) {
+    if (validFiles.length > availableSpace) {
       toast.show(`이미지 첨부는 최대 20장까지 가능해요`);
     }
 

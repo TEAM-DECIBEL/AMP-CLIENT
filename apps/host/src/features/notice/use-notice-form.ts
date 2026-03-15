@@ -85,11 +85,14 @@ export const useNoticeForm = (
 
     const newImages: File[] = [];
     const keepImageUrls: string[] = [];
-    images.forEach((img) =>
-      img.type === 'new'
-        ? newImages.push(img.file)
-        : keepImageUrls.push(img.url),
-    );
+
+    images.forEach((img) => {
+      if (img.type === 'new') {
+        newImages.push(img.file);
+      } else {
+        keepImageUrls.push(img.url);
+      }
+    });
 
     const { title, content, isPinned, categoryId } = form;
 

@@ -1,26 +1,37 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 export const useDragScroll = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isDrag, setIsDrag] = useState(false);
-  const [startX, setStartX] = useState(0);
+  const isDragRef = useRef(false);
+  const startXRef = useRef(0);
 
   const onDragStart = (e: React.MouseEvent) => {
+    if (e.button !== 0) {
+      return;
+    }
+
     e.preventDefault();
-    setIsDrag(true);
-    setStartX(e.pageX + (scrollRef.current?.scrollLeft || 0));
+
+    isDragRef.current = true;
+    startXRef.current = e.pageX + (scrollRef.current?.scrollLeft || 0);
   };
 
   const onDragEnd = () => {
-    setIsDrag(false);
+    isDragRef.current = false;
   };
 
   const onDragMove = (e: React.MouseEvent) => {
-    if (!isDrag || !scrollRef.current) {
+    if (!isDragRef.current || !scrollRef.current) {
       return;
     }
-    scrollRef.current.scrollLeft = startX - e.pageX;
+
+    scrollRef.current.scrollLeft = startXRef.current - e.pageX;
   };
 
-  return { scrollRef, onDragStart, onDragEnd, onDragMove };
+  return {
+    scrollRef,
+    onDragStart,
+    onDragEnd,
+    onDragMove,
+  };
 };

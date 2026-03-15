@@ -12,36 +12,34 @@ import NoticeForm from './notice-form';
 const NoticeCreatePage = () => {
   const { eventId, noticeId } = useParams();
 
-  const festivalId =
-    eventId && !Number.isNaN(Number(eventId)) ? Number(eventId) : null;
-  const noticeIdValue =
-    noticeId && !Number.isNaN(Number(noticeId)) ? Number(noticeId) : null;
+  const festivalId = Number(eventId);
+  const noticeIdValue = Number(noticeId);
 
   const { data: noticeDetail, isPending: isDetailPending } = useQuery({
     ...NOTICE_QUERY_OPTIONS.DETAIL(noticeIdValue),
-    enabled: noticeIdValue !== null,
+    enabled: !Number.isNaN(noticeIdValue),
   });
 
   const { data: noticeFestival, isPending: isFestivalPending } = useQuery({
-    ...NOTICES_QUERY_OPTIONS.BANNER(festivalId ?? 0),
-    enabled: festivalId !== null,
+    ...NOTICES_QUERY_OPTIONS.BANNER(festivalId),
+    enabled: !Number.isNaN(festivalId),
   });
 
   const { data: noticeListData, isPending: isListPending } = useQuery({
-    ...NOTICES_QUERY_OPTIONS.LIST(festivalId ?? 0, { page: 0, size: 20 }),
-    enabled: festivalId !== null,
+    ...NOTICES_QUERY_OPTIONS.LIST(festivalId, { page: 0, size: 20 }),
+    enabled: !Number.isNaN(festivalId),
   });
 
   const pinnedCount =
     noticeListData?.announcements.filter((n) => n.isPinned).length ?? 0;
   const activeCategories = noticeFestival?.activeCategories ?? [];
 
-  if (festivalId === null) {
+  if (Number.isNaN(festivalId)) {
     return null;
   }
 
   const isLoading =
-    (noticeIdValue !== null && isDetailPending) ||
+    (!Number.isNaN(noticeIdValue) && isDetailPending) ||
     isFestivalPending ||
     isListPending;
   if (isLoading) {
