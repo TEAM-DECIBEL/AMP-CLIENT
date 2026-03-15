@@ -11,10 +11,10 @@ import { serializeUpdateFestivalFormData } from '@features/event-edit/serialize-
 import { toEventEditInitialValues } from '@features/event-edit/to-event-edit-initial-values';
 import { useFestivalUpdateMutation } from '@features/event-edit/use-event-edit';
 
+import { EventFormSubmitValues } from '@entities/event/event-form';
 import { EVENT_EDIT_QUERY_OPTIONS } from '@entities/event-edit/model/query-options';
 
 import { NAV_PATH } from '@shared/constants/path';
-import type { EventFormSubmitValues } from '@shared/types/event-form';
 
 const areSameCategoryIds = (prev: number[], next: number[]) => {
   if (prev.length !== next.length) {
