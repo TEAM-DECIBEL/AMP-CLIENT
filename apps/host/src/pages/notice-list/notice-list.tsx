@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router';
 
-import { CircleButton } from '@amp/ads-ui';
+import { ActionButton, CircleButton, toast } from '@amp/ads-ui';
+import { CopyIcon } from '@amp/ads-ui/icons';
+import { ENV } from '@amp/apis';
 import {
   LiveButtonContainer,
   NOTICE_TAB,
@@ -15,6 +17,8 @@ import { formatDday } from '@amp/shared/utils';
 
 import { CONGESTION_QUERY_OPTIONS } from '@features/notice-details/query';
 import { NOTICES_QUERY_OPTIONS } from '@features/notice-list/apis/query';
+
+import { ROUTE_PATH } from '@shared/constants/path';
 
 import * as styles from './notice-list.css';
 
@@ -58,7 +62,23 @@ const NoticeListPage = () => {
     })) ?? [];
 
   const handleNoticeItemClick = (noticeId: number) => {
-    navigate(`/events/${eventId}/notices/${noticeId}`);
+    navigate(
+      ROUTE_PATH.NOTICE_DETAILS.replace(':eventId', String(eventId)).replace(
+        ':noticeId',
+        String(noticeId),
+      ),
+    );
+  };
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        `${ENV.AUDIENCE_BASE_URL}/events/${eventId}/notices`,
+      );
+      toast.show('링크가 복사되었어요.');
+    } catch {
+      toast.show('링크 복사에 실패했어요.', '다시 시도해 주세요.');
+    }
   };
 
   return (
@@ -69,6 +89,15 @@ const NoticeListPage = () => {
           title={festivalBanner.title}
           location={festivalBanner.location}
           date={festivalBanner.period}
+          button={
+            <ActionButton
+              onChange={handleCopyLink}
+              emphasized
+            >
+              <CopyIcon />
+              링크 복사
+            </ActionButton>
+          }
         />
       )}
       <div className={styles.mainContent}>
@@ -97,7 +126,11 @@ const NoticeListPage = () => {
           <div className={styles.button}>
             <CircleButton
               type='write'
-              onClick={() => navigate(`/events/${eventId}/notices/new`)}
+              onClick={() =>
+                navigate(
+                  ROUTE_PATH.NOTICE_CREATE.replace(':eventId', String(eventId)),
+                )
+              }
             />
           </div>
         </div>
