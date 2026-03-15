@@ -45,10 +45,10 @@ const OnboardingForm = ({
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
-        <span className={styles.supportingTextContainer}>
+        <div className={styles.supportingTextContainer}>
           {isError && <NoticeIcon className={styles.icon} />}
           <p className={styles.supportingText({ isError })}>{supportingText}</p>
-        </span>
+        </div>
       </div>
     </div>
   );
