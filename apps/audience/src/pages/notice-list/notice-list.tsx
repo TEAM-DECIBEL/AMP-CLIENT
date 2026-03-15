@@ -89,7 +89,7 @@ const NoticeListPage = () => {
 
   const bannerProps = bannerData
     ? {
-        dday: formatDday(bannerData.dday),
+        dDay: formatDday(bannerData.dDay),
         title: bannerData.title,
         location: bannerData.location,
         date: bannerData.period,
@@ -171,7 +171,7 @@ const NoticeListPage = () => {
     <main className={styles.pageContainer}>
       {bannerProps && (
         <NoticeBanner
-          dday={bannerProps.dday}
+          dDay={bannerProps.dDay}
           title={bannerProps.title}
           location={bannerProps.location}
           date={bannerProps.date}
@@ -197,6 +197,7 @@ const NoticeListPage = () => {
             onSelectCategory={handleChipClick}
             onAlertClick={handleAlertClick}
             onNoticeItemClick={handleNoticeItemClick}
+            emptyTitle='작성된 공지가 없어요.'
           />
         ) : (
           <div className={styles.noticeContainer}>

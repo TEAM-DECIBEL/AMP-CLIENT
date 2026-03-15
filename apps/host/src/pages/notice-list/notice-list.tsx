@@ -65,7 +65,7 @@ const NoticeListPage = () => {
     <main className={styles.pageContainer}>
       {festivalBanner && (
         <NoticeBanner
-          dday={formatDday(festivalBanner.dday)}
+          dDay={formatDday(festivalBanner.dDay)}
           title={festivalBanner.title}
           location={festivalBanner.location}
           date={festivalBanner.period}
@@ -83,6 +83,7 @@ const NoticeListPage = () => {
             noticeList={noticeList}
             onSelectCategory={handleChipClick}
             onNoticeItemClick={handleNoticeItemClick}
+            emptyTitle='작성한 공지가 없어요.'
           />
         ) : (
           <section className={styles.currentContainer}>

@@ -24,7 +24,7 @@ const SavedNoticesPage = () => {
     return (
       <section className={styles.page}>
         <div className={styles.empty}>
-          <EmptyView title='저장한 공지가 없어요!' />
+          <EmptyView imageType='ticket' title='저장한 공지가 없어요!' />
         </div>
       </section>
     );
@@ -36,7 +36,7 @@ const SavedNoticesPage = () => {
         {savedNoticesData.notices.map((notice, index) => (
           <div key={notice.noticeId}>
             <CardNotice
-              imageUrl={notice.imageUrl}
+              imageUrls={notice.imageUrl ? [notice.imageUrl] : []}
               title={notice.title}
               content={notice.content}
               onClick={() => {

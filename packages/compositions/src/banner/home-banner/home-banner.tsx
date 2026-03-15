@@ -7,7 +7,7 @@ interface HomeBannerCardProps extends HomeBannerBaseProps {
   title: string;
   location: string;
   date: string;
-  dday: number;
+  dDay: number;
 }
 
 interface HomeBannerNoneProps extends HomeBannerBaseProps {
@@ -45,13 +45,13 @@ const HomeBanner = (props: HomeBannerProps) => {
       : `${styles.banner} ${styles.bannerAudienceNone}`;
 
   if (status === 'card') {
-    const { title, location, date, dday } = props;
+    const { title, location, date, dDay } = props;
     return (
       <article className={bannerClassName}>
         <p className={styles.text}>
           {greeting} {message}
         </p>
-        <CardHome title={title} location={location} date={date} dday={dday} />
+        <CardHome title={title} location={location} date={date} dDay={dDay} />
       </article>
     );
   }

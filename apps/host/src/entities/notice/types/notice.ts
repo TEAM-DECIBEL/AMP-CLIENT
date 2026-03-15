@@ -14,10 +14,10 @@ export interface UpdateNoticeBody {
   festivalId: number;
   title: string;
   categoryId: number;
-  newImage?: File | null;
+  newImages?: File[];
+  keepImageUrls?: string[];
   content: string;
   isPinned: boolean;
-  previousImageUrl?: string;
 }
 
 export type UpdateNoticeResponse = Record<string, never>;

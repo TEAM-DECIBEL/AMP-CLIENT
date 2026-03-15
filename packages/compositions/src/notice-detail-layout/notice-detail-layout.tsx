@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 
-import { IMAGES } from '../assets/index';
 import ButtonGradientSection from '../button-gradient-section/button-gradient-section';
+import NoticeImageCarousel from '../notice-image-carousel/notice-image-carousel';
 
 import * as styles from './notice-detail-layout.css';
 
 interface NoticeData {
-  imageUrl: string;
+  imageUrls: string[];
   title: string;
   category: string;
   createdAt: string;
@@ -30,10 +30,9 @@ const NoticeDetailLayoutRoot = ({ children }: NoticeDetailLayoutProps) => {
 };
 
 const Content = ({ data }: NoticeDetailContentProps) => {
-  const imgSrc = data.imageUrl?.trim() ? data.imageUrl : IMAGES.EMPTY_NOTICE;
   return (
     <div className={styles.noticeDetail}>
-      <img src={imgSrc} alt={data.title} className={styles.img} />
+      <NoticeImageCarousel imageUrls={data.imageUrls} title={data.title} />
       <header className={styles.header}>
         <p className={styles.category}>
           주최 공지 {'>'} {data.category}

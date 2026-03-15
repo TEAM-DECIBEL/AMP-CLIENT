@@ -11,7 +11,7 @@ export const empty = style({
 
 export const image = style({
   width: '14rem',
-  height: '8.2rem',
+  height: 'auto',
 });
 
 export const textGroup = style({
