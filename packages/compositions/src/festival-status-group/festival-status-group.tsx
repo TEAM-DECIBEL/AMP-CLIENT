@@ -16,7 +16,7 @@ const FestivalStatusGroup = ({
   return (
     <>
       {dDay && (
-        <Chip variant='status' status='dday'>
+        <Chip variant='status' status='dDay'>
           {dDay}
         </Chip>
       )}

@@ -6,7 +6,7 @@ import { PinIcon } from '../../../icons';
 import * as styles from './card-notice.css';
 
 interface CardNoticeProps {
-  imageUrl: string;
+  imageUrls: string[];
   title: string;
   content: string;
   isPinned?: boolean;
@@ -15,14 +15,14 @@ interface CardNoticeProps {
 }
 
 const CardNotice = ({
-  imageUrl,
+  imageUrls,
   title,
   content,
   isPinned,
   createdAt,
   onClick,
 }: CardNoticeProps) => {
-  const displayImage = imageUrl || IMAGES.EMPTY_NOTICE_IMAGE;
+  const displayImage = imageUrls[0] || IMAGES.EMPTY_NOTICE_IMAGE;
 
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>) => {
     event.currentTarget.onerror = null;

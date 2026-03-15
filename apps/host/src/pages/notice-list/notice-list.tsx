@@ -85,7 +85,7 @@ const NoticeListPage = () => {
     <main className={styles.pageContainer}>
       {festivalBanner && (
         <NoticeBanner
-          dday={formatDday(festivalBanner.dday)}
+          dDay={formatDday(festivalBanner.dDay)}
           title={festivalBanner.title}
           location={festivalBanner.location}
           date={festivalBanner.period}

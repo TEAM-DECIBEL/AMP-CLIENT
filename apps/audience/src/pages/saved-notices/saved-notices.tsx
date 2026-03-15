@@ -36,7 +36,7 @@ const SavedNoticesPage = () => {
         {savedNoticesData.notices.map((notice, index) => (
           <div key={notice.noticeId}>
             <CardNotice
-              imageUrl={notice.imageUrl}
+              imageUrls={notice.imageUrl ? [notice.imageUrl] : []}
               title={notice.title}
               content={notice.content}
               onClick={() => {

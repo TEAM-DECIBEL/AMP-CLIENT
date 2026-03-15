@@ -28,7 +28,7 @@ const useHomeFestivals = () => {
 
   return {
     allFestivals: allFestivalsData?.festivals ?? [],
-    upcomingFestivals: plannedFestivalsData?.festivals ?? [],
+    plannedFestivals: plannedFestivalsData?.festivals ?? [],
     bannerFestival: upcomingFestivalData
       ? {
           festivalId: upcomingFestivalData.festivalId,
@@ -36,7 +36,7 @@ const useHomeFestivals = () => {
           mainImageUrl: upcomingFestivalData.mainImageUrl,
           location: upcomingFestivalData.location,
           period: `${upcomingFestivalData.startDate} ~ ${upcomingFestivalData.endDate}`,
-          dDay: upcomingFestivalData.dday,
+          dDay: upcomingFestivalData.dDay,
         }
       : undefined,
     selectedTab,

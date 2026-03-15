@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router';
-
 import { EmptyView } from '@amp/ads-ui';
 
 import {
@@ -8,11 +6,7 @@ import {
   type TabValue,
 } from '@widgets/home/constants/home-tabs';
 
-import { ROUTE_PATH } from '@shared/constants/path';
-import type {
-  AllFestivalItem,
-  UpcomingFestivalItem,
-} from '@shared/types/home-response';
+import type { Festival } from '@shared/types/festival';
 
 import FestivalCard from '../festival-card/festival-card';
 import HomeFestivalTabs from '../home-festival-tabs/home-festival-tabs';
@@ -22,24 +16,20 @@ import * as styles from './festival-section.css';
 interface FestivalSectionProps {
   selectedTab: TabValue;
   onTabChange: (value: TabValue) => void;
-  allFestivals: AllFestivalItem[];
-  upcomingFestivals: UpcomingFestivalItem[];
+  allFestivals: Festival[];
+  plannedFestivals: Festival[];
+  onCardClick: (festivalId: number) => void;
 }
 
 const FestivalSection = ({
   selectedTab,
   onTabChange,
   allFestivals,
-  upcomingFestivals,
+  plannedFestivals,
+  onCardClick,
 }: FestivalSectionProps) => {
-  const navigate = useNavigate();
-
-  const handleMoveToFestival = (festivalId: number) => () => {
-    navigate(ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)));
-  };
-
   const targetFestivals =
-    selectedTab === TAB_ALL ? allFestivals : upcomingFestivals;
+    selectedTab === TAB_ALL ? allFestivals : plannedFestivals;
 
   const emptyConfig = {
     [TAB_ALL]: {
@@ -47,7 +37,7 @@ const FestivalSection = ({
       text: '등록된 공연이 아직 없어요.',
     },
     [TAB_UPCOMING]: {
-      isEmpty: upcomingFestivals.length === 0,
+      isEmpty: plannedFestivals.length === 0,
       text: '관람 예정인 공연이 없어요.',
     },
   } as const;
@@ -70,7 +60,8 @@ const FestivalSection = ({
               <li key={festival.festivalId}>
                 <FestivalCard
                   festival={festival}
-                  onClick={handleMoveToFestival(festival.festivalId)}
+                  showStatus={false}
+                  onCardClick={onCardClick}
                 />
               </li>
             ))}

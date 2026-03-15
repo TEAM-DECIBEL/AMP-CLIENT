@@ -12,3 +12,12 @@ export const ROUTE_PATH = {
   AUTH_REQUIRED: '/auth/required',
   NOT_FOUND: '/not-found',
 } as const;
+
+export const NAV_PATH = {
+  noticeList: (eventId: number) => `/events/${eventId}/notices`,
+  noticeCreate: (eventId: number) => `/events/${eventId}/notices/new`,
+  noticeDetails: (eventId: number, noticeId: number) =>
+    `/events/${eventId}/notices/${noticeId}`,
+  noticeEdit: (eventId: number, noticeId: number) =>
+    `/events/${eventId}/notices/${noticeId}/edit`,
+} as const;

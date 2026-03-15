@@ -53,7 +53,7 @@ export const location = style({
   gap: '0.4rem',
 });
 
-export const dday = style({
+export const dDay = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.4rem',
@@ -61,7 +61,7 @@ export const dday = style({
   ...ampThemeVars.font.heading_b_22,
 });
 
-export const ddayText = style({
+export const dDayText = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
