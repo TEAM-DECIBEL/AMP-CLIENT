@@ -6,6 +6,7 @@ import {
   AuthRequiredPage,
   EventCreatePage,
   HomePage,
+  LoginErrorPage,
   LoginPage,
   MyHistoryPage,
   MyPage,
@@ -78,5 +79,6 @@ export const globalRoutes = [
   { path: ROUTE_PATH.AUTH_REQUIRED, element: <AuthRequiredPage /> },
 
   { path: ROUTE_PATH.NOT_FOUND, element: <NotFoundPage /> },
+  { path: ROUTE_PATH.LOGIN_ERROR, element: <LoginErrorPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];

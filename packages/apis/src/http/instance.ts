@@ -76,11 +76,22 @@ instance.interceptors.response.use(
     }
 
     if (status === HTTP_STATUS_CODE.FORBIDDEN) {
-      const isOnLogin = window.location.pathname.startsWith('/login');
-      if (!isOnLogin && !locked) {
+      const errorCode =
+        typeof error.response?.data === 'object' && error.response?.data
+          ? error.response.data.code
+          : undefined;
+
+      const redirectPath =
+        errorCode === 'REG_403_002' ? '/login/error' : '/login';
+
+      const isOnRedirectPage =
+        window.location.pathname.startsWith(redirectPath);
+
+      if (!isOnRedirectPage && !locked) {
         setRedirectLock();
-        window.location.replace('/login');
+        window.location.replace(redirectPath);
       }
+
       return handleApiError(error);
     }
 
