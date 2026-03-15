@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { DeleteIcon } from '@amp/ads-ui/icons';
 
-import type { ItemId } from '@entities/event/event-form';
+import type { ItemId } from '@shared/types/item-id';
 
 import * as styles from './added-item.css';
 

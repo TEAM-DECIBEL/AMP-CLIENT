@@ -1,4 +1,4 @@
-export type ItemId = string | number;
+import type { ItemId } from '@shared/types/item-id';
 
 export interface EventScheduleValue {
   id?: ItemId;
