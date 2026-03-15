@@ -90,7 +90,6 @@ const NoticeForm = ({
             onMouseMove={onDragMove}
             onMouseUp={onDragEnd}
             onMouseLeave={onDragEnd}
-            role='list'
             aria-label='공지 이미지 목록'
           >
             <MultiImageButton

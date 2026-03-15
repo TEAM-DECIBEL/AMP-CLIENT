@@ -84,7 +84,9 @@ export const useImageUpload = (initialUrls: string[] = []) => {
     const currentBlobUrls = blobUrlsRef.current;
 
     return () => {
-      currentBlobUrls.forEach((url) => URL.revokeObjectURL(url));
+      currentBlobUrls.forEach((url) => {
+        URL.revokeObjectURL(url);
+      });
       currentBlobUrls.clear();
     };
   }, []);

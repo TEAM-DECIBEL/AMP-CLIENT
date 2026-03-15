@@ -46,7 +46,9 @@ const NoticeCreatePage = () => {
     return <Loading />;
   }
 
-  const formKey = noticeIdValue ? `edit-${noticeIdValue}` : 'create';
+  const formKey = Number.isNaN(noticeIdValue)
+    ? 'create'
+    : `edit-${noticeIdValue}`;
 
   return (
     <NoticeForm

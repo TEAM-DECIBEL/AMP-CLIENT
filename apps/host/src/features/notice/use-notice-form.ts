@@ -116,6 +116,9 @@ export const useNoticeForm = (
             queryClient.invalidateQueries({
               queryKey: ORGANIZERS_QUERY_KEY.NOTICE_DETAIL(noticeId),
             });
+            queryClient.invalidateQueries({
+              queryKey: ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICES(festivalId),
+            });
 
             navigateToList();
           },
@@ -134,7 +137,13 @@ export const useNoticeForm = (
         images: newImages.length > 0 ? newImages : undefined,
       },
       {
-        onSuccess: navigateToList,
+        onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICES(festivalId),
+          });
+
+          navigateToList();
+        },
         onError: () => toast.show('공지 작성에 실패했어요.'),
       },
     );
