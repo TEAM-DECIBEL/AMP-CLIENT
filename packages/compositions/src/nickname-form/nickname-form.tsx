@@ -1,4 +1,4 @@
-import OnboardingForm from 'src/onboarding-form/onboarding-form';
+import OnboardingForm from '../onboarding-form/onboarding-form';
 
 interface NicknameFormProps {
   userType: 'host' | 'audience';
