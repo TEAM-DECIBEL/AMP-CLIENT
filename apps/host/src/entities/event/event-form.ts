@@ -1,4 +1,4 @@
-type ItemId = string | number;
+export type ItemId = string | number;
 
 export interface EventScheduleValue {
   id?: ItemId;

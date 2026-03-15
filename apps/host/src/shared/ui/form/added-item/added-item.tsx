@@ -2,11 +2,11 @@ import type { ReactNode } from 'react';
 
 import { DeleteIcon } from '@amp/ads-ui/icons';
 
+import type { ItemId } from '@entities/event/event-form';
+
 import * as styles from './added-item.css';
 
 type SecondVariant = 'default' | 'location';
-
-type ItemId = string | number;
 
 interface AddedItemModel {
   id: ItemId;
