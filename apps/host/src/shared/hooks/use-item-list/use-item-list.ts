@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import type { ItemId } from '@entities/event/event-form';
+import type { ItemId } from '@shared/types/item-id';
 
 interface WithOptionalId {
   id?: ItemId;
