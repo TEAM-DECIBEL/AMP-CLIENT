@@ -5,7 +5,7 @@ import { useDraggableCarousel } from '@amp/shared/hooks';
 
 import { IMAGES } from '../assets/index';
 
-import * as styles from '../notice-detail-layout/notice-detail-layout.css';
+import * as styles from './notice-image-carousel.css';
 
 interface NoticeImageCarouselProps {
   imageUrls: string[];
