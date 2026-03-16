@@ -1,3 +1,5 @@
+import { getMobileOs } from '../utils';
+
 const INSTALL_GUIDE_DISMISSED_DATE = 'install-guide-dismissed-date';
 
 const getTodayString = () => {
@@ -28,6 +30,12 @@ export const dismissInstallGuideForToday = () => {
 
 export const shouldShowInstallGuide = () => {
   if (typeof window === 'undefined') {
+    return false;
+  }
+
+  const os = getMobileOs();
+
+  if (os !== 'ios' && os !== 'android') {
     return false;
   }
 
