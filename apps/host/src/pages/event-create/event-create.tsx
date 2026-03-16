@@ -1,26 +1,16 @@
-import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import EventForm from '@widgets/event-form/event-form';
 
-import { serializeCreateFestivalFormData } from '@features/event/event-create/serialize-event-form';
+import { serializeCreateEventFormData } from '@features/event-create/serialize-create-event-form-data';
+import { useEventCreateMutation } from '@features/event-create/use-event-create';
 
-import { postCreateFestival } from '@shared/apis/event-create/post-create-festival';
-import { ROUTE_PATH } from '@shared/constants/path';
+import { NAV_PATH } from '@shared/constants/path';
 
 const EventCreatePage = () => {
   const navigate = useNavigate();
 
-  const toNoticeList = (eventId: string | number) =>
-    ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(eventId));
-
-  const createMutation = useMutation({
-    mutationFn: postCreateFestival,
-    onSuccess: (data) => {
-      const eventId = data.festivalId;
-      navigate(toNoticeList(eventId));
-    },
-  });
+  const createMutation = useEventCreateMutation();
 
   return (
     <EventForm
@@ -30,11 +20,15 @@ const EventCreatePage = () => {
         if (createMutation.isPending) {
           return;
         }
-        const formData = serializeCreateFestivalFormData(values);
+        const formData = serializeCreateEventFormData(values);
         if (!formData) {
           return;
         }
-        createMutation.mutate(formData);
+        createMutation.mutate(formData, {
+          onSuccess: (data) => {
+            navigate(NAV_PATH.noticeList(data.festivalId));
+          },
+        });
       }}
     />
   );
