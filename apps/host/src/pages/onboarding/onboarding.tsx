@@ -26,14 +26,22 @@ interface OnboardingFormValues {
   registrationCode: string;
 }
 
+const DEFAULT_SUPPORTING_TEXT =
+  '가입코드는 AMP 가입안내 문자메시지에 명시되어 있어요.';
+
 const Onboarding = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState<Step>(STEP.NAME);
-  const [isOnboardingError, setIsOnboardingError] = useState(false);
 
   const { mutate, isPending } = usePostRegistrationVerifyMutation();
 
-  const { control, getValues } = useForm<OnboardingFormValues>({
+  const {
+    control,
+    getValues,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useForm<OnboardingFormValues>({
     defaultValues: {
       organizerName: '',
       registrationCode: '',
@@ -53,9 +61,12 @@ const Onboarding = () => {
     defaultValue: '',
   });
 
+  const hasRegistrationCodeError = Boolean(errors.registrationCode);
+
   const disabledByStep: Record<Step, boolean> = {
     [STEP.NAME]: organizerName.trim().length === 0,
-    [STEP.CODE]: registrationCode.trim().length === 0 || isOnboardingError,
+    [STEP.CODE]:
+      registrationCode.trim().length === 0 || hasRegistrationCodeError,
     [STEP.COMPLETE]: false,
   };
 
@@ -66,15 +77,20 @@ const Onboarding = () => {
       setStep(STEP.CODE);
       return;
     }
+
     if (step === STEP.CODE) {
       handleVerifyRegistration();
       return;
     }
+
     navigate(ROUTE_PATH.HOME, { replace: true });
   };
 
   const handleVerifyRegistration = () => {
+    clearErrors('registrationCode');
+
     const { organizerName, registrationCode } = getValues();
+
     mutate(
       {
         organizerName: organizerName.trim(),
@@ -86,7 +102,10 @@ const Onboarding = () => {
         },
         onError: (error) => {
           if (error instanceof HTTPError && error.code === 'REG_400_001') {
-            setIsOnboardingError(true);
+            setError('registrationCode', {
+              type: 'server',
+              message: '올바르지 않은 가입코드입니다.',
+            });
             return;
           }
         },
@@ -126,17 +145,15 @@ const Onboarding = () => {
               placeholder='가입코드를 입력해주세요.'
               value={field.value}
               onChange={(value) => {
-                if (isOnboardingError) {
-                  setIsOnboardingError(false);
+                if (errors.registrationCode) {
+                  clearErrors('registrationCode');
                 }
                 field.onChange(value);
               }}
               supportingText={
-                isOnboardingError
-                  ? '올바르지 않은 가입코드입니다.'
-                  : '가입코드는 AMP 가입안내 문자메시지에 명시되어 있어요.'
+                errors.registrationCode?.message ?? DEFAULT_SUPPORTING_TEXT
               }
-              isError={isOnboardingError}
+              isError={hasRegistrationCodeError}
             />
           )}
         />
@@ -160,7 +177,7 @@ const Onboarding = () => {
           disabled={disabled}
           onClick={handleNext}
         >
-          {step === 3 ? '시작하기' : '다음으로'}
+          {step === STEP.COMPLETE ? '시작하기' : '다음으로'}
         </CtaButton>
       </div>
     </div>
