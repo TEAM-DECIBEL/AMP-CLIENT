@@ -98,6 +98,7 @@ const HomePage = () => {
       setIsOpen(false);
       return;
     }
+    navigate(ROUTE_PATH.PWA_GUIDE);
   };
 
   const handleBrowseToday = () => {
