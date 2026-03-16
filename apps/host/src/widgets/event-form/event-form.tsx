@@ -10,6 +10,13 @@ import {
 } from '@amp/ads-ui/icons';
 import { ButtonGradientSection } from '@amp/compositions';
 
+import type {
+  EventFormInitialValues,
+  EventFormSubmitValues,
+  EventScheduleValue as ScheduleItem,
+  EventStageValue as BoothItem,
+} from '@entities/event/event-form';
+
 import useItemList from '@shared/hooks/use-item-list/use-item-list';
 import useObjectUrl from '@shared/hooks/use-object-url/use-object-url';
 import CategoryChipGroup from '@shared/ui/button/category-chip-group/category-chip-group';
@@ -29,12 +36,6 @@ interface FormState {
   boothLocation: string;
 }
 
-import type {
-  EventFormSubmitValues,
-  EventScheduleValue as ScheduleItem,
-  EventStageValue as BoothItem,
-} from '@shared/types/event-form';
-
 const isFilled = (value: string) => value.trim() !== '';
 
 const INITIAL_FORM_STATE: FormState = {
@@ -50,22 +51,32 @@ const INITIAL_FORM_STATE: FormState = {
 interface EventFormProps {
   submitText?: string;
   submitDisabled?: boolean;
+  initialValues?: EventFormInitialValues;
   onSubmit: (values: EventFormSubmitValues) => void;
 }
 
 const EventForm = ({
   submitText = '완료',
   submitDisabled = false,
+  initialValues,
   onSubmit,
 }: EventFormProps) => {
-  const [activeCategoryIds, setActiveCategoryIds] = useState<number[]>([]);
-  const [form, setForm] = useState<FormState>(INITIAL_FORM_STATE);
+  const [activeCategoryIds, setActiveCategoryIds] = useState<number[]>(
+    initialValues?.activeCategoryIds ?? [],
+  );
+
+  const [form, setForm] = useState<FormState>({
+    ...INITIAL_FORM_STATE,
+    imageUrl: initialValues?.imageUrl ?? '',
+    eventTitle: initialValues?.eventTitle ?? '',
+    eventLocation: initialValues?.eventLocation ?? '',
+  });
 
   const image = useObjectUrl();
   const [mainImageFile, setMainImageFile] = useState<File | null>(null);
 
-  const schedules = useItemList<ScheduleItem>();
-  const booths = useItemList<BoothItem>();
+  const schedules = useItemList<ScheduleItem>(initialValues?.schedules ?? []);
+  const booths = useItemList<BoothItem>(initialValues?.stages ?? []);
 
   const setField = (name: keyof FormState, value: string) => {
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -97,7 +108,8 @@ const EventForm = ({
 
   const canAddBooth = isFilled(form.boothTitle);
 
-  const hasImage = Boolean(image.url);
+  const previewImageUrl = image.url || initialValues?.imageUrl || '';
+  const hasImage = Boolean(previewImageUrl);
   const hasCategory = activeCategoryIds.length > 0;
   const hasBooth = booths.items.length > 0;
 
@@ -137,7 +149,7 @@ const EventForm = ({
           <FormField label='공연 이미지'>
             <div className={styles.addImageContainer}>
               <AddImageButton
-                imageUrl={image.url}
+                imageUrl={previewImageUrl}
                 onFileChange={(file: File) => {
                   setMainImageFile(file);
                   image.setFile(file);

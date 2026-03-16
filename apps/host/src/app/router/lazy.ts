@@ -4,6 +4,8 @@ export const EventCreatePage = lazy(
   () => import('@pages/event-create/event-create'),
 );
 
+export const EventEditPage = lazy(() => import('@pages/event-edit/event-edit'));
+
 export const HomePage = lazy(() => import('@pages/home/home'));
 
 export const MyPage = lazy(() => import('@pages/mypage/mypage'));

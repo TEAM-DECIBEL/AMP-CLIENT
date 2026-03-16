@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
 import { useNavigate, useParams } from 'react-router';
 
-import { AddToWatchButton, Modal, RectButton, toast } from '@amp/ads-ui';
+import { ActionButton, Modal, RectButton, toast } from '@amp/ads-ui';
 import { ChatIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
@@ -20,6 +20,7 @@ import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use
 import { NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
+import { NAV_PATH } from '@shared/constants/path';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
@@ -59,7 +60,7 @@ const NoticeListPage = () => {
     useNoticeList(announcements, activeCategoryNames);
 
   const handleNoticeItemClick = (noticeId: number) => {
-    navigate(`/events/${festivalId}/notices/${noticeId}`);
+    navigate(NAV_PATH.noticeDetails(festivalId, noticeId));
   };
 
   const {
@@ -176,11 +177,13 @@ const NoticeListPage = () => {
           location={bannerProps.location}
           date={bannerProps.date}
           button={
-            <AddToWatchButton
+            <ActionButton
               selected={bannerData?.isWishlist ?? false}
               onChange={toggleWishList}
               disabled={!bannerData || isTogglePending}
-            />
+            >
+              관람 예정
+            </ActionButton>
           }
         />
       )}

@@ -14,9 +14,6 @@ const AddImageButton = ({ imageUrl, onFileChange }: AddImageButtonProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleButtonClick = () => {
-    if (hasImage) {
-      return;
-    }
     inputRef.current?.click();
   };
 

@@ -7,23 +7,15 @@ import type {
   WishListResponseData,
 } from '@shared/types/festival';
 import type {
-  AllFestivalsResponse,
-  NicknameResponse,
+  FestivalsResponse,
   UpcomingFestivalResponse,
-  UpcomingFestivalsResponse,
 } from '@shared/types/home-response';
 
 export const getAllFestivals = (params: PageSizeParams = {}) =>
-  get<AllFestivalsResponse, PageSizeParams>(
-    END_POINT.GET_ALL_FESTIVALS,
-    params,
-  );
+  get<FestivalsResponse, PageSizeParams>(END_POINT.GET_ALL_FESTIVALS, params);
 
-export const getPlannedFestivals = (params: PageSizeParams = {}) =>
-  get<UpcomingFestivalsResponse, PageSizeParams>(
-    END_POINT.GET_PLANNED_FESTIVALS,
-    params,
-  );
+export const getWishlists = (params: PageSizeParams = {}) =>
+  get<FestivalsResponse, PageSizeParams>(END_POINT.GET_WISHLISTS, params);
 
 export const getUpcomingFestival = (params: PageSizeParams = {}) =>
   get<UpcomingFestivalResponse, PageSizeParams>(
@@ -36,6 +28,3 @@ export const putWishList = (festivalId: number, body: WishListRequest) =>
     END_POINT.PUT_WISH_LIST(festivalId),
     body,
   );
-
-export const getUserNickname = () =>
-  get<NicknameResponse>(END_POINT.GET_NICKNAME);
