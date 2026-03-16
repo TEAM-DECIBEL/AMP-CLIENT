@@ -1,8 +1,17 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { CtaButton } from '@amp/ads-ui';
-import { ButtonGradientSection, Loading } from '@amp/compositions';
+import {
+  ButtonGradientSection,
+  InstallGuideSheet,
+  Loading,
+} from '@amp/compositions';
+import {
+  dismissInstallGuideForToday,
+  shouldShowInstallGuide,
+} from '@amp/shared/hooks';
 
 import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
 
@@ -17,6 +26,7 @@ import * as styles from './home.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(() => shouldShowInstallGuide());
 
   const { data: homeData, isPending: isHomePending } = useQuery(
     HOME_QUERY_OPTIONS.FESTIVALS(),
@@ -46,26 +56,50 @@ const HomePage = () => {
     navigate(ROUTE_PATH.EVENT_CREATE);
   };
 
+  const handleOpenApp = () => {
+    navigate(ROUTE_PATH.PWA_GUIDE);
+  };
+
+  const handleBrowseToday = () => {
+    dismissInstallGuideForToday();
+    setIsOpen(false);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <section className={styles.page}>
-      <CardHomebannerOrg nickname={nickname ?? 'SOPT'} />
+    <>
+      <section className={styles.page}>
+        <CardHomebannerOrg nickname={nickname ?? 'SOPT'} />
 
-      <div className={styles.content}>
-        <FestivalOverview
-          ongoingCount={summary.ongoingCount}
-          upcomingCount={summary.upcomingCount}
-          ongoingFestivals={ongoingFestivals}
-          upcomingFestivals={upcomingFestivals}
+        <div className={styles.content}>
+          <FestivalOverview
+            ongoingCount={summary.ongoingCount}
+            upcomingCount={summary.upcomingCount}
+            ongoingFestivals={ongoingFestivals}
+            upcomingFestivals={upcomingFestivals}
+          />
+        </div>
+
+        <ButtonGradientSection className={styles.ctaArea}>
+          {showTooltip && <Tooltip />}
+          <CtaButton type='common' onClick={handleCreateClick}>
+            공연 등록하기
+          </CtaButton>
+        </ButtonGradientSection>
+      </section>
+      {isOpen && (
+        <InstallGuideSheet
+          open={isOpen}
+          onClose={handleClose}
+          onOpenApp={handleOpenApp}
+          onBrowseToday={handleBrowseToday}
+          userType='HOST'
         />
-      </div>
-
-      <ButtonGradientSection className={styles.ctaArea}>
-        {showTooltip && <Tooltip />}
-        <CtaButton type='common' onClick={handleCreateClick}>
-          공연 등록하기
-        </CtaButton>
-      </ButtonGradientSection>
-    </section>
+      )}
+    </>
   );
 };
 

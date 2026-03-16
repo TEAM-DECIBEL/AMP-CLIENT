@@ -1,13 +1,18 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
-import { HomeBanner } from '@amp/compositions';
+import { HomeBanner, InstallGuideSheet } from '@amp/compositions';
+import {
+  dismissInstallGuideForToday,
+  shouldShowInstallGuide,
+} from '@amp/shared/hooks';
 
 import FestivalSection from '@widgets/home/components/festival-section/festival-section';
 
 import { USER_QUERY_OPTIONS } from '@entities/user/model/query-options';
 
-import { NAV_PATH } from '@shared/constants/path';
+import { NAV_PATH, ROUTE_PATH } from '@shared/constants/path';
 
 import useHomeFestivals from './model/use-home-festivals';
 
@@ -16,6 +21,7 @@ import { page } from './home.css';
 const HomePage = () => {
   const navigate = useNavigate();
 
+  const [isOpen, setIsOpen] = useState(() => shouldShowInstallGuide());
   const { data } = useQuery({
     ...USER_QUERY_OPTIONS.NICKNAME(),
   });
@@ -33,29 +39,53 @@ const HomePage = () => {
     navigate(NAV_PATH.noticeList(festivalId));
   };
 
-  return (
-    <div className={page}>
-      {bannerFestival ? (
-        <HomeBanner
-          nickname={nickname}
-          status='card'
-          title={bannerFestival.title}
-          location={bannerFestival.location}
-          date={bannerFestival.period}
-          dDay={bannerFestival.dDay}
-        />
-      ) : (
-        <HomeBanner nickname={nickname} status='none' />
-      )}
+  const handleOpenApp = () => {
+    navigate(ROUTE_PATH.PWA_GUIDE);
+  };
 
-      <FestivalSection
-        selectedTab={selectedTab}
-        onTabChange={setSelectedTab}
-        allFestivals={allFestivals}
-        plannedFestivals={plannedFestivals}
-        onCardClick={handleCardClick}
-      />
-    </div>
+  const handleBrowseToday = () => {
+    dismissInstallGuideForToday();
+    setIsOpen(false);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <div className={page}>
+        {bannerFestival ? (
+          <HomeBanner
+            nickname={nickname}
+            status='card'
+            title={bannerFestival.title}
+            location={bannerFestival.location}
+            date={bannerFestival.period}
+            dDay={bannerFestival.dDay}
+          />
+        ) : (
+          <HomeBanner nickname={nickname} status='none' />
+        )}
+
+        <FestivalSection
+          selectedTab={selectedTab}
+          onTabChange={setSelectedTab}
+          allFestivals={allFestivals}
+          plannedFestivals={plannedFestivals}
+          onCardClick={handleCardClick}
+        />
+      </div>
+      {isOpen && (
+        <InstallGuideSheet
+          open={isOpen}
+          onClose={handleClose}
+          onOpenApp={handleOpenApp}
+          onBrowseToday={handleBrowseToday}
+          userType='AUDIENCE'
+        />
+      )}
+    </>
   );
 };
 
