@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 
+import { toast } from '@amp/ads-ui';
 import { CameraIcon } from '@amp/ads-ui/icons';
 
 import * as styles from './multi-image-add-button.css';
@@ -18,6 +19,11 @@ const MultiImageButton = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleButtonClick = () => {
+    if (currentCount >= maxCount) {
+      toast.show(`이미지 첨부는 최대 ${maxCount}장까지 가능해요.`);
+      return;
+    }
+
     inputRef.current?.click();
   };
 
