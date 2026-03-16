@@ -13,7 +13,13 @@ import { ROUTE_PATH } from '@shared/constants/path';
 
 import * as styles from './onboarding.css';
 
-type Step = 1 | 2 | 3;
+const STEP = {
+  NAME: 1,
+  CODE: 2,
+  COMPLETE: 3,
+} as const;
+
+type Step = (typeof STEP)[keyof typeof STEP];
 
 interface OnboardingFormValues {
   organizerName: string;
@@ -22,7 +28,7 @@ interface OnboardingFormValues {
 
 const Onboarding = () => {
   const navigate = useNavigate();
-  const [step, setStep] = useState<Step>(1);
+  const [step, setStep] = useState<Step>(STEP.NAME);
   const [isOnboardingError, setIsOnboardingError] = useState(false);
 
   const { mutate, isPending } = usePostRegistrationVerifyMutation();
@@ -48,19 +54,19 @@ const Onboarding = () => {
   });
 
   const disabledByStep: Record<Step, boolean> = {
-    1: organizerName.trim().length === 0,
-    2: registrationCode.trim().length === 0 || isOnboardingError,
-    3: false,
+    [STEP.NAME]: organizerName.trim().length === 0,
+    [STEP.CODE]: registrationCode.trim().length === 0 || isOnboardingError,
+    [STEP.COMPLETE]: false,
   };
 
   const disabled = disabledByStep[step] || isPending;
 
   const handleNext = () => {
-    if (step === 1) {
-      setStep(2);
+    if (step === STEP.NAME) {
+      setStep(STEP.CODE);
       return;
     }
-    if (step === 2) {
+    if (step === STEP.CODE) {
       handleVerifyRegistration();
       return;
     }
@@ -76,7 +82,7 @@ const Onboarding = () => {
       },
       {
         onSuccess: () => {
-          setStep(3);
+          setStep(STEP.COMPLETE);
         },
         onError: (error) => {
           if (error instanceof HTTPError && error.code === 'REG_400_001') {
@@ -90,7 +96,7 @@ const Onboarding = () => {
 
   return (
     <div className={styles.container}>
-      {step === 1 && (
+      {step === STEP.NAME && (
         <Controller
           name='organizerName'
           control={control}
@@ -104,7 +110,7 @@ const Onboarding = () => {
         />
       )}
 
-      {step === 2 && (
+      {step === STEP.CODE && (
         <Controller
           name='registrationCode'
           control={control}
@@ -136,7 +142,7 @@ const Onboarding = () => {
         />
       )}
 
-      {step === 3 && (
+      {step === STEP.COMPLETE && (
         <div className={styles.ResultViewContainer}>
           <ResultView
             title='주최사 가입이 완료됐어요!'
