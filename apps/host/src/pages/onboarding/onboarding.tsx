@@ -52,13 +52,11 @@ const Onboarding = () => {
   const organizerName = useWatch({
     control,
     name: 'organizerName',
-    defaultValue: '',
   });
 
   const registrationCode = useWatch({
     control,
     name: 'registrationCode',
-    defaultValue: '',
   });
 
   const hasRegistrationCodeError = Boolean(errors.registrationCode);
