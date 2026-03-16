@@ -97,9 +97,7 @@ export const useNoticeForm = (
     const { title, content, isPinned, categoryId } = form;
 
     const navigateToList = () => {
-      if (festivalId !== null) {
-        navigate(NAV_PATH.noticeList(festivalId));
-      }
+      navigate(NAV_PATH.noticeList(festivalId));
     };
 
     if (noticeId) {
