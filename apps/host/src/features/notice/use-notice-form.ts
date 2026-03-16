@@ -8,7 +8,6 @@ import { toast } from '@amp/ads-ui';
 import type { NoticeDetail } from '@entities/notice/types/notice';
 
 import { getCategoryIdByLabel } from '@shared/constants/category';
-import { ROUTE_PATH } from '@shared/constants/path';
 import { NAV_PATH } from '@shared/constants/path';
 import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
 
