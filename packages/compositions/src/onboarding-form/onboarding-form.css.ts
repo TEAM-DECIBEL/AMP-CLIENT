@@ -3,7 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
-export const form = style({
+export const container = style({
   paddingTop: '8rem',
 });
 

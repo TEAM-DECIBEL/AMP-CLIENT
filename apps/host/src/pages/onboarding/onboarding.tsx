@@ -68,17 +68,24 @@ const Onboarding = () => {
   };
 
   const handleVerifyRegistration = () => {
-    mutate(getValues(), {
-      onSuccess: () => {
-        setStep(3);
+    const { organizerName, registrationCode } = getValues();
+    mutate(
+      {
+        organizerName: organizerName.trim(),
+        registrationCode: registrationCode.trim(),
       },
-      onError: (error) => {
-        if (error instanceof HTTPError && error.code === 'REG_400_001') {
-          setIsOnboardingError(true);
-          return;
-        }
+      {
+        onSuccess: () => {
+          setStep(3);
+        },
+        onError: (error) => {
+          if (error instanceof HTTPError && error.code === 'REG_400_001') {
+            setIsOnboardingError(true);
+            return;
+          }
+        },
       },
-    });
+    );
   };
 
   return (
