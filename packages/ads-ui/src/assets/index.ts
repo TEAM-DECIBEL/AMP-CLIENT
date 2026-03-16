@@ -5,7 +5,8 @@ import crowdedBtn from './congestion-crowded-btn.webp';
 import normalBtn from './congestion-normal-btn.webp';
 import smoothBtn from './congestion-smooth-btn.webp';
 import emptyNoticeImage from './empty-notice-image.webp';
-import emptyView from './empty-view.webp';
+import emptyViewAlert from './empty-view-alert.webp';
+import emptyViewTicket from './empty-view-ticket.webp';
 import logo from './logo.webp';
 
 export const IMAGES = {
@@ -15,6 +16,7 @@ export const IMAGES = {
   CROWDED_BUTTON: crowdedBtn,
   NORMAL_BUTTON: normalBtn,
   SMOOTH_BUTTON: smoothBtn,
-  EMPTY_VIEW: emptyView,
+  EMPTY_VIEW_TICKET: emptyViewTicket,
   EMPTY_NOTICE_IMAGE: emptyNoticeImage,
+  EMPTY_VIEW_ALERT: emptyViewAlert,
 } as const;

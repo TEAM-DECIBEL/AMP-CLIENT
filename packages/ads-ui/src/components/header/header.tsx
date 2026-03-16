@@ -25,6 +25,7 @@ interface HeaderProps {
 const CONFIRM_LEAVE_PATHS = [
   '/events/:eventId/notices/new',
   '/events/new',
+  '/events/:eventId/edit',
 ] as const;
 
 const Header = ({

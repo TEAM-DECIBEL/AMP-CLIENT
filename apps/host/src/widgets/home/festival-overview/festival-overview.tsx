@@ -49,9 +49,12 @@ const FestivalOverview = ({
 
   return (
     <FestivalActions
-      onEdit={() =>
-        // TODO : 공연 수정 뷰로 변경
-        navigate(`/`)
+      onEdit={(festivalId) =>
+        navigate(
+          generatePath(ROUTE_PATH.EVENT_EDIT, {
+            eventId: String(festivalId),
+          }),
+        )
       }
     >
       {(handleOpenOptionSheet) => (

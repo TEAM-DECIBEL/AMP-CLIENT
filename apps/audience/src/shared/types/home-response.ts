@@ -1,40 +1,7 @@
-export interface AllFestivalItem {
-  festivalId: number;
-  title: string;
-  mainImageUrl: string;
-  location: string;
-  period: string;
-  wishList: boolean;
-  dDay: number;
-}
+import type { Festival, PaginationResponse } from './festival';
 
-export interface UpcomingFestivalItem {
-  festivalId: number;
-  title: string;
-  mainImageUrl: string;
-  location: string;
-  period: string;
-  status: string;
-  wishList: boolean;
-  dDay: number;
-}
-
-export interface PaginationResponse {
-  currentPage: number;
-  totalPages: number;
-  totalElements: number;
-  size: number;
-  hasNext: boolean;
-  hasPrevious: boolean;
-}
-
-export interface AllFestivalsResponse {
-  festivals: AllFestivalItem[];
-  pagination: PaginationResponse;
-}
-
-export interface UpcomingFestivalsResponse {
-  festivals: UpcomingFestivalItem[];
+export interface FestivalsResponse {
+  festivals: Festival[];
   pagination: PaginationResponse;
 }
 
@@ -45,7 +12,7 @@ export interface UpcomingFestivalResponse {
   location: string;
   startDate: string;
   endDate: string;
-  dday: number;
+  dDay: number;
 }
 
 export interface NicknameResponse {
