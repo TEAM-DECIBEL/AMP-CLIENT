@@ -19,4 +19,5 @@ export {
   default as NoticeListTab,
 } from './notice-list-tab/notice-list-tab';
 export { default as NoticeTabContent } from './notice-tab-content/notice-tab-content';
+export { default as OnboardingForm } from './onboarding-form/onboarding-form';
 export { default as ResultView } from './result-view/result-view';

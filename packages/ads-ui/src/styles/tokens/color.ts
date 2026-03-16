@@ -8,6 +8,8 @@ export const color = {
   // sub
   sub_1: '#1D1D28',
 
+  error: '#FF3752',
+
   // grayscale
   gray_000: '#FFFFFF',
   gray_50: '#F8FAFB',

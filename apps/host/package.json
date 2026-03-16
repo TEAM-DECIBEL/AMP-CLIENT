@@ -19,6 +19,7 @@
     "overlay-kit": "^1.8.6",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "react-hook-form": "^7.71.2",
     "react-router": "catalog:",
     "workbox-window": "^7.4.0"
   },

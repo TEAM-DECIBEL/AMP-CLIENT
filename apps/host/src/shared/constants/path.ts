@@ -12,6 +12,7 @@ export const ROUTE_PATH = {
   HOME: '/',
   AUTH_REQUIRED: '/auth/required',
   NOT_FOUND: '/not-found',
+  LOGIN_ERROR: '/login/error',
 } as const;
 
 export const NAV_PATH = {

@@ -34,3 +34,7 @@ export const AuthRequiredPage = lazy(
 );
 
 export const NotFoundPage = lazy(() => import('@pages/not-found/not-found'));
+
+export const LoginErrorPage = lazy(
+  () => import('@pages/login-error/login-error'),
+);

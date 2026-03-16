@@ -5,7 +5,7 @@ import { HTTPError } from '../errors/http-error';
 export interface ApiErrorResponse {
   message?: string;
   msg?: string;
-  code?: number;
+  code?: string;
 }
 
 export const handleApiError = (
@@ -19,7 +19,7 @@ export const handleApiError = (
   const { status, data } = error.response;
 
   let message = '요청 처리 중 오류가 발생했습니다.';
-  let code: number | undefined;
+  let code: string | undefined;
 
   if (typeof data === 'string') {
     message = data || message;

@@ -9,9 +9,9 @@ const STATUS_NAME_MAP: Record<number, string> = {
 
 export class HTTPError extends Error {
   statusCode: number;
-  code?: number;
+  code?: string;
 
-  constructor(statusCode: number, message?: string, code?: number) {
+  constructor(statusCode: number, message?: string, code?: string) {
     super(message);
     const statusName = STATUS_NAME_MAP[statusCode];
     this.name = statusName ? `HTTPError: ${statusName}` : 'HTTPError';
