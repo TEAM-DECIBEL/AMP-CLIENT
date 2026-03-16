@@ -9,6 +9,7 @@ import type { NoticeDetail } from '@entities/notice/types/notice';
 
 import { getCategoryIdByLabel } from '@shared/constants/category';
 import { ROUTE_PATH } from '@shared/constants/path';
+import { NAV_PATH } from '@shared/constants/path';
 import { ORGANIZERS_QUERY_KEY } from '@shared/constants/query-key';
 
 import { useImageUpload } from './use-image-upload';
@@ -96,9 +97,11 @@ export const useNoticeForm = (
 
     const { title, content, isPinned, categoryId } = form;
 
-    // TODO: 빌더 사용하도록 수정
-    const navigateToList = () =>
-      navigate(ROUTE_PATH.NOTICE_LIST.replace(':eventId', String(festivalId)));
+    const navigateToList = () => {
+      if (festivalId !== null) {
+        navigate(NAV_PATH.noticeList(festivalId));
+      }
+    };
 
     if (noticeId) {
       updateNotice(
