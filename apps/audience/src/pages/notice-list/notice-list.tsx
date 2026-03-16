@@ -4,7 +4,7 @@ import { overlay } from 'overlay-kit';
 import { useNavigate, useParams } from 'react-router';
 
 import { ActionButton, Modal, RectButton, toast } from '@amp/ads-ui';
-import { ChatIcon } from '@amp/ads-ui/icons';
+import { ChatIcon, FlagIcon } from '@amp/ads-ui/icons';
 import {
   LiveButtonContainer,
   NOTICE_TAB,
@@ -182,6 +182,7 @@ const NoticeListPage = () => {
               onChange={toggleWishList}
               disabled={!bannerData || isTogglePending}
             >
+              <FlagIcon />
               관람 예정
             </ActionButton>
           }
