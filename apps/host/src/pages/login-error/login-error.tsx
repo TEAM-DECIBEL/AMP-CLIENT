@@ -4,6 +4,7 @@ import { CtaButton } from '@amp/ads-ui';
 import { ResultView } from '@amp/compositions';
 
 import { IMAGES } from '@shared/assets/images';
+import { ROUTE_PATH } from '@shared/constants/path';
 
 import * as styles from './login-error.css';
 
@@ -11,13 +12,17 @@ const LoginError = () => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate(-1);
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+    navigate(ROUTE_PATH.LOGIN, { replace: true });
   };
   return (
     <div className={styles.container}>
       <ResultView
-        title='로그인이 필요한 기능이에요!'
-        description='로그인하고 기능을 계속 이용해보세요.'
+        title='올바르지 않은 Google 계정이에요.'
+        description='AMP에 사전 안내주신 Google 계정으로 로그인해주세요.'
         image={<img src={IMAGES.LOGIN_ERROR} alt='' />}
       />
       <div className={styles.ctaButtonContainer}>
