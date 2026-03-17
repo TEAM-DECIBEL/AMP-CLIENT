@@ -11,7 +11,7 @@ import {
 import {
   dismissInstallGuideForToday,
   shouldShowInstallGuide,
-} from '@amp/shared/hooks';
+} from '@amp/shared/utils';
 import { getMobileOs } from '@amp/shared/utils';
 
 import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
