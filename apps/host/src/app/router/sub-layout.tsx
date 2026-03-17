@@ -31,7 +31,7 @@ export const SubLayoutWithBack = ({ title }: SubLayoutProps) => {
 export const SubLayoutBackOnly = () => {
   return (
     <Suspense fallback={<Loading />}>
-      <Header variant='audience' kind='sub' />
+      <Header variant='host' kind='sub' />
       <Outlet />
     </Suspense>
   );
