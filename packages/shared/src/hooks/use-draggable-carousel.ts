@@ -5,6 +5,7 @@ interface DragState {
   isPointerDown: boolean;
   startX: number;
   startScrollLeft: number;
+  deltaX: number;
 }
 
 interface UseDraggableCarouselParams {
@@ -15,16 +16,58 @@ const INITIAL_DRAG_STATE: DragState = {
   isPointerDown: false,
   startX: 0,
   startScrollLeft: 0,
+  deltaX: 0,
 };
+const SWIPE_THRESHOLD_RATIO = 0.2;
 
-const getSnapScrollLeft = (element: HTMLElement) => {
-  if (element.clientWidth === 0) {
+const getStartIndex = (startScrollLeft: number, clientWidth: number) => {
+  if (clientWidth === 0) {
     return 0;
   }
 
-  return (
-    Math.round(element.scrollLeft / element.clientWidth) * element.clientWidth
-  );
+  return Math.round(startScrollLeft / clientWidth);
+};
+
+const getMovedRatio = (deltaX: number, clientWidth: number) => {
+  if (clientWidth === 0) {
+    return 0;
+  }
+
+  return Math.abs(deltaX) / clientWidth;
+};
+
+const getSwipeDirection = (deltaX: number) => {
+  if (deltaX > 0) {
+    return -1;
+  }
+
+  if (deltaX < 0) {
+    return 1;
+  }
+
+  return 0;
+};
+
+const getNextIndex = ({
+  clientWidth,
+  deltaX,
+  itemCount,
+  startScrollLeft,
+}: {
+  clientWidth: number;
+  deltaX: number;
+  itemCount: number;
+  startScrollLeft: number;
+}) => {
+  const startIndex = getStartIndex(startScrollLeft, clientWidth);
+  const movedRatio = getMovedRatio(deltaX, clientWidth);
+
+  if (movedRatio < SWIPE_THRESHOLD_RATIO) {
+    return startIndex;
+  }
+
+  const direction = getSwipeDirection(deltaX);
+  return Math.min(Math.max(startIndex + direction, 0), itemCount - 1);
 };
 
 export const useDraggableCarousel = ({
@@ -50,6 +93,7 @@ export const useDraggableCarousel = ({
       isPointerDown: true,
       startX,
       startScrollLeft,
+      deltaX: 0,
     };
     setIsDragging(true);
   };
@@ -60,6 +104,7 @@ export const useDraggableCarousel = ({
     }
 
     const deltaX = currentX - dragStateRef.current.startX;
+    dragStateRef.current.deltaX = deltaX;
     element.scrollLeft = dragStateRef.current.startScrollLeft - deltaX;
   };
 
@@ -95,8 +140,16 @@ export const useDraggableCarousel = ({
     }
 
     if (trackRef.current) {
+      const { clientWidth } = trackRef.current;
+      const nextIndex = getNextIndex({
+        clientWidth,
+        deltaX: dragStateRef.current.deltaX,
+        itemCount,
+        startScrollLeft: dragStateRef.current.startScrollLeft,
+      });
+
       trackRef.current.scrollTo({
-        left: getSnapScrollLeft(trackRef.current),
+        left: nextIndex * clientWidth,
         behavior: 'smooth',
       });
     }
