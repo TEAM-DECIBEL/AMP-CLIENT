@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
@@ -8,11 +7,7 @@ import {
   InstallGuideSheet,
   Loading,
 } from '@amp/compositions';
-import {
-  dismissInstallGuideForToday,
-  shouldShowInstallGuide,
-} from '@amp/shared/utils';
-import { getMobileOs } from '@amp/shared/utils';
+import { usePwaInstallGuide } from '@amp/shared/hooks';
 
 import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
 
@@ -25,35 +20,13 @@ import Tooltip from '@shared/ui/tooltip/tooltip';
 
 import * as styles from './home.css';
 
-interface BeforeInstallPromptEvent extends Event {
-  prompt: () => Promise<void>;
-  userChoice: Promise<{
-    outcome: 'accepted' | 'dismissed';
-    platform: string;
-  }>;
-}
-
 const HomePage = () => {
   const navigate = useNavigate();
-  const deferredPromptRef = useRef<BeforeInstallPromptEvent | null>(null);
 
-  const [isOpen, setIsOpen] = useState(() => shouldShowInstallGuide());
-
-  useEffect(() => {
-    const handleBeforeInstallPrompt = (event: Event) => {
-      event.preventDefault();
-      deferredPromptRef.current = event as BeforeInstallPromptEvent;
-    };
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-
-    return () => {
-      window.removeEventListener(
-        'beforeinstallprompt',
-        handleBeforeInstallPrompt,
-      );
-    };
-  }, []);
+  const { isOpen, handleOpenApp, handleBrowseToday, handleClose } =
+    usePwaInstallGuide({
+      onMoveToGuide: () => navigate(ROUTE_PATH.PWA_GUIDE),
+    });
 
   const { data: homeData, isPending: isHomePending } = useQuery(
     HOME_QUERY_OPTIONS.FESTIVALS(),
@@ -81,33 +54,6 @@ const HomePage = () => {
 
   const handleCreateClick = () => {
     navigate(ROUTE_PATH.EVENT_CREATE);
-  };
-
-  const handleOpenApp = async () => {
-    const os = getMobileOs();
-
-    if (os === 'ios') {
-      navigate(ROUTE_PATH.PWA_GUIDE);
-      return;
-    }
-
-    if (os === 'android' && deferredPromptRef.current) {
-      await deferredPromptRef.current.prompt();
-      await deferredPromptRef.current.userChoice;
-      deferredPromptRef.current = null;
-      setIsOpen(false);
-      return;
-    }
-    navigate(ROUTE_PATH.PWA_GUIDE);
-  };
-
-  const handleBrowseToday = () => {
-    dismissInstallGuideForToday();
-    setIsOpen(false);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
   };
 
   return (
