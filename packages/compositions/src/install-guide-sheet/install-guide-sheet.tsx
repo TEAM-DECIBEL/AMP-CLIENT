@@ -10,6 +10,7 @@ interface InstallGuideSheetProps {
   onOpenApp: () => void;
   onBrowseToday: () => void;
   userType: 'HOST' | 'AUDIENCE';
+  description: string;
 }
 
 const InstallGuideSheet = ({
@@ -18,6 +19,7 @@ const InstallGuideSheet = ({
   onOpenApp,
   onBrowseToday,
   userType,
+  description,
 }: InstallGuideSheetProps) => {
   return (
     <BottomSheet open={open} onClose={onClose}>
@@ -34,9 +36,7 @@ const InstallGuideSheet = ({
             <p className={styles.title}>
               홈 화면에 AMP 앱을 추가하고
               <br />
-              {userType === 'HOST'
-                ? '간편하게 공지를 작성해보세요.'
-                : '공지 알림을 받아보세요.'}
+              {description}
             </p>
           </div>
         </BottomSheet.Content>

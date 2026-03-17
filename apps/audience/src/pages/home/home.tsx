@@ -71,6 +71,7 @@ const HomePage = () => {
           onOpenApp={handleOpenApp}
           onBrowseToday={handleBrowseToday}
           userType='AUDIENCE'
+          description='간편하게 공지를 작성해보세요.'
         />
       )}
     </>

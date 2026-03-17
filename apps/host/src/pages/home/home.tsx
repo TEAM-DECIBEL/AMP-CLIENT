@@ -83,7 +83,7 @@ const HomePage = () => {
           onClose={handleClose}
           onOpenApp={handleOpenApp}
           onBrowseToday={handleBrowseToday}
-          userType='HOST'
+          description='간편하게 공지를 작성해보세요.'
         />
       )}
     </>
