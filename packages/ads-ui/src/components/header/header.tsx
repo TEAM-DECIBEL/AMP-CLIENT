@@ -26,6 +26,7 @@ const CONFIRM_LEAVE_PATHS = [
   '/events/:eventId/notices/new',
   '/events/new',
   '/events/:eventId/edit',
+  '/events/:eventId/notices/:noticeId/edit',
 ] as const;
 
 const Header = ({
