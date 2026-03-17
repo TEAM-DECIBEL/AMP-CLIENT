@@ -49,16 +49,20 @@ export const usePwaInstallGuide = ({
     }
 
     if (os === 'android' && deferredPromptRef.current) {
-      await deferredPromptRef.current.prompt();
-      await deferredPromptRef.current.userChoice;
-      deferredPromptRef.current = null;
-      setIsOpen(false);
+      try {
+        await deferredPromptRef.current.prompt();
+        await deferredPromptRef.current.userChoice;
+        setIsOpen(false);
+      } catch {
+        onMoveToGuide();
+      } finally {
+        deferredPromptRef.current = null;
+      }
       return;
     }
 
     onMoveToGuide();
   };
-
   const handleBrowseToday = () => {
     dismissInstallGuideForToday();
     setIsOpen(false);
