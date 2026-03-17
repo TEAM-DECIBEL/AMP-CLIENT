@@ -5,17 +5,17 @@ import { CameraIcon } from '@amp/ads-ui/icons';
 
 import * as styles from './multi-image-add-button.css';
 
-interface MultiImageButtonProps {
+interface MultiImageAddButtonProps {
   currentCount: number;
   maxCount?: number;
   onFilesChange: (files: File[]) => void;
 }
 
-const MultiImageButton = ({
+const MultiImageAddButton = ({
   currentCount,
   maxCount = 20,
   onFilesChange,
-}: MultiImageButtonProps) => {
+}: MultiImageAddButtonProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleButtonClick = () => {
@@ -65,4 +65,4 @@ const MultiImageButton = ({
   );
 };
 
-export default MultiImageButton;
+export default MultiImageAddButton;

@@ -10,7 +10,7 @@ import {
 import { PinIcon } from '@amp/ads-ui/icons';
 import { ButtonGradientSection } from '@amp/compositions';
 
-import MultiImageButton from '@widgets/multi-image-add-button/multi-image-add-button';
+import MultiImageAddButton from '@widgets/multi-image-add-button/multi-image-add-button';
 
 import { useNoticeForm } from '@features/notice/use-notice-form';
 
@@ -92,7 +92,7 @@ const NoticeForm = ({
             onMouseLeave={onDragEnd}
             aria-label='공지 이미지 목록'
           >
-            <MultiImageButton
+            <MultiImageAddButton
               currentCount={images.length}
               maxCount={MAX_IMAGES}
               onFilesChange={handleImagesAdd}
