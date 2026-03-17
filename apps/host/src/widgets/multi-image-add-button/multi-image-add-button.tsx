@@ -54,7 +54,7 @@ const MultiImageAddButton = ({
       <input
         ref={inputRef}
         type='file'
-        accept='image/jpeg,image/png,image/gif,image/webp'
+        accept='image/jpeg,image/png'
         multiple
         onChange={handleChange}
         tabIndex={-1}
