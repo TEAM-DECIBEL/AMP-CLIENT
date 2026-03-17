@@ -55,6 +55,48 @@ export const useNoticeForm = (
     setForm((prev) => ({ ...prev, isPinned: !prev.isPinned }));
   };
 
+  const executeSubmit = (
+    newImages: File[],
+    keepImageUrls: string[],
+    categoryId: number,
+  ) => {
+    const commonData = {
+      title: form.title,
+      content: form.content,
+      isPinned: form.isPinned,
+      categoryId,
+    };
+
+    const onSuccess = () => {
+      if (noticeId) {
+        queryClient.invalidateQueries({
+          queryKey: ORGANIZERS_QUERY_KEY.NOTICE_DETAIL(noticeId),
+        });
+      }
+      queryClient.invalidateQueries({
+        queryKey: ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICES(festivalId),
+      });
+      navigate(NAV_PATH.noticeList(festivalId));
+    };
+
+    if (noticeId) {
+      updateNotice(
+        {
+          ...commonData,
+          festivalId,
+          keepImageUrls,
+          newImages: newImages.length > 0 ? newImages : undefined,
+        },
+        { onSuccess, onError: () => toast.show('공지 수정에 실패했어요.') },
+      );
+    } else {
+      createNotice(
+        { ...commonData, images: newImages.length > 0 ? newImages : undefined },
+        { onSuccess, onError: () => toast.show('공지 작성에 실패했어요.') },
+      );
+    }
+  };
+
   const isValid =
     form.categoryId !== null &&
     form.title.trim().length > 0 &&
@@ -94,59 +136,7 @@ export const useNoticeForm = (
       }
     });
 
-    const { title, content, isPinned, categoryId } = form;
-
-    const navigateToList = () => {
-      navigate(NAV_PATH.noticeList(festivalId));
-    };
-
-    if (noticeId) {
-      updateNotice(
-        {
-          festivalId,
-          title,
-          categoryId,
-          content,
-          isPinned,
-          keepImageUrls,
-          newImages: newImages.length > 0 ? newImages : undefined,
-        },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries({
-              queryKey: ORGANIZERS_QUERY_KEY.NOTICE_DETAIL(noticeId),
-            });
-            queryClient.invalidateQueries({
-              queryKey: ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICES(festivalId),
-            });
-
-            navigateToList();
-          },
-          onError: () => toast.show('공지 수정에 실패했어요.'),
-        },
-      );
-      return;
-    }
-
-    createNotice(
-      {
-        title,
-        categoryId,
-        content,
-        isPinned,
-        images: newImages.length > 0 ? newImages : undefined,
-      },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: ORGANIZERS_QUERY_KEY.FESTIVAL_NOTICES(festivalId),
-          });
-
-          navigateToList();
-        },
-        onError: () => toast.show('공지 작성에 실패했어요.'),
-      },
-    );
+    executeSubmit(newImages, keepImageUrls, form.categoryId);
   };
 
   return {
