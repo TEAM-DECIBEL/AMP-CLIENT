@@ -6,7 +6,7 @@ import { HomeBanner, InstallGuideSheet } from '@amp/compositions';
 import {
   dismissInstallGuideForToday,
   shouldShowInstallGuide,
-} from '@amp/shared/hooks';
+} from '@amp/shared/utils';
 import { getMobileOs } from '@amp/shared/utils';
 
 import FestivalSection from '@widgets/home/components/festival-section/festival-section';
