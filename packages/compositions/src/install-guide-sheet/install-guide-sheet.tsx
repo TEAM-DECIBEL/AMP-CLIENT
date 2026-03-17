@@ -24,7 +24,7 @@ const InstallGuideSheet = ({
       <BottomSheet.Panel>
         <BottomSheet.Handle />
         <BottomSheet.Content>
-          <div className={styles.body}>
+          <div className={styles.contentContainer}>
             <img
               src={IMAGES.LOGO}
               alt=''

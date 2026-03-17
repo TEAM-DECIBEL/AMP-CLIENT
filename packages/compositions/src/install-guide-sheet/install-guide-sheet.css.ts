@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { ampThemeVars } from '@amp/ads-ui/styles';
 
-export const body = style({
+export const contentContainer = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
