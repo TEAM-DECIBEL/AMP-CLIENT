@@ -1,4 +1,4 @@
-import { getMobileOs } from '.';
+import { getMobileOs } from './device';
 
 const INSTALL_GUIDE_DISMISSED_DATE = 'install-guide-dismissed-date';
 
