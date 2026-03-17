@@ -8,14 +8,14 @@ export const container = style({
 
 export const title = style({
   padding: '2rem 0',
-  ...ampThemeVars.font.heading_sb_20,
   color: ampThemeVars.color.gray_900,
+  ...ampThemeVars.font.heading_sb_20,
 });
 
 export const imageContainer = style({
-  marginTop: '1.2rem',
   display: 'flex',
   flexDirection: 'column',
   gap: '2rem',
+  marginTop: '1.2rem',
   paddingBottom: '4rem',
 });

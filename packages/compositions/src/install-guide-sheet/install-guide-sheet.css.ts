@@ -6,8 +6,8 @@ export const contentContainer = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  paddingTop: '2rem',
   gap: '1.6rem',
+  paddingTop: '2rem',
 });
 
 export const icon = style({
@@ -22,16 +22,16 @@ export const title = style({
 });
 
 export const button = style({
-  ...ampThemeVars.font.caption_m_12,
-  color: ampThemeVars.color.gray_500,
-  textDecoration: 'underline',
   padding: '0.2rem 0',
+  color: ampThemeVars.color.gray_500,
+  ...ampThemeVars.font.caption_m_12,
+  textDecoration: 'underline',
 });
 
 export const buttonContainer = style({
-  marginTop: '0.6rem',
-  flexDirection: 'column',
   display: 'flex',
+  flexDirection: 'column',
   gap: '1.4rem',
+  marginTop: '0.6rem',
   paddingBottom: '1.8rem',
 });
