@@ -20,7 +20,7 @@ import { useDragScroll } from '@shared/libs/use-drag-scroll';
 import InputLayout from '@shared/ui/input/input-layout';
 import Textarea from '@shared/ui/textarea/textarea';
 
-import * as styles from './notice-create.css';
+import * as styles from './notice-form.css';
 
 const MAX_IMAGES = 20;
 

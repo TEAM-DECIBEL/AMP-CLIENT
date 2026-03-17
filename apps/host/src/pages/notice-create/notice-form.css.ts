@@ -80,5 +80,9 @@ export const imageListContainer = style({
     '&:active': {
       cursor: 'grabbing',
     },
+    '&::after': {
+      content: '""',
+      flex: '0 0 2rem',
+    },
   },
 });
