@@ -67,19 +67,19 @@ export const chip = recipe({
         color: ampThemeVars.color.gray_500,
       },
       smooth: {
-        backgroundColor: '#062518',
-        color: '#5DE9AF',
+        backgroundColor: '#0F3968',
+        color: '#55A5FF',
       },
       normal: {
-        backgroundColor: '#0A1E45',
-        color: '#81D2FF',
+        backgroundColor: '#11553C',
+        color: '#2DEDA8',
       },
       crowded: {
-        backgroundColor: '#380D0D',
-        color: '#FF6464',
+        backgroundColor: '#6A1438',
+        color: '#FF5DA0',
       },
       none: {
-        backgroundColor: '#2B2B2B',
+        backgroundColor: '#363636',
         color: '#FFF',
       },
     },
