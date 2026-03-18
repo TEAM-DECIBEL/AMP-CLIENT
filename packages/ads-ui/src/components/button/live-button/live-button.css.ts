@@ -74,8 +74,8 @@ export const img = style({
 
 export const statusChip = style({
   position: 'absolute',
-  top: '0.5rem',
-  left: '0.5rem',
+  top: '0.7rem',
+  left: '0.7rem',
 });
 
 export const disabled = style({
