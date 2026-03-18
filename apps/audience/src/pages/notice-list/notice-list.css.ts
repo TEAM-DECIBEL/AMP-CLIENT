@@ -72,3 +72,9 @@ export const noticeContainer = style({
   gap: '2rem',
   padding: '2rem',
 });
+
+export const flagIcon = style({
+  flexShrink: 0,
+  marginTop: '0.1rem',
+  marginLeft: '-0.05rem',
+});

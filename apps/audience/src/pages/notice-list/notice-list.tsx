@@ -182,7 +182,7 @@ const NoticeListPage = () => {
               onChange={toggleWishList}
               disabled={!bannerData || isTogglePending}
             >
-              <AmpFlagIcon />
+              <AmpFlagIcon className={styles.flagIcon} />
               관람 예정
             </ActionButton>
           }
