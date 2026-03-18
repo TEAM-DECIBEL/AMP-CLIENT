@@ -30,11 +30,13 @@ export const chip = recipe({
         ...ampThemeVars.font.body_sb_13,
       },
       congestion: {
-        padding: '0.1rem 0.9rem',
-        borderRadius: '6px',
-        fontSize: '0.9rem',
-        fontWeight: 600,
+        width: '4.2rem',
+        height: '1.7rem',
+        borderRadius: '8px',
+        fontSize: '1.1rem',
+        fontWeight: 500,
         lineHeight: '150%',
+        whiteSpace: 'nowrap',
       },
     },
     status: {
