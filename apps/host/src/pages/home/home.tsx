@@ -48,7 +48,9 @@ const HomePage = () => {
 
   return (
     <section className={styles.page}>
-      <CardHomebannerOrg nickname={nickname ?? 'SOPT'} />
+      <div className={styles.bannerContainer}>
+        <CardHomebannerOrg nickname={nickname ?? 'SOPT'} />
+      </div>
 
       <div className={styles.content}>
         <FestivalOverview
