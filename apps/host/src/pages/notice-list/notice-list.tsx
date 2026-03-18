@@ -95,7 +95,7 @@ const NoticeListPage = () => {
               emphasized
             >
               <CopyIcon className={styles.copyIcon} />
-              관람 예정
+              링크 복사
             </ActionButton>
           }
         />
