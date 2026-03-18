@@ -5,7 +5,7 @@ export interface SavedNoticeItem {
   categoryName: string;
   content: string;
   title: string;
-  imageUrl: string;
+  imageUrls: string[];
 }
 
 export interface SavedNoticesPagination {
