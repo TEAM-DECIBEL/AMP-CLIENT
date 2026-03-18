@@ -1,6 +1,11 @@
 import { useState } from 'react';
 
-import { AddImageButton, CtaButton, Textfield } from '@amp/ads-ui';
+import {
+  AddImageButton,
+  CtaButton,
+  ImagePreview,
+  Textfield,
+} from '@amp/ads-ui';
 import {
   CalendarIcon,
   FlagIcon,
@@ -72,6 +77,10 @@ const EventForm = ({
     eventLocation: initialValues?.eventLocation ?? '',
   });
 
+  const [existingImageUrl, setExistingImageUrl] = useState(
+    initialValues?.imageUrl ?? '',
+  );
+
   const image = useObjectUrl();
   const [mainImageFile, setMainImageFile] = useState<File | null>(null);
 
@@ -108,7 +117,7 @@ const EventForm = ({
 
   const canAddBooth = isFilled(form.boothTitle);
 
-  const previewImageUrl = image.url || initialValues?.imageUrl || '';
+  const previewImageUrl = image.url || existingImageUrl;
   const hasImage = Boolean(previewImageUrl);
   const hasCategory = activeCategoryIds.length > 0;
   const hasBooth = booths.items.length > 0;
@@ -120,6 +129,18 @@ const EventForm = ({
     hasBooth &&
     hasImage &&
     hasCategory;
+
+  const handleRemoveImage = () => {
+    setMainImageFile(null);
+    setExistingImageUrl('');
+    image.clear();
+  };
+
+  const handleImageChange = (file: File) => {
+    setMainImageFile(file);
+    setExistingImageUrl('');
+    image.setFile(file);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -148,13 +169,14 @@ const EventForm = ({
 
           <FormField label='공연 이미지'>
             <div className={styles.addImageContainer}>
-              <AddImageButton
-                imageUrl={previewImageUrl}
-                onFileChange={(file: File) => {
-                  setMainImageFile(file);
-                  image.setFile(file);
-                }}
-              />
+              {hasImage ? (
+                <ImagePreview
+                  src={previewImageUrl}
+                  onRemove={handleRemoveImage}
+                />
+              ) : (
+                <AddImageButton onFileChange={handleImageChange} />
+              )}
             </div>
           </FormField>
 
