@@ -3,13 +3,30 @@ import { useEffect, useState } from 'react';
 interface UseObjectUrlReturn {
   url: string;
   setFile: (file: File) => void;
+  clear: () => void;
 }
 
 const useObjectUrl = (): UseObjectUrlReturn => {
   const [url, setUrl] = useState('');
 
+  const clear = () => {
+    setUrl((prev) => {
+      if (prev) {
+        URL.revokeObjectURL(prev);
+      }
+      return '';
+    });
+  };
+
   const setFile = (file: File) => {
-    setUrl(URL.createObjectURL(file));
+    const nextUrl = URL.createObjectURL(file);
+
+    setUrl((prev) => {
+      if (prev) {
+        URL.revokeObjectURL(prev);
+      }
+      return nextUrl;
+    });
   };
 
   useEffect(() => {
@@ -20,7 +37,7 @@ const useObjectUrl = (): UseObjectUrlReturn => {
     };
   }, [url]);
 
-  return { url, setFile };
+  return { url, setFile, clear };
 };
 
 export default useObjectUrl;
