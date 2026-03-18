@@ -1,4 +1,4 @@
-import { Pagination } from '@shared/types';
+import type { Pagination } from '@shared/types';
 
 export interface SavedNoticeItem {
   savedNoticeId: number;
