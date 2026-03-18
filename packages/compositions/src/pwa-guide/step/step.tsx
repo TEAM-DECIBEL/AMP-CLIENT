@@ -15,7 +15,7 @@ const Step = ({ step, description, imgSrc }: StepProps) => {
         </div>
         <p className={styles.description}>{description}</p>
       </div>
-      <img src={imgSrc} />
+      <img src={imgSrc} alt={`${step}단계: ${description}`} />
     </li>
   );
 };
