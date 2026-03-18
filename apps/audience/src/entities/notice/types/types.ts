@@ -1,3 +1,5 @@
+import { Pagination } from '@shared/types';
+
 export interface SavedNoticeItem {
   savedNoticeId: number;
   noticeId: number;
@@ -8,16 +10,7 @@ export interface SavedNoticeItem {
   imageUrls: string[];
 }
 
-export interface SavedNoticesPagination {
-  currentPage: number;
-  totalPages: number;
-  totalElements: number;
-  size: number;
-  hasNext: boolean;
-  hasPrevious: boolean;
-}
-
 export interface SavedNoticesResponse {
   notices: SavedNoticeItem[];
-  pagination: SavedNoticesPagination;
+  pagination: Pagination;
 }

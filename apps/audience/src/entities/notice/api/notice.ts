@@ -8,6 +8,8 @@ import type {
   FestivalNoticesResponseData,
 } from '@shared/types/notice-response';
 
+import type { SavedNoticesResponse } from '../types/types';
+
 type RequestOptions = {
   signal?: AbortSignal;
 };
@@ -45,4 +47,10 @@ export const postNoticeBookmark = (noticeId: number, isBookmarked: boolean) =>
   post<void, PostNoticeBookmarkRequest>(
     END_POINT.POST_NOTICE_BOOKMARK(noticeId),
     { isBookmarked },
+  );
+
+export const getSavedNotices = (params: PageSizeParams = {}) =>
+  get<SavedNoticesResponse, PageSizeParams>(
+    END_POINT.GET_SAVED_NOTICES,
+    params,
   );
