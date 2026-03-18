@@ -30,8 +30,10 @@ export const postFestivalNotice = (
     }),
   );
 
-  if (body.image) {
-    formData.append('images', body.image);
+  if (body.images && body.images.length > 0) {
+    body.images.forEach((file) => {
+      formData.append('images', file);
+    });
   }
 
   return post<CreateNoticeResponse, FormData>(

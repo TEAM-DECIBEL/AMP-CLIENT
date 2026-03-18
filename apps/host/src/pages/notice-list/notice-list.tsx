@@ -94,7 +94,7 @@ const NoticeListPage = () => {
               onChange={handleCopyLink}
               emphasized
             >
-              <CopyIcon />
+              <CopyIcon className={styles.copyIcon} />
               링크 복사
             </ActionButton>
           }
