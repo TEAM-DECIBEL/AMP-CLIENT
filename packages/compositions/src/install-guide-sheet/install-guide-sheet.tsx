@@ -9,7 +9,6 @@ interface InstallGuideSheetProps {
   onClose: () => void;
   onOpenApp: () => void;
   onBrowseToday: () => void;
-  userType: 'HOST' | 'AUDIENCE';
   description: string;
 }
 
