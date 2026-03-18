@@ -18,7 +18,6 @@ const InstallGuideSheet = ({
   onClose,
   onOpenApp,
   onBrowseToday,
-  userType,
   description,
 }: InstallGuideSheetProps) => {
   return (
