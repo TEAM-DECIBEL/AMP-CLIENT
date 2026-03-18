@@ -1,6 +1,30 @@
 import { IMAGES } from '../assets/index';
+import Step from './step/step';
 
 import * as styles from './pwa-guide.css';
+
+const GUIDE_STEPS = [
+  {
+    step: 1,
+    description: '브라우저 하단 더보기 버튼 클릭',
+    imgSrc: IMAGES.PWA_STEP1,
+  },
+  {
+    step: 2,
+    description: '공유 버튼 클릭',
+    imgSrc: IMAGES.PWA_STEP2,
+  },
+  {
+    step: 3,
+    description: '홈 화면에 추가 버튼 클릭',
+    imgSrc: IMAGES.PWA_STEP3,
+  },
+  {
+    step: 4,
+    description: '추가 버튼 클릭 후, 앱 실행!',
+    imgSrc: IMAGES.PWA_STEP4,
+  },
+] as const;
 
 const PwaGuide = () => {
   return (
@@ -10,12 +34,17 @@ const PwaGuide = () => {
         <br />
         앱을 추가해보세요!
       </h3>
-      <div className={styles.imageContainer}>
-        <img src={IMAGES.PWA_STEP1} alt='pwa 더보기 버튼 클릭 안내 사진' />
-        <img src={IMAGES.PWA_STEP2} alt='pwa 공유 버튼 클릭 안내 사진' />
-        <img src={IMAGES.PWA_STEP3} alt='pwa 홈화면 추가 버튼 클릭 안내 사진' />
-        <img src={IMAGES.PWA_STEP4} alt='pwa 추가 후 실행 안내 사진' />
-      </div>
+
+      <ul className={styles.imageContainer}>
+        {GUIDE_STEPS.map(({ step, description, imgSrc }) => (
+          <Step
+            key={step}
+            step={step}
+            description={description}
+            imgSrc={imgSrc}
+          />
+        ))}
+      </ul>
     </div>
   );
 };
