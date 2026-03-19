@@ -8,7 +8,7 @@ import * as styles from './live-button.css';
 type CongestionLevel = 'SMOOTH' | 'NORMAL' | 'CROWDED' | 'NONE';
 type CongestionChipStatus = 'smooth' | 'normal' | 'crowded' | 'none';
 
-type LiveButtonProps = {
+interface LiveButtonProps {
   title: string;
   subText?: string;
   showIcon?: boolean;
@@ -16,7 +16,7 @@ type LiveButtonProps = {
   congestionLevel?: string;
   isDisabled: boolean;
   onClick: () => void;
-};
+}
 
 const CONGESTION_LABEL: Record<CongestionLevel, string> = {
   SMOOTH: '여유',
