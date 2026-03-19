@@ -76,5 +76,4 @@ export const noticeContainer = style({
 export const flagIcon = style({
   flexShrink: 0,
   marginTop: '0.1rem',
-  marginLeft: '-0.05rem',
 });

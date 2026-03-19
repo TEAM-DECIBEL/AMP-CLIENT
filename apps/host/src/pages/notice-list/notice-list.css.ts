@@ -50,5 +50,4 @@ export const currentContainer = style({
 export const copyIcon = style({
   flexShrink: 0,
   marginTop: '0.1rem',
-  marginLeft: '-0.05rem',
 });
