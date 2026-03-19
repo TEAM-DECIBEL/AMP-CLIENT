@@ -4,7 +4,7 @@ import { generatePath, useNavigate } from 'react-router';
 import { CardNotice, EmptyView } from '@amp/ads-ui';
 import { Loading } from '@amp/compositions';
 
-import { SAVED_NOTICES_QUERY_OPTIONS } from '@features/saved-notice/query';
+import { SAVED_NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
 
 import { ROUTE_PATH } from '@shared/constants/path';
 
@@ -36,7 +36,7 @@ const SavedNoticesPage = () => {
         {savedNoticesData.notices.map((notice, index) => (
           <div key={notice.noticeId}>
             <CardNotice
-              imageUrls={notice.imageUrl ? [notice.imageUrl] : []}
+              imageUrls={notice.imageUrls ?? []}
               title={notice.title}
               content={notice.content}
               onClick={() => {
