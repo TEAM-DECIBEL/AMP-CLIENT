@@ -38,3 +38,5 @@ export const NotFoundPage = lazy(() => import('@pages/not-found/not-found'));
 export const LoginErrorPage = lazy(
   () => import('@pages/login-error/login-error'),
 );
+
+export const PwaGuidePage = lazy(() => import('@pages/pwa-guide/pwa-guide'));

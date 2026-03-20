@@ -34,3 +34,12 @@ export const SubLayoutWithBack = ({ title }: SubLayoutProps) => {
     </Suspense>
   );
 };
+
+export const SubLayoutBackOnly = () => {
+  return (
+    <Suspense fallback={<Loading />}>
+      <Header variant='audience' kind='sub' />
+      <Outlet />
+    </Suspense>
+  );
+};

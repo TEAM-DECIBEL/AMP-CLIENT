@@ -20,6 +20,7 @@ export { default as CardNotice } from './card/card-notice/card-notice';
 export { default as Chip } from './chip/chip';
 export { default as EmptyView } from './empty-view/empty-view';
 export { default as Header } from './header/header';
+export { default as ImagePreview } from './image-preview/image-preview';
 export { default as Modal } from './modal/modal';
 export { default as RectButton } from './modal/rect-button/rect-button';
 export { default as PageIndicator } from './page-indicator/page-indicator';
