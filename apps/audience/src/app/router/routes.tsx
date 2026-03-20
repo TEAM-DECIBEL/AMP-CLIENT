@@ -13,9 +13,10 @@ import {
   NoticeListPage,
   NotificationPage,
   OnboardingPage,
+  PwaGuidePage,
   SavedNoticesPage,
 } from './lazy';
-import { SubLayout, SubLayoutWithBack } from './sub-layout';
+import { SubLayout, SubLayoutBackOnly, SubLayoutWithBack } from './sub-layout';
 
 const subLayoutTitles = {
   myEvents: '내 관람 공연',
@@ -35,6 +36,12 @@ const withSubLayout = (
 const withBackLayout = (path: string, title: string, page: ReactElement) => ({
   path,
   element: <SubLayoutWithBack title={title} />,
+  children: [{ index: true, element: page }],
+});
+
+const withBackOnlyLayout = (path: string, page: ReactElement) => ({
+  path,
+  element: <SubLayoutBackOnly />,
   children: [{ index: true, element: page }],
 });
 
@@ -69,6 +76,7 @@ export const globalRoutes = [
     subLayoutTitles.savedNotices,
     <SavedNoticesPage />,
   ),
+  withBackOnlyLayout(ROUTE_PATH.PWA_GUIDE, <PwaGuidePage />),
 
   { path: ROUTE_PATH.NOT_FOUND, element: <NotFoundPage /> },
   { path: '*', element: <NotFoundPage /> },

@@ -16,8 +16,9 @@ import {
   NoticeDetailsPage,
   NoticeListPage,
   OnboardingPage,
+  PwaGuidePage,
 } from './lazy';
-import { SubLayout, SubLayoutWithBack } from './sub-layout';
+import { SubLayout, SubLayoutBackOnly, SubLayoutWithBack } from './sub-layout';
 
 const subLayoutTitles = {
   eventCreate: '공연 등록',
@@ -42,6 +43,12 @@ const withLayoutPath = (path: string, page: ReactElement) => ({
 
 const withBackLayout = (title: string, page: ReactElement) => ({
   element: <SubLayoutWithBack title={title} />,
+  children: [{ index: true, element: page }],
+});
+
+const withBackOnlyLayout = (path: string, page: ReactElement) => ({
+  path,
+  element: <SubLayoutBackOnly />,
   children: [{ index: true, element: page }],
 });
 
@@ -79,6 +86,7 @@ export const globalRoutes = [
       },
     ],
   },
+  withBackOnlyLayout(ROUTE_PATH.PWA_GUIDE, <PwaGuidePage />),
 
   { path: ROUTE_PATH.ONBOARDING, element: <OnboardingPage /> },
   { path: ROUTE_PATH.LOGIN, element: <LoginPage /> },

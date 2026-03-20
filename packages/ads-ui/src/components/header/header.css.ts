@@ -44,6 +44,7 @@ export const subRow = style({
   position: 'relative',
   width: '100%',
   padding: '1.2rem 0',
+  minHeight: '4.8rem',
 });
 
 export const backButton = style({

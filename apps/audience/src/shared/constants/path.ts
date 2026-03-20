@@ -11,6 +11,7 @@ export const ROUTE_PATH = {
   AUTH_REQUIRED: '/auth/required',
   NOTICE_EDIT: '/events/:eventId/notices/:noticeId/edit',
   NOT_FOUND: '/not-found',
+  PWA_GUIDE: '/pwa-guide',
 } as const;
 
 export const NAV_PATH = {
