@@ -4,7 +4,7 @@ import { ampThemeVars } from '@amp/ads-ui/styles';
 
 export const tabsSticky = style({
   position: 'sticky',
-  top: 0,
+  top: 'var(--header-height)',
   zIndex: ampThemeVars.zIndex.sticky,
   backgroundColor: ampThemeVars.color.gray_000,
 });
