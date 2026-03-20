@@ -79,15 +79,14 @@ const HomePage = () => {
           </CtaButton>
         </ButtonGradientSection>
       </section>
-      {isOpen && (
-        <InstallGuideSheet
-          open={isOpen}
-          onClose={handleClose}
-          onOpenApp={handleOpenApp}
-          onBrowseToday={handleBrowseToday}
-          description='간편하게 공지를 작성해보세요.'
-        />
-      )}
+
+      <InstallGuideSheet
+        open={isOpen}
+        onClose={handleClose}
+        onOpenApp={handleOpenApp}
+        onBrowseToday={handleBrowseToday}
+        description='간편하게 공지를 작성해보세요.'
+      />
     </>
   );
 };
