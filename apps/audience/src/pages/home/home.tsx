@@ -69,7 +69,7 @@ const HomePage = () => {
         onClose={handleClose}
         onOpenApp={handleOpenApp}
         onBrowseToday={handleBrowseToday}
-        description='간편하게 공지를 작성해보세요.'
+        description='공지 알림을 받아보세요.'
       />
     </>
   );
