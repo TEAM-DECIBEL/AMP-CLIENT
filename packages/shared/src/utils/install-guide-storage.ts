@@ -25,7 +25,15 @@ const isPwaMode = () => {
 };
 
 export const dismissInstallGuideForToday = () => {
-  localStorage.setItem(INSTALL_GUIDE_DISMISSED_DATE, getTodayString());
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  try {
+    window.localStorage.setItem(INSTALL_GUIDE_DISMISSED_DATE, getTodayString());
+  } catch {
+    return;
+  }
 };
 
 export const hasShowInstallGuide = () => {
@@ -43,16 +51,22 @@ export const hasShowInstallGuide = () => {
     return false;
   }
 
-  const dismissedDate = localStorage.getItem(INSTALL_GUIDE_DISMISSED_DATE);
-  const today = getTodayString();
+  try {
+    const dismissedDate = window.localStorage.getItem(
+      INSTALL_GUIDE_DISMISSED_DATE,
+    );
+    const today = getTodayString();
 
-  if (dismissedDate === today) {
-    return false;
+    if (dismissedDate === today) {
+      return false;
+    }
+
+    if (dismissedDate && dismissedDate !== today) {
+      window.localStorage.removeItem(INSTALL_GUIDE_DISMISSED_DATE);
+    }
+
+    return true;
+  } catch {
+    return true;
   }
-
-  if (dismissedDate && dismissedDate !== today) {
-    localStorage.removeItem(INSTALL_GUIDE_DISMISSED_DATE);
-  }
-
-  return true;
 };
