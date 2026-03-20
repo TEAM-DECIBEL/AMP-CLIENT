@@ -5,8 +5,19 @@ import Chip from '../../chip/chip';
 
 import * as styles from './live-button.css';
 
-type CongestionLevel = 'SMOOTH' | 'NORMAL' | 'CROWDED' | 'NONE';
 type CongestionChipStatus = 'smooth' | 'normal' | 'crowded' | 'none';
+
+const CONGESTION_CONFIG = {
+  SMOOTH: { label: '여유', status: 'smooth' },
+  NORMAL: { label: '보통', status: 'normal' },
+  CROWDED: { label: '혼잡', status: 'crowded' },
+  NONE: { label: '조정중', status: 'none' },
+} as const satisfies Record<
+  string,
+  { label: string; status: CongestionChipStatus }
+>;
+
+type CongestionLevel = keyof typeof CONGESTION_CONFIG;
 
 interface LiveButtonProps {
   title: string;
@@ -18,27 +29,11 @@ interface LiveButtonProps {
   onClick: () => void;
 }
 
-const CONGESTION_LABEL: Record<CongestionLevel, string> = {
-  SMOOTH: '여유',
-  NORMAL: '보통',
-  CROWDED: '혼잡',
-  NONE: '조정중',
-};
-
-const CONGESTION_CHIP_STATUS: Record<CongestionLevel, CongestionChipStatus> = {
-  SMOOTH: 'smooth',
-  NORMAL: 'normal',
-  CROWDED: 'crowded',
-  NONE: 'none',
-};
+const isCongestionLevel = (value: string): value is CongestionLevel =>
+  value in CONGESTION_CONFIG;
 
 const toCongestionLevel = (value?: string): CongestionLevel | null => {
-  if (
-    value === 'SMOOTH' ||
-    value === 'NORMAL' ||
-    value === 'CROWDED' ||
-    value === 'NONE'
-  ) {
+  if (value && isCongestionLevel(value)) {
     return value;
   }
 
@@ -55,6 +50,7 @@ const LiveButton = ({
   onClick,
 }: LiveButtonProps) => {
   const level = toCongestionLevel(congestionLevel);
+  const congestionMeta = level ? CONGESTION_CONFIG[level] : null;
 
   return (
     <button
@@ -67,13 +63,13 @@ const LiveButton = ({
     >
       <div className={styles.imageContainer}>
         <img src={imageUrl} alt={`${title} 썸네일`} className={styles.img} />
-        {level && (
+        {congestionMeta && (
           <Chip
             variant='congestion'
-            status={CONGESTION_CHIP_STATUS[level]}
+            status={congestionMeta.status}
             className={styles.statusChip}
           >
-            {CONGESTION_LABEL[level]}
+            {congestionMeta.label}
           </Chip>
         )}
       </div>
