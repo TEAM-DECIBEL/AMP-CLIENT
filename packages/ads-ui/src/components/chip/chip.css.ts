@@ -29,6 +29,13 @@ export const chip = recipe({
         color: ampThemeVars.color.gray_000,
         ...ampThemeVars.font.body_sb_13,
       },
+      congestion: {
+        width: '4.2rem',
+        height: '1.7rem',
+        borderRadius: '8px',
+        whiteSpace: 'nowrap',
+        ...ampThemeVars.font.caption_r_10,
+      },
     },
     status: {
       current: {
@@ -56,6 +63,22 @@ export const chip = recipe({
       gray: {
         backgroundColor: ampThemeVars.color.gray_000,
         color: ampThemeVars.color.gray_500,
+      },
+      smooth: {
+        backgroundColor: ampThemeVars.color.congestion_blue_dark,
+        color: ampThemeVars.color.congestion_blue_light,
+      },
+      normal: {
+        backgroundColor: ampThemeVars.color.congestion_green_dark,
+        color: ampThemeVars.color.congestion_green_light,
+      },
+      crowded: {
+        backgroundColor: ampThemeVars.color.congestion_red_dark,
+        color: ampThemeVars.color.congestion_red_light,
+      },
+      none: {
+        backgroundColor: ampThemeVars.color.gray_800,
+        color: ampThemeVars.color.gray_000,
       },
     },
   },

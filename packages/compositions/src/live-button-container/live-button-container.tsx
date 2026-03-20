@@ -16,8 +16,6 @@ interface LiveButtonContainerProps {
   onClick?: (id: number) => void;
 }
 
-// TODO: 이전 PR 머지하고 다시 확인
-
 const STATUS_IMAGES: Record<StatusSheetValue, string> = {
   SMOOTH: IMAGES.SMOOTH,
   NORMAL: IMAGES.NORMAL,
@@ -43,6 +41,7 @@ const LiveButtonContainer = ({
             title={item.title}
             subText={item.location ?? ''}
             imageUrl={statusImageUrl}
+            congestionLevel={item.congestionLevel}
             showIcon={showIcon}
             isDisabled={isDisabled}
             onClick={() => onClick?.(item.stageId)}
