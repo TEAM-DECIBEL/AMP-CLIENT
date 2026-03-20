@@ -57,10 +57,11 @@ const HomePage = () => {
   };
 
   return (
-    <section className={styles.page}>
-      <div className={styles.bannerContainer}>
-        <CardHomebannerOrg nickname={nickname ?? 'SOPT'} />
-      </div>
+    <>
+      <section className={styles.page}>
+        <div className={styles.bannerContainer}>
+          <CardHomebannerOrg nickname={nickname ?? 'SOPT'} />
+        </div>
 
         <div className={styles.content}>
           <FestivalOverview

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { getMobileOs } from '../utils/device';
 import {
   dismissInstallGuideForToday,
-  shouldShowInstallGuide,
+  hasShowInstallGuide,
 } from '../utils/install-guide-storage';
 
 interface BeforeInstallPromptEvent extends Event {
@@ -22,7 +22,7 @@ export const usePwaInstallGuide = ({
   onMoveToGuide,
 }: UsePwaInstallGuideProps) => {
   const deferredPromptRef = useRef<BeforeInstallPromptEvent | null>(null);
-  const [isOpen, setIsOpen] = useState(() => shouldShowInstallGuide());
+  const [isOpen, setIsOpen] = useState(() => hasShowInstallGuide());
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (event: Event) => {

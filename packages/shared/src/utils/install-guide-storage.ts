@@ -28,7 +28,7 @@ export const dismissInstallGuideForToday = () => {
   localStorage.setItem(INSTALL_GUIDE_DISMISSED_DATE, getTodayString());
 };
 
-export const shouldShowInstallGuide = () => {
+export const hasShowInstallGuide = () => {
   if (typeof window === 'undefined') {
     return false;
   }
