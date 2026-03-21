@@ -79,6 +79,7 @@ export const useDraggableCarousel = ({
   const dragStateRef = useRef<DragState>(INITIAL_DRAG_STATE);
   const currentPageRef = useRef(1);
   const rafRef = useRef<number | null>(null);
+  const lockedPageRef = useRef<number | null>(null);
   const isIndicatorVisible = itemCount > 1;
 
   const handleScroll = (event: UIEvent<HTMLUListElement>) => {
@@ -88,6 +89,18 @@ export const useDraggableCarousel = ({
     }
 
     const nextPage = Math.round(scrollLeft / clientWidth) + 1;
+
+    if (dragStateRef.current.isPointerDown) {
+      return;
+    }
+
+    if (lockedPageRef.current !== null && lockedPageRef.current !== nextPage) {
+      return;
+    }
+
+    if (lockedPageRef.current === nextPage) {
+      lockedPageRef.current = null;
+    }
 
     if (currentPageRef.current === nextPage) {
       return;
@@ -114,9 +127,11 @@ export const useDraggableCarousel = ({
 
     const nextIndex = Math.min(Math.max(index, 0), itemCount - 1);
     const { clientWidth } = trackRef.current;
+    const nextPage = nextIndex + 1;
 
-    currentPageRef.current = nextIndex + 1;
-    setCurrentPage(nextIndex + 1);
+    lockedPageRef.current = nextPage;
+    currentPageRef.current = nextPage;
+    setCurrentPage(nextPage);
     trackRef.current.scrollTo({
       left: nextIndex * clientWidth,
       behavior: 'smooth',
