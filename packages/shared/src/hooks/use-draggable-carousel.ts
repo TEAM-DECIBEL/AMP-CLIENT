@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { MouseEvent, TouchEvent, UIEvent } from 'react';
 
 interface DragState {
@@ -77,6 +77,8 @@ export const useDraggableCarousel = ({
   const [isDragging, setIsDragging] = useState(false);
   const trackRef = useRef<HTMLUListElement | null>(null);
   const dragStateRef = useRef<DragState>(INITIAL_DRAG_STATE);
+  const currentPageRef = useRef(1);
+  const rafRef = useRef<number | null>(null);
   const isIndicatorVisible = itemCount > 1;
 
   const handleScroll = (event: UIEvent<HTMLUListElement>) => {
@@ -85,7 +87,14 @@ export const useDraggableCarousel = ({
       return;
     }
 
-    setCurrentPage(Math.round(scrollLeft / clientWidth) + 1);
+    const nextPage = Math.round(scrollLeft / clientWidth) + 1;
+
+    if (currentPageRef.current === nextPage) {
+      return;
+    }
+
+    currentPageRef.current = nextPage;
+    setCurrentPage(nextPage);
   };
 
   const startDrag = (startX: number, startScrollLeft: number) => {
@@ -105,6 +114,9 @@ export const useDraggableCarousel = ({
 
     const nextIndex = Math.min(Math.max(index, 0), itemCount - 1);
     const { clientWidth } = trackRef.current;
+
+    currentPageRef.current = nextIndex + 1;
+    setCurrentPage(nextIndex + 1);
     trackRef.current.scrollTo({
       left: nextIndex * clientWidth,
       behavior: 'smooth',
@@ -118,7 +130,15 @@ export const useDraggableCarousel = ({
 
     const deltaX = currentX - dragStateRef.current.startX;
     dragStateRef.current.deltaX = deltaX;
-    element.scrollLeft = dragStateRef.current.startScrollLeft - deltaX;
+
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+    }
+
+    rafRef.current = requestAnimationFrame(() => {
+      element.scrollLeft = dragStateRef.current.startScrollLeft - deltaX;
+      rafRef.current = null;
+    });
   };
 
   const handleMouseDown = (event: MouseEvent<HTMLUListElement>) => {
@@ -152,6 +172,11 @@ export const useDraggableCarousel = ({
       return;
     }
 
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+
     if (trackRef.current) {
       const { clientWidth } = trackRef.current;
       const nextIndex = getNextIndex({
@@ -174,6 +199,14 @@ export const useDraggableCarousel = ({
   const handleTouchEnd = () => {
     endDrag();
   };
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, []);
 
   return {
     currentPage,

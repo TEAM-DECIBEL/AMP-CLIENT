@@ -27,9 +27,11 @@ export const imageTrack = style({
   overflowY: 'hidden',
   padding: 0,
   margin: 0,
+  touchAction: 'pan-y pinch-zoom',
   scrollSnapType: 'x mandatory',
   scrollbarWidth: 'none',
   overscrollBehaviorX: 'contain',
+  WebkitOverflowScrolling: 'touch',
   selectors: {
     '&::-webkit-scrollbar': {
       display: 'none',
