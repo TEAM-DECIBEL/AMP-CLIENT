@@ -85,10 +85,10 @@ const FestivalCard = ({
       {showWishList && (
         <CardFestival.Button>
           <FlagButton
+            key={festivalId}
             selected={wishList}
             onChange={toggleWishList}
             disabled={isTogglePending}
-            festivalId={festivalId}
           />
         </CardFestival.Button>
       )}

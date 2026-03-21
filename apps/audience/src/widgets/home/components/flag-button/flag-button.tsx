@@ -6,15 +6,9 @@ interface FlagButtonProps {
   selected: boolean;
   onChange: () => void;
   disabled?: boolean;
-  festivalId: number;
 }
 
-const FlagButton = ({
-  selected,
-  onChange,
-  disabled,
-  festivalId,
-}: FlagButtonProps) => {
+const FlagButton = ({ selected, onChange, disabled }: FlagButtonProps) => {
   return (
     <button
       type='button'
@@ -28,15 +22,9 @@ const FlagButton = ({
       disabled={disabled}
     >
       {selected ? (
-        <AmpFlagGradientIcon
-          key={`gradient-flag-${festivalId}`}
-          className={styles.icon}
-        />
+        <AmpFlagGradientIcon className={styles.icon} />
       ) : (
-        <AmpFlagIcon
-          key={`normal-flag-${festivalId}`}
-          className={styles.icon}
-        />
+        <AmpFlagIcon className={styles.icon} />
       )}
     </button>
   );
