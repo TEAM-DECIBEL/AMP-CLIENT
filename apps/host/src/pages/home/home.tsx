@@ -2,7 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { CtaButton } from '@amp/ads-ui';
-import { ButtonGradientSection, Loading } from '@amp/compositions';
+import {
+  ButtonGradientSection,
+  InstallGuideSheet,
+  Loading,
+} from '@amp/compositions';
+import { usePwaInstallGuide } from '@amp/shared/hooks';
 
 import FestivalOverview from '@widgets/home/festival-overview/festival-overview';
 
@@ -17,6 +22,11 @@ import * as styles from './home.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
+
+  const { isOpen, handleOpenApp, handleBrowseToday, handleClose } =
+    usePwaInstallGuide({
+      onMoveToGuide: () => navigate(ROUTE_PATH.PWA_GUIDE),
+    });
 
   const { data: homeData, isPending: isHomePending } = useQuery(
     HOME_QUERY_OPTIONS.FESTIVALS(),
@@ -47,25 +57,37 @@ const HomePage = () => {
   };
 
   return (
-    <section className={styles.page}>
-      <CardHomebannerOrg nickname={nickname ?? 'SOPT'} />
+    <>
+      <section className={styles.page}>
+        <div className={styles.bannerContainer}>
+          <CardHomebannerOrg nickname={nickname ?? 'SOPT'} />
+        </div>
 
-      <div className={styles.content}>
-        <FestivalOverview
-          ongoingCount={summary.ongoingCount}
-          upcomingCount={summary.upcomingCount}
-          ongoingFestivals={ongoingFestivals}
-          upcomingFestivals={upcomingFestivals}
-        />
-      </div>
+        <div className={styles.content}>
+          <FestivalOverview
+            ongoingCount={summary.ongoingCount}
+            upcomingCount={summary.upcomingCount}
+            ongoingFestivals={ongoingFestivals}
+            upcomingFestivals={upcomingFestivals}
+          />
+        </div>
 
-      <ButtonGradientSection className={styles.ctaArea}>
-        {showTooltip && <Tooltip />}
-        <CtaButton type='common' onClick={handleCreateClick}>
-          공연 등록하기
-        </CtaButton>
-      </ButtonGradientSection>
-    </section>
+        <ButtonGradientSection className={styles.ctaArea}>
+          {showTooltip && <Tooltip />}
+          <CtaButton type='common' onClick={handleCreateClick}>
+            공연 등록하기
+          </CtaButton>
+        </ButtonGradientSection>
+      </section>
+
+      <InstallGuideSheet
+        open={isOpen}
+        onClose={handleClose}
+        onOpenApp={handleOpenApp}
+        onBrowseToday={handleBrowseToday}
+        description='간편하게 공지를 작성해보세요.'
+      />
+    </>
   );
 };
 

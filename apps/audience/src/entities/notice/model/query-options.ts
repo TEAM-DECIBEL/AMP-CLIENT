@@ -4,7 +4,11 @@ import type { PageSizeParams } from '@amp/shared/types';
 
 import { USERS_QUERY_KEY } from '@shared/constants/query-key';
 
-import { getFestivalBanner, getFestivalNotices } from '../api/notice';
+import {
+  getFestivalBanner,
+  getFestivalNotices,
+  getSavedNotices,
+} from '../api/notice';
 
 export const NOTICES_QUERY_OPTIONS = {
   LIST: (eventId: number, params: PageSizeParams = {}) =>
@@ -18,5 +22,13 @@ export const NOTICES_QUERY_OPTIONS = {
       queryKey: USERS_QUERY_KEY.FESTIVAL_BANNER(festivalId),
       queryFn: () => getFestivalBanner(festivalId),
       enabled: Number.isFinite(festivalId),
+    }),
+} as const;
+
+export const SAVED_NOTICES_QUERY_OPTIONS = {
+  LIST: (params: PageSizeParams = {}) =>
+    queryOptions({
+      queryKey: [...USERS_QUERY_KEY.SAVED_NOTICES(), params],
+      queryFn: () => getSavedNotices(params),
     }),
 } as const;

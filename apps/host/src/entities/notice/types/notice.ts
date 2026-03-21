@@ -1,7 +1,7 @@
 export interface CreateNoticeBody {
   title: string;
   categoryId: number;
-  image?: File | null;
+  images?: File[];
   content: string;
   isPinned: boolean;
 }
@@ -26,7 +26,7 @@ export interface NoticeDetail {
   noticeId: number;
   title: string;
   content: string;
-  imageUrl: string | null;
+  imageUrls: string[];
   isPinned: boolean;
   category: {
     categoryId: number;

@@ -46,3 +46,8 @@ export const button = style({
 export const currentContainer = style({
   padding: '2rem',
 });
+
+export const copyIcon = style({
+  flexShrink: 0,
+  marginTop: '0.1rem',
+});

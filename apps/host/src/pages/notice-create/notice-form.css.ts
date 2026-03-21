@@ -61,3 +61,28 @@ export const chipContainer = style({
   rowGap: '1rem',
   width: '100%',
 });
+
+export const imageListContainer = style({
+  display: 'flex',
+  gap: '1rem',
+  padding: '0.8rem 0',
+  margin: '-0.8rem -2rem 0 0',
+  overflowX: 'auto',
+  msOverflowStyle: 'none',
+  scrollbarWidth: 'none',
+  userSelect: 'none',
+  WebkitOverflowScrolling: 'touch',
+  cursor: 'grab',
+  selectors: {
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+    '&:active': {
+      cursor: 'grabbing',
+    },
+    '&::after': {
+      content: '""',
+      flex: '0 0 2rem',
+    },
+  },
+});

@@ -55,6 +55,7 @@ export const empty = style({
 export const emptyIcon = style({
   display: 'block',
   marginBottom: '1.6rem',
+  color: ampThemeVars.color.gray_400,
 });
 
 export const emptyTitle = style({
