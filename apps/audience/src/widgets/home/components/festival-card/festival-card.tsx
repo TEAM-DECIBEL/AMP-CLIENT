@@ -88,6 +88,7 @@ const FestivalCard = ({
             selected={wishList}
             onChange={toggleWishList}
             disabled={isTogglePending}
+            festivalId={festivalId}
           />
         </CardFestival.Button>
       )}
