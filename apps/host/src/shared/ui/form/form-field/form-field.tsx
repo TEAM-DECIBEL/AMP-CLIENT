@@ -10,10 +10,17 @@ interface FormFieldProps {
 
 const FormField = ({ id, label, children }: FormFieldProps) => {
   return (
-    <label className={styles.field} htmlFor={id}>
-      {label && <p className={styles.fieldLabel}>{label}</p>}
+    <div className={styles.field}>
+      {label &&
+        (id ? (
+          <label htmlFor={id} className={styles.fieldLabel}>
+            {label}
+          </label>
+        ) : (
+          <span className={styles.fieldLabel}>{label}</span>
+        ))}
       {children}
-    </label>
+    </div>
   );
 };
 
