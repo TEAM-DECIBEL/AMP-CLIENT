@@ -17,16 +17,19 @@ export const imageItem = style({
   flexShrink: 0,
   width: '100%',
   listStyle: 'none',
+  scrollSnapAlign: 'start',
+  scrollSnapStop: 'always',
 });
 
 export const imageTrack = style({
   display: 'flex',
   overflowX: 'auto',
+  overflowY: 'hidden',
   padding: 0,
   margin: 0,
   scrollSnapType: 'x mandatory',
-  scrollBehavior: 'smooth',
   scrollbarWidth: 'none',
+  overscrollBehaviorX: 'contain',
   selectors: {
     '&::-webkit-scrollbar': {
       display: 'none',

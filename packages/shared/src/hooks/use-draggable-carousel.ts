@@ -98,6 +98,19 @@ export const useDraggableCarousel = ({
     setIsDragging(true);
   };
 
+  const scrollToIndex = (index: number) => {
+    if (!trackRef.current) {
+      return;
+    }
+
+    const nextIndex = Math.min(Math.max(index, 0), itemCount - 1);
+    const { clientWidth } = trackRef.current;
+    trackRef.current.scrollTo({
+      left: nextIndex * clientWidth,
+      behavior: 'smooth',
+    });
+  };
+
   const updateDrag = (currentX: number, element: HTMLUListElement) => {
     if (!dragStateRef.current.isPointerDown) {
       return;
@@ -147,11 +160,7 @@ export const useDraggableCarousel = ({
         itemCount,
         startScrollLeft: dragStateRef.current.startScrollLeft,
       });
-
-      trackRef.current.scrollTo({
-        left: nextIndex * clientWidth,
-        behavior: 'smooth',
-      });
+      scrollToIndex(nextIndex);
     }
 
     dragStateRef.current = INITIAL_DRAG_STATE;
