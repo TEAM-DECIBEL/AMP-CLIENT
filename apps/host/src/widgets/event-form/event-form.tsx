@@ -180,7 +180,7 @@ const EventForm = ({
             </div>
           </FormField>
 
-          <FormField label='공연명'>
+          <FormField id='eventTitle' label='공연명'>
             <Textfield
               name='eventTitle'
               variant='default'
@@ -192,7 +192,7 @@ const EventForm = ({
             />
           </FormField>
 
-          <FormField label='공연 일시'>
+          <FormField id='scheduleDate' label='공연 일시'>
             <div className={styles.grid}>
               <Textfield
                 id='scheduleDate'
@@ -241,7 +241,7 @@ const EventForm = ({
             />
           </FormField>
 
-          <FormField label='공연 장소'>
+          <FormField id='eventLocation' label='공연 장소'>
             <Textfield
               id='eventLocation'
               name='eventLocation'
@@ -265,7 +265,7 @@ const EventForm = ({
             관객이 현장 혼잡도를 직접 입력할 수 있어요.
           </p>
 
-          <FormField>
+          <FormField id='boothTitle'>
             <Textfield
               id='boothTitle'
               name='boothTitle'
