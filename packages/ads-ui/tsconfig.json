@@ -4,8 +4,7 @@
     "noEmit": true,
     "composite": true,
     "rootDir": "src",
-    "outDir": "dist",
-    "types": ["vite/client"]
+    "outDir": "dist"
   },
   "include": ["src", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist"]
