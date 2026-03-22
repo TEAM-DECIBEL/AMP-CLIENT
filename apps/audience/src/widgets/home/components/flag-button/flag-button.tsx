@@ -22,7 +22,7 @@ const FlagButton = ({ selected, onChange, disabled }: FlagButtonProps) => {
       disabled={disabled}
     >
       {selected ? (
-        <AmpFlagGradientIcon className={styles.icon} />
+        <img src={AmpFlagGradientIcon} alt='Gradient Flag' />
       ) : (
         <AmpFlagIcon className={styles.icon} />
       )}
