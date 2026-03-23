@@ -1,6 +1,5 @@
 export { default as AlertIcon } from './svgs/icn_alert.svg?react';
 export { default as AmpFlagIcon } from './svgs/icn_ampflag.svg?react';
-export { default as AmpFlagGradientIcon } from './svgs/icn_ampflag_gradient.svg?url';
 export { default as ArrowIcon } from './svgs/icn_arrow.svg?react';
 export { default as BackIcon } from './svgs/icn_back.svg?react';
 export { default as CalendarIcon } from './svgs/icn_calendar.svg?react';

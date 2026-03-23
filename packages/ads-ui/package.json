@@ -4,6 +4,7 @@
   "exports": {
     ".": "./src/components/index.ts",
     "./icons": "./src/icons/index.ts",
+    "./icon-urls": "./src/icons/icon-urls.ts",
     "./styles": "./src/styles/index.ts",
     "./assets": "./src/assets/index.ts",
     "./styles/theme.css": "./src/styles/theme.css.ts",
