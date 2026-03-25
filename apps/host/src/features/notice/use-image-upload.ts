@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 
 import { toast } from '@amp/ads-ui';
 
+import { compressImageFiles } from '@shared/libs/image-compress';
+
 const MAX_COUNT = 20;
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
@@ -22,9 +24,10 @@ export const useImageUpload = (initialUrls: string[] = []) => {
     initialUrls.map((url) => ({ type: 'existing', url })),
   );
 
+  const [isCompressing, setIsCompressing] = useState(false);
   const blobUrlsRef = useRef<Set<string>>(new Set());
 
-  const handleImagesAdd = (files: File[]) => {
+  const handleImagesAdd = async (files: File[]) => {
     const currentCount = images.length;
     const availableSpace = MAX_COUNT - currentCount;
     let hasLargeFile = false;
@@ -55,7 +58,7 @@ export const useImageUpload = (initialUrls: string[] = []) => {
       return;
     }
 
-    const newItems: NoticeImageItem[] = filesToAdd.map((file) => {
+    const newItems: NewImage[] = filesToAdd.map((file) => {
       const previewUrl = URL.createObjectURL(file);
       blobUrlsRef.current.add(previewUrl);
       return {
@@ -67,6 +70,33 @@ export const useImageUpload = (initialUrls: string[] = []) => {
     });
 
     setImages((prev) => [...prev, ...newItems]);
+    setIsCompressing(true);
+
+    try {
+      const targets = newItems.map((item) => ({
+        id: item.id,
+        file: item.file,
+      }));
+      const compressedResults = await compressImageFiles(targets);
+
+      setImages((prev) =>
+        prev.map((image) => {
+          if (image.type === 'new') {
+            const result = compressedResults.find(
+              (result) => result.id === image.id,
+            );
+            if (result) {
+              return { ...image, file: result.file };
+            }
+          }
+          return image;
+        }),
+      );
+    } catch {
+      toast.show('이미지 업로드 중 오류가 발생했습니다.');
+    } finally {
+      setIsCompressing(false);
+    }
   };
 
   const handleImageRemove = (indexToRemove: number) => {
@@ -91,5 +121,5 @@ export const useImageUpload = (initialUrls: string[] = []) => {
     };
   }, []);
 
-  return { images, handleImagesAdd, handleImageRemove };
+  return { images, handleImagesAdd, handleImageRemove, isCompressing };
 };
