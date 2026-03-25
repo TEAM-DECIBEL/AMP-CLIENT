@@ -12,6 +12,7 @@ export const compressImageFiles = async (
     maxSizeMB: 1,
     maxWidthOrHeight: 1920,
     useWebWorker: true,
+    fileType: 'image/webp',
   };
 
   return Promise.all(
