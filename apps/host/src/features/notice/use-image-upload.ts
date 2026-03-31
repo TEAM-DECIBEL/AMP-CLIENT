@@ -25,6 +25,7 @@ export const useImageUpload = (initialUrls: string[] = []) => {
   );
 
   const [isCompressing, setIsCompressing] = useState(false);
+  const compressingTaskCountRef = useRef(0);
   const blobUrlsRef = useRef<Set<string>>(new Set());
 
   const handleImagesAdd = async (files: File[]) => {
@@ -70,6 +71,7 @@ export const useImageUpload = (initialUrls: string[] = []) => {
     });
 
     setImages((prev) => [...prev, ...newItems]);
+    compressingTaskCountRef.current += 1;
     setIsCompressing(true);
 
     try {
@@ -95,7 +97,11 @@ export const useImageUpload = (initialUrls: string[] = []) => {
     } catch {
       toast.show('이미지 업로드 중 오류가 발생했습니다.');
     } finally {
-      setIsCompressing(false);
+      compressingTaskCountRef.current = Math.max(
+        0,
+        compressingTaskCountRef.current - 1,
+      );
+      setIsCompressing(compressingTaskCountRef.current > 0);
     }
   };
 
