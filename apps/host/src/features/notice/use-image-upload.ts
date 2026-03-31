@@ -84,11 +84,11 @@ export const useImageUpload = (initialUrls: string[] = []) => {
       setImages((prev) =>
         prev.map((image) => {
           if (image.type === 'new') {
-            const result = compressedResults.find(
-              (result) => result.id === image.id,
+            const compressedItem = compressedResults.find(
+              (item) => item.id === image.id,
             );
-            if (result) {
-              return { ...image, file: result.file };
+            if (compressedItem) {
+              return { ...image, file: compressedItem.file };
             }
           }
           return image;
