@@ -1,4 +1,4 @@
-import imageCompression from 'browser-image-compression';
+import imageCompression, { type Options } from 'browser-image-compression';
 
 export interface CompressTargetImage {
   id: string;
@@ -8,7 +8,7 @@ export interface CompressTargetImage {
 export const compressImageFiles = async (
   items: CompressTargetImage[],
 ): Promise<CompressTargetImage[]> => {
-  const options = {
+  const options: Options = {
     maxSizeMB: 1,
     maxWidthOrHeight: 1920,
     useWebWorker: true,
