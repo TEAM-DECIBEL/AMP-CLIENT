@@ -150,6 +150,7 @@ export const useNoticeForm = (
       handleSubmit,
     },
     isValid,
-    isSubmitting: isCreatePending || isUpdatePending || isCompressing,
+    isSubmitting: isCreatePending || isUpdatePending,
+    isCompressing: isCompressing,
   };
 };
