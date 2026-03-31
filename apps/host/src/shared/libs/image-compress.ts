@@ -19,6 +19,11 @@ export const compressImageFiles = async (
     items.map(async (item) => {
       try {
         const compressedBlob = await imageCompression(item.file, options);
+
+        if (compressedBlob.size >= item.file.size) {
+          return { id: item.id, file: item.file };
+        }
+
         const newFileName = item.file.name.replace(/\.[^/.]+$/, '.webp');
         const compressedFile = new File([compressedBlob], newFileName, {
           type: compressedBlob.type,
