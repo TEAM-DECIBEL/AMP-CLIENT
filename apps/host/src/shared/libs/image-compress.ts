@@ -24,7 +24,10 @@ export const compressImageFiles = async (
           return { id: item.id, file: item.file };
         }
 
-        const newFileName = item.file.name.replace(/\.[^/.]+$/, '.webp');
+        const newFileName = item.file.name.includes('.')
+          ? item.file.name.replace(/\.[^/.]+$/, '.webp')
+          : `${item.file.name}.webp`;
+
         const compressedFile = new File([compressedBlob], newFileName, {
           type: compressedBlob.type,
         });
