@@ -60,14 +60,11 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
 
   const initialValues = toEventEditInitialValues(data);
 
-  const submitEdit = (values: EventFormSubmitValues) => {
+  const submitEdit = async (values: EventFormSubmitValues) => {
     const formData = serializeUpdateFestivalFormData(values);
 
-    updateMutation.mutate(formData, {
-      onSuccess: () => {
-        navigate(NAV_PATH.noticeList(festivalId));
-      },
-    });
+    await updateMutation.mutateAsync(formData);
+    navigate(NAV_PATH.noticeList(festivalId));
   };
 
   const openConfirmModal = ({
