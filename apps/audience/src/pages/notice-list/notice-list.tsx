@@ -18,9 +18,10 @@ import { formatDday } from '@amp/shared/utils';
 import { useToggleWishListMutation } from '@features/usecase/toggle-wishlist/use-toggle-wishlist-mutation';
 
 import { NOTICES_QUERY_OPTIONS } from '@entities/notice/model/query-options';
+import { USER_QUERY_OPTIONS } from '@entities/user/model/query-options';
 
 import { CATEGORY_CODE_BY_LABEL } from '@shared/constants/category-label';
-import { NAV_PATH } from '@shared/constants/path';
+import { NAV_PATH, ROUTE_PATH } from '@shared/constants/path';
 import { useNotificationsSubscribeMutation } from '@shared/hooks/use-festival-notification';
 import { useLiveStatus } from '@shared/hooks/use-live-status';
 import LiveStatusSheet from '@shared/ui/live-status-sheet/live-status-sheet';
@@ -41,6 +42,8 @@ const NoticeListPage = () => {
   const { data: bannerData } = useQuery(
     NOTICES_QUERY_OPTIONS.BANNER(festivalId),
   );
+
+  const { data: nicknameData } = useQuery(USER_QUERY_OPTIONS.NICKNAME());
 
   const { data } = useQuery(
     NOTICES_QUERY_OPTIONS.LIST(festivalId, {
@@ -98,6 +101,10 @@ const NoticeListPage = () => {
     : null;
 
   const handleAlertClick = () => {
+    if (nicknameData?.nickname === '관객') {
+      navigate(ROUTE_PATH.AUTH_REQUIRED);
+      return;
+    }
     overlay.open(({ isOpen, close, unmount }) => {
       const handleConfirmAlert = async () => {
         try {
