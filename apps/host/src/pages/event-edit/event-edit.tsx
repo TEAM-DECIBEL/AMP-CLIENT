@@ -19,7 +19,7 @@ import { NAV_PATH } from '@shared/constants/path';
 interface ConfirmModalProps {
   title: string;
   description?: string;
-  onConfirm: () => Promise<boolean>;
+  values: EventFormSubmitValues;
 }
 
 interface EventEditPageContentProps {
@@ -60,28 +60,19 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
 
   const initialValues = toEventEditInitialValues(data);
 
-  const submitEdit = async (values: EventFormSubmitValues) => {
-    const formData = serializeUpdateFestivalFormData(values);
-
-    try {
-      await updateMutation.mutateAsync(formData);
-      navigate(NAV_PATH.noticeList(festivalId));
-      return true;
-    } catch {
-      toast.show('공연 수정에 실패했어요. 다시 시도해주세요.');
-      return false;
-    }
-  };
-
   const openConfirmModal = ({
     title,
     description,
-    onConfirm,
+    values,
   }: ConfirmModalProps) => {
     overlay.open(({ isOpen, close, unmount }) => (
       <Modal
         open={isOpen}
         onClose={() => {
+          if (updateMutation.isPending) {
+            return;
+          }
+
           close();
           unmount();
         }}
@@ -108,13 +99,22 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
             <RectButton
               variant='primary'
               disabled={updateMutation.isPending}
-              onClick={async () => {
-                const isSuccess = await onConfirm();
+              onClick={() => {
+                const formData = serializeUpdateFestivalFormData(values);
 
-                if (isSuccess) {
-                  close();
-                  unmount();
-                }
+                updateMutation.mutate(formData, {
+                  onSuccess: () => {
+                    close();
+                    unmount();
+                    navigate(NAV_PATH.noticeList(festivalId));
+                  },
+                  onError: () => {
+                    toast.show(
+                      '공연 수정에 실패했어요.',
+                      '잠시 후 다시 시도해 주세요.',
+                    );
+                  },
+                });
               }}
             >
               확인
@@ -147,7 +147,7 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
           description: isCategoryChanged
             ? '카테고리를 수정하면\n해당 카테고리로 작성된 공지가 삭제돼요.'
             : undefined,
-          onConfirm: () => submitEdit(values),
+          values,
         });
       }}
     />
