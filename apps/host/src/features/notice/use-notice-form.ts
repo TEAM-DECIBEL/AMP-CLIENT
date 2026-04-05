@@ -22,9 +22,8 @@ export const useNoticeForm = (
 ) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { images, handleImagesAdd, handleImageRemove } = useImageUpload(
-    initialData?.imageUrls,
-  );
+  const { images, handleImagesAdd, handleImageRemove, isCompressing } =
+    useImageUpload(initialData?.imageUrls);
 
   const [form, setForm] = useState({
     title: initialData?.title ?? '',
@@ -108,6 +107,7 @@ export const useNoticeForm = (
     if (
       isCreatePending ||
       isUpdatePending ||
+      isCompressing ||
       !isValid ||
       !festivalId ||
       form.categoryId === null
@@ -151,5 +151,6 @@ export const useNoticeForm = (
     },
     isValid,
     isSubmitting: isCreatePending || isUpdatePending,
+    isCompressing,
   };
 };

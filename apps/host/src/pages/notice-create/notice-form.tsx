@@ -8,7 +8,7 @@ import {
   Textfield,
 } from '@amp/ads-ui';
 import { PinIcon } from '@amp/ads-ui/icons';
-import { ButtonGradientSection } from '@amp/compositions';
+import { ButtonGradientSection, Loading } from '@amp/compositions';
 
 import MultiImageAddButton from '@widgets/multi-image-add-button/multi-image-add-button';
 
@@ -38,12 +38,13 @@ const NoticeForm = ({
   pinnedCount,
 }: NoticeFormProps) => {
   const { scrollRef, onDragStart, onDragEnd, onDragMove } = useDragScroll();
-  const { formState, handlers, isValid, isSubmitting } = useNoticeForm(
-    festivalId,
-    noticeDetail,
-    noticeDetail?.noticeId,
-    pinnedCount,
-  );
+  const { formState, handlers, isValid, isSubmitting, isCompressing } =
+    useNoticeForm(
+      festivalId,
+      noticeDetail,
+      noticeDetail?.noticeId,
+      pinnedCount,
+    );
 
   const categories = useMemo(
     () =>
@@ -63,6 +64,10 @@ const NoticeForm = ({
     handleFormChange,
     handleSubmit,
   } = handlers;
+
+  if (isSubmitting) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -151,7 +156,7 @@ const NoticeForm = ({
             type='common'
             htmlType='submit'
             color='gray'
-            disabled={!isValid || isSubmitting}
+            disabled={!isValid || isSubmitting || isCompressing}
           >
             완료
           </CtaButton>
