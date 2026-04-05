@@ -133,8 +133,8 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
 
         openConfirmModal({
           title: isCategoryChanged
-            ? '공연 카테고리를 수정하시겠어요?'
-            : '공연을 수정하시겠어요?',
+            ? '공지 카테고리를 수정하시겠어요?'
+            : '수정하시겠어요?',
           description: isCategoryChanged
             ? '카테고리를 수정하면\n해당 카테고리로 작성된 공지가 삭제돼요.'
             : undefined,
