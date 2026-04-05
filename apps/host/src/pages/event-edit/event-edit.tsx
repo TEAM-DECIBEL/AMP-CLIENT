@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
 import { useNavigate, useParams } from 'react-router';
 
-import { Modal, RectButton } from '@amp/ads-ui';
+import { Modal, RectButton, toast } from '@amp/ads-ui';
 import { Loading } from '@amp/compositions';
 
 import EventForm from '@widgets/event-form/event-form';
@@ -19,7 +19,7 @@ import { NAV_PATH } from '@shared/constants/path';
 interface ConfirmModalProps {
   title: string;
   description?: string;
-  onConfirm: () => void;
+  onConfirm: () => Promise<boolean>;
 }
 
 interface EventEditPageContentProps {
@@ -63,8 +63,14 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
   const submitEdit = async (values: EventFormSubmitValues) => {
     const formData = serializeUpdateFestivalFormData(values);
 
-    await updateMutation.mutateAsync(formData);
-    navigate(NAV_PATH.noticeList(festivalId));
+    try {
+      await updateMutation.mutateAsync(formData);
+      navigate(NAV_PATH.noticeList(festivalId));
+      return true;
+    } catch {
+      toast.show('공연 수정에 실패했어요. 다시 시도해주세요.');
+      return false;
+    }
   };
 
   const openConfirmModal = ({
@@ -102,10 +108,13 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
             <RectButton
               variant='primary'
               disabled={updateMutation.isPending}
-              onClick={() => {
-                onConfirm();
-                close();
-                unmount();
+              onClick={async () => {
+                const isSuccess = await onConfirm();
+
+                if (isSuccess) {
+                  close();
+                  unmount();
+                }
               }}
             >
               확인
