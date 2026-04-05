@@ -88,6 +88,7 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
           <Modal.Actions>
             <RectButton
               variant='secondary'
+              disabled={updateMutation.isPending}
               onClick={() => {
                 close();
                 unmount();
