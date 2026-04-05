@@ -94,8 +94,6 @@ export const useImageUpload = (initialUrls: string[] = []) => {
           return image;
         }),
       );
-    } catch {
-      toast.show('이미지 업로드 중 오류가 발생했습니다.');
     } finally {
       compressingTaskCountRef.current = Math.max(
         0,
