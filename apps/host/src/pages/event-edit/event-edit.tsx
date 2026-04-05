@@ -26,17 +26,6 @@ interface EventEditPageContentProps {
   festivalId: number;
 }
 
-const areSameCategoryIds = (prev: number[], next: number[]) => {
-  if (prev.length !== next.length) {
-    return false;
-  }
-
-  const sortedPrev = [...prev].sort((a, b) => a - b);
-  const sortedNext = [...next].sort((a, b) => a - b);
-
-  return sortedPrev.every((id, index) => id === sortedNext[index]);
-};
-
 const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
   const updateMutation = useFestivalUpdateMutation(festivalId);
 
@@ -136,16 +125,15 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
           return;
         }
 
-        const isCategoryChanged = !areSameCategoryIds(
-          initialValues.activeCategoryIds,
-          values.activeCategoryIds,
+        const hasDeletedCategory = initialValues.activeCategoryIds.some(
+          (id) => !values.activeCategoryIds.includes(id),
         );
 
         openConfirmModal({
-          title: isCategoryChanged
+          title: hasDeletedCategory
             ? '공지 카테고리를 수정하시겠어요?'
             : '수정하시겠어요?',
-          description: isCategoryChanged
+          description: hasDeletedCategory
             ? '카테고리를 수정하면\n해당 카테고리로 작성된 공지가 삭제돼요.'
             : undefined,
           values,
