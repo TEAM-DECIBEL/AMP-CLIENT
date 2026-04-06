@@ -1,6 +1,6 @@
 import { get } from '@amp/apis';
 
-import { AuthStatusResponse } from '@entities/auth/types/response';
+import type { AuthStatusResponse } from '@entities/auth/types/response';
 
 import { END_POINT } from '@shared/constants/end-point';
 
