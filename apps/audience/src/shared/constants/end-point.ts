@@ -37,4 +37,5 @@ export const END_POINT = {
   // Auth
   POST_LOGOUT: '/auth/logout',
   POST_ONBOARDING_COMPLETE: '/auth/onboarding/complete',
+  GET_AUTH_STATUS: '/auth/status',
 } as const;

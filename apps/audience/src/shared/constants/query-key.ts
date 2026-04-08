@@ -61,4 +61,5 @@ export const USERS_QUERY_KEY = {
   ],
 
   NICKNAME: () => [...USERS_QUERY_KEY.ALL, 'nickname'],
+  AUTH_STATUS: () => [...USERS_QUERY_KEY.ALL, 'auth-status'],
 } as const;
