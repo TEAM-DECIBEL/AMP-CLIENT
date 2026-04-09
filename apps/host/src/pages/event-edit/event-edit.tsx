@@ -47,6 +47,22 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
     return null;
   }
 
+  const handleConfirmEdit = (
+    values: EventFormSubmitValues,
+    closeModal: () => void,
+  ) => {
+    const formData = serializeUpdateFestivalFormData(values);
+
+    updateMutation.mutate(formData, {
+      onSuccess: () => {
+        closeModal();
+        navigate(NAV_PATH.noticeList(festivalId));
+      },
+      onError: () => {
+        toast.show('공연 수정에 실패했어요. 잠시 후 다시 시도해 주세요.');
+      },
+    });
+  };
   const initialValues = toEventEditInitialValues(data);
 
   const openConfirmModal = ({
@@ -90,20 +106,9 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
               variant='primary'
               disabled={updateMutation.isPending}
               onClick={() => {
-                const formData = serializeUpdateFestivalFormData(values);
-
-                updateMutation.mutate(formData, {
-                  onSuccess: () => {
-                    close();
-                    unmount();
-                    navigate(NAV_PATH.noticeList(festivalId));
-                  },
-                  onError: () => {
-                    toast.show(
-                      '공연 수정에 실패했어요.',
-                      '잠시 후 다시 시도해 주세요.',
-                    );
-                  },
+                handleConfirmEdit(values, () => {
+                  close();
+                  unmount();
                 });
               }}
             >
