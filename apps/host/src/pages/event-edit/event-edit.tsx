@@ -51,10 +51,6 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
     values: EventFormSubmitValues,
     closeModal: () => void,
   ) => {
-    if (updateMutation.isPending) {
-      return;
-    }
-
     const formData = serializeUpdateFestivalFormData(values);
 
     updateMutation.mutate(formData, {
