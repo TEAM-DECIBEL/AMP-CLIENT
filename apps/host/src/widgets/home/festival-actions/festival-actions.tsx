@@ -27,9 +27,7 @@ const FestivalActionsView = ({
     <>
       {children}
       <OptionSheet open={isOptionSheetOpen} onClose={onCloseOptionSheet}>
-        <OptionSheet.Item onClick={onEdit}>
-          수정하기
-        </OptionSheet.Item>
+        <OptionSheet.Item onClick={onEdit}>수정하기</OptionSheet.Item>
         <OptionSheet.Item onClick={onOpenDeleteModal}>
           삭제하기
         </OptionSheet.Item>
@@ -37,10 +35,7 @@ const FestivalActionsView = ({
       <Modal open={isDeleteModalOpen} onClose={onCloseDeleteModal}>
         <Modal.Panel role='alertdialog'>
           <Modal.Content>
-            <Modal.Title>공연을 삭제할까요?</Modal.Title>
-            <Modal.Description>
-              삭제한 공연은 복구할 수 없어요.
-            </Modal.Description>
+            <Modal.Title>공연을 삭제하시겠어요?</Modal.Title>
           </Modal.Content>
           <Modal.Actions>
             <RectButton variant='secondary' onClick={onCloseDeleteModal}>
