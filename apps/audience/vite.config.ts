@@ -33,6 +33,7 @@ export default defineConfig(
           'favicon.svg',
           'amp-pwa-logo-192.png',
           'amp-pwa-logo-512.png',
+          'amp-pwa-logo-180.png',
         ],
         manifest: {
           name: 'AMP',
@@ -43,6 +44,11 @@ export default defineConfig(
           background_color: '#ffffff',
           theme_color: '#ffffff',
           icons: [
+            {
+              src: '/amp-pwa-logo-180.png',
+              sizes: '180x180',
+              type: 'image/png',
+            },
             {
               src: '/amp-pwa-logo-192.png',
               sizes: '192x192',
