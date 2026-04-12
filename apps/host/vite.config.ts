@@ -28,28 +28,34 @@ export default defineConfig(
 
         includeAssets: [
           'favicon.svg',
-          'amp-pwa-logo-192.png',
-          'amp-pwa-logo-512.png',
+          'amp-pwa-logo-black-192.png',
+          'amp-pwa-logo-black-512.png',
+          'amp-pwa-logo-black-180.png',
         ],
         manifest: {
           name: 'AMP-HOST',
-          short_name: 'AMP',
+          short_name: 'AMP-HOST',
           description: '작은 공지도 크게 울리게 공연 공지의 공식, AMP',
           start_url: '/login',
           theme_color: '#ffffff',
           icons: [
             {
-              src: 'amp-pwa-logo-192.png',
+              src: '/amp-pwa-logo-black-180.png',
+              sizes: '180x180',
+              type: 'image/png',
+            },
+            {
+              src: '/amp-pwa-logo-black-192.png',
               sizes: '192x192',
               type: 'image/png',
             },
             {
-              src: 'amp-pwa-logo-512.png',
+              src: '/amp-pwa-logo-black-512.png',
               sizes: '512x512',
               type: 'image/png',
             },
             {
-              src: 'amp-pwa-logo-512.png',
+              src: '/amp-pwa-logo-black-512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any maskable',
