@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { overlay } from 'overlay-kit';
 import { useNavigate, useParams } from 'react-router';
 
-import { Modal, RectButton } from '@amp/ads-ui';
+import { Modal, RectButton, toast } from '@amp/ads-ui';
 import { Loading } from '@amp/compositions';
 
 import EventForm from '@widgets/event-form/event-form';
@@ -19,23 +19,12 @@ import { NAV_PATH } from '@shared/constants/path';
 interface ConfirmModalProps {
   title: string;
   description?: string;
-  onConfirm: () => void;
+  values: EventFormSubmitValues;
 }
 
 interface EventEditPageContentProps {
   festivalId: number;
 }
-
-const areSameCategoryIds = (prev: number[], next: number[]) => {
-  if (prev.length !== next.length) {
-    return false;
-  }
-
-  const sortedPrev = [...prev].sort((a, b) => a - b);
-  const sortedNext = [...next].sort((a, b) => a - b);
-
-  return sortedPrev.every((id, index) => id === sortedNext[index]);
-};
 
 const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
   const updateMutation = useFestivalUpdateMutation(festivalId);
@@ -58,27 +47,38 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
     return null;
   }
 
-  const initialValues = toEventEditInitialValues(data);
-
-  const submitEdit = (values: EventFormSubmitValues) => {
+  const handleConfirmEdit = (
+    values: EventFormSubmitValues,
+    closeModal: () => void,
+  ) => {
     const formData = serializeUpdateFestivalFormData(values);
 
     updateMutation.mutate(formData, {
       onSuccess: () => {
+        closeModal();
         navigate(NAV_PATH.noticeList(festivalId));
+      },
+      onError: () => {
+        toast.show('공연 수정에 실패했어요. 잠시 후 다시 시도해 주세요.');
       },
     });
   };
 
+  const initialValues = toEventEditInitialValues(data);
+
   const openConfirmModal = ({
     title,
     description,
-    onConfirm,
+    values,
   }: ConfirmModalProps) => {
     overlay.open(({ isOpen, close, unmount }) => (
       <Modal
         open={isOpen}
         onClose={() => {
+          if (updateMutation.isPending) {
+            return;
+          }
+
           close();
           unmount();
         }}
@@ -94,6 +94,7 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
           <Modal.Actions>
             <RectButton
               variant='secondary'
+              disabled={updateMutation.isPending}
               onClick={() => {
                 close();
                 unmount();
@@ -106,9 +107,10 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
               variant='primary'
               disabled={updateMutation.isPending}
               onClick={() => {
-                onConfirm();
-                close();
-                unmount();
+                handleConfirmEdit(values, () => {
+                  close();
+                  unmount();
+                });
               }}
             >
               확인
@@ -129,19 +131,18 @@ const EventEditPageContent = ({ festivalId }: EventEditPageContentProps) => {
           return;
         }
 
-        const isCategoryChanged = !areSameCategoryIds(
-          initialValues.activeCategoryIds,
-          values.activeCategoryIds,
+        const hasDeletedCategory = initialValues.activeCategoryIds.some(
+          (id) => !values.activeCategoryIds.includes(id),
         );
 
         openConfirmModal({
-          title: isCategoryChanged
+          title: hasDeletedCategory
             ? '공지 카테고리를 수정하시겠어요?'
-            : '공지를 수정하시겠어요?',
-          description: isCategoryChanged
+            : '수정하시겠어요?',
+          description: hasDeletedCategory
             ? '카테고리를 수정하면\n해당 카테고리로 작성된 공지가 삭제돼요.'
             : undefined,
-          onConfirm: () => submitEdit(values),
+          values,
         });
       }}
     />

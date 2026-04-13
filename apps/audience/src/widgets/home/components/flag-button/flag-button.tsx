@@ -1,4 +1,5 @@
-import { AmpFlagGradientIcon, AmpFlagIcon } from '@amp/ads-ui/icons';
+import { AMP_FLAG_GRADIENT_ICON_URL } from '@amp/ads-ui/icon-urls';
+import { AmpFlagIcon } from '@amp/ads-ui/icons';
 
 import * as styles from './flag-button.css';
 
@@ -22,7 +23,7 @@ const FlagButton = ({ selected, onChange, disabled }: FlagButtonProps) => {
       disabled={disabled}
     >
       {selected ? (
-        <AmpFlagGradientIcon className={styles.icon} />
+        <img src={AMP_FLAG_GRADIENT_ICON_URL} className={styles.icon} alt='' />
       ) : (
         <AmpFlagIcon className={styles.icon} />
       )}

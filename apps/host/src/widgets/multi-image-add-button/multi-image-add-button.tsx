@@ -8,7 +8,7 @@ import * as styles from './multi-image-add-button.css';
 interface MultiImageAddButtonProps {
   currentCount: number;
   maxCount?: number;
-  onFilesChange: (files: File[]) => void;
+  onFilesChange: (files: File[]) => void | Promise<void>;
 }
 
 const MultiImageAddButton = ({
